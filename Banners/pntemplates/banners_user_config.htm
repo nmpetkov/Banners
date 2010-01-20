@@ -1,0 +1,53 @@
+<!--[*  $Id: banners_user_config.htm 9 2008-11-05 21:42:16Z Guite $  *]-->
+<!--[insert name="getstatusmsg"]-->
+<h1><!--[pnml name=_BANNERS_ADVSTATS]--></h1>
+<h2><!--[pnml name="_BANNERS_CURRACTIVE" client=$name]--></h2>
+<h3><!--[pnml name="_BANNERS_SUMMARY"]--></h3>
+<!--[pnconfiggetvar name="sitename" assign=sitename]-->
+<p><!--[pnml name="_BANNERS_ONYOURSITE" sitename=$sitename]--></p>
+<table width="100%" border="1">
+	<tr>
+		<th><!--[pnml name="_BANNERS_ID"]--></th>
+	    <th><!--[pnml name="_BANNERS_IMPMADE"]--></th>
+	    <th><!--[pnml name="_BANNERS_IMP"]--></th>
+	    <th><!--[pnml name="_BANNERS_IMPLEFT"]--></th>
+	    <th><!--[pnml name="_BANNERS_CLICKS"]--></th>
+	    <th><!--[pnml name="_BANNERS_CLICKSPERCENT"]--></th>
+	    <th><!--[pnml name="_OPTIONS"]--></th>
+	 </tr>
+	 <!--[section name="banners" loop=$banners]-->
+     <tr>
+    	<td><!--[$banners[banners].bid|pnvarprepfordisplay]--></td>
+		<td><!--[$banners[banners].impmade|pnvarprepfordisplay]--></td>
+		<td><!--[$banners[banners].imptotal|pnvarprepfordisplay]--></td>
+		<td><!--[$banners[banners].impleft|pnvarprepfordisplay]--></td>
+		<td><!--[$banners[banners].clicks|pnvarprepfordisplay]--></td>
+		<td><!--[$banners[banners].percent|pnvarprepfordisplay]--></td>
+		<td><a href="<!--[pnmodurl modname="Banners" type="user" func="emailstats" login="$login" pass="$pass" cid="$cid" bid=""]--><!--[$banners[banners].bid|pnvarprepfordisplay]-->"><!--[pnml name="_BANNERS_EMAIL_STATS"]--></a></td>
+	 </tr>
+	<!--[/section]-->
+</table>
+
+<h3><!--[pnml name=_BANNERS_UPDATE]--></h3>
+<ul style="list-style:none">
+<!--[section name="banners" loop=$banners]-->
+<li>
+<div><img src="<!--[$banners[banners].imageurl|pnvarprepfordisplay]-->" alt="" /></div>
+<div><!--[pnml name="_BANNERS_ID"]-->: <!--[$banners[banners].bid|pnvarprepfordisplay]--></div>
+<div><!--[pnml name=_BANNERS_URL]-->: <a href="<!--[$banners[banners].clickurl|pnvarprepfordisplay]-->"><!--[$banners[banners].clickurl|pnvarprepfordisplay]--></a></div>
+<!--[pnmodurl modname="Banners" type="user" func="emailstats" login=$login pass=$pass cid=$cid bid=$banners[banners].bid assign=statsurl]-->
+<div><!--[pnml name="_BANNERS_SENDSTATS" url=$statsurl html=true ]--></div>
+<form action="<!--[pnmodurl modname="Banners" type="user" func="changeurl"]-->" method="post" enctype="application/x-www-form-urlencoded">
+<div>
+	<label for="changeurl_<!--[$banners[banners].bid|pnvarprepfordisplay]-->"><!--[pnml name="_BANNERS_CHANGEURL"]--></label>:
+	<input type="text" id="changeurl_<!--[$banners[banners].bid|pnvarprepfordisplay]-->" name="url" size="50" maxlength="200" value="<!--[$banners[banners].clickurl|pnvarprepfordisplay]-->" />
+	<input type="hidden" name="bid" value="<!--[$banners[banners].bid|pnvarprepfordisplay]-->" />
+	<input type="hidden" name="login" value="<!--[$login|pnvarprepfordisplay]-->" />
+	<input type="hidden" name="pass" value="<!--[$pass|pnvarprepfordisplay]-->" />
+	<input type="hidden" name="cid" value="<!--[$cid|pnvarprepfordisplay]-->" />
+	<input name="submit" type="submit" value="<!--[pnml name="_SUBMIT"]-->" />
+</div>
+</form>
+</li>
+<!--[/section]-->
+</ul>

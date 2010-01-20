@@ -1,0 +1,9 @@
+<!--[*  $Id: banners_block_banners_modify.htm 9 2008-11-05 21:42:16Z Guite $  *]-->
+<div class="pn-adminformrow">
+    <label for="bannerblock_btype"><!--[pnml name=_BANNERSBLOCK_BTYPE]--></label>
+    <!--[ pnml assign="choose" name="_CHOOSEONE" ]-->
+    <!--[ selector_field_array name="btype" modname="Banners" table="banners" field="type" sort="pn_type" selectedValue=$btype defaultValue=0 defaultText=choose assocKey="type" ]-->
+</div>
+<div class="pn-adminformrow">
+<label for="bannerblock_template"><!--[pnml name=_BANNERSBLOCK_TEMPLATE]--></label>
+	<input id="bannerblock_rotate_blocktemplate" type="text" name="blocktemplate" size="30" value="<!--[$blocktemplate|pnvarprepfordisplay]-->" />
