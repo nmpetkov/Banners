@@ -107,8 +107,8 @@
 		<td><!--[$activeclients[activeclients].contact|pnvarprepfordisplay]--></td>
 		<td><!--[$activeclients[activeclients].email|pnvarprepfordisplay]--></td>
 		<td>
-			<a href="<!--[pnmodurl modname="Banners" type="admin" func="modifyclient" cid=""]--><!--[$activeclients[activeclients].cid|pnvarprepfordisplay]-->"><!--[pnimg modname=core set=icons/extrasmall src=xedit.gif alt=_EDIT altml=true]--></a>
-			<a href="<!--[pnmodurl modname="Banners" type="admin" func="deleteclient" cid=""]--><!--[$activeclients[activeclients].cid|pnvarprepfordisplay]-->"><!--[pnimg modname=core set=icons/extrasmall src=14_layer_deletelayer.gif alt=_DELETE altml=true]--></a>
+			<a href="<!--[pnmodurl modname="Banners" type="admin" func="modifyclient" cid=$activeclients[activeclients].cid]-->"><!--[pnimg modname=core set=icons/extrasmall src=xedit.gif alt=_EDIT altml=true]--></a>
+			<a href="<!--[pnmodurl modname="Banners" type="admin" func="deleteclient" cid=$activeclients[activeclients].cid]-->"><!--[pnimg modname=core set=icons/extrasmall src=14_layer_deletelayer.gif alt=_DELETE altml=true]--></a>
    	   </td>
 	</tr>
 	<!--[sectionelse]-->
