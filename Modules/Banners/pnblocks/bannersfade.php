@@ -1,37 +1,36 @@
 <?php
 /**
- * Zikula Application Framework
- *
- * @copyright (c) 2002, Zikula Development Team
- * @link http://www.zikula.org
- * @version $Id: banners.php 9 2008-11-05 21:42:16Z Guite $
- * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * @package Zikula_Value_Addons
- * @subpackage Banners
+ * @package      Banners
+ * @version      $Id: 
+ * @author       Halbrook Technologies
+ * @link         http://www.halbrooktech.com
+ * @copyright    Copyright (C) 2010
+ * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
 /**
  * initialise block
  * 
- * @author       The Zikula Development Team
+ * @author       Halbrook Technologies
  */
 function Banners_bannersfadeblock_init()
 {
     // Security
-    pnSecAddSchema('Bannersfade::', 'Block title::');
+    pnSecAddSchema('Banners:faderblock:', 'Block title::');
 }
 
 /**
  * get information on block
  * 
- * @author       The Zikula Development Team
+ * @author       Halbrook Technologies
  * @return       array       The block information
  */
 function Banners_bannersfadeblock_info()
 {
-    return array('text_type'       => 'Fading',
+     $dom = ZLanguage::getModuleDomain('Banners');
+    return array('text_type'       => 'Fader',
                  'module'          => 'Banners',
-                 'text_type_long'  => 'Fading Banner Display',
+                 'text_type_long'  => __('Fading Banner Display', $dom);
                  'allow_multiple'  => true,
                  'form_content'    => false,
                  'form_refresh'    => false,
@@ -42,13 +41,13 @@ function Banners_bannersfadeblock_info()
 /**
  * display block
  * 
- * @author       The Zikula Development Team
+ * @author       Halbrook Technologies
  * @param        array       $blockinfo     a blockinfo structure
  * @return       output      the rendered bock
  */
 function Banners_bannersfadeblock_display($blockinfo)
 {
-    if (!SecurityUtil::checkPermission('Bannersfade::', "$blockinfo[title]::", ACCESS_READ)) {
+    if (!SecurityUtil::checkPermission('Banners:faderblock:', "$blockinfo[title]::", ACCESS_READ)) {
         return;
     }
 
@@ -79,7 +78,7 @@ function Banners_bannersfadeblock_display($blockinfo)
 /**
  * modify block settings
  * 
- * @author       The Zikula Development Team
+ * @author       Halbrook Technologies
  * @param        array       $blockinfo     a blockinfo structure
  * @return       output      the block form
  */
@@ -106,7 +105,7 @@ function Banners_bannersfadeblock_modify($blockinfo)
 /**
  * update block settings
  * 
- * @author       The Zikula Development Team
+ * @author       Halbrook Technologies
  * @param        array       $blockinfo     a blockinfo structure
  * @return       $blockinfo  the modified blockinfo structure
  */
