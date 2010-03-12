@@ -1,7 +1,7 @@
 <?php
 /**
  * @package      Banners
- * @version      $Id: 
+ * @version      $Id:
  * @author       Halbrook Technologies
  * @link         http://www.halbrooktech.com
  * @copyright    Copyright (C) 2010

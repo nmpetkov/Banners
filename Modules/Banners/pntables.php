@@ -1,8 +1,8 @@
 <?php
 /**
-/**
+ /**
  * @package      Banners
- * @version      $Id: 
+ * @version      $Id:
  * @author       Halbrook Technologies
  * @link         http://www.halbrooktech.com
  * @copyright    Copyright (C) 2010
@@ -15,12 +15,12 @@
  */
 function Banners_pntables()
 {
-    // Initialise table array
-    $pntable = array();
+	// Initialise table array
+	$pntable = array();
 
-    // Main banners column
-    $pntable['banners'] = DBUtil::getLimitedTablename('banners');
-    $pntable['banners_column'] = array('bid'       => 'pn_bid',
+	// Main banners column
+	$pntable['banners'] = DBUtil::getLimitedTablename('banners');
+	$pntable['banners_column'] = array('bid'       => 'pn_bid',
                                        'cid'       => 'pn_cid',
                                        'type'      => 'pn_type',
                                        'imptotal'  => 'pn_imptotal',
@@ -29,7 +29,7 @@ function Banners_pntables()
                                        'imageurl'  => 'pn_imageurl',
                                        'clickurl'  => 'pn_clickurl',
                                        'date'      => 'pn_date');
-    $pntable['banners_column_def'] = array('bid'      => 'I AUTOINCREMENT PRIMARY',
+	$pntable['banners_column_def'] = array('bid'      => 'I AUTOINCREMENT PRIMARY',
                                            'cid'      => "I NOTNULL DEFAULT '0'",
                                            'type'     => "C(2) NOTNULL DEFAULT '0'",
                                            'imptotal' => "I NOTNULL DEFAULT '0'",
@@ -38,50 +38,50 @@ function Banners_pntables()
                                            'imageurl' => "C(255) NOTNULL DEFAULT ''",
                                            'clickurl' => "C(255) NOTNULL DEFAULT ''",
                                            'date'     => 'T DEFAULT NULL');
-    // add standard data fields
-    ObjectUtil::addStandardFieldsToTableDefinition ($pntable['banners_column'], 'pn_');
-    ObjectUtil::addStandardFieldsToTableDataDefinition($pntable['banners_column_def']);
+	// add standard data fields
+	ObjectUtil::addStandardFieldsToTableDefinition ($pntable['banners_column'], 'pn_');
+	ObjectUtil::addStandardFieldsToTableDataDefinition($pntable['banners_column_def']);
 
 
-    // Advertising clients
-    $pntable['bannersclient'] = DBUtil::getLimitedTablename('bannersclient');
-    $pntable['bannersclient_column'] = array('cid'       => 'pn_cid',
+	// Advertising clients
+	$pntable['bannersclient'] = DBUtil::getLimitedTablename('bannersclient');
+	$pntable['bannersclient_column'] = array('cid'       => 'pn_cid',
                                              'name'      => 'pn_name',
                                              'contact'   => 'pn_contact',
                                              'email'     => 'pn_email',
                                              'login'     => 'pn_login',
                                              'passwd'    => 'pn_passwd',
                                              'extrainfo' => 'pn_extrainfo');
-    $pntable['bannersclient_column_def'] = array('cid'       => 'I AUTOINCREMENT PRIMARY',
+	$pntable['bannersclient_column_def'] = array('cid'       => 'I AUTOINCREMENT PRIMARY',
                                                  'name'      => 'C(60) NOTNULL',
                                                  'contact'   => 'C(60) NOTNULL',
                                                  'email'     => 'C(60) NOTNULL',
                                                  'login'     => 'C(10) NOTNULL',
                                                  'passwd'    => 'C(10) NOTNULL',
                                                  'extrainfo' => "X2 NOTNULL");
-    // add standard data fields
-    ObjectUtil::addStandardFieldsToTableDefinition ($pntable['bannersclient_column'], 'pn_');
-    ObjectUtil::addStandardFieldsToTableDataDefinition($pntable['bannersclient_column_def']);
+	// add standard data fields
+	ObjectUtil::addStandardFieldsToTableDefinition ($pntable['bannersclient_column'], 'pn_');
+	ObjectUtil::addStandardFieldsToTableDataDefinition($pntable['bannersclient_column_def']);
 
-    // completed banners
-    $pntable['bannersfinish'] = DBUtil::getLimitedTablename('bannersfinish');
-    $pntable['bannersfinish_column'] = array('bid'         => 'pn_bid',
+	// completed banners
+	$pntable['bannersfinish'] = DBUtil::getLimitedTablename('bannersfinish');
+	$pntable['bannersfinish_column'] = array('bid'         => 'pn_bid',
                                              'cid'         => 'pn_cid',
                                              'impressions' => 'pn_impressions',
                                              'clicks'      => 'pn_clicks',
                                              'datestart'   => 'pn_datestart',
                                              'dateend'     => 'pn_dateend');
-    $pntable['bannersfinish_column_def'] = array('bid'         => 'I AUTOINCREMENT PRIMARY',
+	$pntable['bannersfinish_column_def'] = array('bid'         => 'I AUTOINCREMENT PRIMARY',
                                                  'cid'         => "I NOTNULL DEFAULT '0'",
                                                  'impressions' => "I NOTNULL DEFAULT '0'",
                                                  'clicks'      => "I NOTNULL DEFAULT '0'",
                                                  'datestart'   => 'T DEFAULT NULL',
                                                  'dateend'     => 'T DEFAULT NULL');
-    // add standard data fields
-    ObjectUtil::addStandardFieldsToTableDefinition ($pntable['bannersfinish_column'], 'pn_');
-    ObjectUtil::addStandardFieldsToTableDataDefinition($pntable['bannersfinish_column_def']);
+	// add standard data fields
+	ObjectUtil::addStandardFieldsToTableDefinition ($pntable['bannersfinish_column'], 'pn_');
+	ObjectUtil::addStandardFieldsToTableDataDefinition($pntable['bannersfinish_column_def']);
 
-    // Return the table information
-    return $pntable;
+	// Return the table information
+	return $pntable;
 
 }

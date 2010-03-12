@@ -1,13 +1,13 @@
 <?php
 /**
  * @package      Banners
- * @version      $Id: 
+ * @version      $Id:
  * @author       Halbrook Technologies
  * @link         http://www.halbrooktech.com
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
- 
+
 /**
  * initialise the Banners module
  * This function is only ever called once during the lifetime of a particular
@@ -19,30 +19,30 @@
  */
 function Banners_init()
 {
-    // create the three tables
-    $tables = array('banners', 'bannersclient', 'bannersfinish');
-    foreach ($tables as $table) {
-        if (!DBUtil::createTable($table)) {
-            return false;
-        }
-    }
+	// create the three tables
+	$tables = array('banners', 'bannersclient', 'bannersfinish');
+	foreach ($tables as $table) {
+		if (!DBUtil::createTable($table)) {
+			return false;
+		}
+	}
 
-    // migrate the old config vars into module vars
-    if (pnConfigGetVar('banners') != ''){
-        $myIP = pnConfigGetVar('myIP');
-        $banners = pnConfigGetVar('banners');
-        pnModSetVar('Banners', 'myIP', $myIP);
-        pnModSetVar('Banners', 'banners', $banners);
+	// migrate the old config vars into module vars
+	if (pnConfigGetVar('banners') != ''){
+		$myIP = pnConfigGetVar('myIP');
+		$banners = pnConfigGetVar('banners');
+		pnModSetVar('Banners', 'myIP', $myIP);
+		pnModSetVar('Banners', 'banners', $banners);
 		pnConfigDelVar('myIP');
 		pnConfigDelVar('banners');
-    } else {
-        pnModSetVar('Banners', 'myIP', '127.0.0.1');
-        pnModSetVar('Banners', 'banners', false);
-    }
-    pnModSetVar('Banners', 'openinnewwindow', false);
+	} else {
+		pnModSetVar('Banners', 'myIP', '127.0.0.1');
+		pnModSetVar('Banners', 'banners', false);
+	}
+	pnModSetVar('Banners', 'openinnewwindow', false);
 
-    // Initialisation successful
-    return true;
+	// Initialisation successful
+	return true;
 }
 
 /**
@@ -53,33 +53,33 @@ function Banners_init()
  */
 function Banners_upgrade($oldversion)
 {
-    // create the three tables
-    $tables = array('banners', 'bannersclient', 'bannersfinish');
-    foreach ($tables as $table) {
-        if (!DBUtil::changeTable($table)) {
-            return false;
-        }
-    }
+	// create the three tables
+	$tables = array('banners', 'bannersclient', 'bannersfinish');
+	foreach ($tables as $table) {
+		if (!DBUtil::changeTable($table)) {
+			return false;
+		}
+	}
 
-    // Upgrade dependent on old version number
-    switch($oldversion) {
-        // version 1.0 was shipped with PN .7x
-        case 1.0:
-            // migrate the old config vars into module vars
-            if (pnConfigGetVar('banners') != ''){
-                $myIP = pnConfigGetVar('myIP');
-                $banners = pnConfigGetVar('banners');
-                pnModSetVar('Banners', 'myIP', $myIP);
-                pnModSetVar('Banners', 'banners', $banners);
-                pnModSetVar('Banners', 'openinnewwinow', false);
-                pnConfigDelVar('myIP');
-                pnConfigDelVar('banners');
-            }
-            break;
-    }
+	// Upgrade dependent on old version number
+	switch($oldversion) {
+		// version 1.0 was shipped with PN .7x
+		case 1.0:
+			// migrate the old config vars into module vars
+			if (pnConfigGetVar('banners') != ''){
+				$myIP = pnConfigGetVar('myIP');
+				$banners = pnConfigGetVar('banners');
+				pnModSetVar('Banners', 'myIP', $myIP);
+				pnModSetVar('Banners', 'banners', $banners);
+				pnModSetVar('Banners', 'openinnewwinow', false);
+				pnConfigDelVar('myIP');
+				pnConfigDelVar('banners');
+			}
+			break;
+	}
 
-    // Update successful
-    return true;
+	// Update successful
+	return true;
 }
 
 /**
@@ -91,17 +91,17 @@ function Banners_upgrade($oldversion)
  */
 function Banners_delete()
 {
-    // drop the three tables for the module
-    $tables = array('banners', 'bannersclient', 'bannersfinish');
-    foreach ($tables as $table) {
-        if (!DBUtil::dropTable($table)) {
-            return false;
-        }
-    }
+	// drop the three tables for the module
+	$tables = array('banners', 'bannersclient', 'bannersfinish');
+	foreach ($tables as $table) {
+		if (!DBUtil::dropTable($table)) {
+			return false;
+		}
+	}
 
-    // delete all module vars
-    pnModDelVar('Banners');
+	// delete all module vars
+	pnModDelVar('Banners');
 
-    // Delete successful
-    return true;
+	// Delete successful
+	return true;
 }

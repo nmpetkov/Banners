@@ -9,7 +9,7 @@
  * @package Zikula_Value_Addons
  * @subpackage Banners
  */
-        
+
 define('_BANNERSBLOCK_BTYPE','Custom banner ID');
 define('_BANNERSBLOCK_DEFINE',' (0,1,2) are reserved for the default banners. Please use any number higher than that!');
 define('_BANNERSBLOCK_TEMPLATE','What Template To use');
