@@ -1,7 +1,7 @@
 <script type="text/javascript">
 
 /***********************************************
-* Translucent Slideshow script- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* Translucent Slideshow script- ï¿½ Dynamic Drive DHTML code library (www.dynamicdrive.com)
 * This notice MUST stay intact for legal use
 * Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
 ***********************************************/
@@ -13,9 +13,9 @@ var degree=50 //animation speed. Greater is faster.
 
 var slideshowcontent=new Array()
 //Define slideshow contents: [image URL, OPTIONAL LINK, OPTIONAL LINK TARGET]
-<!--[foreach from=$banner item=bannerinfo]-->
-slideshowcontent[<!--[$bannerinfo.banid]-->]=["<!--[$bannerinfo.imageurl]-->", "<!--[$bannerinfo.clickurl]-->", ""]
-<!--[/foreach]-->
+{{foreach from=$banner item=bannerinfo}}
+slideshowcontent[{{$bannerinfo.banid}}]=["{{$bannerinfo.imageurl}}", "{{$bannerinfo.clickurl}}", ""]
+{{/foreach}}
 
 ////NO need to edit beyond here/////////////
 

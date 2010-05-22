@@ -19,27 +19,13 @@
  */
 function Banners_init()
 {
-	// create the three tables
-	$tables = array('banners', 'bannersclient', 'bannersfinish');
-	foreach ($tables as $table) {
-		if (!DBUtil::createTable($table)) {
-			return false;
-		}
-	}
-
-	// migrate the old config vars into module vars
-	if (pnConfigGetVar('banners') != ''){
-		$myIP = pnConfigGetVar('myIP');
-		$banners = pnConfigGetVar('banners');
-		pnModSetVar('Banners', 'myIP', $myIP);
-		pnModSetVar('Banners', 'banners', $banners);
-		pnConfigDelVar('myIP');
-		pnConfigDelVar('banners');
-	} else {
+	// create the table
+   if (!DBUtil::createTable('banners')) return false;
 		pnModSetVar('Banners', 'myIP', '127.0.0.1');
 		pnModSetVar('Banners', 'banners', false);
-	}
-	pnModSetVar('Banners', 'openinnewwindow', false);
+		pnModSetVar('Banners', 'openinnewwindow', false);
+		pnModSetVar('Banners', 'xdim', '468');
+		pnModSetVar('Banners', 'ydim', '60');
 
 	// Initialisation successful
 	return true;

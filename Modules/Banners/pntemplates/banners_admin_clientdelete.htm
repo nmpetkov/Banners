@@ -1,35 +1,35 @@
-<!--[*  $Id: banners_admin_clientdelete.htm 9 2008-11-05 21:42:16Z Guite $  *]-->
-<!--[include file="banners_admin_menu.htm"]-->
+{*  $Id: banners_admin_clientdelete.htm 9 2008-11-05 21:42:16Z Guite $  *}
+{include file="banners_admin_menu.htm"}
 <div class="pn-admincontainer">
-<div class="pn-adminpageicon"><!--[pnimg modname=core src=editdelete.gif set=icons/large alt='_BANNERS_DELETECLIENT' altml=true]--></div>
-<h2><!--[pnml name="_BANNERS_DELETECLIENT"]--></h2>
-<div><!--[pnml name="_BANNERS_DELETECLIENT"]-->: <!--[$cname|pnvarprepfordisplay]--></div>
-<form class="pn-adminform" action="<!--[pnmodurl modname="Banners" type="admin" func="deleteclient"]-->" method="post" enctype="application/x-www-form-urlencoded">
+<div class="pn-adminpageicon">{pnimg modname=core src=editdelete.gif set=icons/large alt='_BANNERS_DELETECLIENT' altml=true}</div>
+<h2>{pnml name="_BANNERS_DELETECLIENT"}</h2>
+<div>{pnml name="_BANNERS_DELETECLIENT"}: {$cname|pnvarprepfordisplay}</div>
+<form class="pn-adminform" action="{pnmodurl modname="Banners" type="admin" func="deleteclient"}" method="post" enctype="application/x-www-form-urlencoded">
 <div>
-    <input type="hidden" name="authid" value="<!--[insert name="generateauthkey" module="Banners"]-->" />
+    <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
     <input type="hidden" name="confirmation" value="1" />
-    <input type="hidden" name="cid" value="<!--[$cid|pnvarprepfordisplay]-->" />
+    <input type="hidden" name="cid" value="{$cid|pnvarprepfordisplay}" />
 	<p>
-	<!--[if $banners]-->
-        <strong><!--[pnml name=_BANNERS_WARNING]-->!!!</strong> <!--[pnml name=_BANNERS_CLIENTHASBANNERS]-->
-    <!--[else]-->
-	    <!--[pnml name=_BANNERS_CLIENTWITHOUTBANNERS]-->
-    <!--[/if]-->
+	{if $banners}
+        <strong>{pnml name=_BANNERS_WARNING}!!!</strong> {pnml name=_BANNERS_CLIENTHASBANNERS}
+    {else}
+	    {pnml name=_BANNERS_CLIENTWITHOUTBANNERS}
+    {/if}
 	</p>
-	<!--[if $banners]-->
+	{if $banners}
 	<ul>
-	<!--[section name="banners" loop=$banners]-->
+	{section name="banners" loop=$banners}
 	<li>	
-		<a href="<!--[$banners[banners].clickurl|pnvarprepfordisplay]-->"><img src="<!--[$banners[banners].imageurl|pnvarprepfordisplay]-->" alt="" title="<!--[$banners[banners].clickurl]-->" /></a>
-		<br /><!--[$banners[banners].clickurl|pnvarprepfordisplay]-->
+		<a href="{$banners[banners].clickurl|pnvarprepfordisplay}"><img src="{$banners[banners].imageurl|pnvarprepfordisplay}" alt="" title="{$banners[banners].clickurl}" /></a>
+		<br />{$banners[banners].clickurl|pnvarprepfordisplay}
 	</li>
-	<!--[/section]-->
+	{/section}
 	</ul>
-    <!--[/if]-->
-	<p><!--[pnml name="_BANNERS_CONFIRMDELETECLIENT" html=1]--></p>
+    {/if}
+	<p>{pnml name="_BANNERS_CONFIRMDELETECLIENT" html=1}</p>
     <div class="pn-adminformrow pn-adminformbuttons"><br />
-	<!--[pnbutton src=button_ok.gif set=icons/small alt="_CONFIRMDELETE" title="_CONFIRMDELETE"]-->
-    <a href="<!--[pnmodurl modname=Banners type=admin func=view]-->"><!--[pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"]--></a>
+	{pnbutton src=button_ok.gif set=icons/small alt="_CONFIRMDELETE" title="_CONFIRMDELETE"}
+    <a href="{pnmodurl modname=Banners type=admin func=view}">{pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"}</a>
     </div>
 </div>
 </form>

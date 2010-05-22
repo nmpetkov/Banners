@@ -30,7 +30,7 @@ function Banners_bannersfadeblock_info()
 	$dom = ZLanguage::getModuleDomain('Banners');
 	return array('text_type'       => 'Fader',
                  'module'          => 'Banners',
-                 'text_type_long'  => __('Fading Banner Display', $dom);
+                 'text_type_long'  => __('Fading Banner Display', $dom),
                  'allow_multiple'  => true,
                  'form_content'    => false,
                  'form_refresh'    => false,

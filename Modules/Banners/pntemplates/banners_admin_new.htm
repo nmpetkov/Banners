@@ -1,79 +1,79 @@
-<!--[*  $Id: banners_admin_new.htm 9 2008-11-05 21:42:16Z Guite $  *]-->
-<!--[include file="banners_admin_menu.htm"]-->
+{*  $Id: banners_admin_new.htm 9 2008-11-05 21:42:16Z Guite $  *}
+{include file="banners_admin_menu.htm"}
 <div class="pn-admincontainer">
-<div class="pn-adminpageicon"><!--[pnimg modname=core src=filenew.gif set=icons/large alt='_BANNERS_CREATE' altml=true]--></div>
-<!--[if $bannersenabled eq 0]-->
+<div class="pn-adminpageicon">{pnimg modname=core src=filenew.gif set=icons/large alt='_BANNERS_CREATE' altml=true}</div>
+{if $bannersenabled eq 0}
 <p>
-	<em><strong><!--[pnml name="_BANNERS_IMPORTANTNOTE"]--></strong></em>
-    <strong><!--[pnml name="_BANNERS_NOTACTIVE"]--></strong>
-    <!--[pnml name="_BANNERS_TOACTIVATE"]-->
+	<em><strong>{pnml name="_BANNERS_IMPORTANTNOTE"}</strong></em>
+    <strong>{pnml name="_BANNERS_NOTACTIVE"}</strong>
+    {pnml name="_BANNERS_TOACTIVATE"}
 </p>
-<!--[/if]-->
-<!--[if $clients]-->
-<h2><!--[pnml name="_BANNERS_NEW"]--></h2>
-<form class="pn-adminform" action="<!--[pnmodurl modname="Banners" type="admin" func="create"]-->" method="post" enctype="application/x-www-form-urlencoded">
+{/if}
+{if $clients}
+<h2>{pnml name="_BANNERS_NEW"}</h2>
+<form class="pn-adminform" action="{pnmodurl modname="Banners" type="admin" func="create"}" method="post" enctype="application/x-www-form-urlencoded">
 <div>
-	<input type="hidden" name="authid" value="<!--[insert name="generateauthkey" module="Banners"]-->" />
+	<input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
 	<div class="pn-adminformrow">
-		<label for="clientlist"><!--[pnml name="_BANNERS_CLIENTNAME"]--></label>
+		<label for="clientlist">{pnml name="_BANNERS_CLIENTNAME"}</label>
 		<select id="clientlist" name="banner[cid]">
-			<!--[html_options options=$clients]-->
+			{html_options options=$clients}
 		</select>
 	</div>
 	<div class="pn-adminformrow">
-		<label for="impressions"><!--[pnml name="_BANNERS_PURCHASEDIMPRESSIONS"]--></label> 
-		<input type="text" id="impressions" name="banner[imptotal]" size="12" maxlength="11" /> 0 = <!--[pnml name="_BANNERS_UNLIMITED"]-->
+		<label for="impressions">{pnml name="_BANNERS_PURCHASEDIMPRESSIONS"}</label> 
+		<input type="text" id="impressions" name="banner[imptotal]" size="12" maxlength="11" /> 0 = {pnml name="_BANNERS_UNLIMITED"}
 	</div>
 	<div class="pn-adminformrow">
-		<label for="bannertype"><!--[pnml name="_BANNERS_TYPE"]--></label>
+		<label for="bannertype">{pnml name="_BANNERS_TYPE"}</label>
 		<input type="text" id="bannertype" name="banner[idtype]" size="2" maxlength="2" />
 	</div>
 	<div class="pn-adminformrow">
-		<label for="imgurl"><!--[pnml name="_BANNERS_IMAGEURL"]--></label>
+		<label for="imgurl">{pnml name="_BANNERS_IMAGEURL"}</label>
 		<input type="text" id="imgurl" name="banner[imageurl]" size="50" maxlength="250" />
 	</div>
 	<div class="pn-adminformrow">
-		<label for="clickurl"><!--[pnml name="_BANNERS_CLICKURL"]--></label>
+		<label for="clickurl">{pnml name="_BANNERS_CLICKURL"}</label>
 		<input type="text" id="clickurl" name="banner[clickurl]" size="50" maxlength="250" />
 	</div>
     <div class="pn-adminformrow pn-adminformbuttons">
-    <a href="<!--[pnmodurl modname=Banners type=admin func=view]-->"><!--[pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"]--></a>
-    <!--[pnbutton src=button_ok.gif set=icons/small alt="_BANNERS_CREATE" title="_BANNERS_CREATE"]-->
+    <a href="{pnmodurl modname=Banners type=admin func=view}">{pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"}</a>
+    {pnbutton src=button_ok.gif set=icons/small alt="_BANNERS_CREATE" title="_BANNERS_CREATE"}
     </div>
 </div>
 </form>
-<!--[/if]-->
-<h2><!--[pnml name="_BANNERS_ADDCLIENT"]--></h2>
-<form class="pn-adminform" action="<!--[pnmodurl modname="Banners" type="admin" func="createclient"]-->" method="post" enctype="application/x-www-form-urlencoded">
+{/if}
+<h2>{pnml name="_BANNERS_ADDCLIENT"}</h2>
+<form class="pn-adminform" action="{pnmodurl modname="Banners" type="admin" func="createclient"}" method="post" enctype="application/x-www-form-urlencoded">
 <div>
-	<input type="hidden" name="authid" value="<!--[insert name="generateauthkey" module="Banners"]-->" />
+	<input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
 	<div class="pn-adminformrow">
-		<label for="client"><!--[pnml name="_BANNERS_CLIENTNAME"]--></label> 
+		<label for="client">{pnml name="_BANNERS_CLIENTNAME"}</label> 
 		<input type="text" id="client" name="client[cname]" size="30" maxlength="60" />
 	</div>
 	<div class="pn-adminformrow">
-		<label for="contact"><!--[pnml name="_BANNERS_CONTACTNAME"]--></label>
+		<label for="contact">{pnml name="_BANNERS_CONTACTNAME"}</label>
 		<input type="text" id="contact" name="client[contact]" size="30" maxlength="60" />
 	</div>
 	<div class="pn-adminformrow">
-		<label for="email"><!--[pnml name="_BANNERS_CONTACTEMAIL"]--></label>
+		<label for="email">{pnml name="_BANNERS_CONTACTEMAIL"}</label>
 		<input type="text" id="email" name="client[email]" size="30" maxlength="60" />
 	</div>
 	<div class="pn-adminformrow">
-		<label for="login"><!--[pnml name="_BANNERS_CLIENTLOGINNAME"]--></label>
+		<label for="login">{pnml name="_BANNERS_CLIENTLOGINNAME"}</label>
 		<input type="text" id="login" name="client[login]" size="12" maxlength="10" />
 	</div>
 	<div class="pn-adminformrow">
-		<label for="pass"><!--[pnml name="_BANNERS_CLIENTPASSWD"]--></label>
+		<label for="pass">{pnml name="_BANNERS_CLIENTPASSWD"}</label>
 		<input type="text" id="pass" name="client[passwd]" size="12" maxlength="10" />
 	</div>
 	<div class="pn-adminformrow">
-		<label for="xinfo"><!--[pnml name="_BANNERS_EXTRAINFO"]--></label>
+		<label for="xinfo">{pnml name="_BANNERS_EXTRAINFO"}</label>
 		<textarea id="xinfo" name="client[extrainfo]" cols="50" rows="10"></textarea>
 	</div>
     <div class="pn-adminformrow pn-adminformbuttons">
-    <!--[pnbutton src=button_ok.gif set=icons/small alt="_BANNERS_ADDCLIENT" title="_BANNERS_ADDCLIENT"]-->
-    <a href="<!--[pnmodurl modname=Banners type=admin func=view]-->"><!--[pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"]--></a>
+    {pnbutton src=button_ok.gif set=icons/small alt="_BANNERS_ADDCLIENT" title="_BANNERS_ADDCLIENT"}
+    <a href="{pnmodurl modname=Banners type=admin func=view}">{pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"}</a>
     </div>
 </div>
 </form>

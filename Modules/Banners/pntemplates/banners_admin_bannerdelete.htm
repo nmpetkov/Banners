@@ -1,51 +1,51 @@
-<!--[*  $Id: banners_admin_bannerdelete.htm 9 2008-11-05 21:42:16Z Guite $  *]-->
-<!--[include file="banners_admin_menu.htm"]-->
+{*  $Id: banners_admin_bannerdelete.htm 9 2008-11-05 21:42:16Z Guite $  *}
+{include file="banners_admin_menu.htm"}
 <div class="pn-admincontainer">
-<div class="pn-adminpageicon"><!--[pnimg modname=core src=editdelete.gif set=icons/large alt='_BANNERS_DELETE' altml=true]--></div>
-<h2><!--[pnml name="_BANNERS_DELETE"]--></h2>
-<form class="pn-adminform" action="<!--[pnmodurl modname="Banners" type="admin" func="delete"]-->" method="post" enctype="application/x-www-form-urlencoded">
+<div class="pn-adminpageicon">{pnimg modname=core src=editdelete.gif set=icons/large alt='_BANNERS_DELETE' altml=true}</div>
+<h2>{pnml name="_BANNERS_DELETE"}</h2>
+<form class="pn-adminform" action="{pnmodurl modname="Banners" type="admin" func="delete"}" method="post" enctype="application/x-www-form-urlencoded">
 <div>
-    <input type="hidden" name="authid" value="<!--[insert name="generateauthkey" module="Banners"]-->" />
+    <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
     <input type="hidden" name="confirmation" value="1" />
-    <input type="hidden" name="bid" value="<!--[$bid|pnvarprepfordisplay]-->" />
+    <input type="hidden" name="bid" value="{$bid|pnvarprepfordisplay}" />
 	<div class="pn-adminformrow">
-		<p><!--[pnml name="_BANNERS_CONFIRMDELETEBANNER"]--></p>
+		<p>{pnml name="_BANNERS_CONFIRMDELETEBANNER"}</p>
 	</div>
-	<a href="<!--[$clickurl|pnvarprepfordisplay]-->"><img src="<!--[$imageurl|pnvarprepfordisplay]-->" alt="" title="<!--[$clickurl|pnvarprepfordisplay]-->" /></a>
-	<br /><a href="<!--[$clickurl|pnvarprepfordisplay]-->"><!--[$clickurl|pnvarprepfordisplay]--></a>
+	<a href="{$clickurl|pnvarprepfordisplay}"><img src="{$imageurl|pnvarprepfordisplay}" alt="" title="{$clickurl|pnvarprepfordisplay}" /></a>
+	<br /><a href="{$clickurl|pnvarprepfordisplay}">{$clickurl|pnvarprepfordisplay}</a>
 	<table class="pn-admintable">
 		<thead>
 		<tr>
-			<th><!--[pnml name="_BANNERS_ID"]--></th>
-			<th><!--[pnml name="_BANNERS_IMPRESSIONS"]--></th>
-			<th><!--[pnml name="_BANNERS_IMPLEFT"]--></th>
-			<th><!--[pnml name="_BANNERS_CLICKS"]--></th>
-			<th><!--[pnml name="_BANNERS_CLICKSPERCENT"]--></th>
-			<th><!--[pnml name="_BANNERS_CLIENTNAME"]--></th>
+			<th>{pnml name="_BANNERS_ID"}</th>
+			<th>{pnml name="_BANNERS_IMPRESSIONS"}</th>
+			<th>{pnml name="_BANNERS_IMPLEFT"}</th>
+			<th>{pnml name="_BANNERS_CLICKS"}</th>
+			<th>{pnml name="_BANNERS_CLICKSPERCENT"}</th>
+			<th>{pnml name="_BANNERS_CLIENTNAME"}</th>
 		</tr>
 		</thead>
 		<tbody>
 		<tr>
-			<td><!--[$bid|pnvarprepfordisplay]--></td>
-			<td><!--[$impmade|pnvarprepfordisplay]--></td>
-			<td><!--[math equation="x-y" x=$imptotal y=$impmade]--></td>
-			<td><!--[$clicks|pnvarprepfordisplay]--></td>
+			<td>{$bid|pnvarprepfordisplay}</td>
+			<td>{$impmade|pnvarprepfordisplay}</td>
+			<td>{math equation="x-y" x=$imptotal y=$impmade}</td>
+			<td>{$clicks|pnvarprepfordisplay}</td>
 			<td>
-				<!--[strip]-->
-				<!--[if $clicks neq 0]-->
-				<!--[math equation="(100*x)/y" x=$clicks y=$impmade]-->
-				<!--[else]-->
+				{strip}
+				{if $clicks neq 0}
+				{math equation="(100*x)/y" x=$clicks y=$impmade}
+				{else}
 				0
-				<!--[/if]-->%
-				<!--[/strip]-->
+				{/if}%
+				{/strip}
 			</td>
-			<td><!--[$cname|pnvarprepfordisplay]--></td>
+			<td>{$cname|pnvarprepfordisplay}</td>
 		</tr>
 		</tbody>
 	</table>
     <div class="pn-adminformrow pn-adminformbuttons">
-    <!--[pnbutton src=button_ok.gif set=icons/small alt="_CONFIRMDELETE" title="_CONFIRMDELETE"]-->
-    <a href="<!--[pnmodurl modname=Banners type=admin func=view]-->"><!--[pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"]--></a>
+    {pnbutton src=button_ok.gif set=icons/small alt="_CONFIRMDELETE" title="_CONFIRMDELETE"}
+    <a href="{pnmodurl modname=Banners type=admin func=view}">{pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"}</a>
     </div>
 </div>
 </form>
