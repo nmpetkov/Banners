@@ -17,8 +17,12 @@ function Banners_tables() {
     // Initialise table array
     $table = array();
 
-    // Main banners column
+    // Set the Table Name
     $table['banners'] = DBUtil::getLimitedTablename('banners');
+
+    // Set the column names.  Note that the array has been formatted
+    // on-screen to be very easy to read by a user.
+
     $table['banners_column'] = array(
             'bid'       => 'bid',
             'cid'       => 'cid',
@@ -30,6 +34,7 @@ function Banners_tables() {
             'imageurl'  => 'imageurl',
             'clickurl'  => 'clickurl',
             'date' => 'date');
+
     $table['banners_column_def'] = array(
             'bid'       => 'I AUTOINCREMENT PRIMARY',
             'cid'       => "I NOTNULL DEFAULT '0'",
@@ -90,5 +95,4 @@ function Banners_tables() {
 
     // Return the table information
     return $table;
-
 }
