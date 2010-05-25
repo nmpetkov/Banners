@@ -27,7 +27,7 @@ function Banners_tables() {
             'bid'       => 'bid',
             'cid'       => 'cid',
             'type'      => 'type',
-            'tilte'     => 'title',
+            'title'     => 'title',
             'imptotal'  => 'imptotal',
             'impmade'   => 'impmade',
             'clicks'    => 'clicks',
@@ -36,21 +36,20 @@ function Banners_tables() {
             'date' => 'date');
 
     $table['banners_column_def'] = array(
-            'bid'       => 'I AUTOINCREMENT PRIMARY',
-            'cid'       => "I NOTNULL DEFAULT '0'",
-            'type'	=> "C(2) NOTNULL DEFAULT '0'",
-            'title'	=> "C(255) NOTNULL DEFAULT ''",
-            'imptotal'	=> "I NOTNULL DEFAULT '0'",
-            'impmade'	=> "I NOTNULL DEFAULT '0'",
-            'clicks'	=> "I NOTNULL DEFAULT '0'",
-            'imageurl'	=> "C(255) NOTNULL DEFAULT ''",
-            'clickurl'	=> "C(255) NOTNULL DEFAULT ''",
-            'date'		=> 'T DEFAULT NULL');
+            'bid'       => 'I PRIMARY AUTO',
+            'cid'       => "I DEFAULT '0'",
+            'type'	=> "C(2) DEFAULT '0'",
+            'title'	=> "C(255) DEFAULT ''",
+            'imptotal'	=> "I DEFAULT '0'",
+            'impmade'	=> "I DEFAULT '0'",
+            'clicks'	=> "I DEFAULT '0'",
+            'imageurl'	=> "C(255) DEFAULT ''",
+            'clickurl'	=> "C(255) DEFAULT ''",
+            'date'	=> 'T DEFAULT NULL');
     // add standard data fields
-    ObjectUtil::addStandardFieldsToTableDefinition ($table['banners_column']);
-    ObjectUtil::addStandardFieldsToTableDataDefinition($table['banners_column_def']);
+    
 
-
+/*
     // Advertising clients
     $table['bannersclient'] = DBUtil::getLimitedTablename('bannersclient');
     $table['bannersclient_column'] = array(
@@ -92,7 +91,7 @@ function Banners_tables() {
     // add standard data fields
     ObjectUtil::addStandardFieldsToTableDefinition ($table['bannersfinish_column']);
     ObjectUtil::addStandardFieldsToTableDataDefinition($table['bannersfinish_column_def']);
-
+*/
     // Return the table information
     return $table;
 }

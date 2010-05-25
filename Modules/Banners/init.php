@@ -17,18 +17,19 @@
  * @author Devin Hayes
  * @return bool true if successful, false otherwise
  */
-function Banners_init()
-{
-	// create the table
-   if (!DBUtil::createTable('banners')) return false;
-		pnModSetVar('Banners', 'myIP', '127.0.0.1');
-		pnModSetVar('Banners', 'banners', false);
-		pnModSetVar('Banners', 'openinnewwindow', false);
-		pnModSetVar('Banners', 'xdim', '468');
-		pnModSetVar('Banners', 'ydim', '60');
+function Banners_init() {
+    // create the table
+    if (!DBUtil::createTable('banners')) {
+        return false;
+    }
+    pnModSetVar('Banners', 'myIP', '127.0.0.1');
+    pnModSetVar('Banners', 'banners', false);
+    pnModSetVar('Banners', 'openinnewwindow', false);
+    pnModSetVar('Banners', 'xdim', '468');
+    pnModSetVar('Banners', 'ydim', '60');
 
-	// Initialisation successful
-	return true;
+    // Initialisation successful
+    return true;
 }
 
 /**
@@ -37,35 +38,34 @@ function Banners_init()
  * @author Devin Hayes
  * @return bool true if successful, false otherwise
  */
-function Banners_upgrade($oldversion)
-{
-	// create the three tables
-	$tables = array('banners', 'bannersclient', 'bannersfinish');
-	foreach ($tables as $table) {
-		if (!DBUtil::changeTable($table)) {
-			return false;
-		}
-	}
+function Banners_upgrade($oldversion) {
+    // create the three tables
+    $tables = array('banners', 'bannersclient', 'bannersfinish');
+    foreach ($tables as $table) {
+        if (!DBUtil::changeTable($table)) {
+            return false;
+        }
+    }
 
-	// Upgrade dependent on old version number
-	switch($oldversion) {
-		// version 1.0 was shipped with PN .7x
-		case 1.0:
-			// migrate the old config vars into module vars
-			if (pnConfigGetVar('banners') != ''){
-				$myIP = pnConfigGetVar('myIP');
-				$banners = pnConfigGetVar('banners');
-				pnModSetVar('Banners', 'myIP', $myIP);
-				pnModSetVar('Banners', 'banners', $banners);
-				pnModSetVar('Banners', 'openinnewwinow', false);
-				pnConfigDelVar('myIP');
-				pnConfigDelVar('banners');
-			}
-			break;
-	}
+    // Upgrade dependent on old version number
+    switch($oldversion) {
+        // version 1.0 was shipped with PN .7x
+        case 1.0:
+        // migrate the old config vars into module vars
+            if (pnConfigGetVar('banners') != '') {
+                $myIP = pnConfigGetVar('myIP');
+                $banners = pnConfigGetVar('banners');
+                pnModSetVar('Banners', 'myIP', $myIP);
+                pnModSetVar('Banners', 'banners', $banners);
+                pnModSetVar('Banners', 'openinnewwinow', false);
+                pnConfigDelVar('myIP');
+                pnConfigDelVar('banners');
+            }
+            break;
+    }
 
-	// Update successful
-	return true;
+    // Update successful
+    return true;
 }
 
 /**
@@ -75,19 +75,18 @@ function Banners_upgrade($oldversion)
  * @author Devin Hayes
  * @return bool true if successful, false otherwise
  */
-function Banners_delete()
-{
-	// drop the three tables for the module
-	$tables = array('banners', 'bannersclient', 'bannersfinish');
-	foreach ($tables as $table) {
-		if (!DBUtil::dropTable($table)) {
-			return false;
-		}
-	}
+function Banners_delete() {
+    // drop the three tables for the module
+    $tables = array('banners', 'bannersclient', 'bannersfinish');
+    foreach ($tables as $table) {
+        if (!DBUtil::dropTable($table)) {
+            return false;
+        }
+    }
 
-	// delete all module vars
-	pnModDelVar('Banners');
+    // delete all module vars
+    pnModDelVar('Banners');
 
-	// Delete successful
-	return true;
+    // Delete successful
+    return true;
 }
