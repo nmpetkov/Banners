@@ -1,39 +1,39 @@
 {*  $Id: banners_admin_clientedit.htm 9 2008-11-05 21:42:16Z Guite $  *}
 {include file="banners_admin_menu.htm"}
-<div class="pn-admincontainer">
-<div class="pn-adminpageicon">{pnimg modname=core src=edit.gif set=icons/large alt='_BANNERS_EDITCLIENT' altml=true}</div>
-<h2>{pnml name="_BANNERS_EDITCLIENT"}</h2>
-<form class="pn-adminform" action="{pnmodurl modname="Banners" type="admin" func="updateclient"}" method="post" enctype="application/x-www-form-urlencoded">
+<div class="z-admincontainer">
+<div class="z-adminpageicon">{img modname=core src=edit.gif set=icons/large alt='Edit Client' altml=true}</div>
+<h2>{gt text="Edit Client"}</h2>
+<form class="z-adminform" action="{modurl modname="Banners" type="admin" func="updateclient"}" method="post" enctype="application/x-www-form-urlencoded">
 <div>
-	<input type="hidden" name="client[cid]" value="{$cid|pnvarprepfordisplay}" />
+	<input type="hidden" name="client[cid]" value="{$cid|varprepfordisplay}" />
 	<input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
-   	<div class="pn-adminformrow">
-		<label for="cname">{pnml name="_BANNERS_CLIENTNAME"}</label> 
-		<input type="text" id="cname" name="client[cname]" value="{$name|pnvarprepfordisplay}" size="30" maxlength="60" />
+   	<div class="z-adminformrow">
+		<label for="cname">{gt text="Client Name"}</label>
+		<input type="text" id="cname" name="client[cname]" value="{$name|varprepfordisplay}" size="30" maxlength="60" />
     </div>
-   	<div class="pn-adminformrow">
-		<label for="contact">{pnml name="_BANNERS_CONTACTNAME"}</label> 
-		<input type="text" id="contact" name="client[contact]" value="{$contact|pnvarprepfordisplay}" size="30" maxlength="60" />
+   	<div class="z-adminformrow">
+		<label for="contact">{gt text="Contact Name"}</label>
+		<input type="text" id="contact" name="client[contact]" value="{$contact|varprepfordisplay}" size="30" maxlength="60" />
     </div>
-   	<div class="pn-adminformrow">
-		<label for="email">{pnml name="_BANNERS_CONTACTEMAIL"}</label> 
-		<input type="text" id="email" name="client[email]" size="30" maxlength="60" value="{$email|pnvarprepfordisplay}" />
+   	<div class="z-adminformrow">
+		<label for="email">{gt text="Contact e-mail"}</label>
+		<input type="text" id="email" name="client[email]" size="30" maxlength="60" value="{$email|varprepfordisplay}" />
     </div>
-   	<div class="pn-adminformrow">
-		<label for="login">{pnml name="_BANNERS_CLIENTLOGINNAME"}</label> 
-		<input type="text" id="login" name="client[login]" size="12" maxlength="10" value="{$login|pnvarprepfordisplay}" />
+   	<div class="z-adminformrow">
+		<label for="login">{gt text="Client Login Name"}</label>
+		<input type="text" id="login" name="client[login]" size="12" maxlength="10" value="{$login|varprepfordisplay}" />
     </div>
-   	<div class="pn-adminformrow">
-		<label for="passwd">{pnml name="_BANNERS_CLIENTPASSWD"}</label> 
-		<input type="text" id="passwd" name="client[passwd]" size="12" maxlength="10" value="{$passwd|pnvarprepfordisplay}" />
+   	<div class="z-adminformrow">
+		<label for="passwd">{gt text="Client Password"}</label>
+		<input type="text" id="passwd" name="client[passwd]" size="12" maxlength="10" value="{$passwd|varprepfordisplay}" />
     </div>
-   	<div class="pn-adminformrow">
-		<label for="extrainfo">{pnml name="_BANNERS_EXTRAINFO"}</label>
-		<textarea id="extrainfo" name="client[extrainfo]" cols="50" rows="10">{$extrainfo|pnvarprepfordisplay}</textarea>
+   	<div class="z-adminformrow">
+		<label for="extrainfo">{gt text="Extra Information"}</label>
+		<textarea id="extrainfo" name="client[extrainfo]" cols="50" rows="10">{$extrainfo|varprepfordisplay}</textarea>
     </div>
-    <div class="pn-adminformrow pn-adminformbuttons">
-    {pnbutton src=button_ok.gif set=icons/small alt="_UPDATE" title="_UPDATE"}
-    <a href="{pnmodurl modname=Banners type=admin func=view}">{pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"}</a>
+    <div class="z-adminformrow pn-adminformbuttons">
+    {button src=button_ok.gif set=icons/small __alt='Update Client' __title='Update'}
+    <a href="{modurl modname=Banners type=admin func=view}">{img modname=core src=button_cancel.gif set=icons/small altml=true titleml=true __alt="Cancel" __title="Cancel"}</a>
     </div>
 </div>
 </form>

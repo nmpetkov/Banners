@@ -1,27 +1,27 @@
 {*  $Id: banners_admin_modifyconfig.htm 9 2008-11-05 21:42:16Z Guite $  *}
 {include file="banners_admin_menu.htm"}
-<div class="pn-admincontainer">
-<div class="pn-adminpageicon">{pnimg modname=core src=configure.gif set=icons/large alt='_MODIFYCONFIG' altml=true}</div>
-<h2>{pnml name="_MODIFYCONFIG"}</h2>
-<form class="pn-adminform" action="{pnmodurl modname="Banners" type="admin" func="updateconfig"}" method="post" enctype="application/x-www-form-urlencoded">
+<div class="z-admincontainer">
+<div class="z-adminpageicon">{img modname=core src=configure.gif set=icons/large alt='_MODIFYCONFIG' altml=true}</div>
+<h2>{gt text="_MODIFYCONFIG"}</h2>
+<form class="z-adminform" action="{modurl modname="Banners" type="admin" func="updateconfig"}" method="post" enctype="application/x-www-form-urlencoded">
 <div>
 	<input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
-   	<div class="pn-adminformrow">
-    	<label for="banners">{pnml name="_BANNERS_ACTIVATE"}</label>
+   	<div class="z-adminformrow">
+    	<label for="banners">{gt text="_BANNERS_ACTIVATE"}</label>
 		<input type="checkbox" id="banners" name="banners" value="1" {if $banners} checked="checked"{/if} />
     </div>
-   	<div class="pn-adminformrow">
-    	<label for="banners">{pnml name="_BANNERS_OPENINNEWWINDOW"}</label>
+   	<div class="z-adminformrow">
+    	<label for="banners">{gt text="_BANNERS_OPENINNEWWINDOW"}</label>
 		<input type="checkbox" id="openinnewwinow" name="openinnewwindow" value="1" {if $openinnewwindow} checked="checked"{/if} />
     </div>
-   	<div class="pn-adminformrow">
-		<label for="myIP">{pnml name="_BANNERS_YOURIP"}</label>
-		<input type="text" id="myIP" name="myIP" value="{$myIP|pnvarprepfordisplay}" size="30" />
+   	<div class="z-adminformrow">
+		<label for="myIP">{gt text="_BANNERS_YOURIP"}</label>
+		<input type="text" id="myIP" name="myIP" value="{$myIP|varprepfordisplay}" size="30" />
     </div>
-	{pnmodcallhooks hookobject=module hookaction=modifyconfig module=Banners}
-    <div class="pn-adminformrow pn-adminformbuttons">
-    {pnbutton src=button_ok.gif set=icons/small alt="_UPDATECONFIG" title="_UPDATECONFIG"}
-    <a href="{pnmodurl modname=Banners type=admin func=view}">{pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"}</a>
+	{modcallhooks hookobject=module hookaction=modifyconfig module=Banners}
+    <div class="z-adminformrow pn-adminformbuttons">
+    {button src=button_ok.gif set=icons/small alt="_UPDATECONFIG" title="_UPDATECONFIG"}
+    <a href="{modurl modname=Banners type=admin func=view}">{img modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"}</a>
     </div>
 </div>
 </form>

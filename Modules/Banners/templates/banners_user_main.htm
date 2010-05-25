@@ -1,20 +1,20 @@
 {*  $Id: banners_user_main.htm 9 2008-11-05 21:42:16Z Guite $  *}
 {insert name="getstatusmsg"}
-<h1>{pnml name="_BANNERS_CLIENTLOGIN"}</h1>
+<h1>{gt text="_BANNERS_CLIENTLOGIN"}</h1>
 <div class="bannersclientlogincontainer">
-	<form class="bannersclientlogin" action="{pnmodurl modname="Banners" type="user" func="client"}" method="post" enctype="application/x-www-form-urlencoded">
+	<form class="bannersclientlogin" action="{modurl modname="Banners" type="user" func="client"}" method="post" enctype="application/x-www-form-urlencoded">
 	<div>
 		<input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
 		<div class="bannerloginformrow">
-			<label for="login">{pnml name="_BANNERS_LOGIN"}</label>
+			<label for="login">{gt text="_BANNERS_LOGIN"}</label>
 			<input type="text" id="login" name="login" size="15" maxlength="10" />
 		</div>
 		<div class="bannerloginformrow">
-			<label for="pass">{pnml name="_BANNERS_PASSWORD"}</label>
+			<label for="pass">{gt text="_BANNERS_PASSWORD"}</label>
 			<input type="password" id="pass" name="pass" size="15" maxlength="10" />
 		</div>
 		<div class="bannerloginformrow">
-			<input name="submit" type="submit" value="{pnml name="_BANNERS_LOGIN"}" />
+			<input name="submit" type="submit" value="{gt text="_BANNERS_LOGIN"}" />
 		</div>
 	</div>
 	</form>

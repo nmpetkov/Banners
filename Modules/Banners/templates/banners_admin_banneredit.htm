@@ -1,47 +1,47 @@
 {*  $Id: banners_admin_banneredit.htm 9 2008-11-05 21:42:16Z Guite $  *}
 {include file="banners_admin_menu.htm"}
-<div class="pn-admincontainer">
-<div class="pn-adminpageicon">{pnimg modname=core src=edit.gif set=icons/large alt='_BANNERS_EDITBANNER' altml=true}</div>
-<h2>{pnml name="_BANNERS_EDITBANNER"}</h2>
-<div><img src="{$imageurl|pnvarprepfordisplay}" alt="" title="{$clickurl|pnvarprepfordisplay}" /></div>
-<form class="pn-adminform" action="{pnmodurl modname="Banners" type="admin" func="update"}" method="post" enctype="application/x-www-form-urlencoded">
+<div class="z-admincontainer">
+<div class="z-adminpageicon">{img modname=core src=edit.gif set=icons/large alt='Edit Banner' altml=true}</div>
+<h2>{gt text="Edit Banner"}</h2>
+<div><img src="{$imageurl|varprepfordisplay}" alt="" title="{$clickurl|varprepfordisplay}" /></div>
+<form class="z-adminform" action="{modurl modname="Banners" type="admin" func="update"}" method="post" enctype="application/x-www-form-urlencoded">
 <div>
-	<input type="hidden" name="banner[bid]" value="{$bid|pnvarprepfordisplay}" />
-	<input type="hidden" name="banner[imptotal]" value="{$imptotal|pnvarprepfordisplay}" />
+	<input type="hidden" name="banner[bid]" value="{$bid|varprepfordisplay}" />
+	<input type="hidden" name="banner[imptotal]" value="{$imptotal|varprepfordisplay}" />
    	<input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
-   	<div class="pn-adminformrow">
-		<label for="banners_cid">{pnml name="_BANNERS_CLIENTNAME"}</label>
+   	<div class="z-adminformrow">
+		<label for="banners_cid">{gt text="Client Name"}</label>
 		<select id="banners_cid" name="banner[cid]">
 			<option value="">&nbsp;</option>
 	    	{html_options options=$clients selected=$cid}
 	    </select>
     </div>
 	{if $imptotal > 0}
-   	<div class="pn-adminformrow">
-			<label for="banners_addimp">{pnml name="_BANNERS_ADDIMPRESSIONS"}</label>
+   	<div class="z-adminformrow">
+			<label for="banners_addimp">{gt text="Add more impressions"}</label>
 			<input type="text" id="banners_addimp" name="banner[impadded]" size="12" maxlength="11" />	
-			{pnml name="_BANNERS_PURCHASED"}:{$imptotal|pnvarprepfordisplay}
-			{pnml name="_BANNERS_IMPMADE"}:{$impmade|pnvarprepfordisplay}
+			{gt text="Purchased"}:{$imptotal|varprepfordisplay}
+			{gt text="Impressions Made"}:{$impmade|varprepfordisplay}
     </div>
     {else}
 	<input type="hidden" name="banner[impadded]" value="0" />
 	{/if}
-   	<div class="pn-adminformrow">
-	    <label for="banners_bantype">{pnml name="_BANNERS_TYPE"}</label>
-	    <input type="text" id="banners_bantype" name="banner[idtype]" size="2" maxlength="2" value="{$type|pnvarprepfordisplay}" />
+   	<div class="z-adminformrow">
+	    <label for="banners_bantype">{gt text="ID Type"}</label>
+	    <input type="text" id="banners_bantype" name="banner[idtype]" size="2" maxlength="2" value="{$type|varprepfordisplay}" />
     </div>
-   	<div class="pn-adminformrow">
-	    <label for="banners_imgurl">{pnml name="_BANNERS_IMAGEURL"}</label>
-	    <input type="text" id="banners_imgurl" name="banner[imageurl]" size="40" maxlength="255" value="{$imageurl|pnvarprepfordisplay}" />
+   	<div class="z-adminformrow">
+	    <label for="banners_imgurl">{gt text="Image URL"}</label>
+	    <input type="text" id="banners_imgurl" name="banner[imageurl]" size="40" maxlength="255" value="{$imageurl|varprepfordisplay}" />
     </div>
-   	<div class="pn-adminformrow">
-	    <label for="banners_clickurl">{pnml name="_BANNERS_CLICKURL"}</label>
-	    <input type="text" id="banners_clickurl" name="banner[clickurl]" size="40" maxlength="255" value="{$clickurl|pnvarprepfordisplay}" />
+   	<div class="z-adminformrow">
+	    <label for="banners_clickurl">{gt text="Click URL"}</label>
+	    <input type="text" id="banners_clickurl" name="banner[clickurl]" size="40" maxlength="255" value="{$clickurl|varprepfordisplay}" />
     </div>
-    <div class="pn-adminformrow pn-adminformbuttons">
-    {pnbutton src=button_ok.gif set=icons/small alt="_UPDATE" title="_UPDATE"}
-    <a href="{pnmodurl modname=Banners type=admin func=view}">{pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"}</a>
-    </div>
+            <div class="z-formbuttons">
+                {button src='button_ok.gif' set='icons/small' __alt='Update Banner' __title='Update Banner'}
+                <a href="{modurl modname='Users' type='admin' func='view'}">{img modname='core' src='button_cancel.gif' set='icons/small' __alt='Cancel' __title='Cancel'}</a>
+            </div>
 </div>
 </form>
 </div>
