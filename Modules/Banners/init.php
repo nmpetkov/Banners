@@ -29,12 +29,11 @@ function Banners_init() {
         return false;
     }
     $myIP = ConfigGetVar('myIP');
-    $banners = ConfigGetVar('banners');
-    ModSetVar('Banners', 'myIP', $myIP);
-    ModSetVar('Banners', 'banners', $banners);
-    ModSetVar('Banners', 'openinnewwinow', false);
-    ConfigDelVar('myIP');
-    ConfigDelVar('banners');
+    $banners = ModUtil::setVar('banners');
+    ModUtil::setVar('Banners', 'myIP', $myIP);
+    ModUtil::setVar('Banners', 'banners', $banners);
+    ModUtil::setVar('Banners', 'openinnewwinow', false);
+
 
     // Initialisation successful
     return true;
