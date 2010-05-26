@@ -19,22 +19,22 @@
  */
 function Banners_init() {
     // create the table
-    if (!DBUtil::createTable('banners')){
+    if (!DBUtil::createTable('banners')) {
         return false;
     }
-        if (!DBUtil::createTable('bannersclient')){
+    if (!DBUtil::createTable('bannersclient')) {
         return false;
     }
-        if (!DBUtil::createTable('bannersfinish')){
+    if (!DBUtil::createTable('bannersfinish')) {
         return false;
     }
-                $myIP = ConfigGetVar('myIP');
-                $banners = ConfigGetVar('banners');
-                ModSetVar('Banners', 'myIP', $myIP);
-                ModSetVar('Banners', 'banners', $banners);
-                ModSetVar('Banners', 'openinnewwinow', false);
-                ConfigDelVar('myIP');
-                ConfigDelVar('banners');
+    $myIP = ConfigGetVar('myIP');
+    $banners = ConfigGetVar('banners');
+    ModSetVar('Banners', 'myIP', $myIP);
+    ModSetVar('Banners', 'banners', $banners);
+    ModSetVar('Banners', 'openinnewwinow', false);
+    ConfigDelVar('myIP');
+    ConfigDelVar('banners');
 
     // Initialisation successful
     return true;
