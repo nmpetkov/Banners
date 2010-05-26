@@ -34,7 +34,7 @@ class Banners_admin extends AbstractController {
      * @author Devin Hayes
      * @return string HTML output string
      */
-    public function newbanner($args) {
+    public function newentry($args) {
         // Security check
         if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN)) {
             return LogUtil::registerPermissionError();
@@ -44,10 +44,10 @@ class Banners_admin extends AbstractController {
         $pnRender = pnRender::getInstance('Banners', false);
 
         // Check if Banners variable is active, if not then print a message
-        $pnRender->assign('bannersenabled', pnModGetVar('Banners', 'banners'));
+        $pnRender->assign('bannersenabled', ModUtil::getVar('Banners', 'banners'));
 
         // get list of current clients and assign to template
-        $clients = pnModAPIFunc('Banners', 'user', 'getallclients');
+        $clients = ModUtil::apiFunc('Banners', 'user', 'getallclients');
         $clientitems = array();
         if (is_array($clients)) {
             foreach($clients as $client) {
@@ -290,20 +290,20 @@ class Banners_admin extends AbstractController {
 
         // Confirm authorisation code.
         if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError (pnModURL('Banners', 'admin', 'view'));
+            return LogUtil::registerAuthidError (ModUtil::url('Banners', 'admin', 'view'));
         }
 
-        if (pnModAPIFunc('Banners', 'admin', 'createclient',
+        if (ModUtil::apiFunc('Banners', 'admin', 'createclient',
         array('cname' => $client['cname'],
         'contact' => $client['contact'],
         'email' => $client['email'],
         'login' => $client['login'],
         'passwd' => $client['passwd'],
         'extrainfo' => $client['extrainfo']))) {
-            LogUtil::registerStatus (_BANNERS_CLIENTCREATED);
+            LogUtil::registerStatus ('Banner Client Created');
         }
 
-        return pnRedirect(pnModURL('Banners', 'admin', 'main'));
+        return pnRedirect(ModUtil::url('Banners', 'admin', 'main'));
     }
 
     /**

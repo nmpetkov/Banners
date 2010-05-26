@@ -19,7 +19,7 @@ class Banners_adminapi extends AbstractApi {
      * @param string $clickurl destination url for the banner
      * @return string HTML output string
      */
-    function Banners_adminapi_create($args) {
+    public function create($args) {
         // Argument check
         if (!isset($args['cid']) ||
                 !isset($args['idtype']) ||
@@ -62,7 +62,7 @@ class Banners_adminapi extends AbstractApi {
      * @param string $clickurl destination url for the banner
      * @return string HTML output string
      */
-    function Banners_adminapi_update($args) {
+    public function update($args) {
         // Argument check
         if (!isset($args['bid']) ||
                 !isset($args['cid']) ||
@@ -109,7 +109,7 @@ class Banners_adminapi extends AbstractApi {
      * @param int $bid banner id
      * @return bool true on success, false on failure
      */
-    function Banners_adminapi_delete($args) {
+    public function delete($args) {
         // Argument check
         if (!isset($args['bid'])) {
             return LogUtil::registerError (_MODARGSERROR);
@@ -142,7 +142,7 @@ class Banners_adminapi extends AbstractApi {
      * @param int $cid client id
      * @return bool true on success, false on failure
      */
-    function Banners_adminapi_deleteall($args) {
+    public function deleteall($args) {
         // Argument check
         if (!isset($args['cid'])) {
             return LogUtil::registerError (_MODARGSERROR);
@@ -175,7 +175,7 @@ class Banners_adminapi extends AbstractApi {
      * @param string $extrainfo additional client info
      * @return mixed int client id if successful, false otherwise
      */
-    function Banners_adminapi_createclient($args) {
+    public function createclient($args) {
         // Argument check
         if (!isset($args['cname']) ||
                 !isset($args['contact']) ||
@@ -220,7 +220,7 @@ class Banners_adminapi extends AbstractApi {
      * @param string $extrainfo additional client info
      * @return bool true if successful, false otherwise
      */
-    function Banners_adminapi_updateclient($args) {
+    public function updateclient($args) {
         // Argument check
         if (!isset($args['cid']) ||
                 !isset($args['cname']) ||
@@ -267,7 +267,7 @@ class Banners_adminapi extends AbstractApi {
      * @param int $cid client id
      * @return bool true on success, false on failure
      */
-    function Banners_adminapi_deleteclient($args) {
+    public function deleteclient($args) {
         // Argument check
         if (!isset($args['cid'])) {
             return LogUtil::registerError (_MODARGSERROR);
@@ -308,7 +308,7 @@ class Banners_adminapi extends AbstractApi {
      * @param int $bid banner id
      * @return bool true on success, false on failure
      */
-    function Banners_adminapi_deletefinished($args) {
+    public function deletefinished($args) {
         // Argument check
         if (!isset($args['bid'])) {
             return LogUtil::registerError (_MODARGSERROR);
@@ -340,19 +340,18 @@ class Banners_adminapi extends AbstractApi {
      * @author Mark West
      * @return array array of admin links
      */
-    function Banners_adminapi_getlinks() {
+    public function getlinks() {
         $links = array();
 
-        pnModLangLoad('Banners', 'admin');
-
         if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ)) {
-            $links[] = array('url' => pnModURL('Banners', 'admin', 'view'), 'text' => _BANNERS_VIEW);
+
+            $links[] = array('url' => ModUtil::url('Banners', 'admin', 'view'), 'text' => $this->__('Banner View'), 'class' => 'z-icon-es-list');
         }
         if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADD)) {
-            $links[] = array('url' => pnModURL('Banners', 'admin', 'new'), 'text' => _BANNERS_ADD);
+            $links[] = array('url' => ModUtil::url('Banners', 'admin', 'newentry'), 'text' => $this->__('Banner Add'), 'class' => 'z-icon-es-list');
         }
         if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN)) {
-            $links[] = array('url' => pnModURL('Banners', 'admin', 'modifyconfig'), 'text' => _MODIFYCONFIG);
+            $links[] = array('url' => ModUtil::url('Banners', 'admin', 'modifyconfig'), 'text' => $this->__('Module Configuration'), 'class' => 'z-icon-es-list');
         }
 
         return $links;
