@@ -19,14 +19,10 @@
  */
 function Banners_init() {
     // create the table
-    if (!DBUtil::createTable('banners')) {
+    if (!DBUtil::createTable('banners')){
         return false;
     }
-    pnModSetVar('Banners', 'myIP', '127.0.0.1');
-    pnModSetVar('Banners', 'banners', false);
-    pnModSetVar('Banners', 'openinnewwindow', false);
-    pnModSetVar('Banners', 'xdim', '468');
-    pnModSetVar('Banners', 'ydim', '60');
+
 
     // Initialisation successful
     return true;

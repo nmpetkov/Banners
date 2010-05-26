@@ -13,7 +13,7 @@
  * This function is called internally by the core whenever the module is
  * loaded.  It adds in the information
  */
-function Banners_tables() {
+function Banners_pntables() {
     // Initialise table array
     $table = array();
 
@@ -47,9 +47,11 @@ function Banners_tables() {
             'clickurl'	=> "C(255) DEFAULT ''",
             'date'	=> 'T DEFAULT NULL');
     // add standard data fields
+    ObjectUtil::addStandardFieldsToTableDefinition ($table['banners_column']);
+    ObjectUtil::addStandardFieldsToTableDataDefinition($table['banners_column_def']);
     
 
-/*
+
     // Advertising clients
     $table['bannersclient'] = DBUtil::getLimitedTablename('bannersclient');
     $table['bannersclient_column'] = array(
@@ -91,7 +93,7 @@ function Banners_tables() {
     // add standard data fields
     ObjectUtil::addStandardFieldsToTableDefinition ($table['bannersfinish_column']);
     ObjectUtil::addStandardFieldsToTableDataDefinition($table['bannersfinish_column_def']);
-*/
+
     // Return the table information
     return $table;
 }
