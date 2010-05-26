@@ -28,7 +28,13 @@ function Banners_init() {
         if (!DBUtil::createTable('bannersfinish')){
         return false;
     }
-
+                $myIP = ConfigGetVar('myIP');
+                $banners = ConfigGetVar('banners');
+                ModSetVar('Banners', 'myIP', $myIP);
+                ModSetVar('Banners', 'banners', $banners);
+                ModSetVar('Banners', 'openinnewwinow', false);
+                ConfigDelVar('myIP');
+                ConfigDelVar('banners');
 
     // Initialisation successful
     return true;
