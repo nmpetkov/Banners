@@ -22,6 +22,12 @@ function Banners_init() {
     if (!DBUtil::createTable('banners')){
         return false;
     }
+        if (!DBUtil::createTable('bannersclient')){
+        return false;
+    }
+        if (!DBUtil::createTable('bannersfinish')){
+        return false;
+    }
 
 
     // Initialisation successful
