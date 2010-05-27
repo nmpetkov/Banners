@@ -20,7 +20,7 @@ class Banners_userapi extends AbstractApi {
      *
      * @return   array   array of items, or false on failure
      */
-    function Banners_userapi_getall($args) {
+    public function getall($args) {
         // Optional arguments.
         if (!isset($args['startnum']) || !is_numeric($args['startnum'])) {
             $args['startnum'] = 1;
@@ -87,7 +87,7 @@ class Banners_userapi extends AbstractApi {
      * @param bool  $args['clientinfo']  (optional) include client info
      * @return mixed array if bid is valid, false otherwise
      */
-    function Banners_userapi_get($args) {
+    public function get($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
             return LogUtil::registerError (_MODARGSERROR);
@@ -132,7 +132,7 @@ class Banners_userapi extends AbstractApi {
      * @todo     add support for the banner type parameter
      * @return   integer   number of items held by this module
      */
-    function Banners_userapi_countitems($args) {
+    public function countitems($args) {
         // allow filtering by banner type
         (isset($args['type'])) ? $w = "pn_type='".DataUtil::formatForStore($args['type'])."'" : $w = '';
 
@@ -147,7 +147,7 @@ class Banners_userapi extends AbstractApi {
      * @param    int     $args['numitems']   (optional) number if items to return
      * @return   array   array of items, or false on failure
      */
-    function Banners_userapi_getallclients($args) {
+    public function getallclients($args) {
         // Optional arguments.
         if (!isset($args['startnum']) || !is_numeric($args['startnum'])) {
             $args['startnum'] = 1;
@@ -192,7 +192,7 @@ class Banners_userapi extends AbstractApi {
      * @param $args['cid'] id of the banner client
      * @return mixed array if bid is valid, false otherwise
      */
-    function Banners_userapi_getclient($args) {
+    public function getclient($args) {
         // Argument check
         if (!isset($args['cid']) || !is_numeric($args['cid'])) {
             return LogUtil::registerError (_MODARGSERROR);
@@ -214,7 +214,7 @@ class Banners_userapi extends AbstractApi {
      * @author Devin Hayes
      * @return   integer   number of items held by this module
      */
-    function Banners_userapi_countclientitems($args) {
+    public function countclientitems($args) {
         return DBUtil::selectObjectCount('bannersclient', '');
     }
 
@@ -226,7 +226,7 @@ class Banners_userapi extends AbstractApi {
      * @param    int     $args['numitems']   (optional) number if items to return
      * @return   array   array of items, or false on failure
      */
-    function Banners_userapi_getallfinished($args) {
+    public function getallfinished($args) {
         // Optional arguments.
         if (!isset($args['startnum']) || !is_numeric($args['startnum'])) {
             $args['startnum'] = 1;
@@ -267,7 +267,7 @@ class Banners_userapi extends AbstractApi {
      * @param $args['bid'] id of the banner
      * @return mixed array if bid is valid, false otherwise
      */
-    function Banners_userapi_getfinished($args) {
+    public function getfinished($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
             return LogUtil::registerError (_MODARGSERROR);
@@ -289,7 +289,7 @@ class Banners_userapi extends AbstractApi {
      * @author Devin Hayes
      * @return   integer   number of items held by this module
      */
-    function Banners_userapi_countfinisheditems($args) {
+    public function countfinisheditems($args) {
         return DBUtil::selectObjectCount('bannersfinish', '');
     }
 
@@ -301,7 +301,7 @@ class Banners_userapi extends AbstractApi {
      * @return bool true if successful, false otherwise
      *
      */
-    function Banners_userapi_click($args) {
+    public function click($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
             return LogUtil::registerError (_MODARGSERROR);
@@ -317,7 +317,7 @@ class Banners_userapi extends AbstractApi {
  * @param $args['bid'] id of the banner
  * @return bool true if successful, false otherwise
     */
-    function Banners_userapi_impmade($args) {
+    public function impmade($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
             return LogUtil::registerError (_MODARGSERROR);
@@ -334,7 +334,7 @@ class Banners_userapi extends AbstractApi {
      * @param $args['cid'] id of the client
      * @return bool true if successful, false otherwise
      */
-    function Banners_userapi_emailstats($args) {
+    public function emailstats($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid']) ||
                 !isset($args['cid']) || !is_numeric($args['cid'])) {
@@ -383,7 +383,7 @@ class Banners_userapi extends AbstractApi {
      * @param $args['url'] new banner url
      * @return true if successful, false otherwise
      */
-    function Banners_userapi_changeurl($args) {
+    public function changeurl($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])
                 || !isset($args['url'])) {
@@ -408,7 +408,7 @@ class Banners_userapi extends AbstractApi {
      * @param $args['bid'] banner id
      * @return true if successful, false otherwise
      */
-    function Banners_userapi_finish($args) {
+    public function finish($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
             return LogUtil::registerError (_MODARGSERROR);
@@ -444,7 +444,7 @@ class Banners_userapi extends AbstractApi {
      * @param $args['password'] client password
      * @return mixed client array if successful, false otherwise
      */
-    function banners_userapi_validateclient($args) {
+    public function validateclient($args) {
         // Argument check
         if (!isset($args['login']) || !isset($args['pass'])) {
             return LogUtil::registerError (_MODARGSERROR);

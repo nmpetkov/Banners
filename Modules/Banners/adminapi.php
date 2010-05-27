@@ -23,6 +23,7 @@ class Banners_adminapi extends AbstractApi {
         // Argument check
         if (!isset($args['cid']) ||
                 !isset($args['idtype']) ||
+                !isset($args['name']) ||
                 !isset($args['imptotal']) ||
                 !isset($args['imageurl']) ||
                 !isset($args['clickurl'])) {
@@ -36,6 +37,7 @@ class Banners_adminapi extends AbstractApi {
 
         // create the item array
         $banner = array('cid' => $args['cid'],
+                'title'=> $args['name'],
                 'type' => $args['idtype'],
                 'imptotal' => $args['imptotal'],
                 'imageurl' => $args['imageurl'],
