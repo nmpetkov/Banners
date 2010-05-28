@@ -44,7 +44,7 @@ class Banners_adminapi extends AbstractApi {
                 'clickurl' => $args['clickurl']);
 
         if (!DBUtil::insertObject($banner, 'banners', 'bid')) {
-            return LogUtil::registerError (_CREATEFAILED);
+            return LogUtil::registerError ('Error! Creation attempt failed.');
         }
 
         // Return the id of the newly created item to the calling process
@@ -98,7 +98,7 @@ class Banners_adminapi extends AbstractApi {
         $banner['imptotal'] += $args['impadded'];
 
         if (!DBUtil::updateObject($banner, 'banners', '', 'bid')) {
-            return LogUtil::registerError (_UPDATEFAILED);
+            return LogUtil::registerError ('Error! Update attempt failed.');
         }
 
         return true;
@@ -130,7 +130,7 @@ class Banners_adminapi extends AbstractApi {
         }
 
         if (!DBUtil::deleteObjectByID('banners', $args['bid'], 'bid')) {
-            return LogUtil::registerError (_DELETEFAILED);
+            return LogUtil::registerError ('Error! Deletion attempt failed.');
         }
 
         // Let the calling process know that we have finished successfully
@@ -156,7 +156,7 @@ class Banners_adminapi extends AbstractApi {
         }
 
         if (!DBUtil::deleteObjectByID('banners', $args['cid'], 'cid')) {
-            return LogUtil::registerError (_DELETEFAILED);
+            return LogUtil::registerError ('Error! Deletion attempt failed.');
         }
 
         // Let the calling process know that we have finished successfully
@@ -202,7 +202,7 @@ class Banners_adminapi extends AbstractApi {
                 'extrainfo' => $args['extrainfo']);
 
         if (!DBUtil::insertObject($client, 'bannersclient', 'cid')) {
-            return LogUtil::registerError (_CREATEFAILED);
+            return LogUtil::registerError ('Error! Creation attempt failed.');
         }
 
         // Return the id of the newly created item to the calling process
@@ -256,7 +256,7 @@ class Banners_adminapi extends AbstractApi {
                 'extrainfo' => $args['extrainfo']);
 
         if (!DBUtil::updateObject($client, 'bannersclient', '', 'cid')) {
-            return LogUtil::registerError (_UPDATEFAILED);
+            return LogUtil::registerError ('Error! Update attempt failed.');
         }
 
         return true;
@@ -289,12 +289,12 @@ class Banners_adminapi extends AbstractApi {
 
         // delete any banners for this client first
         if (!ModUtil::apiFunc('Banners', 'admin', 'deleteall', array('cid' => $args['cid']))) {
-            return LogUtil::registerError (_DELETEFAILED);
+            return LogUtil::registerError ('Error! Deletion attempt failed.');
         }
 
         // now delete the client
         if (!DBUtil::deleteObjectByID('bannersclient', $args['cid'], 'cid')) {
-            return LogUtil::registerError (_DELETEFAILED);
+            return LogUtil::registerError ('Error! Deletion attempt failed.');
         }
 
         // Let the calling process know that we have finished successfully
@@ -329,7 +329,7 @@ class Banners_adminapi extends AbstractApi {
         }
 
         if (!DBUtil::deleteObjectByID('bannersfinished', $args['bid'], 'bid')) {
-            return LogUtil::registerError (_DELETEFAILED);
+            return LogUtil::registerError ('Error! Deletion attempt failed.');
         }
 
         // Let the calling process know that we have finished successfully

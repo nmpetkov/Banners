@@ -127,7 +127,7 @@ class Banners_admin extends AbstractController {
         // The return value of the function is checked
         if ($bid != false) {
             // Success
-            LogUtil::registerStatus (_BANNERS_CREATED);
+            LogUtil::registerStatus ('Banner Created');
         }
 
         // This function generated no output, and so now it is complete we redirect
@@ -206,7 +206,7 @@ class Banners_admin extends AbstractController {
         'impadded' => $banner['impadded'],
         'imageurl' => $banner['imageurl'],
         'clickurl' => $banner['clickurl']))) {
-            LogUtil::registerStatus (_BANNERS_UPDATED);
+            LogUtil::registerStatus ('Banner Updated');
         }
 
         return System::redirect(ModUtil::url('Banners', 'admin', 'main'));
@@ -265,7 +265,7 @@ class Banners_admin extends AbstractController {
         // The return value of the function is checked
         if (ModUtil::apiFunc('Banners', 'admin', 'delete', array('bid' => $bid))) {
             // Success
-            LogUtil::registerStatus (_BANNERS_DELETED);
+            LogUtil::registerStatus ('Banner Deleted');
         }
 
         // This function generated no output, and so now it is complete we redirect
@@ -372,7 +372,7 @@ class Banners_admin extends AbstractController {
         'extrainfo' => $client['extrainfo'],
         'login' => $client['login'],
         'passwd' => $client['passwd']))) {
-            LogUtil::registerStatus (_BANNERS_CLIENTUPDATED);
+            LogUtil::registerStatus ('Client Updated');
         }
 
         return System::redirect(ModUtil::url('Banners', 'admin', 'main'));
@@ -432,7 +432,7 @@ class Banners_admin extends AbstractController {
         // The return value of the function is checked
         if (ModUtil::apiFunc('Banners', 'admin', 'deleteclient', array('cid' => $cid))) {
             // Success
-            LogUtil::registerStatus (_BANNERS_CLIENTDELETED);
+            LogUtil::registerStatus ('Client Deleted');
         }
 
         // This function generated no output, and so now it is complete we redirect
@@ -496,7 +496,7 @@ class Banners_admin extends AbstractController {
         // The return value of the function is checked
         if (ModUtil::apiFunc('Banners', 'admin', 'deletefinished', array('bid' => $bid))) {
             // Success
-            LogUtil::registerStatus (_BANNERS_DELETED);
+            LogUtil::registerStatus ('Banner Deleted');
         }
 
         // This function generated no output, and so now it is complete we redirect
@@ -560,7 +560,7 @@ class Banners_admin extends AbstractController {
         ModUtil::callHooks('module','updateconfig','Banners', array('module' => 'Banners'));
 
         // the module configuration has been updated successfuly
-        LogUtil::registerStatus (_CONFIGUPDATED);
+        LogUtil::registerStatus ('Configuration Updated');
 
         // This function generated no output, and so now it is complete we redirect
         // the user to an appropriate page for them to carry on their work
