@@ -20,13 +20,12 @@ class Banners_user extends AbstractController {
             return LogUtil::registerPermissionError();
         }
 
-        // load the admin language file to avoid duplication
-        pnModLangLoad('Banners', 'admin');
+        
 
         // Create output object
-        $pnRender = pnRender::getInstance('Banners', false);
+        $render = Renderer::getInstance('Banners', false);
 
-        return $pnRender->fetch('banners_user_main.htm');
+        return $render->fetch('banners_user_main.htm');
     }
 
     /**
@@ -44,28 +43,19 @@ class Banners_user extends AbstractController {
             return LogUtil::registerPermissionError();
         }
 
-        // load the admin language file to avoid duplication
-        pnModLangLoad('Banners', 'admin');
+
 
         // check our input
         if ($login == '' OR $pass == '') {
-            LogUtil::registerError (_BANNERS_LOGININCORR);
-            return System::redirect(pnModURL('Banners', 'user', 'main'));
+            LogUtil::registerError ('Login Incorrect');
+            return System::redirect(ModUtil::url('Banners', 'user', 'main'));
         }
-
-        // check the authorisation key
-        // note - we're not confirming the auth key since the banner client setup doesn't have any sessions
-        // so the auth key checking breaks a reload
-        /*if (!SecurityUtil::confirmAuthKey()) {
-	LogUtil::registerError (_BADAUTHKEY);
-	return System::redirect(pnModURL('Banners', 'user', 'main'));
-	}*/
 
         // validate the user login
         $client = ModUtil::apiFunc('Banners', 'user', 'validateclient', array('login' => $login, 'pass' => $pass));
         if (!$client) {
-            LogUtil::registerError (_BANNERS_LOGININCORR);
-            return System::redirect(pnModURL('Banners', 'user', 'main'));
+            LogUtil::registerError ('Login Incorrect');
+            return System::redirect(ModUtil::url('Banners', 'user', 'main'));
         } else {
             $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('cid' => $client['cid']));
         }
@@ -78,19 +68,19 @@ class Banners_user extends AbstractController {
                 $banners[$key]['percent'] = substr(100 * $banners[$key]['clicks'] / $banners[$key]['impmade'], 0, 5);
             }
             if ($banners[$key]['imptotal'] == 0) {
-                $banners[$key]['impleft'] =_BANNERS_UNLIMITED;
-                $banners[$key]['imptotal'] = _BANNERS_UNLIMITED;
+                $banners[$key]['impleft'] ='Unlimited';
+                $banners[$key]['imptotal'] = 'Unlimited';
             } else {
                 $banners[$key]['impleft'] = $banners[$key]['imptotal']-$banners[$key]['impmade'];
             }
         }
 
         // Create output object
-        $pnRender = pnRender::getInstance('Banners', false);
-        $pnRender->assign('banners', $banners);
-        $pnRender->assign(array('login' => $login, 'pass' => $pass));
-        $pnRender->assign($client);
-        return $pnRender->fetch('banners_user_config.htm');
+        $render = Renderer::getInstance('Banners', false);
+        $render->assign('banners', $banners);
+        $render->assign(array('login' => $login, 'pass' => $pass));
+        $render->assign($client);
+        return $render->fetch('banners_user_config.htm');
     }
 
     /**
@@ -110,22 +100,21 @@ class Banners_user extends AbstractController {
             return LogUtil::registerPermissionError();
         }
 
-        // load the admin language file to avoid duplication
-        pnModLangLoad('Banners', 'admin');
+
 
         $client = ModUtil::apiFunc('Banners', 'user', 'validateclient', array('login' => $login, 'pass' => $pass));
         if (!$client) {
-            LogUtil::registerError (_BANNERS_LOGININCORR);
+            LogUtil::registerError ('Login Incorrect');
         } else {
             if (!ModUtil::apiFunc('Banners', 'user', 'emailstats',
             array('bid' => $bid, 'email' => $client['email'], 'cid' => $client['cid']))) {
-                LogUtil::registerError (_BANNERS_CONTACTADMIN);
+                LogUtil::registerError ('Please contact the administrator.');
             } else {
-                LogUtil::registerStatus (_BANNERS_STATSSENT);
+                LogUtil::registerStatus ('Statistics e-mailed');
             }
         }
 
-        return System::redirect(pnModURL('Banners', 'user', 'client', array('login' => $login, 'pass' => $pass)));
+        return System::redirect(ModUtil::url('Banners', 'user', 'client', array('login' => $login, 'pass' => $pass)));
     }
 
     /**
@@ -145,8 +134,6 @@ class Banners_user extends AbstractController {
             return LogUtil::registerPermissionError();
         }
 
-        // load the admin language file to avoid duplication
-        pnModLangLoad('Banners', 'admin');
 
         if (!isset($bid) || !is_numeric($bid)) {
             return DataUtil::formatForDisplayHTML('Error! Could not do what you wanted. Please check your input.');
@@ -155,17 +142,17 @@ class Banners_user extends AbstractController {
         // check client credentials
         $client = ModUtil::apiFunc('Banners', 'user', 'validateclient', array('login' => $login, 'pass' => $pass));
         if (!$client) {
-            LogUtil::registerError (_BANNERS_LOGININCORR);
+            LogUtil::registerError ('Login Incorrect');
         } else {
             if (!ModUtil::apiFunc('Banners', 'user', 'changeurl',
             array('bid' => $bid, 'url' => $url))) {
-                LogUtil::registerError (_BANNERS_CONTACTADMIN);
+                LogUtil::registerError ('Please contact the administrator.');
             } else {
-                LogUtil::registerStatus (_BANNERS_URLCHANGED);
+                LogUtil::registerStatus ('URL Changed');
             }
         }
 
-        return System::redirect(pnModURL('Banners', 'user', 'client', array('login' => $login, 'pass' => $pass)));
+        return System::redirect(ModUtil::url('Banners', 'user', 'client', array('login' => $login, 'pass' => $pass)));
     }
 
     /**
@@ -176,8 +163,8 @@ class Banners_user extends AbstractController {
      */
     public function click($args) {
         // check that were coming from a local referer
-        if (!pnLocalReferer(true)) {
-            return DataUtil::formatForDisplay(_MODULENOAUTH);
+        if (!System::localReferer(true)) {
+            return DataUtil::formatForDisplay('Sorry! No authorization to access this module.');
         }
 
         $bid = FormUtil::getPassedValue('bid', isset($args['bid']) ? $args['bid'] : null, 'GET');
@@ -206,8 +193,6 @@ class Banners_user extends AbstractController {
     /**
      * display a random banner
      *
-     * code migrated from pnBannerDisplay which now calls this api
-     * @see pnBanners.php
      * @param $args['type'] banner type
      * @return string containing banner or &nbsp;
      */
@@ -246,7 +231,7 @@ class Banners_user extends AbstractController {
         // check the current host and admin exceptions
         // log the impression if required
         $myIP = ModUtil::getVar('banners', 'myIP');
-        $myhost = pnServerGetVar('REMOTE_ADDR');
+        $myhost = System::serverGetVar('REMOTE_ADDR');
         if (!empty($myIP) && substr($myhost, 0, strlen($myIP)) != $myIP) {
             ModUtil::apiFunc('Banners', 'user', 'impmade', array('bid' => $banner['bid']));
         }
@@ -267,7 +252,7 @@ class Banners_user extends AbstractController {
             $bannerstring .= '</object>';
         } else {
             if ($banner['clickurl']) {
-                $bannerstring = '<a href="'. DataUtil::formatForDisplay(pnModURL('Banners', 'user', 'click', array('bid' => $banner['bid']))).'" title="' . DataUtil::formatForDisplay($banner['clickurl']);
+                $bannerstring = '<a href="'. DataUtil::formatForDisplay(ModUtil::url('Banners', 'user', 'click', array('bid' => $banner['bid']))).'" title="' . DataUtil::formatForDisplay($banner['clickurl']);
                 if (ModUtil::getVar('Banners', 'openinnewwindow')) {
                     $bannerstring .= ' " target="_blank';
                 }
@@ -283,8 +268,6 @@ class Banners_user extends AbstractController {
     /**
      * display a random banner
      *
-     * code migrated from pnBannerDisplay which now calls this api
-     * @see pnBanners.php
      * @param $args['type'] banner type
      * @return string containing banner or &nbsp;
      */
@@ -315,7 +298,7 @@ class Banners_user extends AbstractController {
         // check the current host and admin exceptions
         // log the impression if required
         $myIP = ModUtil::getVar('banners', 'myIP');
-        $myhost = pnServerGetVar('REMOTE_ADDR');
+        $myhost = System::serverGetVar('REMOTE_ADDR');
         if ((!empty($myIP) && substr($myhost, 0, strlen($myIP)) != $myIP) && (isset($banners['bid']))) {
             ModUtil::apiFunc('Banners', 'user', 'impmade', array('bid' => $banners['bid']));
         }

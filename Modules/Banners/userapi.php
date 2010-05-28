@@ -49,11 +49,11 @@ class Banners_userapi extends AbstractApi {
         $wheres = array();
         // allow filtering by banner type
         if (isset($args['type'])) {
-            $wheres[] = 'pn_type=\''.DataUtil::formatForStore($args['type']).'\'';
+            $wheres[] = '$tabletype=\''.DataUtil::formatForStore($args['type']).'\'';
         }
         // allow filtering by client id
         if (isset($args['cid'])) {
-            $wheres[] = 'pn_cid='.DataUtil::formatForStore((int)$args['cid']);
+            $wheres[] = '$tablecid='.DataUtil::formatForStore((int)$args['cid']);
         }
         $where = implode (' AND ', $wheres);
 
@@ -71,7 +71,7 @@ class Banners_userapi extends AbstractApi {
         }
 
         if ($items === false) {
-            return LogUtil::registerError (_GETFAILED);
+            return LogUtil::registerError ('Error! Could not load items.');
         }
 
         // Return the items
@@ -134,7 +134,7 @@ class Banners_userapi extends AbstractApi {
      */
     public function countitems($args) {
         // allow filtering by banner type
-        (isset($args['type'])) ? $w = "pn_type='".DataUtil::formatForStore($args['type'])."'" : $w = '';
+        (isset($args['type'])) ? $w = "$tabletype='".DataUtil::formatForStore($args['type'])."'" : $w = '';
 
         return DBUtil::selectObjectCount('banners', $w);
     }
@@ -178,7 +178,7 @@ class Banners_userapi extends AbstractApi {
             $items[$key]['bannercount'] = DBUtil::selectObjectCountByID('banners', $item['cid'], 'cid');
         }
         if ($items === false) {
-            return LogUtil::registerError (_GETFAILED);
+            return LogUtil::registerError ('Error! Could not load items.');
         }
 
         // Return the items
@@ -253,7 +253,7 @@ class Banners_userapi extends AbstractApi {
         $items = DBUtil::selectObjectArray('bannersfinish', '', 'bid', $args['startnum']-1, $args['numitems'], '', $permFilter);
 
         if ($items === false) {
-            return LogUtil::registerError (_GETFAILED);
+            return LogUtil::registerError ('Error! Could not load items.');
         }
 
         // Return the items
@@ -355,18 +355,18 @@ class Banners_userapi extends AbstractApi {
         }
 
         if ($banner['imptotal'] == 0) {
-            $banner['left'] =_BANNERS_UNLIMITED;
-            $banner['imptotal'] = _BANNERS_UNLIMITED;
+            $banner['left'] ='Unlimited';
+            $banner['imptotal'] = 'Unlimited';
         } else {
             $banner['left'] = $banner['imptotal']-$banner['impmade'];
         }
 
-        $pnRender = pnRender::getInstance('Banners', false);
-        $pnRender->assign('banner', $banner);
-        $pnRender->assign('client', $client);
-        $pnRender->assign('date', date("F jS Y, h:iA."));
-        $subject = $pnRender->fetch('banners_userapi_emailstats_subject.htm');
-        $message = $pnRender->fetch('banners_userapi_emailstats_body.htm');
+        $render = Renderer::getInstance('Banners', false);
+        $render->assign('banner', $banner);
+        $render->assign('client', $client);
+        $render->assign('date', date("F jS Y, h:iA."));
+        $subject = $render->fetch('banners_userapi_emailstats_subject.htm');
+        $message = $render->fetch('banners_userapi_emailstats_body.htm');
         $mailsent = ModUtil::apiFunc('Mailer', 'user', 'sendmessage',
                 array('toaddress' => $client['email'], 'toname' => $client['contact'],
                 'subject' => $subject, 'body' => $message));
@@ -450,8 +450,8 @@ class Banners_userapi extends AbstractApi {
             return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
-        $pntable = pnDBGetTables();
-        $column = $pntable['bannersclient_column'];
+        $table = DBUtil::getTables();
+        $column = $table['bannersclient_column'];
 
         $where  = "$column[login] = '".DataUtil::formatForStore($args['login'])."' AND
                 $column[passwd] = '".DataUtil::formatForStore($args['pass'])."'";
