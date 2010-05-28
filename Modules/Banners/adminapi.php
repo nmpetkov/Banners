@@ -27,7 +27,7 @@ class Banners_adminapi extends AbstractApi {
                 !isset($args['imptotal']) ||
                 !isset($args['imageurl']) ||
                 !isset($args['clickurl'])) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
         // Security check
@@ -73,14 +73,14 @@ class Banners_adminapi extends AbstractApi {
                 !isset($args['impadded']) ||
                 !isset($args['imageurl']) ||
                 !isset($args['clickurl'])) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
         // Get the existing admin message
-        $banner = pnModAPIFunc('Banners', 'user', 'get', array('bid' => $args['bid']));
+        $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $args['bid']));
 
         if ($banner == false) {
-            return LogUtil::registerError (_NOSUCHITEM);
+            return LogUtil::registerError ('No such item found.');
         }
 
         // Security check
@@ -114,14 +114,14 @@ class Banners_adminapi extends AbstractApi {
     public function delete($args) {
         // Argument check
         if (!isset($args['bid'])) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
         // Get the existing admin message
-        $banner = pnModAPIFunc('Banners', 'user', 'get', array('bid' => $args['bid']));
+        $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $args['bid']));
 
         if ($banner == false) {
-            return LogUtil::registerError (_NOSUCHITEM);
+            return LogUtil::registerError ('No such item found.');
         }
 
         // Security check
@@ -147,7 +147,7 @@ class Banners_adminapi extends AbstractApi {
     public function deleteall($args) {
         // Argument check
         if (!isset($args['cid'])) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
         // Security check
@@ -185,7 +185,7 @@ class Banners_adminapi extends AbstractApi {
                 !isset($args['login']) ||
                 !isset($args['passwd']) ||
                 !isset($args['extrainfo'])) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
         // Security check
@@ -231,14 +231,14 @@ class Banners_adminapi extends AbstractApi {
                 !isset($args['login']) ||
                 !isset($args['passwd']) ||
                 !isset($args['extrainfo'])) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
         // Get the existing admin message
-        $client = pnModAPIFunc('Banners', 'user', 'getclient', array('cid' => $args['cid']));
+        $client = ModUtil::apiFunc('Banners', 'user', 'getclient', array('cid' => $args['cid']));
 
         if ($client == false) {
-            return LogUtil::registerError (_NOSUCHITEM);
+            return LogUtil::registerError ('No such item found.');
         }
 
         // Security check
@@ -272,14 +272,14 @@ class Banners_adminapi extends AbstractApi {
     public function deleteclient($args) {
         // Argument check
         if (!isset($args['cid'])) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
         // Get the existing admin message
-        $client = pnModAPIFunc('Banners', 'user', 'getclient', array('cid' => $args['cid']));
+        $client = ModUtil::apiFunc('Banners', 'user', 'getclient', array('cid' => $args['cid']));
 
         if ($client == false) {
-            return LogUtil::registerError (_NOSUCHITEM);
+            return LogUtil::registerError ('No such item found.');
         }
 
         // Security check
@@ -288,7 +288,7 @@ class Banners_adminapi extends AbstractApi {
         }
 
         // delete any banners for this client first
-        if (!pnModAPIFunc('Banners', 'admin', 'deleteall', array('cid' => $args['cid']))) {
+        if (!ModUtil::apiFunc('Banners', 'admin', 'deleteall', array('cid' => $args['cid']))) {
             return LogUtil::registerError (_DELETEFAILED);
         }
 
@@ -313,14 +313,14 @@ class Banners_adminapi extends AbstractApi {
     public function deletefinished($args) {
         // Argument check
         if (!isset($args['bid'])) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
         // Get the existing admin message
-        $banner = pnModAPIFunc('Banners', 'user', 'getfinished', array('bid' => $args['bid']));
+        $banner = ModUtil::apiFunc('Banners', 'user', 'getfinished', array('bid' => $args['bid']));
 
         if ($banner == false) {
-            return LogUtil::registerError (_NOSUCHITEM);
+            return LogUtil::registerError ('No such item found.');
         }
 
         // Security check

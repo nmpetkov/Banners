@@ -90,7 +90,7 @@ class Banners_userapi extends AbstractApi {
     public function get($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
         if (!isset($args['clientinfo']) || !is_bool($args['clientinfo'])) {
             $args['clientinfo'] = false;
@@ -118,7 +118,7 @@ class Banners_userapi extends AbstractApi {
 
         // check the optional client id field
         if (isset($args['cid']) && is_numeric($args['cid']) && $banner['cid'] != $args['cid']) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
         return $banner;
@@ -195,7 +195,7 @@ class Banners_userapi extends AbstractApi {
     public function getclient($args) {
         // Argument check
         if (!isset($args['cid']) || !is_numeric($args['cid'])) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
         // define the permission filter to apply
@@ -270,7 +270,7 @@ class Banners_userapi extends AbstractApi {
     public function getfinished($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
         // define the permission filter to apply
@@ -304,7 +304,7 @@ class Banners_userapi extends AbstractApi {
     public function click($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
         return DBUtil::incrementObjectFieldByID('banners', 'clicks', $args['bid'], 'bid');
@@ -320,7 +320,7 @@ class Banners_userapi extends AbstractApi {
     public function impmade($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
         return DBUtil::incrementObjectFieldByID('banners', 'impmade', $args['bid'], 'bid');
@@ -338,13 +338,13 @@ class Banners_userapi extends AbstractApi {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid']) ||
                 !isset($args['cid']) || !is_numeric($args['cid'])) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
-        $banner = pnModAPIFunc('Banners', 'user', 'get', array('bid' => $args['bid'], 'cid' => $args['cid']));
-        $client = pnModAPIFunc('Banners', 'user', 'getclient', array('cid' => $args['cid']));
+        $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $args['bid'], 'cid' => $args['cid']));
+        $client = ModUtil::apiFunc('Banners', 'user', 'getclient', array('cid' => $args['cid']));
         if (!$banner) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
         // calculate some additional values
@@ -367,7 +367,7 @@ class Banners_userapi extends AbstractApi {
         $pnRender->assign('date', date("F jS Y, h:iA."));
         $subject = $pnRender->fetch('banners_userapi_emailstats_subject.htm');
         $message = $pnRender->fetch('banners_userapi_emailstats_body.htm');
-        $mailsent = pnModAPIFunc('Mailer', 'user', 'sendmessage',
+        $mailsent = ModUtil::apiFunc('Mailer', 'user', 'sendmessage',
                 array('toaddress' => $client['email'], 'toname' => $client['contact'],
                 'subject' => $subject, 'body' => $message));
         if ($mailsent) {
@@ -387,7 +387,7 @@ class Banners_userapi extends AbstractApi {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])
                 || !isset($args['url'])) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
         // create object
@@ -411,11 +411,11 @@ class Banners_userapi extends AbstractApi {
     public function finish($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
         // get the banner
-        $banner = pnModAPIFunc('Banners', 'user', 'get', array('bid' => $args['bid']));
+        $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $args['bid']));
 
         // create object
         $obj = array();
@@ -431,7 +431,7 @@ class Banners_userapi extends AbstractApi {
         }
 
         // delete the banner
-        pnModAPIFunc('Banners', 'user', 'delete', array('bid' => $args['bid']));
+        ModUtil::apiFunc('Banners', 'user', 'delete', array('bid' => $args['bid']));
 
         return true;
     }
@@ -447,7 +447,7 @@ class Banners_userapi extends AbstractApi {
     public function validateclient($args) {
         // Argument check
         if (!isset($args['login']) || !isset($args['pass'])) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
         $pntable = pnDBGetTables();

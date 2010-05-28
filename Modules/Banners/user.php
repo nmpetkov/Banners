@@ -50,7 +50,7 @@ class Banners_user extends AbstractController {
         // check our input
         if ($login == '' OR $pass == '') {
             LogUtil::registerError (_BANNERS_LOGININCORR);
-            return pnRedirect(pnModURL('Banners', 'user', 'main'));
+            return System::redirect(pnModURL('Banners', 'user', 'main'));
         }
 
         // check the authorisation key
@@ -58,16 +58,16 @@ class Banners_user extends AbstractController {
         // so the auth key checking breaks a reload
         /*if (!SecurityUtil::confirmAuthKey()) {
 	LogUtil::registerError (_BADAUTHKEY);
-	return pnRedirect(pnModURL('Banners', 'user', 'main'));
+	return System::redirect(pnModURL('Banners', 'user', 'main'));
 	}*/
 
         // validate the user login
-        $client = pnModAPIFunc('Banners', 'user', 'validateclient', array('login' => $login, 'pass' => $pass));
+        $client = ModUtil::apiFunc('Banners', 'user', 'validateclient', array('login' => $login, 'pass' => $pass));
         if (!$client) {
             LogUtil::registerError (_BANNERS_LOGININCORR);
-            return pnRedirect(pnModURL('Banners', 'user', 'main'));
+            return System::redirect(pnModURL('Banners', 'user', 'main'));
         } else {
-            $banners = pnModAPIFunc('Banners', 'user', 'getall', array('cid' => $client['cid']));
+            $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('cid' => $client['cid']));
         }
 
         // calculate some additional values
@@ -113,11 +113,11 @@ class Banners_user extends AbstractController {
         // load the admin language file to avoid duplication
         pnModLangLoad('Banners', 'admin');
 
-        $client = pnModAPIFunc('Banners', 'user', 'validateclient', array('login' => $login, 'pass' => $pass));
+        $client = ModUtil::apiFunc('Banners', 'user', 'validateclient', array('login' => $login, 'pass' => $pass));
         if (!$client) {
             LogUtil::registerError (_BANNERS_LOGININCORR);
         } else {
-            if (!pnModAPIFunc('Banners', 'user', 'emailstats',
+            if (!ModUtil::apiFunc('Banners', 'user', 'emailstats',
             array('bid' => $bid, 'email' => $client['email'], 'cid' => $client['cid']))) {
                 LogUtil::registerError (_BANNERS_CONTACTADMIN);
             } else {
@@ -125,7 +125,7 @@ class Banners_user extends AbstractController {
             }
         }
 
-        return pnRedirect(pnModURL('Banners', 'user', 'client', array('login' => $login, 'pass' => $pass)));
+        return System::redirect(pnModURL('Banners', 'user', 'client', array('login' => $login, 'pass' => $pass)));
     }
 
     /**
@@ -149,15 +149,15 @@ class Banners_user extends AbstractController {
         pnModLangLoad('Banners', 'admin');
 
         if (!isset($bid) || !is_numeric($bid)) {
-            return DataUtil::formatForDisplayHTML(_MODARGSERROR);
+            return DataUtil::formatForDisplayHTML('Error! Could not do what you wanted. Please check your input.');
         }
 
         // check client credentials
-        $client = pnModAPIFunc('Banners', 'user', 'validateclient', array('login' => $login, 'pass' => $pass));
+        $client = ModUtil::apiFunc('Banners', 'user', 'validateclient', array('login' => $login, 'pass' => $pass));
         if (!$client) {
             LogUtil::registerError (_BANNERS_LOGININCORR);
         } else {
-            if (!pnModAPIFunc('Banners', 'user', 'changeurl',
+            if (!ModUtil::apiFunc('Banners', 'user', 'changeurl',
             array('bid' => $bid, 'url' => $url))) {
                 LogUtil::registerError (_BANNERS_CONTACTADMIN);
             } else {
@@ -165,7 +165,7 @@ class Banners_user extends AbstractController {
             }
         }
 
-        return pnRedirect(pnModURL('Banners', 'user', 'client', array('login' => $login, 'pass' => $pass)));
+        return System::redirect(pnModURL('Banners', 'user', 'client', array('login' => $login, 'pass' => $pass)));
     }
 
     /**
@@ -183,22 +183,22 @@ class Banners_user extends AbstractController {
         $bid = FormUtil::getPassedValue('bid', isset($args['bid']) ? $args['bid'] : null, 'GET');
 
         if (!isset($bid) && !is_numeric($bid)) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
         }
 
-        $banner = pnModAPIFunc('Banners', 'user', 'get', array('bid' => $bid));
+        $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $bid));
         if (!$banner) {
-            return DataUtil::formatForDisplayHTML(_NOSUCHITEM);
+            return DataUtil::formatForDisplayHTML('No such item found.');
         }
 
         // register the click and redirect
-        if (pnModAPIFunc('Banners', 'user', 'click', array('bid' => $bid))) {
+        if (ModUtil::apiFunc('Banners', 'user', 'click', array('bid' => $bid))) {
             if (strpos($banner['clickurl'], 'index.php') === 0) {
                 // do nothing, local system URL
             } elseif (substr($banner['clickurl'], 0, 7) != 'http://') {
                 $banner['clickurl'] = 'http://'.$banner['clickurl'];
             }
-            return pnRedirect($banner['clickurl'], array('HTTP/1.1 301 Moved Permanently'));
+            return System::redirect($banner['clickurl'], array('HTTP/1.1 301 Moved Permanently'));
         }
         return false;
     }
@@ -214,7 +214,7 @@ class Banners_user extends AbstractController {
     public function display($args) {
 
         // test on config settings
-        if (pnModGetVar('Banners', 'banners') != 1) {
+        if (ModUtil::getVar('Banners', 'banners') != 1) {
             return '&nbsp;';
         }
 
@@ -224,7 +224,7 @@ class Banners_user extends AbstractController {
         }
 
         // get the banner count
-        $numrows = pnModAPIFunc('Banners', 'user', 'countitems', array('type' => $args['type']));
+        $numrows = ModUtil::apiFunc('Banners', 'user', 'countitems', array('type' => $args['type']));
 
         // Get a random banner if exist any.
         // More efficient random stuff, thanks to Cristian Arroyo from http://www.planetalinux.com.ar
@@ -236,7 +236,7 @@ class Banners_user extends AbstractController {
             return '&nbsp;';
         }
 
-        $banners = pnModAPIFunc('Banners', 'user', 'getall', array('type' => $args['type']));
+        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('type' => $args['type']));
         if (isset($banners[$bannum])) {
             $banner = $banners[$bannum];
         } else {
@@ -245,15 +245,15 @@ class Banners_user extends AbstractController {
 
         // check the current host and admin exceptions
         // log the impression if required
-        $myIP = pnModGetVar('banners', 'myIP');
+        $myIP = ModUtil::getVar('banners', 'myIP');
         $myhost = pnServerGetVar('REMOTE_ADDR');
         if (!empty($myIP) && substr($myhost, 0, strlen($myIP)) != $myIP) {
-            pnModAPIFunc('Banners', 'user', 'impmade', array('bid' => $banner['bid']));
+            ModUtil::apiFunc('Banners', 'user', 'impmade', array('bid' => $banner['bid']));
         }
 
         // Check if this impression is the last one and print the banner
         if ($banner['imptotal'] > 0 && $banner['imptotal'] == $banner['impmade']) {
-            pnModAPIFunc('Banners', 'user', 'finish', array('bid' => $banner['bid']));
+            ModUtil::apiFunc('Banners', 'user', 'finish', array('bid' => $banner['bid']));
         }
 
         // check for a flash banner
@@ -268,7 +268,7 @@ class Banners_user extends AbstractController {
         } else {
             if ($banner['clickurl']) {
                 $bannerstring = '<a href="'. DataUtil::formatForDisplay(pnModURL('Banners', 'user', 'click', array('bid' => $banner['bid']))).'" title="' . DataUtil::formatForDisplay($banner['clickurl']);
-                if (pnModGetVar('Banners', 'openinnewwindow')) {
+                if (ModUtil::getVar('Banners', 'openinnewwindow')) {
                     $bannerstring .= ' " target="_blank';
                 }
                 $bannerstring .= '">';
@@ -291,7 +291,7 @@ class Banners_user extends AbstractController {
     public function rotate($args) {
 
         // test on config settings
-        if (pnModGetVar('Banners', 'banners') != 1) {
+        if (ModUtil::getVar('Banners', 'banners') != 1) {
             return '&nbsp;';
         }
 
@@ -301,9 +301,9 @@ class Banners_user extends AbstractController {
         }
 
         // get the banner count
-        $numrows = pnModAPIFunc('Banners', 'user', 'countitems', array('type' => $args['type']));
+        $numrows = ModUtil::apiFunc('Banners', 'user', 'countitems', array('type' => $args['type']));
 
-        $banners = pnModAPIFunc('Banners', 'user', 'getall', array('type' => $args['type']));
+        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('type' => $args['type']));
         $count = $numrows;
         $banid = 0;
         while ($count >= 1) {
@@ -314,15 +314,15 @@ class Banners_user extends AbstractController {
 
         // check the current host and admin exceptions
         // log the impression if required
-        $myIP = pnModGetVar('banners', 'myIP');
+        $myIP = ModUtil::getVar('banners', 'myIP');
         $myhost = pnServerGetVar('REMOTE_ADDR');
         if ((!empty($myIP) && substr($myhost, 0, strlen($myIP)) != $myIP) && (isset($banners['bid']))) {
-            pnModAPIFunc('Banners', 'user', 'impmade', array('bid' => $banners['bid']));
+            ModUtil::apiFunc('Banners', 'user', 'impmade', array('bid' => $banners['bid']));
         }
 
         // Check if this impression is the last one and print the banner
         if ((isset($banners['impmade'])) && ($banners['imptotal'] > 0 && $banners['imptotal'] == $banners['impmade'])) {
-            pnModAPIFunc('Banners', 'user', 'finish', array('bid' => $banners['bid']));
+            ModUtil::apiFunc('Banners', 'user', 'finish', array('bid' => $banners['bid']));
         }
 
         return $allbanners;
