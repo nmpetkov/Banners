@@ -20,7 +20,7 @@ class Banners_user extends AbstractController {
             return LogUtil::registerPermissionError();
         }
 
-        
+
 
         // Create output object
         $render = Renderer::getInstance('Banners', false);
@@ -170,7 +170,7 @@ class Banners_user extends AbstractController {
         $bid = FormUtil::getPassedValue('bid', isset($args['bid']) ? $args['bid'] : null, 'GET');
 
         if (!isset($bid) && !is_numeric($bid)) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $bid));

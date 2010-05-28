@@ -90,7 +90,7 @@ class Banners_userapi extends AbstractApi {
     public function get($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
         if (!isset($args['clientinfo']) || !is_bool($args['clientinfo'])) {
             $args['clientinfo'] = false;
@@ -118,7 +118,7 @@ class Banners_userapi extends AbstractApi {
 
         // check the optional client id field
         if (isset($args['cid']) && is_numeric($args['cid']) && $banner['cid'] != $args['cid']) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         return $banner;
@@ -195,7 +195,7 @@ class Banners_userapi extends AbstractApi {
     public function getclient($args) {
         // Argument check
         if (!isset($args['cid']) || !is_numeric($args['cid'])) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         // define the permission filter to apply
@@ -270,7 +270,7 @@ class Banners_userapi extends AbstractApi {
     public function getfinished($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         // define the permission filter to apply
@@ -304,7 +304,7 @@ class Banners_userapi extends AbstractApi {
     public function click($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         return DBUtil::incrementObjectFieldByID('banners', 'clicks', $args['bid'], 'bid');
@@ -320,7 +320,7 @@ class Banners_userapi extends AbstractApi {
     public function impmade($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         return DBUtil::incrementObjectFieldByID('banners', 'impmade', $args['bid'], 'bid');
@@ -338,13 +338,13 @@ class Banners_userapi extends AbstractApi {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid']) ||
                 !isset($args['cid']) || !is_numeric($args['cid'])) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $args['bid'], 'cid' => $args['cid']));
         $client = ModUtil::apiFunc('Banners', 'user', 'getclient', array('cid' => $args['cid']));
         if (!$banner) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         // calculate some additional values
@@ -387,7 +387,7 @@ class Banners_userapi extends AbstractApi {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])
                 || !isset($args['url'])) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         // create object
@@ -411,7 +411,7 @@ class Banners_userapi extends AbstractApi {
     public function finish($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         // get the banner
@@ -447,7 +447,7 @@ class Banners_userapi extends AbstractApi {
     public function validateclient($args) {
         // Argument check
         if (!isset($args['login']) || !isset($args['pass'])) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         $table = DBUtil::getTables();

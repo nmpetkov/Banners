@@ -27,7 +27,7 @@ class Banners_adminapi extends AbstractApi {
                 !isset($args['imptotal']) ||
                 !isset($args['imageurl']) ||
                 !isset($args['clickurl'])) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         // Security check
@@ -73,7 +73,7 @@ class Banners_adminapi extends AbstractApi {
                 !isset($args['impadded']) ||
                 !isset($args['imageurl']) ||
                 !isset($args['clickurl'])) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         // Get the existing admin message
@@ -114,7 +114,7 @@ class Banners_adminapi extends AbstractApi {
     public function delete($args) {
         // Argument check
         if (!isset($args['bid'])) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         // Get the existing admin message
@@ -147,7 +147,7 @@ class Banners_adminapi extends AbstractApi {
     public function deleteall($args) {
         // Argument check
         if (!isset($args['cid'])) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         // Security check
@@ -185,7 +185,7 @@ class Banners_adminapi extends AbstractApi {
                 !isset($args['login']) ||
                 !isset($args['passwd']) ||
                 !isset($args['extrainfo'])) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         // Security check
@@ -231,7 +231,7 @@ class Banners_adminapi extends AbstractApi {
                 !isset($args['login']) ||
                 !isset($args['passwd']) ||
                 !isset($args['extrainfo'])) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         // Get the existing admin message
@@ -272,7 +272,7 @@ class Banners_adminapi extends AbstractApi {
     public function deleteclient($args) {
         // Argument check
         if (!isset($args['cid'])) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         // Get the existing admin message
@@ -313,7 +313,7 @@ class Banners_adminapi extends AbstractApi {
     public function deletefinished($args) {
         // Argument check
         if (!isset($args['bid'])) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         // Get the existing admin message

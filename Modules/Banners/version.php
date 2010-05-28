@@ -7,8 +7,6 @@
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
-$dom = ZLanguage::getModuleDomain('Banners');
-
 $modversion['name']             = 'Banners';
 $modversion['displayname']      = __('Banners');
 $modversion['description']      = __('Banners Management');

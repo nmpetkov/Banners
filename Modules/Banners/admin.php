@@ -146,7 +146,7 @@ class Banners_admin extends AbstractController {
         $bid = FormUtil::getPassedValue('bid', isset($args['bid']) ? $args['bid'] : null, 'GET');
 
         if (!is_numeric($bid)) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         // security check
@@ -319,7 +319,7 @@ class Banners_admin extends AbstractController {
         $cid = FormUtil::getPassedValue('cid', isset($args['cid']) ? $args['cid'] : null, 'GET');
 
         if (!is_numeric($cid)) {
-            return LogUtil::registerError ('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerArgsError ;
         }
 
         // security check
