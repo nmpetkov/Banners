@@ -16,7 +16,7 @@
 function Banners_bannersfadeblock_init()
 {
 	// Security
-	pnSecAddSchema('Banners:faderblock:', 'Block title::');
+	SecurityUtil::registerPermissionSchema('Banners:faderblock:', 'Block title::');
 }
 
 /**
@@ -52,7 +52,7 @@ function Banners_bannersfadeblock_display($blockinfo)
 	}
 
 	// Get variables from content block
-	$vars = pnBlockVarsFromContent($blockinfo['content']);
+	$vars = BlockUtil::varsFromContent($blockinfo['content']);
 
 	// Defaults
 	if (!isset($vars['btype'])) {
@@ -60,7 +60,7 @@ function Banners_bannersfadeblock_display($blockinfo)
 	}
 
 	// Check if the Banners module is available.
-	if (!pnModAvailable('Banners')) {
+	if (!ModUtil::available('Banners')) {
 		return false;
 	}
 
@@ -68,11 +68,11 @@ function Banners_bannersfadeblock_display($blockinfo)
 	$render = Renderer::getInstance('Banners');
 
 	// assign the banner
-	$render->assign('banner', pnModFunc('Banners', 'user', 'rotate', array('type' => $vars['btype'])));
+	$render->assign('banner', ModUtil::func('Banners', 'user', 'rotate', array('type' => $vars['btype'])));
 	// Populate block info and pass to theme
 	$blockinfo['content'] = $render->fetch('banners_block_fade.htm');
 
-	return pnBlockThemeBlock($blockinfo);
+	return BlockUtil::themeBlock($blockinfo);
 }
 
 /**
@@ -85,7 +85,7 @@ function Banners_bannersfadeblock_display($blockinfo)
 function Banners_bannersfadeblock_modify($blockinfo)
 {
 	// Get current content
-	$vars = pnBlockVarsFromContent($blockinfo['content']);
+	$vars = BlockUtil::varsFromContent($blockinfo['content']);
 
 	// Defaults
 	if (!isset($vars['btype'])) {
@@ -112,13 +112,13 @@ function Banners_bannersfadeblock_modify($blockinfo)
 function Banners_bannersfadeblock_update($blockinfo)
 {
 	// Get current content
-	$vars = pnBlockVarsFromContent($blockinfo['content']);
+	$vars = BlockUtil::varsFromContent($blockinfo['content']);
 
 	// alter the corresponding variable
 	$vars['btype'] = FormUtil::getPassedValue('btype', null, 'POST');
 
 	// write back the new contents
-	$blockinfo['content'] = pnBlockVarsToContent($vars);
+	$blockinfo['content'] = BlockUtil::varsToContent($vars);
 
 	// clear the block cache
 	$render = Renderer::getInstance('Bannersfade');

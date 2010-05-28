@@ -16,7 +16,7 @@
 function Banners_bannersblock_init()
 {
 	// Security
-	pnSecAddSchema('Bannersblock::', 'Block title::');
+        SecurityUtil::registerPermissionSchema('Bannersblock::', 'Block title::');
 }
 
 /**
@@ -51,7 +51,8 @@ function Banners_bannersblock_display($blockinfo)
 	}
 
 	// Get variables from content block
-	$vars = pnBlockVarsFromContent($blockinfo['content']);
+
+	$vars = BlockUtil::varsFromContent($blockinfo['content']);
 
 	// Defaults
 	if (!isset($vars['btype'])) {
@@ -59,7 +60,7 @@ function Banners_bannersblock_display($blockinfo)
 	}
 
 	// Check if the Banners module is available.
-	if (!pnModAvailable('Banners')) {
+	if (!ModUtil::available('Banners')) {
 		return false;
 	}
 
@@ -67,12 +68,12 @@ function Banners_bannersblock_display($blockinfo)
 	$render = Renderer::getInstance('Banners');
 
 	// assign the banner
-	$render->assign('banner', pnModFunc('Banners', 'user', 'display', array('type' => $vars['btype'])));
+	$render->assign('banner', ModUtil::func('Banners', 'user', 'display', array('type' => $vars['btype'])));
 
 	// Populate block info and pass to theme
 	$blockinfo['content'] = $render->fetch('banners_block_banners.htm');
 
-	return pnBlockThemeBlock($blockinfo);
+	return BlockUtil::themeBlock($blockinfo);
 }
 
 /**
@@ -85,7 +86,7 @@ function Banners_bannersblock_display($blockinfo)
 function Banners_bannersblock_modify($blockinfo)
 {
 	// Get current content
-	$vars = pnBlockVarsFromContent($blockinfo['content']);
+	$vars = BlockUtil::varsFromContent($blockinfo['content']);
 
 	// Defaults
 	if (!isset($vars['btype'])) {
@@ -112,14 +113,14 @@ function Banners_bannersblock_modify($blockinfo)
 function Banners_bannersblock_update($blockinfo)
 {
 	// Get current content
-	$vars = pnBlockVarsFromContent($blockinfo['content']);
+	$vars = BlockUtil::varsFromContent($blockinfo['content']);
 
 	// alter the corresponding variable
 	$vars['btype'] = FormUtil::getPassedValue('btype', null, 'POST');
 
 	// write back the new contents
-	$blockinfo['content'] = pnBlockVarsToContent($vars);
-
+	$blockinfo['content'] = BlockUtil::varsToContent($vars);
+        
 	// clear the block cache
 	$render = Renderer::getInstance('Banners');
 	$render->clear_cache('banners_block_banners.htm');

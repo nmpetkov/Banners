@@ -16,7 +16,7 @@
 function Banners_bannersrotateblock_init()
 {
 	// Security
-	pnSecAddSchema('Bannersrotate::', 'Block title::');
+	SecurityUtil::registerPermissionSchema('Bannersrotate::', 'Block title::');
 }
 
 /**
@@ -51,7 +51,7 @@ function Banners_bannersrotateblock_display($blockinfo)
 	}
 
 	// Get variables from content block
-	$vars = pnBlockVarsFromContent($blockinfo['content']);
+	$vars = BlockUtil::varsFromContent($blockinfo['content']);
 
 	// Defaults
 	if (!isset($vars['btype'])) {
@@ -62,7 +62,7 @@ function Banners_bannersrotateblock_display($blockinfo)
 	}
 	$blocktemplate = $vars['blocktemplate'];
 	// Check if the Banners module is available.
-	if (!pnModAvailable('Banners')) {
+	if (!ModUtil::available('Banners')) {
 		return false;
 	}
 
@@ -70,12 +70,12 @@ function Banners_bannersrotateblock_display($blockinfo)
 	$render = Renderer::getInstance('Banners');
 	$blocktemplate = $vars['blocktemplate'];
 	// assign the banner
-	$render->assign('banner', pnModFunc('Banners', 'user', 'rotate', array('type' => $vars['btype'])));
+	$render->assign('banner', ModUtil::func('Banners', 'user', 'rotate', array('type' => $vars['btype'])));
 	$render->assign('banners', $banner);
 	// Populate block info and pass to theme
 	$blockinfo['content'] = $render->fetch($blocktemplate);
 
-	return pnBlockThemeBlock($blockinfo);
+	return BlockUtil::themeBlock($blockinfo);
 }
 
 /**
@@ -88,7 +88,7 @@ function Banners_bannersrotateblock_display($blockinfo)
 function Banners_bannersrotateblock_modify($blockinfo)
 {
 	// Get current content
-	$vars = pnBlockVarsFromContent($blockinfo['content']);
+	$vars = BlockUtil::varsFromContent($blockinfo['content']);
 
 	// Defaults
 	if (!isset($vars['btype'])) {
@@ -115,13 +115,13 @@ function Banners_bannersrotateblock_modify($blockinfo)
 function Banners_bannersrotateblock_update($blockinfo)
 {
 	// Get current content
-	$vars = pnBlockVarsFromContent($blockinfo['content']);
+	$vars = BlockUtil::varsFromContent($blockinfo['content']);
 
 	// alter the corresponding variable
 	$vars['btype'] = FormUtil::getPassedValue('btype', null, 'POST');
 
 	// write back the new contents
-	$blockinfo['content'] = pnBlockVarsToContent($vars);
+	$blockinfo['content'] = BlockUtil::varsToContent($vars);
 
 	// clear the block cache
 	$render = Renderer::getInstance('Bannersrotate');
