@@ -35,8 +35,8 @@ function smarty_function_bannerdisplay ($params, &$smarty)
     $id     = isset($params['id'])     ? (int)$params['id'] : 0;
     $assign = isset($params['assign']) ? $params['assign']  : null;
 
-    if (pnModAvailable('Banners'))  {
-        $result = pnModFunc('Banners', 'user', 'display', array('type' => $id));
+    if (ModUtil::available('Banners'))  {
+        $result = ModUtil::func('Banners', 'user', 'display', array('type' => $id));
         if ($assign) {
             $smarty->assign($assign, $result);
         } else {
