@@ -11,7 +11,7 @@ class Banners_userapi extends AbstractApi {
     /**
      * get all banners
      *
-     * @author Mark West
+     * @author Michael D. Halbrook
      * @param    int     $args['startnum']   (optional) first item to return
      * @param    int     $args['numitems']   (optional) number if items to return
      * @param    int     $args['type']          (optional) banner type
@@ -22,6 +22,7 @@ class Banners_userapi extends AbstractApi {
      */
     public function getall($args) {
         // Optional arguments.
+        print_r($args);exit();
         if (!isset($args['startnum']) || !is_numeric($args['startnum'])) {
             $args['startnum'] = 1;
         }
