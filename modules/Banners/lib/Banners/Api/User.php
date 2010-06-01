@@ -135,7 +135,7 @@ class Banners_Api_User extends AbstractApi {
      */
     public function countitems($args) {
         // allow filtering by banner type
-        //print_r($args);exit();
+
         (isset($args['type'])) ? $w = "$tabletype='".DataUtil::formatForStore($args['type'])."'" : $w = '';
 
         return DBUtil::selectObjectCount('banners', "type$w");
