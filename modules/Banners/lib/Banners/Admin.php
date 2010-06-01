@@ -143,6 +143,7 @@ class Banners_admin extends AbstractController {
      * @return string HTML output string
      */
     public function modify($args) {
+
         $bid = FormUtil::getPassedValue('bid', isset($args['bid']) ? $args['bid'] : null, 'GET');
 
         if (!is_numeric($bid)) {
@@ -197,10 +198,10 @@ class Banners_admin extends AbstractController {
         if (!SecurityUtil::confirmAuthKey()) {
             return LogUtil::registerAuthidError (ModUtil::url('Banners', 'admin', 'view'));
         }
-
         if (ModUtil::apiFunc('Banners', 'admin', 'update',
         array('bid' => $banner['bid'],
         'cid' => $banner['cid'],
+        'name'      =>$banner['name'],
         'idtype' => $banner['idtype'],
         'imptotal' => $banner['imptotal'],
         'impadded' => $banner['impadded'],

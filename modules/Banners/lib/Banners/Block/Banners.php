@@ -96,7 +96,7 @@ public function modify($blockinfo)
 	}
 
 	// Create output object
-	$render = Renderer::getInstance('Banners', false);
+	$render = Renderer::getInstance('Banners');
 
 	// assign the approriate values
 	$render->assign($vars);
@@ -114,7 +114,7 @@ public function modify($blockinfo)
  */
 public function update($blockinfo)
 {
-    
+
 	// Get current content
 	$vars = BlockUtil::varsFromContent($blockinfo['content']);
 

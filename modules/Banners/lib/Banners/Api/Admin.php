@@ -66,8 +66,10 @@ class Banners_Api_Admin extends AbstractApi {
      */
     public function update($args) {
         // Argument check
+        
         if (!isset($args['bid']) ||
                 !isset($args['cid']) ||
+                !isset($args['name']) ||
                 !isset($args['idtype']) ||
                 !isset($args['imptotal']) ||
                 !isset($args['impadded']) ||
@@ -87,10 +89,11 @@ class Banners_Api_Admin extends AbstractApi {
         if (!SecurityUtil::checkPermission('Banners::', "$bid::", ACCESS_EDIT)) {
             return LogUtil::registerPermissionError();
         }
-
+//print$args['name'];exit();
         // create the item array
         $banner = array('bid' => $args['bid'],
                 'cid' => $args['cid'],
+                'title'=> $args['name'],
                 'type' => $args['idtype'],
                 'imptotal' => $args['imptotal'],
                 'imageurl' => $args['imageurl'],

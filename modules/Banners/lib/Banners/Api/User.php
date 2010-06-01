@@ -105,6 +105,7 @@ class Banners_Api_User extends AbstractApi {
                         'level'          => ACCESS_READ));
 
         // get the banner
+        
         if ($args['clientinfo']) {
             $join[]     = array ('join_table'          =>  'bannersclient',
                     'join_field'          =>  'name',
