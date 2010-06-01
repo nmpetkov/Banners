@@ -7,7 +7,7 @@
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
-class Banners_userapi extends AbstractApi {
+class Banners_Api_User extends AbstractApi {
     /**
      * get all banners
      *
@@ -22,7 +22,7 @@ class Banners_userapi extends AbstractApi {
      */
     public function getall($args) {
         // Optional arguments.
-        print_r($args);exit();
+        
         if (!isset($args['startnum']) || !is_numeric($args['startnum'])) {
             $args['startnum'] = 1;
         }
@@ -54,7 +54,7 @@ class Banners_userapi extends AbstractApi {
         }
         // allow filtering by client id
         if (isset($args['cid'])) {
-            $wheres[] = '$tablecid='.DataUtil::formatForStore((int)$args['cid']);
+            $wheres[] = 'cid='.DataUtil::formatForStore((int)$args['cid']);
         }
         $where = implode (' AND ', $wheres);
 
@@ -135,7 +135,7 @@ class Banners_userapi extends AbstractApi {
      */
     public function countitems($args) {
         // allow filtering by banner type
-
+        //print_r($args);exit();
         (isset($args['type'])) ? $w = "$tabletype='".DataUtil::formatForStore($args['type'])."'" : $w = '';
 
         return DBUtil::selectObjectCount('banners', "type$w");

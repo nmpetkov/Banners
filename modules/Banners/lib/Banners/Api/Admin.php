@@ -7,7 +7,7 @@
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
-class Banners_adminapi extends AbstractApi {
+class Banners_Api_Admin extends AbstractApi {
     /**
      * create a banner
      *

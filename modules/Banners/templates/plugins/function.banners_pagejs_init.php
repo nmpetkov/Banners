@@ -12,7 +12,7 @@
  * @author Michael Halbrook.
  * @param  none
  */
-function smarty_function_pc_pagejs_init($params, &$smarty)
+function smarty_function_banners_pagejs_init($params, &$smarty)
 {
 	unset($params);
 	PageUtil::addVar("javascript", "modules/Banners/pnjavascript/protofade.1.2.js");

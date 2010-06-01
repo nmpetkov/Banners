@@ -204,8 +204,8 @@ class Banners_user extends AbstractController {
         }
 
         // check our input
-        if (!isset($args['type']) || !is_numeric($args['type'])) {
-            $args['type'] = 1;
+        if (!isset($args['btype']) || !is_numeric($args['btype'])) {
+            $args['btype'] = 1;
         }
 
         // get the banner count
@@ -222,7 +222,7 @@ class Banners_user extends AbstractController {
             return '&nbsp;';
         }
 
-        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('type' => $args['type']));
+        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('btype' => $args['btype']));
         if (isset($banners[$bannum])) {
             $banner = $banners[$bannum];
         } else {

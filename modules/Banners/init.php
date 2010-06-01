@@ -28,7 +28,7 @@ function Banners_init() {
     if (!DBUtil::createTable('bannersfinish')) {
         return false;
     }
-    $myIP = ConfigGetVar('myIP');
+    $myIP = System::getVar('myIP');
     $banners = ModUtil::setVar('banners');
     ModUtil::setVar('Banners', 'myIP', $myIP);
     ModUtil::setVar('Banners', 'banners', $banners);
