@@ -13,7 +13,7 @@
  * This function is called internally by the core whenever the module is
  * loaded.  It adds in the information
  */
-function Banners_pntables() {
+function Banners_tables() {
     // Initialise table array
     $table = array();
 

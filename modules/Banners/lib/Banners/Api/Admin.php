@@ -7,7 +7,7 @@
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
-class Banners_Api_Admin extends AbstractApi {
+class Banners_Api_Admin extends Zikula_Api {
     /**
      * create a banner
      *
@@ -349,14 +349,22 @@ class Banners_Api_Admin extends AbstractApi {
         $links = array();
 
         if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ)) {
-
-            $links[] = array('url' => ModUtil::url('Banners', 'admin', 'view'), 'text' => $this->__('Banner View'), 'class' => 'z-icon-es-list');
+            $links[] = array(
+                'url' => ModUtil::url('Banners', 'admin', 'view'),
+                'text' => $this->__('Banner List'),
+                'class' => 'z-icon-es-list');
         }
         if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADD)) {
-            $links[] = array('url' => ModUtil::url('Banners', 'admin', 'newentry'), 'text' => $this->__('Banner Add'), 'class' => 'z-icon-es-list');
+            $links[] = array(
+                'url' => ModUtil::url('Banners', 'admin', 'newentry'),
+                'text' => $this->__('Banner Add'),
+                'class' => 'z-icon-es-new');
         }
         if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN)) {
-            $links[] = array('url' => ModUtil::url('Banners', 'admin', 'modifyconfig'), 'text' => $this->__('Module Configuration'), 'class' => 'z-icon-es-list');
+            $links[] = array(
+                'url' => ModUtil::url('Banners', 'admin', 'modifyconfig'),
+                'text' => $this->__('Module Configuration'),
+                'class' => 'z-icon-es-config');
         }
 
         return $links;

@@ -22,7 +22,7 @@
  *   - assign:   If set, the results are assigned to the corresponding variable instead of printed out
  *
  * Example
- * <!--[pnbannerdisplay id=0]-->
+ * {bannerdisplay id=0}
  *
  * @deprecated
  * @param        array       $params      All attributes passed to this function from the template

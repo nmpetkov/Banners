@@ -15,8 +15,8 @@
 function smarty_function_banners_pagejs_init($params, &$smarty)
 {
 	unset($params);
-	PageUtil::addVar("javascript", "modules/Banners/pnjavascript/protofade.1.2.js");
-	PageUtil::addVar("javascript", "modules/Banners/pnjavascript/fadeslideshow.js");
+	PageUtil::addVar("javascript", "modules/Banners/javascript/protofade.1.2.js");
+	PageUtil::addVar("javascript", "modules/Banners/javascript/fadeslideshow.js");
 	PageUtil::addVar("javascript", "http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js");
 
 	return;

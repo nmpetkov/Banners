@@ -7,7 +7,7 @@
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
-class Banners_Api_User extends AbstractApi {
+class Banners_Api_User extends Zikula_Api {
     /**
      * get all banners
      *
@@ -364,12 +364,11 @@ class Banners_Api_User extends AbstractApi {
             $banner['left'] = $banner['imptotal']-$banner['impmade'];
         }
 
-        $render = Renderer::getInstance('Banners', false);
-        $render->assign('banner', $banner);
-        $render->assign('client', $client);
-        $render->assign('date', date("F jS Y, h:iA."));
-        $subject = $render->fetch('banners_userapi_emailstats_subject.htm');
-        $message = $render->fetch('banners_userapi_emailstats_body.htm');
+        $this->view->assign('banner', $banner);
+        $this->view->assign('client', $client);
+        $this->view->assign('date', date("F jS Y, h:iA."));
+        $subject = $this->view->fetch('email/stats_subject.tpl');
+        $message = $this->view->fetch('email/stats_body.tpl');
         $mailsent = ModUtil::apiFunc('Mailer', 'user', 'sendmessage',
                 array('toaddress' => $client['email'], 'toname' => $client['contact'],
                 'subject' => $subject, 'body' => $message));
