@@ -32,20 +32,21 @@ function Banners_tables() {
             'clicks'    => 'clicks',
             'imageurl'  => 'imageurl',
             'clickurl'  => 'clickurl',
-            'date' => 'date');
+            'date'      => 'date');
 
     $table['banners_column_def'] = array(
             'bid'       => 'I PRIMARY AUTO',
             'cid'       => "I DEFAULT '0'",
-            'type'	=> "C(2) DEFAULT '0'",
-            'title'	=> "C(255) DEFAULT ''",
+            'type'      => "C(2) DEFAULT '0'",
+            'title'     => "C(255) DEFAULT ''",
             'imptotal'	=> "I DEFAULT '0'",
             'impmade'	=> "I DEFAULT '0'",
             'clicks'	=> "I DEFAULT '0'",
             'imageurl'	=> "C(255) DEFAULT ''",
             'clickurl'	=> "C(255) DEFAULT ''",
-            'date'	=> 'T DEFAULT NULL');
+            'date'      => 'T DEFAULT NULL');
     // add standard data fields
+    ObjectUtil::addStandardFieldsToTableDefinition($table['banners_column'], '');
     ObjectUtil::addStandardFieldsToTableDataDefinition($table['banners_column_def']);
     
 
@@ -69,6 +70,7 @@ function Banners_tables() {
             'passwd'    => 'C(10) NOTNULL',
             'extrainfo' => "X2 NOTNULL");
     // add standard data fields
+    ObjectUtil::addStandardFieldsToTableDefinition($table['bannersclient_column'], '');
     ObjectUtil::addStandardFieldsToTableDataDefinition($table['bannersclient_column_def']);
 
     // completed banners
@@ -88,6 +90,7 @@ function Banners_tables() {
             'datestart'   => 'T DEFAULT NULL',
             'dateend'     => 'T DEFAULT NULL');
     // add standard data fields
+    ObjectUtil::addStandardFieldsToTableDefinition($table['bannersfinish_column'], '');
     ObjectUtil::addStandardFieldsToTableDataDefinition($table['bannersfinish_column_def']);
 
     // Return the table information
