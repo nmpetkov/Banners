@@ -357,7 +357,7 @@ class Banners_Api_Admin extends Zikula_Api {
         if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADD)) {
             $links[] = array(
                 'url' => ModUtil::url('Banners', 'admin', 'newentry'),
-                'text' => $this->__('Banner Add'),
+                'text' => $this->__('New Banner'),
                 'class' => 'z-icon-es-new');
         }
         if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN)) {
