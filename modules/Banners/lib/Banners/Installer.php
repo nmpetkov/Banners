@@ -31,7 +31,7 @@ class Banners_Installer extends Zikula_Installer
             return false;
         }
         $myIP = System::getVar('myIP');
-        $banners = ModUtil::setVar('banners');
+        $banners = ModUtil::getVar('banners');
         ModUtil::setVar('Banners', 'myIP', $myIP);
         ModUtil::setVar('Banners', 'banners', $banners);
         ModUtil::setVar('Banners', 'openinnewwinow', false);

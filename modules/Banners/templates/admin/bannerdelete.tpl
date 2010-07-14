@@ -7,12 +7,12 @@
 <div>
     <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
     <input type="hidden" name="confirmation" value="1" />
-    <input type="hidden" name="bid" value="{$bid|varprepfordisplay}" />
+    <input type="hidden" name="bid" value="{$bid|safetext}" />
 	<div class="z-adminformrow">
 		<p>{gt text="Do you really want to delete this banner?"}</p>
 	</div>
-	<a href="{$clickurl|varprepfordisplay}"><img src="{$imageurl|varprepfordisplay}" alt="" title="{$clickurl|varprepfordisplay}" /></a>
-	<br /><a href="{$clickurl|varprepfordisplay}">{$clickurl|varprepfordisplay}</a>
+	<a href="{$clickurl|safetext}"><img src="{$imageurl|safetext}" alt="" title="{$clickurl|safetext}" /></a>
+	<br /><a href="{$clickurl|safetext}">{$clickurl|safetext}</a>
 	<table class="z-admintable">
 		<thead>
 		<tr>
@@ -26,10 +26,10 @@
 		</thead>
 		<tbody>
 		<tr>
-			<td>{$bid|varprepfordisplay}</td>
-			<td>{$impmade|varprepfordisplay}</td>
+			<td>{$bid|safetext}</td>
+			<td>{$impmade|safetext}</td>
 			<td>{math equation="x-y" x=$imptotal y=$impmade}</td>
-			<td>{$clicks|varprepfordisplay}</td>
+			<td>{$clicks|safetext}</td>
 			<td>
 				{strip}
 				{if $clicks neq 0}
@@ -39,7 +39,7 @@
 				{/if}%
 				{/strip}
 			</td>
-			<td>{$cname|varprepfordisplay}</td>
+			<td>{$cname|safetext}</td>
 		</tr>
 		</tbody>
 	</table>

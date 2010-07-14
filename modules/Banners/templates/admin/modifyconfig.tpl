@@ -16,7 +16,7 @@
     </div>
    	<div class="z-adminformrow">
 		<label for="myIP">{gt text="Your IP to not count the hits"}</label>
-		<input type="text" id="myIP" name="myIP" value="{$myIP|varprepfordisplay}" size="30" />
+		<input type="text" id="myIP" name="myIP" value="{$myIP|safetext}" size="30" />
     </div>
 	{modcallhooks hookobject=module hookaction=modifyconfig module=Banners}
     <div class="z-buttons z-formbuttons">

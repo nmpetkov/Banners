@@ -6,5 +6,5 @@
 </div>
 <div class="z-adminformrow">
 <label for="bannerblock_template">{gt text='Block Template'}</label>
-	<input id="bannerblock_rotate_blocktemplate" type="text" name="blocktemplate" size="30" value="{$blocktemplate|varprepfordisplay}" />
+	<input id="bannerblock_rotate_blocktemplate" type="text" name="blocktemplate" size="30" value="{$blocktemplate|safetext}" />
 </div>

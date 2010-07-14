@@ -20,8 +20,7 @@ function Banners_tables() {
     // Set the Table Name
     $table['banners'] = DBUtil::getLimitedTablename('banners');
 
-    // Set the column names.  Note that the array has been formatted
-    // on-screen to be very easy to read by a user.
+    // Set the column names.
 
     $table['banners_column'] = array(
             'bid'       => 'bid',
@@ -47,7 +46,6 @@ function Banners_tables() {
             'clickurl'	=> "C(255) DEFAULT ''",
             'date'	=> 'T DEFAULT NULL');
     // add standard data fields
-    ObjectUtil::addStandardFieldsToTableDefinition ($table['banners_column']);
     ObjectUtil::addStandardFieldsToTableDataDefinition($table['banners_column_def']);
     
 
@@ -71,7 +69,6 @@ function Banners_tables() {
             'passwd'    => 'C(10) NOTNULL',
             'extrainfo' => "X2 NOTNULL");
     // add standard data fields
-    ObjectUtil::addStandardFieldsToTableDefinition ($table['bannersclient_column']);
     ObjectUtil::addStandardFieldsToTableDataDefinition($table['bannersclient_column_def']);
 
     // completed banners
@@ -91,7 +88,6 @@ function Banners_tables() {
             'datestart'   => 'T DEFAULT NULL',
             'dateend'     => 'T DEFAULT NULL');
     // add standard data fields
-    ObjectUtil::addStandardFieldsToTableDefinition ($table['bannersfinish_column']);
     ObjectUtil::addStandardFieldsToTableDataDefinition($table['bannersfinish_column_def']);
 
     // Return the table information

@@ -27,13 +27,13 @@
         <tbody>
             {section name="activebanneritems" loop=$activebanneritems}
             <tr class="{cycle values=z-odd,z-even name=activebanners}">
-                <td>{$activebanneritems[activebanneritems].bid|varprepfordisplay}</td>
-                <td>{$activebanneritems[activebanneritems].title|varprepfordisplay}</td>
-                <td>{$activebanneritems[activebanneritems].impmade|varprepfordisplay}</td>
+                <td>{$activebanneritems[activebanneritems].bid|safetext}</td>
+                <td>{$activebanneritems[activebanneritems].title|safetext}</td>
+                <td>{$activebanneritems[activebanneritems].impmade|safetext}</td>
                 <td>
 			{if $activebanneritems[activebanneritems].imptotal eq 0}{gt text='Unlimited Impression'}{else}{math equation="x-y" x=$activebanneritems[activebanneritems].imptotal y=$activebanneritems[activebanneritems].impmade}{/if}
                 </td>
-                <td>{$activebanneritems[activebanneritems].clicks|varprepfordisplay}</td>
+                <td>{$activebanneritems[activebanneritems].clicks|safetext}</td>
                 <td>
 			{strip}
 			{if $activebanneritems[activebanneritems].clicks neq 0}
@@ -43,8 +43,8 @@
 			{/if}%
 			{/strip}
                 </td>
-                <td>{$activebanneritems[activebanneritems].cname|varprepfordisplay}</td>
-                <td>{$activebanneritems[activebanneritems].type|varprepfordisplay}</td>
+                <td>{$activebanneritems[activebanneritems].cname|safetext}</td>
+                <td>{$activebanneritems[activebanneritems].type|safetext}</td>
                 <td>
                     <a href="{modurl modname="Banners" type="admin" func="modify" bid=$activebanneritems[activebanneritems].bid}">{img modname=core set=icons/extrasmall src=xedit.gif alt=_EDIT altml=true}</a>
                     <a href="{modurl modname="Banners" type="admin" func="delete" bid=$activebanneritems[activebanneritems].bid}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif alt=_DELETE altml=true}</a>
@@ -73,15 +73,15 @@
         <tbody>
             {section name="finishedbanners" loop=$finishedbanners}
             <tr class="{cycle values=z-odd,z-even name=finishedbanners}">
-                <td>{$finishedbanners[finishedbanners].impressions|varprepfordisplay}</td>
-                <td>{$finishedbanners[finishedbanners].clicks|varprepfordisplay}</td>
-                <td>{$finishedbanners[finishedbanners].percent|varprepfordisplay}</td>
-                <td>{$finishedbanners[finishedbanners].datestart|varprepfordisplay}</td>
-                <td>{$finishedbanners[finishedbanners].dateend|varprepfordisplay}</td>
-                <td>{$finishedbanners[finishedbanners].cname|varprepfordisplay}</td>
-                <td>{$activebanneritems[activebanneritems].type|varprepfordisplay}</td>
+                <td>{$finishedbanners[finishedbanners].impressions|safetext}</td>
+                <td>{$finishedbanners[finishedbanners].clicks|safetext}</td>
+                <td>{$finishedbanners[finishedbanners].percent|safetext}</td>
+                <td>{$finishedbanners[finishedbanners].datestart|safetext}</td>
+                <td>{$finishedbanners[finishedbanners].dateend|safetext}</td>
+                <td>{$finishedbanners[finishedbanners].cname|safetext}</td>
+                <td>{$activebanneritems[activebanneritems].type|safetext}</td>
                 <td>
-                    <a href="{modurl modname="Banners" type="admin" func="deletefinished" authid="$authid" bid=""}{$finishedbanners[finishedbanners].bid|varprepfordisplay}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif alt=_DELETE altml=true}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="deletefinished" authid="$authid" bid=""}{$finishedbanners[finishedbanners].bid|safetext}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif alt=_DELETE altml=true}</a>
                 </td>
             </tr>
 	{sectionelse}
@@ -104,10 +104,10 @@
         <tbody>
             {section name="activeclients" loop=$activeclients}
             <tr class="{cycle values=z-odd,z-even name=activeclients}">
-                <td>{$activeclients[activeclients].name|varprepfordisplay}</td>
-                <td>{$activeclients[activeclients].bannercount|varprepfordisplay|default:"0"}</td>
-                <td>{$activeclients[activeclients].contact|varprepfordisplay}</td>
-                <td>{$activeclients[activeclients].email|varprepfordisplay}</td>
+                <td>{$activeclients[activeclients].name|safetext}</td>
+                <td>{$activeclients[activeclients].bannercount|safetext|default:"0"}</td>
+                <td>{$activeclients[activeclients].contact|safetext}</td>
+                <td>{$activeclients[activeclients].email|safetext}</td>
                 <td>
                     <a href="{modurl modname="Banners" type="admin" func="modifyclient" cid=$activeclients[activeclients].cid}">{img modname=core set=icons/extrasmall src=xedit.gif alt=_EDIT altml=true}</a>
                     <a href="{modurl modname="Banners" type="admin" func="deleteclient" cid=$activeclients[activeclients].cid}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif alt=_DELETE altml=true}</a>

@@ -3,12 +3,12 @@
 <div class="z-admincontainer">
 <div class="z-adminpageicon">{img modname=core src=editdelete.gif set=icons/large alt='Delete Client' altml=true}</div>
 <h2>{gt text="Delete Client"}</h2>
-<div>{gt text="Delete Client"}: {$cname|varprepfordisplay}</div>
+<div>{gt text="Delete Client"}: {$cname|safetext}</div>
 <form class="z-adminform" action="{modurl modname="Banners" type="admin" func="deleteclient"}" method="post" enctype="application/x-www-form-urlencoded">
 <div>
     <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
     <input type="hidden" name="confirmation" value="1" />
-    <input type="hidden" name="cid" value="{$cid|varprepfordisplay}" />
+    <input type="hidden" name="cid" value="{$cid|safetext}" />
 	<p>
 	{if $banners}
         <strong>{gt text="Warning!!!"}</strong> {gt text="This client has the following active banners running now"}
@@ -21,8 +21,8 @@
 	<ul>
 	{section name="banners" loop=$banners}
 	<li>	
-		<a href="{$banners[banners].clickurl|varprepfordisplay}"><img src="{$banners[banners].imageurl|varprepfordisplay}" alt="" title="{$banners[banners].clickurl}" /></a>
-		<br />{$banners[banners].clickurl|varprepfordisplay}
+		<a href="{$banners[banners].clickurl|safetext}"><img src="{$banners[banners].imageurl|safetext}" alt="" title="{$banners[banners].clickurl}" /></a>
+		<br />{$banners[banners].clickurl|safetext}
 	</li>
 	{/section}
 	</ul>
