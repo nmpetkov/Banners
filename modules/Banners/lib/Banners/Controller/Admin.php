@@ -394,7 +394,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
             // No confirmation yet
 
             // Add the message id
-            $this->view->assign('cid', $cid);
+            $this->view->assign('client', $client);
 
             // assign the full item
             $this->view->assign('banners', ModUtil::apiFunc('Banners', 'user', 'getall', array('cid' => $cid)));

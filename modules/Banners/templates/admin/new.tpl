@@ -1,7 +1,8 @@
 {*  $Id: banners_admin_new.htm 9 2008-11-05 21:42:16Z Guite $  *}
 {include file="admin/menu.tpl"}
-<div class="z-container">
-    <div class="z-pageicon">{img modname=core src=filenew.gif set=icons/large alt='_BANNERS_CREATE' altml=true}</div>
+<div class="z-admincontainer">
+    <div class="z-adminpageicon">{img modname=core src=filenew.gif set=icons/large __alt='Create Banners'}</div>
+    <h2>{gt text="Add Clients and Banners"}</h2>
     {if $bannersenabled eq 0}
     <p>
         <em><strong>{gt text="Important note!"}</strong></em>
@@ -10,14 +11,14 @@
     </p>
     {/if}
     {if $clients}
-    <h2>{gt text="Add a new banner"}</h2>
     <form class="z-form" action="{modurl modname="Banners" type="admin" func="create"}" method="post" enctype="application/x-www-form-urlencoded">
-          <div>
+        <fieldset>
+            <legend>{gt text='Add a new banner'}</legend>
             <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
-                   <div class="z-formrow">
+            <div class="z-formrow">
                 <label for="clientlist">{gt text="Client Name"}</label>
                 <select id="clientlist" name="banner[cid]">
-			{html_options options=$clients}
+                    {html_options options=$clients}
                 </select>
             </div>
             <div class="z-formrow">
@@ -41,15 +42,15 @@
                 <input type="text" id="clickurl" name="banner[clickurl]" size="50" maxlength="250" />
             </div>
             <div class="z-buttons z-formbuttons">
-                {button src=button_ok.gif set=icons/small __alt="Add Client" __title="Add Client"}
-                <a href="{modurl modname=Banners type=admin func=view}">{img modname=core src=button_cancel.gif set=icons/small altml=true titleml=true __alt="Cancel" __title="Cancel"}</a>
+               {button src="button_ok.gif" set="icons/extrasmall" __alt="Add Banner" __title="Add Banner" __text="Add Banner"}
+                <a href="{modurl modname="Banners" type="admin" func=view}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.gif" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
             </div>
-        </div>
+        </fieldset>
     </form>
     {/if}
-    <h2>{gt text="Add a New Client"}</h2>
     <form class="z-form" action="{modurl modname="Banners" type="admin" func="createclient"}" method="post" enctype="application/x-www-form-urlencoded">
-          <div>
+        <fieldset>
+            <legend>{gt text='Add a New Client'}</legend>
             <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
                    <div class="z-formrow">
                 <label for="client">{gt text="Client Name"}</label>
@@ -76,9 +77,9 @@
                 <textarea id="xinfo" name="client[extrainfo]" cols="50" rows="10"></textarea>
             </div>
             <div class="z-buttons z-formbuttons">
-                {button src=button_ok.gif set=icons/small __alt="Add Client" __title="Add Client"}
-                <a href="{modurl modname=Banners type=admin func=view}">{img modname=core src=button_cancel.gif set=icons/small altml=true titleml=true __alt="Cancel" __title="Cancel"}</a>
+                {button src="button_ok.gif" set="icons/extrasmall" __alt="Add Client" __title="Add Client" __text="Add Client"}
+                <a href="{modurl modname="Banners" type="admin" func=view}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.gif" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
             </div>
-        </div>
+        </fieldset>
     </form>
 </div>

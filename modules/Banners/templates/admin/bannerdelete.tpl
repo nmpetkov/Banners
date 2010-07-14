@@ -3,14 +3,11 @@
 <div class="z-admincontainer">
 <div class="z-adminpageicon">{img modname=core src=editdelete.gif set=icons/large alt='Delete banner' altml=true}</div>
 <h2>{gt text="Delete banner"}</h2>
-<form class="z-adminform" action="{modurl modname="Banners" type="admin" func="delete"}" method="post" enctype="application/x-www-form-urlencoded">
+<form class="z-form" action="{modurl modname="Banners" type="admin" func="delete"}" method="post" enctype="application/x-www-form-urlencoded">
 <div>
     <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
     <input type="hidden" name="confirmation" value="1" />
     <input type="hidden" name="bid" value="{$bid|safetext}" />
-	<div class="z-adminformrow">
-		<p>{gt text="Do you really want to delete this banner?"}</p>
-	</div>
 	<a href="{$clickurl|safetext}"><img src="{$imageurl|safetext}" alt="" title="{$clickurl|safetext}" /></a>
 	<br /><a href="{$clickurl|safetext}">{$clickurl|safetext}</a>
 	<table class="z-admintable">
@@ -43,10 +40,13 @@
 		</tr>
 		</tbody>
 	</table>
-            <div class="z-formbuttons">
-                {button src='button_ok.gif' set='icons/small' __alt='Delete Banner' __title='Delete Banner'}
-                <a href="{modurl modname='Banners' type='admin' func='delete'}">{img modname='core' src='button_cancel.gif' set='icons/small' __alt='Cancel' __title='Cancel'}</a>
-            </div>
+	<div class="z-formrow">
+		<p><strong>{gt text="Do you really want to delete this banner?"}</strong></p>
+	</div>
+    <div class="z-buttons z-formbuttons">
+        {button src="button_ok.gif" set="icons/extrasmall" __alt="Delete Banner" __title="Delete Banner" __text="Delete Banner"}
+        <a href="{modurl modname="Banners" type="admin" func="view"}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.gif" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
+    </div>
 </div>
 </form>
 </div>
