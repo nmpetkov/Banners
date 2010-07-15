@@ -1,6 +1,7 @@
 {*  $Id: banners_block_banners_modify.htm 9 2008-11-05 21:42:16Z Guite $  *}
-<div class="z-adminformrow">
+<div class="z-formrow">
     <label for="Banners_block_btype">{gt text='Block Type'}</label>
+    {gt assign="choose" text="Choose"}
     {selector_field_array
         name="btype"
         modname="Banners"
@@ -8,6 +9,6 @@
         field="type"
         selectedValue=$vars.btype
         defaultValue="0"
-        defaultText="choose"
+        defaultText=$choose
         assocKey="type"}
 </div>

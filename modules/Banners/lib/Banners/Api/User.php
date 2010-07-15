@@ -50,7 +50,7 @@ class Banners_Api_User extends Zikula_Api {
         $wheres = array();
         // allow filtering by banner type
         if (isset($args['type'])) {
-            $wheres[] = '$tabletype=\''.DataUtil::formatForStore($args['type']).'\'';
+            $wheres[] = 'type=\''.DataUtil::formatForStore($args['type']).'\'';
         }
         // allow filtering by client id
         if (isset($args['cid'])) {

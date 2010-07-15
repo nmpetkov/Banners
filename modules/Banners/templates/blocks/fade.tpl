@@ -1,5 +1,4 @@
-<!-- pagevars -->
-
+{* pagevars *}
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 <script type="text/javascript" src="fadeslideshow.js">
 /***********************************************
@@ -25,5 +24,6 @@ var mygallery=new fadeSlideShow({
 	descreveal: "ondemand",
 	togglerid: ""
 })
-</script>{{/pagevars}}
+</script>
+{* /pagevars *}
 <div id="fadeshow1"></div>
