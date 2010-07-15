@@ -122,6 +122,3 @@ else if (ie4||dom||document.layers)
 window.onload=startit
 
 </script>
-
-<p align="center"><font face="arial" size="-2">This free script provided by</font><br>
-<font face="arial, helvetica" size="-2"><a href="http://www.dynamicdrive.com">Dynamic Drive</a></font></p>
