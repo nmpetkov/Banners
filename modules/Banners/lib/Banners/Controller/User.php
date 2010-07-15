@@ -202,9 +202,9 @@ class Banners_Controller_User extends Zikula_Controller {
         }
 
         // get the banner count
-        
+
         $numrows = ModUtil::apiFunc('Banners', 'user', 'countitems', array('type' => $args['type']));
-        
+
         // Get a random banner if exist any.
         // More efficient random stuff, thanks to Cristian Arroyo from http://www.planetalinux.com.ar
         if ($numrows >= 1) {
@@ -273,14 +273,14 @@ class Banners_Controller_User extends Zikula_Controller {
         }
 
         // check our input
-        if (!isset($args['type']) || !is_numeric($args['type'])) {
-            $args['type'] = 1;
+        if (!isset($args['btype']) || !is_numeric($args['btype'])) {
+            $args['btype'] = 1;
         }
 
         // get the banner count
-        $numrows = ModUtil::apiFunc('Banners', 'user', 'countitems', array('type' => $args['type']));
+        $numrows = ModUtil::apiFunc('Banners', 'user', 'countitems', array('btype' => $args['btype']));
 
-        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('type' => $args['type']));
+        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('btype' => $args['btype']));
         $count = $numrows;
         $banid = 0;
         while ($count >= 1) {
@@ -293,6 +293,7 @@ class Banners_Controller_User extends Zikula_Controller {
         // log the impression if required
         $myIP = ModUtil::getVar('banners', 'myIP');
         $myhost = System::serverGetVar('REMOTE_ADDR');
+
         if ((!empty($myIP) && substr($myhost, 0, strlen($myIP)) != $myIP) && (isset($banners['bid']))) {
             ModUtil::apiFunc('Banners', 'user', 'impmade', array('bid' => $banners['bid']));
         }
