@@ -1,4 +1,5 @@
 {*  $Id: banners_admin_view.htm 9 2008-11-05 21:42:16Z Guite $  *}
+{ajaxheader module="Banners" ui=true}
 {include file="admin/menu.tpl"}
 <div class="z-admincontainer">
     <div class="z-adminpageicon">{img modname=core src=windowlist.gif set=icons/large alt='_BANNERS_ACTIVE' altml=true}</div>
@@ -104,7 +105,7 @@
         <tbody>
             {section name="activeclients" loop=$activeclients}
             <tr class="{cycle values=z-odd,z-even name=activeclients}">
-                <td>{$activeclients[activeclients].name|safetext}</td>
+                <td class="tooltips" id="clientname_{$activeclients[activeclients].cid}" title="{$activeclients[activeclients].extrainfo}">{$activeclients[activeclients].name|safetext}</td>
                 <td>{$activeclients[activeclients].bannercount|safetext|default:"0"}</td>
                 <td>{$activeclients[activeclients].contact|safetext}</td>
                 <td>{$activeclients[activeclients].email|safetext}</td>
@@ -119,3 +120,6 @@
         </tbody>
     </table>
 </div>
+<script type="text/javascript">
+    Zikula.UI.Tooltips($$('.tooltips'));
+</script>
