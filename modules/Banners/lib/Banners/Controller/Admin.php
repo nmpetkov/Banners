@@ -25,7 +25,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
     }
 
     /**
-     * display form to create a new banner/client
+     * display form to create a new banner
      *
      * @author Devin Hayes
      * @return string HTML output string
@@ -51,6 +51,35 @@ class Banners_Controller_Admin extends Zikula_Controller {
 
         // return the output
         return $this->view->fetch('admin/new.tpl');
+    }
+
+    /**
+     * display form to create a new client
+     *
+     * @author Devin Hayes
+     * @return string HTML output string
+     */
+    public function newclient($args) {
+        // Security check
+        if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN)) {
+            return LogUtil::registerPermissionError();
+        }
+
+        // Check if Banners variable is active, if not then print a message
+        $this->view->assign('bannersenabled', ModUtil::getVar('Banners', 'banners'));
+
+        // get list of current clients and assign to template
+        $clients = ModUtil::apiFunc('Banners', 'user', 'getallclients');
+        $clientitems = array();
+        if (is_array($clients)) {
+            foreach($clients as $client) {
+                $clientitems[$client['cid']] = $client['name'];
+            }
+        }
+        $this->view->assign('clients', $clientitems);
+
+        // return the output
+        return $this->view->fetch('admin/clientnew.tpl');
     }
 
     /**

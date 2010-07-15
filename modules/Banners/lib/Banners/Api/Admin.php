@@ -356,9 +356,26 @@ class Banners_Api_Admin extends Zikula_Api {
         }
         if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADD)) {
             $links[] = array(
-                'url' => ModUtil::url('Banners', 'admin', 'newentry'),
-                'text' => $this->__('New Banner'),
+                'url' => ModUtil::url('Banners', 'admin', 'newclient'),
+                'text' => $this->__('New Client'),
                 'class' => 'z-icon-es-new');
+        }
+        if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADD)) {
+            $clients = ModUtil::apiFunc('Banners', 'user', 'getallclients');
+            if (empty($clients)) {
+                $links[] = array(
+                    'url' => ModUtil::url('Banners', 'admin', 'newentry'),
+                    'text' => $this->__('New Banner'),
+                    'class' => 'z-icon-es-new',
+                    'title' => $this->__('Create Client First'),
+                    'disabled' => 'disabled');
+            } else {
+                $links[] = array(
+                    'url' => ModUtil::url('Banners', 'admin', 'newentry'),
+                    'text' => $this->__('New Banner'),
+                    'class' => 'z-icon-es-new');
+            }
+
         }
         if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN)) {
             $links[] = array(

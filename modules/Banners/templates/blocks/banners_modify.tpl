@@ -6,7 +6,6 @@
         modname="Banners"
         table="banners"
         field="type"
-        sort=$vars.tabletype
         selectedValue=$vars.btype
         defaultValue="0"
         defaultText="choose"
