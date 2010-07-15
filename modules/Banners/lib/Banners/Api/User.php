@@ -3,6 +3,10 @@
  * @package      Banners
  * @version      $Id:
  * @author       Halbrook Technologies
+ * @author       Michael D. Halbrook
+ * @author       Devin Hayes
+ * @author       Craig Heydenburg
+ * @author       Mark West
  * @link         http://www.halbrooktech.com
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
@@ -11,7 +15,6 @@ class Banners_Api_User extends Zikula_Api {
     /**
      * get all banners
      *
-     * @author Michael D. Halbrook
      * @param    int     $args['startnum']   (optional) first item to return
      * @param    int     $args['numitems']   (optional) number if items to return
      * @param    int     $args['type']          (optional) banner type
@@ -82,7 +85,6 @@ class Banners_Api_User extends Zikula_Api {
     /**
      * Get a banner
      *
-     * @author Devin Hayes
      * @param $args['bid'] id of the banner
      * @param $args['cid'] id of the client (optional)
      * @param bool  $args['clientinfo']  (optional) include client info
@@ -129,7 +131,6 @@ class Banners_Api_User extends Zikula_Api {
     /**
      * utility function to count the number of items held by this module
      *
-     * @author Devin Hayes
      * @param    int     $args['type']       (optional) banner type
      * @todo     add support for the banner type parameter
      * @return   integer   number of items held by this module
@@ -145,7 +146,6 @@ class Banners_Api_User extends Zikula_Api {
     /**
      * get all banner clients
      *
-     * @author Mark West
      * @param    int     $args['startnum']   (optional) first item to return
      * @param    int     $args['numitems']   (optional) number if items to return
      * @return   array   array of items, or false on failure
@@ -191,7 +191,6 @@ class Banners_Api_User extends Zikula_Api {
     /**
      * Get a banner client
      *
-     * @author Mark West
      * @param $args['cid'] id of the banner client
      * @return mixed array if bid is valid, false otherwise
      */
@@ -214,7 +213,6 @@ class Banners_Api_User extends Zikula_Api {
     /**
      * utility function to count the number of items held by this module
      *
-     * @author Devin Hayes
      * @return   integer   number of items held by this module
      */
     public function countclientitems($args) {
@@ -224,7 +222,6 @@ class Banners_Api_User extends Zikula_Api {
     /**
      * get all banners
      *
-     * @author Mark West
      * @param    int     $args['startnum']   (optional) first item to return
      * @param    int     $args['numitems']   (optional) number if items to return
      * @return   array   array of items, or false on failure
@@ -266,7 +263,6 @@ class Banners_Api_User extends Zikula_Api {
     /**
      * Get a banner
      *
-     * @author Devin Hayes
      * @param $args['bid'] id of the banner
      * @return mixed array if bid is valid, false otherwise
      */
@@ -289,7 +285,6 @@ class Banners_Api_User extends Zikula_Api {
     /**
      * utility function to count the number of items held by this module
      *
-     * @author Devin Hayes
      * @return   integer   number of items held by this module
      */
     public function countfinisheditems($args) {
@@ -316,7 +311,6 @@ class Banners_Api_User extends Zikula_Api {
     /*
  * register an impression
  *
- * @author Devin Hayes
  * @param $args['bid'] id of the banner
  * @return bool true if successful, false otherwise
     */
@@ -332,7 +326,6 @@ class Banners_Api_User extends Zikula_Api {
     /**
      * send banner stats to the client
      *
-     * @author Devin Hayes
      * @param $args['bid'] id of the banner
      * @param $args['cid'] id of the client
      * @return bool true if successful, false otherwise
@@ -380,7 +373,6 @@ class Banners_Api_User extends Zikula_Api {
     /**
      * update the url of a banner
      *
-     * @author Devin Hayes
      * @param $args['bid'] banner id
      * @param $args['url'] new banner url
      * @return true if successful, false otherwise
@@ -406,7 +398,6 @@ class Banners_Api_User extends Zikula_Api {
     /**
      * Move a banner to the finished banners table
      *
-     * @author Devin Hayes
      * @param $args['bid'] banner id
      * @return true if successful, false otherwise
      */
@@ -441,7 +432,6 @@ class Banners_Api_User extends Zikula_Api {
     /**
      * validate client login
      *
-     * @author Devin Hayes
      * @param $args['login']    client login
      * @param $args['password'] client password
      * @return mixed client array if successful, false otherwise

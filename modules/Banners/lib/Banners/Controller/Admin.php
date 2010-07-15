@@ -3,6 +3,9 @@
  * @package      Banners
  * @version      $Id:
  * @author       Halbrook Technologies
+ * @author       Michael Halbrook
+ * @author       Devin Hayes
+ * @author       Craig Heydenburg
  * @link         http://www.halbrooktech.com
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
@@ -11,7 +14,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * the main administration function
      *
-     * @author       Michael Halbrook
      * @return       output       The main module admin page.
      */
     public function main() {
@@ -27,7 +29,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * display form to create a new banner
      *
-     * @author Devin Hayes
      * @return string HTML output string
      */
     public function newentry($args) {
@@ -56,7 +57,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * display form to create a new client
      *
-     * @author Devin Hayes
      * @return string HTML output string
      */
     public function newclient($args) {
@@ -75,7 +75,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * view items
      *
-     * @author Devin Hayes
      * @param int $startnum the start item id for the pager
      * @return string HTML output string
      */
@@ -106,7 +105,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * create a banner
      *
-     * @author Devin Hayes
      * @param int $cid client id
      * @param int $idtype banner type id
      * @param int $imptotal total impressions purchased
@@ -146,7 +144,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * modify a banner
      *
-     * @author Devin Hayes
      * @param int $args['bid'] the banner id
      * @return string HTML output string
      */
@@ -187,7 +184,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * update a banner
      *
-     * @author Devin Hayes
      * @param int $cid client id
      * @param int $idtype banner type id
      * @param int $imptotal total impressions purchased
@@ -221,7 +217,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * delete a banner
      *
-     * @author Devin Hayes
      * @param int $bid banner id
      * @param int $objectid generic object id maps to bid if present
      * @param bool $confirmation confirmation of the deletion
@@ -282,7 +277,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * create a client
      *
-     * @author Devin Hayes
      * @param int $cname client name
      * @param int $contact client contact name
      * @param int $email client e-mail address
@@ -315,7 +309,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * modify a banner client
      *
-     * @author Devin Hayes
      * @param int $cid the client id
      * @return string HTML output string
      */
@@ -347,7 +340,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * update a banner client
      *
-     * @author Devin Hayes
      * @param int $cid client id
      * @param int $cname client name
      * @param int $contact client contact name
@@ -382,7 +374,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * delete a banner
      *
-     * @author Devin Hayes
      * @param int $cid client id
      * @param int $objectid generic object id maps to bid if present
      * @param bool $confirmation confirmation of the deletion
@@ -444,7 +435,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * delete a finished banner
      *
-     * @author Devin Hayes
      * @param int $bid banner id
      * @param int $objectid generic object id maps to bid if present
      * @param bool $confirmation confirmation of the deletion
@@ -507,7 +497,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
      * This is a standard function to modify the configuration parameters of the
      * module
      *
-     * @author Devin Hayes
      * @return string HTML output string
      */
     public function modifyconfig() {
@@ -527,7 +516,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
      * This is a standard function to update the configuration parameters of the
      * module given the information passed back by the modification form
      *
-     * @author Devin Hayes
      * @param int $itemsperpage the number messages per page in the admin panel
      * @return bool true if successful, false otherwise
      */

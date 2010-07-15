@@ -3,6 +3,7 @@
  * @package      Banners
  * @version      $Id:
  * @author       Halbrook Technologies
+ * @author       Craig Heydenburg
  * @link         http://www.halbrooktech.com
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
@@ -12,7 +13,6 @@ class Banners_Block_Banners extends Zikula_Block
     /**
      * initialise block
      *
-     * @author       The Zikula Development Team
      */
     public function init()
     {
@@ -41,7 +41,6 @@ class Banners_Block_Banners extends Zikula_Block
     /**
      * display block
      *
-     * @author       The Zikula Development Team
      * @param        array       $blockinfo     a blockinfo structure
      * @return       output      the rendered bock
      */
@@ -77,7 +76,6 @@ class Banners_Block_Banners extends Zikula_Block
     /**
      * modify block settings
      *
-     * @author       The Zikula Development Team
      * @param        array       $blockinfo     a blockinfo structure
      * @return       output      the block form
      */
@@ -102,7 +100,6 @@ class Banners_Block_Banners extends Zikula_Block
     /**
      * update block settings
      *
-     * @author       The Zikula Development Team
      * @param        array       $blockinfo     a blockinfo structure
      * @return       $blockinfo  the modified blockinfo structure
      */

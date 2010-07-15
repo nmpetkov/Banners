@@ -3,6 +3,8 @@
  * @package      Banners
  * @version      $Id:
  * @author       Halbrook Technologies
+ * @author       Devin Hayes
+ * @author       Craig Heydenburg
  * @link         http://www.halbrooktech.com
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
@@ -11,7 +13,6 @@ class Banners_Controller_User extends Zikula_Controller {
     /**
      * the main user function
      *
-     * @author Devin Hayes
      * @return string HTML output string
      */
     public function main() {
@@ -26,7 +27,6 @@ class Banners_Controller_User extends Zikula_Controller {
     /**
      * the main user function
      *
-     * @author Devin Hayes
      * @return string HTML output string
      */
     public function client($args) {
@@ -79,7 +79,6 @@ class Banners_Controller_User extends Zikula_Controller {
     /**
      * e-mail usage stats for a banner to the designated contact e-mail
      *
-     * @author Devin Hayes
      * @return string HTML output string
      */
     public function emailstats($args) {
@@ -113,7 +112,6 @@ class Banners_Controller_User extends Zikula_Controller {
     /**
      * update the banners target url
      *
-     * @author Devin Hayes
      * @return string HTML output string
      */
     public function changeurl($args) {
@@ -151,7 +149,6 @@ class Banners_Controller_User extends Zikula_Controller {
     /**
      * register a click on a banner and redirec to the target url
      *
-     * @author Devin Hayes
      * @return string HTML output string
      */
     public function click($args) {

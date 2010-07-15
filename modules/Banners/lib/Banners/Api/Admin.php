@@ -2,7 +2,10 @@
 /**
  * @package      Banners
  * @version      $Id:
+ * @author       Devin Hayes
  * @author       Halbrook Technologies
+ * @author       Craig Heydenburg
+ * @author       Mark West
  * @link         http://www.halbrooktech.com
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
@@ -11,7 +14,6 @@ class Banners_Api_Admin extends Zikula_Api {
     /**
      * create a banner
      *
-     * @author Devin Hayes
      * @param int $cid client id
      * @param int $idtype banner type id
      * @param int $imptotal total impressions purchased
@@ -54,7 +56,6 @@ class Banners_Api_Admin extends Zikula_Api {
     /**
      * update a banner
      *
-     * @author Devin Hayes
      * @param int $bid banner id
      * @param int $cid client id
      * @param int $idtype banner type id
@@ -110,7 +111,6 @@ class Banners_Api_Admin extends Zikula_Api {
     /**
      * delete a banner
      *
-     * @author Devin Hayes
      * @param int $bid banner id
      * @return bool true on success, false on failure
      */
@@ -143,7 +143,6 @@ class Banners_Api_Admin extends Zikula_Api {
     /**
      * delete all banners for a client
      *
-     * @author Devin Hayes
      * @param int $cid client id
      * @return bool true on success, false on failure
      */
@@ -171,7 +170,6 @@ class Banners_Api_Admin extends Zikula_Api {
     /**
      * create a client
      *
-     * @author Devin Hayes
      * @param int $cname client name
      * @param int $contact client contact name
      * @param int $email client contact e-mail
@@ -215,7 +213,6 @@ class Banners_Api_Admin extends Zikula_Api {
     /**
      * update a banner
      *
-     * @author Devin Hayes
      * @param int $cid client id
      * @param int $cname client name
      * @param int $contact client contact name
@@ -268,7 +265,6 @@ class Banners_Api_Admin extends Zikula_Api {
     /**
      * delete a client
      *
-     * @author Devin Hayes
      * @param int $cid client id
      * @return bool true on success, false on failure
      */
@@ -309,7 +305,6 @@ class Banners_Api_Admin extends Zikula_Api {
     /**
      * delete a finished banner
      *
-     * @author Devin Hayes
      * @param int $bid banner id
      * @return bool true on success, false on failure
      */
@@ -342,7 +337,6 @@ class Banners_Api_Admin extends Zikula_Api {
     /**
      * get available admin panel links
      *
-     * @author Mark West
      * @return array array of admin links
      */
     public function getlinks() {

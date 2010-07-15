@@ -3,6 +3,8 @@
  * @package      Banners
  * @version      $Id:
  * @author       Halbrook Technologies
+ * @author       Devin Hayes
+ * @author       Craig Heydenburg
  * @link         http://www.halbrooktech.com
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
@@ -16,7 +18,6 @@ class Banners_Installer extends Zikula_Installer
      * module instance
      *
      * @todo identify suitable indexes
-     * @author Devin Hayes
      * @return bool true if successful, false otherwise
      */
     public function install() {
@@ -45,7 +46,6 @@ class Banners_Installer extends Zikula_Installer
     /**
      * upgrade the Banners module from an old version
      * This function can be called multiple times
-     * @author Devin Hayes
      * @return bool true if successful, false otherwise
      */
     public function upgrade($oldversion) {
@@ -82,7 +82,6 @@ class Banners_Installer extends Zikula_Installer
      * delete the Banners module
      * This function is only ever called once during the lifetime of a particular
      * module instance
-     * @author Devin Hayes
      * @return bool true if successful, false otherwise
      */
     public function uninstall() {
