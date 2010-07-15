@@ -197,8 +197,8 @@ class Banners_Controller_User extends Zikula_Controller {
         }
 
         // check our input
-        if (!isset($args['btype']) || !is_numeric($args['btype'])) {
-            $args['btype'] = 1;
+        if (!isset($args['type'])) { // || !is_numeric($args['type'])) {
+            $args['type'] = 1;
         }
 
         // get the banner count
@@ -215,7 +215,7 @@ class Banners_Controller_User extends Zikula_Controller {
             return '&nbsp;';
         }
 
-        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('btype' => $args['btype']));
+        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('type' => $args['type']));
         if (isset($banners[$bannum])) {
             $banner = $banners[$bannum];
         } else {
@@ -273,19 +273,24 @@ class Banners_Controller_User extends Zikula_Controller {
         }
 
         // check our input
-        if (!isset($args['btype']) || !is_numeric($args['btype'])) {
-            $args['btype'] = 1;
+        if (!isset($args['type'])) { //|| !is_numeric($args['type'])) {
+            $args['type'] = 1;
         }
 
         // get the banner count
-        $numrows = ModUtil::apiFunc('Banners', 'user', 'countitems', array('btype' => $args['btype']));
+        $numrows = ModUtil::apiFunc('Banners', 'user', 'countitems', array('type' => $args['type']));
+        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('type' => $args['type']));
 
-        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('btype' => $args['btype']));
         $count = $numrows;
         $banid = 0;
+        $allbanners = array();
+        
         while ($count >= 1) {
             $count--;
-            $allbanners[$count] = array ('banid' => $banid,'imageurl' => $banners[$count]['imageurl'], 'clickurl' => $banners[$count]['clickurl']);
+            $allbanners[$count] = array(
+                'banid' => $banid,
+                'imageurl' => $banners[$count]['imageurl'],
+                'clickurl' => $banners[$count]['clickurl']);
             $banid++;
         }
 

@@ -56,8 +56,8 @@ class Banners_Block_Bannersrotate extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // Defaults
-        if (!isset($vars['btype'])) {
-            $vars['btype'] = 3;
+        if (!isset($vars['type'])) {
+            $vars['type'] = 3;
         }
         if (!isset($vars['blocktemplate'])){
             $vars['blocktemplate']="blocks/rotate.tpl";
@@ -69,7 +69,7 @@ class Banners_Block_Bannersrotate extends Zikula_Block
         }
 
         // assign the banner
-        $this->view->assign('banner', ModUtil::func('Banners', 'user', 'rotate', array('type' => $vars['btype'])));
+        $this->view->assign('banner', ModUtil::func('Banners', 'user', 'rotate', array('type' => $vars['type'])));
         $this->view->assign('banners', $banner);
         // Populate block info and pass to theme
         $blockinfo['content'] = $this->view->fetch($blocktemplate);
@@ -90,8 +90,8 @@ class Banners_Block_Bannersrotate extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // Defaults
-        if (!isset($vars['btype'])) {
-            $vars['btype'] = 3;
+        if (!isset($vars['type'])) {
+            $vars['type'] = 3;
         }
 
         // assign the approriate values
@@ -114,7 +114,7 @@ class Banners_Block_Bannersrotate extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // alter the corresponding variable
-        $vars['btype'] = FormUtil::getPassedValue('btype', null, 'POST');
+        $vars['type'] = FormUtil::getPassedValue('type', null, 'POST');
 
         // write back the new contents
         $blockinfo['content'] = BlockUtil::varsToContent($vars);
