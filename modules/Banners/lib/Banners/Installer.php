@@ -38,6 +38,7 @@ class Banners_Installer extends Zikula_Installer
 
 
         // Initialisation successful
+        LogUtil::registerStatus($this->__('Banners module installed'));
         return true;
     }
 

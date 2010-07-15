@@ -72,7 +72,7 @@ class Banners_Api_User extends Zikula_Api {
         }
 
         if ($items === false) {
-            return LogUtil::registerError ('Error! Could not load items.');
+            return LogUtil::registerError($this->__('Error! Could not load items.'));
         }
 
         // Return the items
@@ -91,7 +91,7 @@ class Banners_Api_User extends Zikula_Api {
     public function get($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
         if (!isset($args['clientinfo']) || !is_bool($args['clientinfo'])) {
             $args['clientinfo'] = false;
@@ -120,7 +120,7 @@ class Banners_Api_User extends Zikula_Api {
 
         // check the optional client id field
         if (isset($args['cid']) && is_numeric($args['cid']) && $banner['cid'] != $args['cid']) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         return $banner;
@@ -181,7 +181,7 @@ class Banners_Api_User extends Zikula_Api {
             $items[$key]['bannercount'] = DBUtil::selectObjectCountByID('banners', $item['cid'], 'cid');
         }
         if ($items === false) {
-            return LogUtil::registerError ('Error! Could not load items.');
+            return LogUtil::registerError($this->__('Error! Could not load items.'));
         }
 
         // Return the items
@@ -198,7 +198,7 @@ class Banners_Api_User extends Zikula_Api {
     public function getclient($args) {
         // Argument check
         if (!isset($args['cid']) || !is_numeric($args['cid'])) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         // define the permission filter to apply
@@ -256,7 +256,7 @@ class Banners_Api_User extends Zikula_Api {
         $items = DBUtil::selectObjectArray('bannersfinish', '', 'bid', $args['startnum']-1, $args['numitems'], '', $permFilter);
 
         if ($items === false) {
-            return LogUtil::registerError ('Error! Could not load items.');
+            return LogUtil::registerError($this->__('Error! Could not load items.'));
         }
 
         // Return the items
@@ -273,7 +273,7 @@ class Banners_Api_User extends Zikula_Api {
     public function getfinished($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         // define the permission filter to apply
@@ -307,7 +307,7 @@ class Banners_Api_User extends Zikula_Api {
     public function click($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         return DBUtil::incrementObjectFieldByID('banners', 'clicks', $args['bid'], 'bid');
@@ -323,7 +323,7 @@ class Banners_Api_User extends Zikula_Api {
     public function impmade($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         return DBUtil::incrementObjectFieldByID('banners', 'impmade', $args['bid'], 'bid');
@@ -341,13 +341,13 @@ class Banners_Api_User extends Zikula_Api {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid']) ||
                 !isset($args['cid']) || !is_numeric($args['cid'])) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $args['bid'], 'cid' => $args['cid']));
         $client = ModUtil::apiFunc('Banners', 'user', 'getclient', array('cid' => $args['cid']));
         if (!$banner) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         // calculate some additional values
@@ -389,7 +389,7 @@ class Banners_Api_User extends Zikula_Api {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])
                 || !isset($args['url'])) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         // create object
@@ -413,7 +413,7 @@ class Banners_Api_User extends Zikula_Api {
     public function finish($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         // get the banner
@@ -449,7 +449,7 @@ class Banners_Api_User extends Zikula_Api {
     public function validateclient($args) {
         // Argument check
         if (!isset($args['login']) || !isset($args['pass'])) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         $table = DBUtil::getTables();

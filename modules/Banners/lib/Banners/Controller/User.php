@@ -42,14 +42,14 @@ class Banners_Controller_User extends Zikula_Controller {
 
         // check our input
         if ($login == '' OR $pass == '') {
-            LogUtil::registerError ('Login Incorrect');
+            LogUtil::registerError($this->__('Login Incorrect'));
             return System::redirect(ModUtil::url('Banners', 'user', 'main'));
         }
 
         // validate the user login
         $client = ModUtil::apiFunc('Banners', 'user', 'validateclient', array('login' => $login, 'pass' => $pass));
         if (!$client) {
-            LogUtil::registerError ('Login Incorrect');
+            LogUtil::registerError($this->__('Login Incorrect'));
             return System::redirect(ModUtil::url('Banners', 'user', 'main'));
         } else {
             $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('cid' => $client['cid']));
@@ -97,13 +97,13 @@ class Banners_Controller_User extends Zikula_Controller {
 
         $client = ModUtil::apiFunc('Banners', 'user', 'validateclient', array('login' => $login, 'pass' => $pass));
         if (!$client) {
-            LogUtil::registerError ('Login Incorrect');
+            LogUtil::registerError($this->__('Login Incorrect'));
         } else {
             if (!ModUtil::apiFunc('Banners', 'user', 'emailstats',
             array('bid' => $bid, 'email' => $client['email'], 'cid' => $client['cid']))) {
-                LogUtil::registerError ('Please contact the administrator.');
+                LogUtil::registerError($this->__('Please contact the administrator.'));
             } else {
-                LogUtil::registerStatus ('Statistics e-mailed');
+                LogUtil::registerStatus($this->__('Statistics e-mailed'));
             }
         }
 
@@ -129,19 +129,19 @@ class Banners_Controller_User extends Zikula_Controller {
 
 
         if (!isset($bid) || !is_numeric($bid)) {
-            return DataUtil::formatForDisplayHTML('Error! Could not do what you wanted. Please check your input.');
+            return LogUtil::registerError($this->__('Error! Could not do what you wanted. Please check your input.'));
         }
 
         // check client credentials
         $client = ModUtil::apiFunc('Banners', 'user', 'validateclient', array('login' => $login, 'pass' => $pass));
         if (!$client) {
-            LogUtil::registerError ('Login Incorrect');
+            LogUtil::registerError($this->__('Login Incorrect'));
         } else {
             if (!ModUtil::apiFunc('Banners', 'user', 'changeurl',
             array('bid' => $bid, 'url' => $url))) {
-                LogUtil::registerError ('Please contact the administrator.');
+                LogUtil::registerError($this->__('Please contact the administrator.'));
             } else {
-                LogUtil::registerStatus ('URL Changed');
+                LogUtil::registerStatus($this->__('URL Changed'));
             }
         }
 
@@ -163,12 +163,12 @@ class Banners_Controller_User extends Zikula_Controller {
         $bid = FormUtil::getPassedValue('bid', isset($args['bid']) ? $args['bid'] : null, 'GET');
 
         if (!isset($bid) && !is_numeric($bid)) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $bid));
         if (!$banner) {
-            return DataUtil::formatForDisplayHTML('No such item found.');
+            return LogUtil::registerError($this->__('No such item found.'));
         }
 
         // register the click and redirect

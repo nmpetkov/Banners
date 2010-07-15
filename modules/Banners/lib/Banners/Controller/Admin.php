@@ -119,7 +119,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
 
         // Confirm authorisation code.
         if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError (ModUtil::url('Banners', 'admin', 'view'));
+            return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'view'));
         }
 
         // Notable by its absence there is no security check here.
@@ -135,7 +135,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         // The return value of the function is checked
         if ($bid != false) {
             // Success
-            LogUtil::registerStatus ('Banner Created');
+            LogUtil::registerStatus($this->__('Banner Created'));
         }
 
         // This function generated no output, and so now it is complete we redirect
@@ -155,7 +155,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         $bid = FormUtil::getPassedValue('bid', isset($args['bid']) ? $args['bid'] : null, 'GET');
 
         if (!is_numeric($bid)) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         // security check
@@ -167,7 +167,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $bid));
 
         if ($banner == false) {
-            return DataUtil::formatForDisplayHTML('No such item found.');
+            return LogUtil::registerError($this->__('No such item found.'));
         }
 
         // assign the banner item
@@ -212,7 +212,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         'impadded' => $banner['impadded'],
         'imageurl' => $banner['imageurl'],
         'clickurl' => $banner['clickurl']))) {
-            LogUtil::registerStatus ('Banner Updated');
+            LogUtil::registerStatus($this->__('Banner Updated'));
         }
 
         return System::redirect(ModUtil::url('Banners', 'admin', 'main'));
@@ -238,7 +238,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         // Get the existing admin message
         $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $bid, 'clientinfo' => true));
         if ($banner == false) {
-            return DataUtil::formatForDisplayHTML('No such item found.');
+            return LogUtil::registerError($this->__('No such item found.'));
         }
 
         // Security check
@@ -262,14 +262,14 @@ class Banners_Controller_Admin extends Zikula_Controller {
 
         // Confirm authorisation code.
         if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError (ModUtil::url('Banners', 'admin', 'view'));
+            return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'view'));
         }
 
         // Delete the banner
         // The return value of the function is checked
         if (ModUtil::apiFunc('Banners', 'admin', 'delete', array('bid' => $bid))) {
             // Success
-            LogUtil::registerStatus ('Banner Deleted');
+            LogUtil::registerStatus($this->__('Banner Deleted'));
         }
 
         // This function generated no output, and so now it is complete we redirect
@@ -296,7 +296,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
 
         // Confirm authorisation code.
         if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError (ModUtil::url('Banners', 'admin', 'view'));
+            return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'view'));
         }
 
         if (ModUtil::apiFunc('Banners', 'admin', 'createclient',
@@ -306,7 +306,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         'login' => $client['login'],
         'passwd' => $client['passwd'],
         'extrainfo' => $client['extrainfo']))) {
-            LogUtil::registerStatus ('Banner Client Created');
+            LogUtil::registerStatus($this->__('Banner Client Created'));
         }
 
         return System::redirect(ModUtil::url('Banners', 'admin', 'main'));
@@ -323,7 +323,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         $cid = FormUtil::getPassedValue('cid', isset($args['cid']) ? $args['cid'] : null, 'GET');
 
         if (!is_numeric($cid)) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         // security check
@@ -335,7 +335,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         $client = ModUtil::apiFunc('Banners', 'user', 'getclient', array('cid' => $cid));
 
         if ($client == false) {
-            return DataUtil::formatForDisplayHTML('No such item found.');
+            return LogUtil::registerError($this->__('No such item found.'));
         }
 
         // assign the banner item
@@ -362,7 +362,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
 
         // Confirm authorisation code.
         if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError (ModUtil::url('Banners', 'admin', 'view'));
+            return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'view'));
         }
 
         if (ModUtil::apiFunc('Banners', 'admin', 'updateclient',
@@ -373,7 +373,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         'extrainfo' => $client['extrainfo'],
         'login' => $client['login'],
         'passwd' => $client['passwd']))) {
-            LogUtil::registerStatus ('Client Updated');
+            LogUtil::registerStatus($this->__('Client Updated'));
         }
 
         return System::redirect(ModUtil::url('Banners', 'admin', 'main'));
@@ -400,7 +400,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         $client = ModUtil::apiFunc('Banners', 'user', 'getclient', array('cid' => $cid));
 
         if ($client == false) {
-            return DataUtil::formatForDisplayHTML('No such item found.');
+            return LogUtil::registerError($this->__('No such item found.'));
         }
 
         // Security check
@@ -424,14 +424,14 @@ class Banners_Controller_Admin extends Zikula_Controller {
 
         // Confirm authorisation code.
         if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError (ModUtil::url('Banners', 'admin', 'view'));
+            return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'view'));
         }
 
         // Delete the banner
         // The return value of the function is checked
         if (ModUtil::apiFunc('Banners', 'admin', 'deleteclient', array('cid' => $cid))) {
             // Success
-            LogUtil::registerStatus ('Client Deleted');
+            LogUtil::registerStatus($this->__('Client Deleted'));
         }
 
         // This function generated no output, and so now it is complete we redirect
@@ -462,7 +462,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $bid));
 
         if ($banner == false) {
-            return DataUtil::formatForDisplayHTML('No such item found.');
+            return LogUtil::registerError($this->__('No such item found.'));
         }
 
         // Security check
@@ -486,14 +486,14 @@ class Banners_Controller_Admin extends Zikula_Controller {
 
         // Confirm authorisation code.
         if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError (ModUtil::url('Banners', 'admin', 'view'));
+            return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'view'));
         }
 
         // Delete the banner
         // The return value of the function is checked
         if (ModUtil::apiFunc('Banners', 'admin', 'deletefinished', array('bid' => $bid))) {
             // Success
-            LogUtil::registerStatus ('Banner Deleted');
+            LogUtil::registerStatus($this->__('Banner Deleted'));
         }
 
         // This function generated no output, and so now it is complete we redirect
@@ -542,7 +542,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
 
         // Confirm authorisation code.
         if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError (ModUtil::url('Banners', 'admin', 'view'));
+            return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'view'));
         }
 
         // Update module variables.
@@ -554,7 +554,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         $this->callHooks('module','updateconfig','Banners', array('module' => 'Banners'));
 
         // the module configuration has been updated successfuly
-        LogUtil::registerStatus ('Configuration Updated');
+        LogUtil::registerStatus($this->__('Configuration Updated'));
 
         // This function generated no output, and so now it is complete we redirect
         // the user to an appropriate page for them to carry on their work

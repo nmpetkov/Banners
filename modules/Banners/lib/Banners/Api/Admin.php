@@ -27,7 +27,7 @@ class Banners_Api_Admin extends Zikula_Api {
                 !isset($args['imptotal']) ||
                 !isset($args['imageurl']) ||
                 !isset($args['clickurl'])) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         // Security check
@@ -44,7 +44,7 @@ class Banners_Api_Admin extends Zikula_Api {
                 'clickurl' => $args['clickurl']);
 
         if (!DBUtil::insertObject($banner, 'banners', 'bid')) {
-            return LogUtil::registerError ('Error! Creation attempt failed.');
+            return LogUtil::registerError($this->__('Error! Creation attempt failed.'));
         }
 
         // Return the id of the newly created item to the calling process
@@ -75,14 +75,14 @@ class Banners_Api_Admin extends Zikula_Api {
                 !isset($args['impadded']) ||
                 !isset($args['imageurl']) ||
                 !isset($args['clickurl'])) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         // Get the existing admin message
         $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $args['bid']));
 
         if ($banner == false) {
-            return LogUtil::registerError ('No such item found.');
+            return LogUtil::registerError($this->__('No such item found.'));
         }
 
         // Security check
@@ -101,7 +101,7 @@ class Banners_Api_Admin extends Zikula_Api {
         $banner['imptotal'] += $args['impadded'];
 
         if (!DBUtil::updateObject($banner, 'banners', '', 'bid')) {
-            return LogUtil::registerError ('Error! Update attempt failed.');
+            return LogUtil::registerError($this->__('Error! Update attempt failed.'));
         }
 
         return true;
@@ -117,14 +117,14 @@ class Banners_Api_Admin extends Zikula_Api {
     public function delete($args) {
         // Argument check
         if (!isset($args['bid'])) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         // Get the existing admin message
         $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $args['bid']));
 
         if ($banner == false) {
-            return LogUtil::registerError ('No such item found.');
+            return LogUtil::registerError($this->__('No such item found.'));
         }
 
         // Security check
@@ -133,7 +133,7 @@ class Banners_Api_Admin extends Zikula_Api {
         }
 
         if (!DBUtil::deleteObjectByID('banners', $args['bid'], 'bid')) {
-            return LogUtil::registerError ('Error! Deletion attempt failed.');
+            return LogUtil::registerError($this->__('Error! Deletion attempt failed.'));
         }
 
         // Let the calling process know that we have finished successfully
@@ -150,7 +150,7 @@ class Banners_Api_Admin extends Zikula_Api {
     public function deleteall($args) {
         // Argument check
         if (!isset($args['cid'])) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         // Security check
@@ -159,7 +159,7 @@ class Banners_Api_Admin extends Zikula_Api {
         }
 
         if (!DBUtil::deleteObjectByID('banners', $args['cid'], 'cid')) {
-            return LogUtil::registerError ('Error! Deletion attempt failed.');
+            return LogUtil::registerError($this->__('Error! Deletion attempt failed.'));
         }
 
         // Let the calling process know that we have finished successfully
@@ -188,7 +188,7 @@ class Banners_Api_Admin extends Zikula_Api {
                 !isset($args['login']) ||
                 !isset($args['passwd']) ||
                 !isset($args['extrainfo'])) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         // Security check
@@ -205,7 +205,7 @@ class Banners_Api_Admin extends Zikula_Api {
                 'extrainfo' => $args['extrainfo']);
 
         if (!DBUtil::insertObject($client, 'bannersclient', 'cid')) {
-            return LogUtil::registerError ('Error! Creation attempt failed.');
+            return LogUtil::registerError($this->__('Error! Creation attempt failed.'));
         }
 
         // Return the id of the newly created item to the calling process
@@ -234,14 +234,14 @@ class Banners_Api_Admin extends Zikula_Api {
                 !isset($args['login']) ||
                 !isset($args['passwd']) ||
                 !isset($args['extrainfo'])) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         // Get the existing admin message
         $client = ModUtil::apiFunc('Banners', 'user', 'getclient', array('cid' => $args['cid']));
 
         if ($client == false) {
-            return LogUtil::registerError ('No such item found.');
+            return LogUtil::registerError($this->__('No such item found.'));
         }
 
         // Security check
@@ -259,7 +259,7 @@ class Banners_Api_Admin extends Zikula_Api {
                 'extrainfo' => $args['extrainfo']);
 
         if (!DBUtil::updateObject($client, 'bannersclient', '', 'cid')) {
-            return LogUtil::registerError ('Error! Update attempt failed.');
+            return LogUtil::registerError($this->__('Error! Update attempt failed.'));
         }
 
         return true;
@@ -275,14 +275,14 @@ class Banners_Api_Admin extends Zikula_Api {
     public function deleteclient($args) {
         // Argument check
         if (!isset($args['cid'])) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         // Get the existing admin message
         $client = ModUtil::apiFunc('Banners', 'user', 'getclient', array('cid' => $args['cid']));
 
         if ($client == false) {
-            return LogUtil::registerError ('No such item found.');
+            return LogUtil::registerError($this->__('No such item found.'));
         }
 
         // Security check
@@ -292,12 +292,12 @@ class Banners_Api_Admin extends Zikula_Api {
 
         // delete any banners for this client first
         if (!ModUtil::apiFunc('Banners', 'admin', 'deleteall', array('cid' => $args['cid']))) {
-            return LogUtil::registerError ('Error! Deletion attempt failed.');
+            return LogUtil::registerError($this->__('Error! Deletion attempt failed.'));
         }
 
         // now delete the client
         if (!DBUtil::deleteObjectByID('bannersclient', $args['cid'], 'cid')) {
-            return LogUtil::registerError ('Error! Deletion attempt failed.');
+            return LogUtil::registerError($this->__('Error! Deletion attempt failed.'));
         }
 
         // Let the calling process know that we have finished successfully
@@ -316,14 +316,14 @@ class Banners_Api_Admin extends Zikula_Api {
     public function deletefinished($args) {
         // Argument check
         if (!isset($args['bid'])) {
-            return LogUtil::registerArgsError ;
+            return LogUtil::registerArgsError();
         }
 
         // Get the existing admin message
         $banner = ModUtil::apiFunc('Banners', 'user', 'getfinished', array('bid' => $args['bid']));
 
         if ($banner == false) {
-            return LogUtil::registerError ('No such item found.');
+            return LogUtil::registerError($this->__('No such item found.'));
         }
 
         // Security check
@@ -332,7 +332,7 @@ class Banners_Api_Admin extends Zikula_Api {
         }
 
         if (!DBUtil::deleteObjectByID('bannersfinished', $args['bid'], 'bid')) {
-            return LogUtil::registerError ('Error! Deletion attempt failed.');
+            return LogUtil::registerError($this->__('Error! Deletion attempt failed.'));
         }
 
         // Let the calling process know that we have finished successfully
