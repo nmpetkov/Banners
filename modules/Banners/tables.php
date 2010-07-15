@@ -37,7 +37,7 @@ function Banners_tables() {
     $table['banners_column_def'] = array(
             'bid'       => 'I PRIMARY AUTO',
             'cid'       => "I DEFAULT '0'",
-            'type'      => "C(2) DEFAULT '0'",
+            'type'      => "C(255) DEFAULT '0'",
             'title'     => "C(255) DEFAULT ''",
             'imptotal'	=> "I DEFAULT '0'",
             'impmade'	=> "I DEFAULT '0'",
