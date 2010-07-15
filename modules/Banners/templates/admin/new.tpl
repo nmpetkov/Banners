@@ -29,7 +29,7 @@
             </div>
             <div class="z-formrow">
                 <label for="bannertype">{gt text="Banner Type"}</label>
-                <input type="text" id="bannertype" name="banner[idtype]" size="2" maxlength="2" />
+                <input type="text" id="bannertype" name="banner[idtype]" size="50" maxlength="255" />
             </div>
             <div class="z-formrow">
                 <label for="imgurl">{gt text="Image URL"}</label>
