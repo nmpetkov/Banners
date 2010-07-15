@@ -34,7 +34,7 @@
                 </div>
                 <div class="z-formrow">
                     <label for="banners_bantype">{gt text="ID Type"}</label>
-                    <input type="text" id="banners_bantype" name="banner[idtype]" size="2" maxlength="2" value="{$type|safetext}" />
+                    <input type="text" id="banners_bantype" name="banner[idtype]" size="50" maxlength="255" value="{$type|safetext}" />
                 </div>
                 <div class="z-formrow">
                     <label for="banners_imgurl">{gt text="Image URL"}</label>
