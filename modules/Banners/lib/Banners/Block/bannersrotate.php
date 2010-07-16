@@ -54,21 +54,16 @@ class Banners_Block_Bannersrotate extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // Defaults
-        if (!isset($vars['type'])) {
-            $vars['type'] = 3;
-        }
-        if (!isset($vars['blocktemplate'])){
-            $vars['blocktemplate']="blocks/rotate.tpl";
-        }
-        $blocktemplate = $vars['blocktemplate'];
+        $blocktemplate = (empty($vars['blocktemplate'])) ? "blocks/rotate.tpl" : $vars['blocktemplate'];
+
         // Check if the Banners module is available.
         if (!ModUtil::available('Banners')) {
             return false;
         }
 
+        $banner = ModUtil::func('Banners', 'user', 'rotate', array('type' => $vars['type']));
         // assign the banner
-        $this->view->assign('banner', ModUtil::func('Banners', 'user', 'rotate', array('type' => $vars['type'])));
-        $this->view->assign('banners', $banner);
+        $this->view->assign('banner', $banner);
         // Populate block info and pass to theme
         $blockinfo['content'] = $this->view->fetch($blocktemplate);
 
@@ -87,10 +82,12 @@ class Banners_Block_Bannersrotate extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // Defaults
-        if (!isset($vars['type'])) {
-            $vars['type'] = 3;
-        }
+        if (empty($vars['type'])) $vars['type'] = array();
 
+        // load the category registry util
+        $catregistry = CategoryRegistryUtil::getRegisteredModuleCategories('Banners', 'banners');
+        $this->view->assign('catregistry', $catregistry);
+        
         // assign the approriate values
         $this->view->assign('vars', $vars);
 
@@ -110,7 +107,8 @@ class Banners_Block_Bannersrotate extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // alter the corresponding variable
-        $vars['type'] = FormUtil::getPassedValue('type', null, 'POST');
+        $vars['type']          = FormUtil::getPassedValue('type',          null, 'POST');
+        $vars['blocktemplate'] = FormUtil::getPassedValue('blocktemplate', null, 'POST');
 
         // write back the new contents
         $blockinfo['content'] = BlockUtil::varsToContent($vars);

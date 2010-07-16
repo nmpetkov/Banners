@@ -50,6 +50,9 @@ class Banners_Controller_Admin extends Zikula_Controller {
         }
         $this->view->assign('clients', $clientitems);
 
+        $this->view->assign('enablecats', true);
+        $this->view->assign('catregistry', CategoryRegistryUtil::getRegisteredModuleCategories('Banners', 'banners'));
+
         // return the output
         return $this->view->fetch('admin/new.tpl');
     }
@@ -122,13 +125,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
 
         // Notable by its absence there is no security check here.
         // Create the banner
-        $bid = ModUtil::apiFunc('Banners', 'admin', 'create',
-                array('cid'  => $banner['cid'],
-                'name'    => $banner['name'],
-                'idtype'   => $banner['idtype'],
-                'imptotal' => $banner['imptotal'],
-                'imageurl' => $banner['imageurl'],
-                'clickurl' => $banner['clickurl']));
+        $bid = ModUtil::apiFunc('Banners', 'admin', 'create', $banner);
 
         // The return value of the function is checked
         if ($bid != false) {
@@ -162,13 +159,22 @@ class Banners_Controller_Admin extends Zikula_Controller {
 
         // get the banner
         $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $bid));
+        // prepare selected category array
+        $selectedcatsarray = array();
+        foreach ($banner['__CATEGORIES__'] as $prop => $info) {
+            $selectedcatsarray[$prop] = $info['id'];
+        }
 
         if ($banner == false) {
             return LogUtil::registerError($this->__('No such item found.'));
         }
 
         // assign the banner item
-        $this->view->assign($banner);
+        $this->view->assign('banner', $banner);
+
+        $this->view->assign('enablecats', true);
+        $this->view->assign('catregistry', CategoryRegistryUtil::getRegisteredModuleCategories('Banners', 'banners'));
+        $this->view->assign('selectedcatsarray', $selectedcatsarray);
 
         // build a list of clients suitable for html_options
         $allclients = ModUtil::apiFunc('Banners', 'user', 'getallclients');
@@ -199,15 +205,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         if (!SecurityUtil::confirmAuthKey()) {
             return LogUtil::registerAuthidError (ModUtil::url('Banners', 'admin', 'view'));
         }
-        if (ModUtil::apiFunc('Banners', 'admin', 'update',
-        array('bid' => $banner['bid'],
-        'cid' => $banner['cid'],
-        'name'      =>$banner['name'],
-        'idtype' => $banner['idtype'],
-        'imptotal' => $banner['imptotal'],
-        'impadded' => $banner['impadded'],
-        'imageurl' => $banner['imageurl'],
-        'clickurl' => $banner['clickurl']))) {
+        if (ModUtil::apiFunc('Banners', 'admin', 'update', $banner)) {
             LogUtil::registerStatus($this->__('Banner Updated'));
         }
 

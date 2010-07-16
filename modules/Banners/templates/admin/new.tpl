@@ -21,16 +21,30 @@
             </div>
             <div class="z-formrow">
                 <label for="name">{gt text="Banner Name"}</label>
-                <input type="text" id="name" name="banner[name]" size="50" maxlength="250" />
+                <input type="text" id="name" name="banner[title]" size="50" maxlength="250" />
             </div>
             <div class="z-formrow">
                 <label for="impressions">{gt text="Impressions Purchased"}</label>
                 <input type="text" id="impressions" name="banner[imptotal]" size="12" maxlength="11" /> 0 = {gt text="Unlimited"}
             </div>
-            <div class="z-formrow">
-                <label for="bannertype">{gt text="Banner Type"}</label>
-                <input type="text" id="bannertype" name="banner[idtype]" size="50" maxlength="255" />
-            </div>
+            {if $enablecats}
+                <div class="z-formrow">
+                    <label for="banners_type">{gt text='Banner Type'}</label>
+                    {nocache}
+                    <span><ul id='banners_type' style='list-style:none; margin: 0;'>
+                    {foreach from=$catregistry key=property item=category}
+                        {* array_field_isset assign="selectedValue" array=$banner.__CATEGORIES__ field=$property returnValue=1 *}
+                        <li>{selector_category
+                                category=$category
+                                name="banner[__CATEGORIES__][$property]"
+                                field="id"
+                                defaultValue="0"
+                                editLink=1}</li>
+                    {/foreach}
+                    </ul></span>
+                    {/nocache}
+                </div>
+            {/if}
             <div class="z-formrow">
                 <label for="imgurl">{gt text="Image URL"}</label>
                 <input type="text" id="imgurl" name="banner[imageurl]" size="50" maxlength="250" />

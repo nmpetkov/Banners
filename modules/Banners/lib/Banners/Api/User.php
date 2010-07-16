@@ -25,7 +25,6 @@ class Banners_Api_User extends Zikula_Api {
      */
     public function getall($args) {
         // Optional arguments.
-        
         if (!isset($args['startnum']) || !is_numeric($args['startnum'])) {
             $args['startnum'] = 1;
         }
@@ -44,17 +43,14 @@ class Banners_Api_User extends Zikula_Api {
         }
 
         // define the permission filter to apply
-        $permFilter = array(array('realm'          => 0,
+        $permFilter = array(array(
+                        'realm'          => 0,
                         'component_left' => 'Banners',
                         'instance_left'  => 'bid',
                         'instance_right' => '',
                         'level'          => ACCESS_READ));
 
         $wheres = array();
-        // allow filtering by banner type
-        if (isset($args['type'])) {
-            $wheres[] = 'type=\''.DataUtil::formatForStore($args['type']).'\'';
-        }
         // allow filtering by client id
         if (isset($args['cid'])) {
             $wheres[] = 'cid='.DataUtil::formatForStore((int)$args['cid']);
@@ -63,15 +59,21 @@ class Banners_Api_User extends Zikula_Api {
 
         // get the objects from the db
         if ($args['clientinfo']) {
-            $joininfo[] = array ('join_table'          =>  'bannersclient',
+            $joininfo[] = array (
+                    'join_table'          =>  'bannersclient',
                     'join_field'          =>  'name',
                     'object_field_name'   =>  'cname',
                     'compare_field_table' =>  'cid',
                     'compare_field_join'  =>  'cid');
-
-            $items = DBUtil::selectExpandedObjectArray('banners', $joininfo, $where, 'bid', $args['startnum']-1, $args['numitems'], '', $permFilter);
+            $items = DBUtil::selectExpandedObjectArray('banners', $joininfo, $where, 'bid', $args['startnum']-1, $args['numitems'], '', $permFilter, $args['catFilter']);
         } else {
-            $items = DBUtil::selectObjectArray('banners', $where, 'bid', $args['startnum']-1, $args['numitems'], '', $permFilter);
+            $items = DBUtil::selectObjectArray('banners', $where, 'bid', $args['startnum']-1, $args['numitems'], '', $permFilter, $args['catFilter']);
+        }
+
+        // ease display of blocktype
+        $lang = ZLanguage::getLanguageCode();
+        foreach ($items as $key => $item) {
+            $items[$key]['typename'] = $item['__CATEGORIES__']['Main']['display_name'][$lang];
         }
 
         if ($items === false) {
@@ -100,7 +102,8 @@ class Banners_Api_User extends Zikula_Api {
         }
 
         // define the permission filter to apply
-        $permFilter = array(array('realm'          => 0,
+        $permFilter = array(array(
+                        'realm'          => 0,
                         'component_left' => 'Banners',
                         'instance_left'  => 'bid',
                         'instance_right' => '',
@@ -109,7 +112,8 @@ class Banners_Api_User extends Zikula_Api {
         // get the banner
         
         if ($args['clientinfo']) {
-            $join[]     = array ('join_table'          =>  'bannersclient',
+            $join[] = array(
+                    'join_table'          =>  'bannersclient',
                     'join_field'          =>  'name',
                     'object_field_name'   =>  'cname',
                     'compare_field_table' =>  'cid',
@@ -119,6 +123,9 @@ class Banners_Api_User extends Zikula_Api {
         } else {
             $banner = DBUtil::selectObjectByID('banners', $args['bid'], 'bid', '', $permFilter);
         }
+        // ease display of blocktype
+        $lang = ZLanguage::getLanguageCode();
+        $banner['typename'] = $banner['__CATEGORIES__']['Main']['display_name'][$lang];
 
         // check the optional client id field
         if (isset($args['cid']) && is_numeric($args['cid']) && $banner['cid'] != $args['cid']) {
@@ -136,11 +143,7 @@ class Banners_Api_User extends Zikula_Api {
      * @return   integer   number of items held by this module
      */
     public function countitems($args) {
-        // allow filtering by banner type
-
-        (isset($args['type'])) ? $w = "$tabletype='".DataUtil::formatForStore($args['type'])."'" : $w = '';
-
-        return DBUtil::selectObjectCount('banners', "type$w");
+        return DBUtil::selectObjectCount('banners', '', '1', false, $args['catFilter']);
     }
 
     /**

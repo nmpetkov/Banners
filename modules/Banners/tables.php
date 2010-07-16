@@ -48,9 +48,10 @@ function Banners_tables() {
     // add standard data fields
     ObjectUtil::addStandardFieldsToTableDefinition($table['banners_column'], '');
     ObjectUtil::addStandardFieldsToTableDataDefinition($table['banners_column_def']);
+
+    $table['banners_db_extra_enable_categorization'] = true;
+    $table['banners_primary_key_column'] = 'bid';
     
-
-
     // Advertising clients
     $table['bannersclient'] = DBUtil::getLimitedTablename('bannersclient');
     $table['bannersclient_column'] = array(

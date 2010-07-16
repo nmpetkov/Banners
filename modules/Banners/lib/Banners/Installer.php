@@ -37,6 +37,11 @@ class Banners_Installer extends Zikula_Installer
         ModUtil::setVar('Banners', 'banners', $banners);
         ModUtil::setVar('Banners', 'openinnewwinow', false);
 
+        $util = new Banners_Util;
+        $result = $util->createCategories();
+        if ($result) {
+            LogUtil::registerStatus($this->__('IAB Banner Types entered into Categories module.'));
+        }
 
         // Initialisation successful
         LogUtil::registerStatus($this->__('Banners module installed'));
@@ -71,7 +76,13 @@ class Banners_Installer extends Zikula_Installer
                     Config::delVar('myIP');
                     Config::delVar('banners');
                 }
-                break;
+                $util = new Banners_Util;
+                $result = $util->createCategories();
+
+                // TODO should do something with existing banner types, I guess.
+                if ($result) {
+                    LogUtil::registerStatus($this->__('IAB Banner Types entered into Categories module.'));
+                }
         }
 
         // Update successful
@@ -95,6 +106,11 @@ class Banners_Installer extends Zikula_Installer
 
         // delete all module vars
         ModUtil::delVar('Banners');
+
+        // Delete entries from category registry
+        ModUtil::dbInfoLoad('Categories');
+        DBUtil::deleteWhere('categories_registry', "crg_modname='Banners'");
+        DBUtil::deleteWhere('categories_mapobj', "cmo_modname='Banners'");
 
         // Delete successful
         return true;

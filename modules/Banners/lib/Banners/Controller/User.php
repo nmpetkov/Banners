@@ -192,15 +192,10 @@ class Banners_Controller_User extends Zikula_Controller {
         if (ModUtil::getVar('Banners', 'banners') != 1) {
             return '&nbsp;';
         }
-
-        // check our input
-        if (!isset($args['type'])) { // || !is_numeric($args['type'])) {
-            $args['type'] = 1;
-        }
-
+        $catFilter = $args['type'];
+        $catFilter['__META__']['module'] = 'Banners';
         // get the banner count
-
-        $numrows = ModUtil::apiFunc('Banners', 'user', 'countitems', array('type' => $args['type']));
+        $numrows = ModUtil::apiFunc('Banners', 'user', 'countitems', $catFilter);
 
         // Get a random banner if exist any.
         // More efficient random stuff, thanks to Cristian Arroyo from http://www.planetalinux.com.ar
@@ -212,7 +207,7 @@ class Banners_Controller_User extends Zikula_Controller {
             return '&nbsp;';
         }
 
-        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('type' => $args['type']));
+        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', $catFilter);
         if (isset($banners[$bannum])) {
             $banner = $banners[$bannum];
         } else {
@@ -269,14 +264,12 @@ class Banners_Controller_User extends Zikula_Controller {
             return '&nbsp;';
         }
 
-        // check our input
-        if (!isset($args['type'])) { //|| !is_numeric($args['type'])) {
-            $args['type'] = 1;
-        }
+        $catFilter = $args['type'];
+        $catFilter['__META__']['module'] = 'Banners';
 
         // get the banner count
-        $numrows = ModUtil::apiFunc('Banners', 'user', 'countitems', array('type' => $args['type']));
-        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('type' => $args['type']));
+        $numrows = ModUtil::apiFunc('Banners', 'user', 'countitems', $catFilter);
+        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', $catFilter);
 
         $count = $numrows;
         $banid = 0;

@@ -12,6 +12,53 @@
  */
 class Banners_Api_Admin extends Zikula_Api {
     /**
+     * get available admin panel links
+     *
+     * @return array array of admin links
+     */
+    public function getlinks() {
+        $links = array();
+
+        if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ)) {
+            $links[] = array(
+                'url' => ModUtil::url('Banners', 'admin', 'view'),
+                'text' => $this->__('Banner List'),
+                'class' => 'z-icon-es-list');
+        }
+        if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADD)) {
+            $links[] = array(
+                'url' => ModUtil::url('Banners', 'admin', 'newclient'),
+                'text' => $this->__('New Client'),
+                'class' => 'z-icon-es-new');
+        }
+        if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADD)) {
+            $clients = ModUtil::apiFunc('Banners', 'user', 'getallclients');
+            if (empty($clients)) {
+                $links[] = array(
+                    'url' => ModUtil::url('Banners', 'admin', 'newentry'),
+                    'text' => $this->__('New Banner'),
+                    'class' => 'z-icon-es-new',
+                    'title' => $this->__('Create Client First'),
+                    'disabled' => 'disabled');
+            } else {
+                $links[] = array(
+                    'url' => ModUtil::url('Banners', 'admin', 'newentry'),
+                    'text' => $this->__('New Banner'),
+                    'class' => 'z-icon-es-new');
+            }
+
+        }
+        if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN)) {
+            $links[] = array(
+                'url' => ModUtil::url('Banners', 'admin', 'modifyconfig'),
+                'text' => $this->__('Module Configuration'),
+                'class' => 'z-icon-es-config');
+        }
+
+        return $links;
+    }
+    
+    /**
      * create a banner
      *
      * @param int $cid client id
@@ -24,8 +71,7 @@ class Banners_Api_Admin extends Zikula_Api {
     public function create($args) {
         // Argument check
         if (!isset($args['cid']) ||
-                !isset($args['idtype']) ||
-                !isset($args['name']) ||
+                !isset($args['title']) ||
                 !isset($args['imptotal']) ||
                 !isset($args['imageurl']) ||
                 !isset($args['clickurl'])) {
@@ -37,15 +83,7 @@ class Banners_Api_Admin extends Zikula_Api {
             return LogUtil::registerPermissionError();
         }
 
-        // create the item array
-        $banner = array('cid' => $args['cid'],
-                'title'=> $args['name'],
-                'type' => $args['idtype'],
-                'imptotal' => $args['imptotal'],
-                'imageurl' => $args['imageurl'],
-                'clickurl' => $args['clickurl']);
-
-        if (!DBUtil::insertObject($banner, 'banners', 'bid')) {
+        if (!DBUtil::insertObject($args, 'banners', 'bid')) {
             return LogUtil::registerError($this->__('Error! Creation attempt failed.'));
         }
 
@@ -70,8 +108,7 @@ class Banners_Api_Admin extends Zikula_Api {
         
         if (!isset($args['bid']) ||
                 !isset($args['cid']) ||
-                !isset($args['name']) ||
-                !isset($args['idtype']) ||
+                !isset($args['title']) ||
                 !isset($args['imptotal']) ||
                 !isset($args['impadded']) ||
                 !isset($args['imageurl']) ||
@@ -90,18 +127,10 @@ class Banners_Api_Admin extends Zikula_Api {
         if (!SecurityUtil::checkPermission('Banners::', "$bid::", ACCESS_EDIT)) {
             return LogUtil::registerPermissionError();
         }
-//print$args['name'];exit();
-        // create the item array
-        $banner = array('bid' => $args['bid'],
-                'cid' => $args['cid'],
-                'title'=> $args['name'],
-                'type' => $args['idtype'],
-                'imptotal' => $args['imptotal'],
-                'imageurl' => $args['imageurl'],
-                'clickurl' => $args['clickurl']);
-        $banner['imptotal'] += $args['impadded'];
 
-        if (!DBUtil::updateObject($banner, 'banners', '', 'bid')) {
+        $args['imptotal'] += $args['impadded'];
+
+        if (!DBUtil::updateObject($args, 'banners', '', 'bid')) {
             return LogUtil::registerError($this->__('Error! Update attempt failed.'));
         }
 
@@ -120,7 +149,8 @@ class Banners_Api_Admin extends Zikula_Api {
             return LogUtil::registerArgsError();
         }
 
-        // Get the existing admin message
+        // Get the existing banner
+        // this is likely unneeded
         $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $args['bid']));
 
         if ($banner == false) {
@@ -332,52 +362,5 @@ class Banners_Api_Admin extends Zikula_Api {
 
         // Let the calling process know that we have finished successfully
         return true;
-    }
-
-    /**
-     * get available admin panel links
-     *
-     * @return array array of admin links
-     */
-    public function getlinks() {
-        $links = array();
-
-        if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ)) {
-            $links[] = array(
-                'url' => ModUtil::url('Banners', 'admin', 'view'),
-                'text' => $this->__('Banner List'),
-                'class' => 'z-icon-es-list');
-        }
-        if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADD)) {
-            $links[] = array(
-                'url' => ModUtil::url('Banners', 'admin', 'newclient'),
-                'text' => $this->__('New Client'),
-                'class' => 'z-icon-es-new');
-        }
-        if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADD)) {
-            $clients = ModUtil::apiFunc('Banners', 'user', 'getallclients');
-            if (empty($clients)) {
-                $links[] = array(
-                    'url' => ModUtil::url('Banners', 'admin', 'newentry'),
-                    'text' => $this->__('New Banner'),
-                    'class' => 'z-icon-es-new',
-                    'title' => $this->__('Create Client First'),
-                    'disabled' => 'disabled');
-            } else {
-                $links[] = array(
-                    'url' => ModUtil::url('Banners', 'admin', 'newentry'),
-                    'text' => $this->__('New Banner'),
-                    'class' => 'z-icon-es-new');
-            }
-
-        }
-        if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN)) {
-            $links[] = array(
-                'url' => ModUtil::url('Banners', 'admin', 'modifyconfig'),
-                'text' => $this->__('Module Configuration'),
-                'class' => 'z-icon-es-config');
-        }
-
-        return $links;
     }
 }

@@ -53,11 +53,6 @@ class Banners_Block_Bannersfade extends Zikula_Block
         // Get variables from content block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
-        // Defaults
-        if (!isset($vars['type'])) {
-            $vars['type'] = 3;
-        }
-
         // Check if the Banners module is available.
         if (!ModUtil::available('Banners')) {
             return false;
@@ -83,9 +78,11 @@ class Banners_Block_Bannersfade extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // Defaults
-        if (!isset($vars['type'])) {
-            $vars['type'] = 3;
-        }
+        if (empty($vars['type'])) $vars['type'] = array();
+
+        // load the category registry util
+        $catregistry = CategoryRegistryUtil::getRegisteredModuleCategories('Banners', 'banners');
+        $this->view->assign('catregistry', $catregistry);
 
         // assign the approriate values
         $this->view->assign('vars', $vars);

@@ -45,7 +45,7 @@
 			{/strip}
                 </td>
                 <td>{$activebanneritems[activebanneritems].cname|safetext}</td>
-                <td>{$activebanneritems[activebanneritems].type|safetext}</td>
+                <td>{$activebanneritems[activebanneritems].typename|safetext}</td>
                 <td>
                     <a href="{modurl modname="Banners" type="admin" func="modify" bid=$activebanneritems[activebanneritems].bid}">{img modname=core set=icons/extrasmall src=xedit.gif alt=_EDIT altml=true}</a>
                     <a href="{modurl modname="Banners" type="admin" func="delete" bid=$activebanneritems[activebanneritems].bid}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif alt=_DELETE altml=true}</a>
