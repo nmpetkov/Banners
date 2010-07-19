@@ -21,7 +21,7 @@ class Banners_Api_Admin extends Zikula_Api {
 
         if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ)) {
             $links[] = array(
-                'url' => ModUtil::url('Banners', 'admin', 'view'),
+                'url' => ModUtil::url('Banners', 'admin', 'overview'),
                 'text' => $this->__('Banner List'),
                 'class' => 'z-icon-es-list');
         }
@@ -53,6 +53,12 @@ class Banners_Api_Admin extends Zikula_Api {
                 'url' => ModUtil::url('Banners', 'admin', 'modifyconfig'),
                 'text' => $this->__('Module Configuration'),
                 'class' => 'z-icon-es-config');
+        }
+        if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN)) {
+            $links[] = array(
+                'url' => 'http://code.zikula.org/banners/wiki/FeatureDocs300',
+                'text' => $this->__('Documentation'),
+                'class' => 'z-icon-es-info');
         }
 
         return $links;
@@ -200,7 +206,7 @@ class Banners_Api_Admin extends Zikula_Api {
     /**
      * create a client
      *
-     * @param int $cname client name
+     * @param int $name client name
      * @param int $contact client contact name
      * @param int $email client contact e-mail
      * @param string $login client login name
@@ -210,12 +216,10 @@ class Banners_Api_Admin extends Zikula_Api {
      */
     public function createclient($args) {
         // Argument check
-        if (!isset($args['cname']) ||
-                !isset($args['contact']) ||
-                !isset($args['email']) ||
-                !isset($args['login']) ||
-                !isset($args['passwd']) ||
-                !isset($args['extrainfo'])) {
+        if (!isset($args['name']) ||
+            !isset($args['contact']) ||
+            !isset($args['uid']) ||
+            !isset($args['extrainfo'])) {
             return LogUtil::registerArgsError();
         }
 
@@ -225,11 +229,10 @@ class Banners_Api_Admin extends Zikula_Api {
         }
 
         // create the item array
-        $client = array('name' => $args['cname'],
-                'contact' => $args['contact'],
-                'email' => $args['email'],
-                'login' => $args['login'],
-                'passwd' => $args['passwd'],
+        $client = array(
+                'name'      => $args['name'],
+                'contact'   => $args['contact'],
+                'uid'       => $args['uid'],
                 'extrainfo' => $args['extrainfo']);
 
         if (!DBUtil::insertObject($client, 'bannersclient', 'cid')) {
@@ -244,7 +247,7 @@ class Banners_Api_Admin extends Zikula_Api {
      * update a banner
      *
      * @param int $cid client id
-     * @param int $cname client name
+     * @param int $name client name
      * @param int $contact client contact name
      * @param int $email client contact e-mail
      * @param string $login client login name
@@ -255,12 +258,10 @@ class Banners_Api_Admin extends Zikula_Api {
     public function updateclient($args) {
         // Argument check
         if (!isset($args['cid']) ||
-                !isset($args['cname']) ||
-                !isset($args['contact']) ||
-                !isset($args['email']) ||
-                !isset($args['login']) ||
-                !isset($args['passwd']) ||
-                !isset($args['extrainfo'])) {
+            !isset($args['name']) ||
+            !isset($args['contact']) ||
+            !isset($args['uid']) ||
+            !isset($args['extrainfo'])) {
             return LogUtil::registerArgsError();
         }
 
@@ -277,12 +278,11 @@ class Banners_Api_Admin extends Zikula_Api {
         }
 
         // create the new item array
-        $client = array('cid' => $args['cid'],
-                'name' => $args['cname'],
-                'contact' => $args['contact'],
-                'email' => $args['email'],
-                'login' => $args['login'],
-                'passwd' => $args['passwd'],
+        $client = array(
+                'cid'       => $args['cid'],
+                'name'      => $args['name'],
+                'contact'   => $args['contact'],
+                'uid'       => $args['uid'],
                 'extrainfo' => $args['extrainfo']);
 
         if (!DBUtil::updateObject($client, 'bannersclient', '', 'cid')) {

@@ -23,18 +23,18 @@ class Banners_Installer extends Zikula_Installer
     public function install() {
         // create the table
         if (!DBUtil::createTable('banners')) {
-            return false;
+            return LogUtil::registerError($this->__('Error! Could not create the table [%s].', 'banners'));
         }
         if (!DBUtil::createTable('bannersclient')) {
-            return false;
+            return LogUtil::registerError($this->__('Error! Could not create the table [%s].', 'bannersclient'));
         }
         if (!DBUtil::createTable('bannersfinish')) {
-            return false;
+            return LogUtil::registerError($this->__('Error! Could not create the table [%s].', 'bannersfinish'));
         }
 
-        $banners = ModUtil::getVar('banners');
+        // set default mod values
         ModUtil::setVar('Banners', 'myIP', '127.0.0.1');
-        ModUtil::setVar('Banners', 'banners', $banners);
+        ModUtil::setVar('Banners', 'banners', true); // active
         ModUtil::setVar('Banners', 'openinnewwinow', false);
 
         $util = new Banners_Util;
@@ -55,6 +55,7 @@ class Banners_Installer extends Zikula_Installer
      */
     public function upgrade($oldversion) {
         // create the three tables
+        // TODO really? is this needed here?
         $tables = array('banners', 'bannersclient', 'bannersfinish');
         foreach ($tables as $table) {
             if (!DBUtil::changeTable($table)) {
@@ -64,8 +65,9 @@ class Banners_Installer extends Zikula_Installer
 
         // Upgrade dependent on old version number
         switch($oldversion) {
-            // version 1.0 was shipped with PN .7x
-            case 1.0:
+            case '1.0': // version 1.0 was shipped with PN .7x
+            case '1.0.0':
+            case '2.0.0': // there was no version 2 afaik
             // migrate the old config vars into module vars
                 if (Config::getVar('banners') != '') {
                     $myIP = Config::getVar('myIP');
@@ -79,10 +81,14 @@ class Banners_Installer extends Zikula_Installer
                 $util = new Banners_Util;
                 $result = $util->createCategories();
 
+                DBUtil::changeTable('bannersclient'); // upgrade table to include new cols // dups previous (-22 lines)
+
                 // TODO should do something with existing banner types, I guess.
                 if ($result) {
                     LogUtil::registerStatus($this->__('IAB Banner Types entered into Categories module.'));
                 }
+            case '3.0.0':
+                // future development
         }
 
         // Update successful

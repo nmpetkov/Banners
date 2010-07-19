@@ -13,25 +13,17 @@
     <form class="z-form" action="{modurl modname="Banners" type="admin" func="createclient"}" method="post" enctype="application/x-www-form-urlencoded">
         <fieldset>
             <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
-                   <div class="z-formrow">
-                <label for="client">{gt text="Client Name"}</label>
-                <input type="text" id="client" name="client[cname]" size="30" maxlength="60" />
+            <div class="z-formrow">
+                <label for="client">{gt text="Client Business Name"}</label>
+                <input type="text" id="client" name="client[name]" size="30" maxlength="60" />
             </div>
             <div class="z-formrow">
-                <label for="contact">{gt text="Contact Name"}</label>
+                <label for="uid">{gt text="Associate Zikula User Name"}</label>
+                <span>{selector_user id="uid" name="client[uid]"}</span>
+            </div>
+            <div class="z-formrow">
+                <label for="contact">{gt text="Client Real Name"}</label>
                 <input type="text" id="contact" name="client[contact]" size="30" maxlength="60" />
-            </div>
-            <div class="z-formrow">
-                <label for="email">{gt text="Contact eMail"}</label>
-                <input type="text" id="email" name="client[email]" size="30" maxlength="60" />
-            </div>
-            <div class="z-formrow">
-                <label for="login">{gt text="Client Login Name"}</label>
-                <input type="text" id="login" name="client[login]" size="12" maxlength="10" />
-            </div>
-            <div class="z-formrow">
-                <label for="pass">{gt text="Client Password"}</label>
-                <input type="text" id="pass" name="client[passwd]" size="12" maxlength="10" />
             </div>
             <div class="z-formrow">
                 <label for="xinfo">{gt text="Extra Information"}</label>

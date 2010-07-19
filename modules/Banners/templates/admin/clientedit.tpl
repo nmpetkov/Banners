@@ -5,32 +5,23 @@
     <h2>{gt text="Edit Client"}</h2>
     <form class="z-form" action="{modurl modname="Banners" type="admin" func="updateclient"}" method="post" enctype="application/x-www-form-urlencoded">
         <div>
-            <input type="hidden" name="client[cid]" value="{$cid|safetext}" />
+            <input type="hidden" name="client[cid]" value="{$client.cid|safetext}" />
             <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
             <fieldset>
                 <div class="z-formrow">
-                    <label for="cname">{gt text="Client Name"}</label>
-                    <input type="text" id="cname" name="client[cname]" value="{$name|safetext}" size="30" maxlength="60" />
+                    <label for="name">{gt text="Client Business Name"}</label>
+                    <input type="text" id="name" name="client[name]" value="{$client.name|safetext}" size="30" maxlength="60" />
                 </div>
                 <div class="z-formrow">
-                    <label for="contact">{gt text="Contact Name"}</label>
-                    <input type="text" id="contact" name="client[contact]" value="{$contact|safetext}" size="30" maxlength="60" />
+                    <label for="contact">{gt text="Client Real Name"}</label>
+                    <input type="text" id="contact" name="client[contact]" value="{$client.contact|safetext}" size="30" maxlength="60" />
                 </div>
                 <div class="z-formrow">
-                    <label for="email">{gt text="Contact e-mail"}</label>
-                    <input type="text" id="email" name="client[email]" size="30" maxlength="60" value="{$email|safetext}" />
-                </div>
-                <div class="z-formrow">
-                    <label for="login">{gt text="Client Login Name"}</label>
-                    <input type="text" id="login" name="client[login]" size="12" maxlength="10" value="{$login|safetext}" />
-                </div>
-                <div class="z-formrow">
-                    <label for="passwd">{gt text="Client Password"}</label>
-                    <input type="text" id="passwd" name="client[passwd]" size="12" maxlength="10" value="{$passwd|safetext}" />
-                </div>
-                <div class="z-formrow">
+                    <label for="uid">{gt text="Associate Zikula User Name"}</label>
+                    <span>{selector_user id="uid" name="client[uid]" selectedValue=$client.uid}</span>
+                </div>                <div class="z-formrow">
                     <label for="extrainfo">{gt text="Extra Information"}</label>
-                    <textarea id="extrainfo" name="client[extrainfo]" cols="50" rows="10">{$extrainfo|safetext}</textarea>
+                    <textarea id="extrainfo" name="client[extrainfo]" cols="50" rows="10">{$client.extrainfo|safetext}</textarea>
                 </div>
                 <div class="z-buttons z-formbuttons">
                     {button src="button_ok.gif" set="icons/extrasmall" __alt="Update Client" __title="Update Client" __text="Update Client"}

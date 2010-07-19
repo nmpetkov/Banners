@@ -44,7 +44,7 @@
 			{/if}%
 			{/strip}
                 </td>
-                <td>{$activebanneritems[activebanneritems].cname|safetext}</td>
+                <td>{$activebanneritems[activebanneritems].name|safetext}</td>
                 <td>{$activebanneritems[activebanneritems].typename|safetext}</td>
                 <td>
                     <a href="{modurl modname="Banners" type="admin" func="modify" bid=$activebanneritems[activebanneritems].bid}">{img modname=core set=icons/extrasmall src=xedit.gif alt=_EDIT altml=true}</a>
@@ -79,7 +79,7 @@
                 <td>{$finishedbanners[finishedbanners].percent|safetext}</td>
                 <td>{$finishedbanners[finishedbanners].datestart|safetext}</td>
                 <td>{$finishedbanners[finishedbanners].dateend|safetext}</td>
-                <td>{$finishedbanners[finishedbanners].cname|safetext}</td>
+                <td>{$finishedbanners[finishedbanners].name|safetext}</td>
                 <td>{$activebanneritems[activebanneritems].type|safetext}</td>
                 <td>
                     <a href="{modurl modname="Banners" type="admin" func="deletefinished" authid="$authid" bid=""}{$finishedbanners[finishedbanners].bid|safetext}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif alt=_DELETE altml=true}</a>
@@ -97,6 +97,7 @@
             <tr>
                 <th>{gt text="Client Name"}</th>
                 <th>{gt text="Number of Active Banners"}</th>
+                <th>{gt text="Zikula Username"}</th>
                 <th>{gt text="Contact Name"}</th>
                 <th>{gt text="Contact eMail"}</th>
                 <th>{gt text="Options"}</th>
@@ -107,6 +108,7 @@
             <tr class="{cycle values=z-odd,z-even name=activeclients}">
                 <td class="tooltips" id="clientname_{$activeclients[activeclients].cid}" title="{$activeclients[activeclients].extrainfo}">{$activeclients[activeclients].name|safetext}</td>
                 <td>{$activeclients[activeclients].bannercount|safetext|default:"0"}</td>
+                <td>{$activeclients[activeclients].zuname|safetext}</td>
                 <td>{$activeclients[activeclients].contact|safetext}</td>
                 <td>{$activeclients[activeclients].email|safetext}</td>
                 <td>

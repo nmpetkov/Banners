@@ -36,7 +36,7 @@
 				{/if}%
 				{/strip}
 			</td>
-			<td>{$cname|safetext}</td>
+			<td>{$name|safetext}</td>
 		</tr>
 		</tbody>
 	</table>

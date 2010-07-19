@@ -62,7 +62,7 @@ class Banners_Api_User extends Zikula_Api {
             $joininfo[] = array (
                     'join_table'          =>  'bannersclient',
                     'join_field'          =>  'name',
-                    'object_field_name'   =>  'cname',
+                    'object_field_name'   =>  'name',
                     'compare_field_table' =>  'cid',
                     'compare_field_join'  =>  'cid');
             $items = DBUtil::selectExpandedObjectArray('banners', $joininfo, $where, 'bid', $args['startnum']-1, $args['numitems'], '', $permFilter, $args['catFilter']);
@@ -115,7 +115,7 @@ class Banners_Api_User extends Zikula_Api {
             $join[] = array(
                     'join_table'          =>  'bannersclient',
                     'join_field'          =>  'name',
-                    'object_field_name'   =>  'cname',
+                    'object_field_name'   =>  'name',
                     'compare_field_table' =>  'cid',
                     'compare_field_join'  =>  'cid');
 
@@ -170,18 +170,28 @@ class Banners_Api_User extends Zikula_Api {
         }
 
         // define the permission filter to apply
-        $permFilter = array(array('realm'          => 0,
+        $permFilter = array(array(
+                        'realm'          => 0,
                         'component_left' => 'Banners',
                         'instance_left'  => 'cid',
                         'instance_right' => '',
                         'level'          => ACCESS_READ));
+//        $joinInfo = array(
+//                        'join_table'          => 'users',
+//                        'join_field'          => 'uname',
+//                        'object_field_name'   => 'zuname',
+//                        'compare_field_table' => 'uid',
+//                        'compare_field_join'  => 'uid');
 
         // get the objects from the db
         $items = DBUtil::selectObjectArray('bannersclient', '', 'cid', $args['startnum']-1, $args['numitems'], '', $permFilter);
-
+        //$items = DBUtil::selectExpandedObjectArray('bannersclient', $joinInfo, '', 'cid', $args['startnum']-1, $args['numitems'], '', $permFilter);
         // get the active banner counts for each client
         foreach ($items as $key => $item) {
             $items[$key]['bannercount'] = DBUtil::selectObjectCountByID('banners', $item['cid'], 'cid');
+            $uservars = UserUtil::getVars($item['uid']);
+            $items[$key]['zuname'] = $uservars['uname'];
+            $items[$key]['email']  = $uservars['email'];
         }
         if ($items === false) {
             return LogUtil::registerError($this->__('Error! Could not load items.'));

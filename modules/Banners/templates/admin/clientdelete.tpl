@@ -14,7 +14,7 @@
                 <strong>{gt text="Warning!!!"}</strong> {gt text="This client has the following active banners running now"}
 
             {else}
-                {gt text="This client doesn\'t have any banners running now."}
+                {gt text="This client doesn't have any banners running now."}
             {/if}
             </p>
             {if $banners}

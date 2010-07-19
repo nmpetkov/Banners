@@ -58,10 +58,11 @@ function Banners_tables() {
             'cid'       => 'cid',
             'name'      => 'name',
             'contact'   => 'contact',
-            'email'     => 'email',
-            'login'     => 'login',
-            'passwd'    => 'passwd',
-            'extrainfo' => 'extrainfo');
+            'email'     => 'email',                 // becomes obsolete in v3.0.0
+            'login'     => 'login',                 // becomes obsolete in v3.0.0
+            'passwd'    => 'passwd',                // becomes obsolete in v3.0.0
+            'extrainfo' => 'extrainfo',
+            'uid'       => 'uid');                  // added in vers. 3.0.0
     $table['bannersclient_column_def'] = array(
             'cid'       => 'I AUTOINCREMENT PRIMARY',
             'name'      => 'C(60) NOTNULL',
@@ -69,7 +70,8 @@ function Banners_tables() {
             'email'     => 'C(60) NOTNULL',
             'login'     => 'C(10) NOTNULL',
             'passwd'    => 'C(10) NOTNULL',
-            'extrainfo' => "X2 NOTNULL");
+            'extrainfo' => "X2 NOTNULL",
+            'uid'       => "I DEFAULT '0'");
     // add standard data fields
     ObjectUtil::addStandardFieldsToTableDefinition($table['bannersclient_column'], '');
     ObjectUtil::addStandardFieldsToTableDataDefinition($table['bannersclient_column_def']);
