@@ -95,9 +95,9 @@
     <table class="z-admintable">
         <thead>
             <tr>
-                <th>{gt text="Client Name"}</th>
+                <th>{gt text="Client Name (cid)"}</th>
                 <th>{gt text="Number of Active Banners"}</th>
-                <th>{gt text="Zikula Username"}</th>
+                <th>{gt text="Zikula Username (uid)"}</th>
                 <th>{gt text="Contact Name"}</th>
                 <th>{gt text="Contact eMail"}</th>
                 <th>{gt text="Options"}</th>
@@ -106,9 +106,9 @@
         <tbody>
             {section name="activeclients" loop=$activeclients}
             <tr class="{cycle values=z-odd,z-even name=activeclients}">
-                <td class="tooltips" id="clientname_{$activeclients[activeclients].cid}" title="{$activeclients[activeclients].extrainfo}">{$activeclients[activeclients].name|safetext}</td>
+                <td class="tooltips" id="clientname_{$activeclients[activeclients].cid}" title="{$activeclients[activeclients].extrainfo}">{$activeclients[activeclients].name|safetext} ({$activeclients[activeclients].cid})</td>
                 <td>{$activeclients[activeclients].bannercount|safetext|default:"0"}</td>
-                <td>{$activeclients[activeclients].zuname|safetext}</td>
+                <td>{$activeclients[activeclients].zuname|safetext} ({$activeclients[activeclients].uid})</td>
                 <td>{$activeclients[activeclients].contact|safetext}</td>
                 <td>{$activeclients[activeclients].email|safetext}</td>
                 <td>

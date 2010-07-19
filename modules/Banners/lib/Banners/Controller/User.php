@@ -21,7 +21,7 @@ class Banners_Controller_User extends Zikula_Controller {
             return LogUtil::registerPermissionError();
         }
 
-        return $this->view->fetch('user/main.tpl');
+        return $this->client();
     }
 
     /**
@@ -30,27 +30,15 @@ class Banners_Controller_User extends Zikula_Controller {
      * @return string HTML output string
      */
     public function client($args) {
-        $login = FormUtil::getPassedValue('login', isset($args['login']) ? $args['login'] : null, 'REQUEST');
-        $pass = FormUtil::getPassedValue('pass', isset($args['pass']) ? $args['pass'] : null, 'REQUEST');
-
         // Security check
         if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ)) {
             return LogUtil::registerPermissionError();
         }
 
-
-
-        // check our input
-        if ($login == '' OR $pass == '') {
-            LogUtil::registerError($this->__('Login Incorrect'));
-            return System::redirect(ModUtil::url('Banners', 'user', 'main'));
-        }
-
-        // validate the user login
-        $client = ModUtil::apiFunc('Banners', 'user', 'validateclient', array('login' => $login, 'pass' => $pass));
+        // validate the user
+        $client = ModUtil::apiFunc('Banners', 'user', 'validateclient');
         if (!$client) {
-            LogUtil::registerError($this->__('Login Incorrect'));
-            return System::redirect(ModUtil::url('Banners', 'user', 'main'));
+            return $this->view->fetch('user/nonclient.tpl');
         } else {
             $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('cid' => $client['cid']));
         }
@@ -71,9 +59,8 @@ class Banners_Controller_User extends Zikula_Controller {
         }
 
         $this->view->assign('banners', $banners);
-        $this->view->assign(array('login' => $login, 'pass' => $pass));
-        $this->view->assign($client);
-        return $this->view->fetch('user/config.tpl');
+        $this->view->assign('client', $client);
+        return $this->view->fetch('user/client.tpl');
     }
 
     /**
@@ -82,8 +69,6 @@ class Banners_Controller_User extends Zikula_Controller {
      * @return string HTML output string
      */
     public function emailstats($args) {
-        $login = FormUtil::getPassedValue('login', isset($args['login']) ? $args['login'] : null, 'GET');
-        $pass = FormUtil::getPassedValue('pass', isset($args['pass']) ? $args['pass'] : null, 'GET');
         $cid = FormUtil::getPassedValue('cid', isset($args['cid']) ? $args['cid'] : null, 'GET');
         $bid = FormUtil::getPassedValue('bid', isset($args['bid']) ? $args['bid'] : null, 'GET');
 
@@ -92,21 +77,21 @@ class Banners_Controller_User extends Zikula_Controller {
             return LogUtil::registerPermissionError();
         }
 
-
-
-        $client = ModUtil::apiFunc('Banners', 'user', 'validateclient', array('login' => $login, 'pass' => $pass));
+        $client = ModUtil::apiFunc('Banners', 'user', 'validateclient');
         if (!$client) {
-            LogUtil::registerError($this->__('Login Incorrect'));
+            LogUtil::registerError($this->__('Not a Valid Banners Client'));
         } else {
-            if (!ModUtil::apiFunc('Banners', 'user', 'emailstats',
-            array('bid' => $bid, 'email' => $client['email'], 'cid' => $client['cid']))) {
+            if (!ModUtil::apiFunc('Banners', 'user', 'emailstats', array(
+                    'bid' => $bid,
+                    'email' => $client['email'],
+                    'cid' => $client['cid']))) {
                 LogUtil::registerError($this->__('Please contact the administrator.'));
             } else {
                 LogUtil::registerStatus($this->__('Statistics e-mailed'));
             }
         }
 
-        return System::redirect(ModUtil::url('Banners', 'user', 'client', array('login' => $login, 'pass' => $pass)));
+        return System::redirect(ModUtil::url('Banners', 'user', 'client'));
     }
 
     /**
@@ -115,8 +100,6 @@ class Banners_Controller_User extends Zikula_Controller {
      * @return string HTML output string
      */
     public function changeurl($args) {
-        $login = FormUtil::getPassedValue('login', isset($args['login']) ? $args['login'] : null, 'POST');
-        $pass = FormUtil::getPassedValue('pass', isset($args['pass']) ? $args['pass'] : null, 'POST');
         $cid = FormUtil::getPassedValue('cid', isset($args['cid']) ? $args['cid'] : null, 'POST');
         $bid = FormUtil::getPassedValue('bid', isset($args['bid']) ? $args['bid'] : null, 'POST');
         $url = FormUtil::getPassedValue('url', isset($args['url']) ? $args['url'] : null, 'POST');
@@ -125,25 +108,25 @@ class Banners_Controller_User extends Zikula_Controller {
             return LogUtil::registerPermissionError();
         }
 
-
         if (!isset($bid) || !is_numeric($bid)) {
             return LogUtil::registerError($this->__('Error! Could not do what you wanted. Please check your input.'));
         }
 
         // check client credentials
-        $client = ModUtil::apiFunc('Banners', 'user', 'validateclient', array('login' => $login, 'pass' => $pass));
+        $client = ModUtil::apiFunc('Banners', 'user', 'validateclient');
         if (!$client) {
-            LogUtil::registerError($this->__('Login Incorrect'));
+            LogUtil::registerError($this->__('Not a Valid Banners Client'));
         } else {
-            if (!ModUtil::apiFunc('Banners', 'user', 'changeurl',
-            array('bid' => $bid, 'url' => $url))) {
+            if (!ModUtil::apiFunc('Banners', 'user', 'changeurl', array(
+                    'bid' => $bid,
+                    'url' => $url))) {
                 LogUtil::registerError($this->__('Please contact the administrator.'));
             } else {
                 LogUtil::registerStatus($this->__('URL Changed'));
             }
         }
 
-        return System::redirect(ModUtil::url('Banners', 'user', 'client', array('login' => $login, 'pass' => $pass)));
+        return System::redirect(ModUtil::url('Banners', 'user', 'client'));
     }
 
     /**

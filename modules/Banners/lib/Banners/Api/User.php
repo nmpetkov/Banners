@@ -445,27 +445,14 @@ class Banners_Api_User extends Zikula_Api {
     /**
      * validate client login
      *
-     * @param $args['login']    client login
-     * @param $args['password'] client password
      * @return mixed client array if successful, false otherwise
      */
-    public function validateclient($args) {
-        // Argument check
-        if (!isset($args['login']) || !isset($args['pass'])) {
-            return LogUtil::registerArgsError();
-        }
-
-        $table = DBUtil::getTables();
-        $column = $table['bannersclient_column'];
-
-        $where  = "$column[login] = '".DataUtil::formatForStore($args['login'])."' AND
-                $column[passwd] = '".DataUtil::formatForStore($args['pass'])."'";
-        $client = DBUtil::selectObject ('bannersclient', $where);
-        if (!$client) {
-            return false;
-        }
-
-        return $client;
-
+    public function validateclient() {
+        $permFilter = array(array('realm'          => 0,
+                        'component_left' => 'Banners',
+                        'instance_left'  => 'cid',
+                        'instance_right' => '',
+                        'level'          => ACCESS_READ));
+        return DBUtil::selectObjectByID('bannersclient', UserUtil::getVar('uid'), 'uid', '', $permFilter);
     }
 }
