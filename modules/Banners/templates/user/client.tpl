@@ -23,7 +23,7 @@
 		<td>{$banners[banners].impleft|safetext}</td>
 		<td>{$banners[banners].clicks|safetext}</td>
 		<td>{$banners[banners].percent|safetext}</td>
-		<td><a href="{modurl modname="Banners" type="user" func="emailstats" cid="$client.cid" bid=""}{$banners[banners].bid|safetext}">{gt text="Email Stats"}</a></td>
+		<td><a href="{modurl modname="Banners" type="user" func="emailstats" cid=$client.cid bid=""}{$banners[banners].bid|safetext}">{gt text="Email Stats"}</a></td>
 	 </tr>
 	{/section}
 </table>
@@ -36,7 +36,7 @@
 <div>{gt text="ID"}: {$banners[banners].bid|safetext}</div>
 <div>{gt text='Banner URL'}: <a href="{$banners[banners].clickurl|safetext}">{$banners[banners].clickurl|safetext}</a></div>
 {modurl modname="Banners" type="user" func="emailstats" cid=$client.cid bid=$banners[banners].bid assign=statsurl}
-<div>{gt text="Send <a href="%url%">stats</a> for this banner." url=$statsurl html=true }</div>
+<div>{gt text="Send <a href='%s'>stats</a> for this banner." tag1=$statsurl }</div>
 <form action="{modurl modname="Banners" type="user" func="changeurl"}" method="post" enctype="application/x-www-form-urlencoded">
 <div>
 	<label for="changeurl_{$banners[banners].bid|safetext}">{gt text="Change URL"}</label>:
