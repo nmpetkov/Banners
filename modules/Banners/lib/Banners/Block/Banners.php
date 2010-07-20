@@ -51,7 +51,6 @@ class Banners_Block_Banners extends Zikula_Block
         }
 
         // Get variables from content block
-
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // Check if the Banners module is available.

@@ -180,6 +180,7 @@ class Banners_Controller_User extends Zikula_Controller {
         // get the banner count
         $numrows = ModUtil::apiFunc('Banners', 'user', 'countitems', $catFilter);
 
+
         // Get a random banner if exist any.
         // More efficient random stuff, thanks to Cristian Arroyo from http://www.planetalinux.com.ar
         if ($numrows >= 1) {
@@ -190,6 +191,7 @@ class Banners_Controller_User extends Zikula_Controller {
             return '&nbsp;';
         }
 
+        // would be nice if we could randomly fetch only one banner instead of all of them.
         $banners = ModUtil::apiFunc('Banners', 'user', 'getall', $catFilter);
         if (isset($banners[$bannum])) {
             $banner = $banners[$bannum];
@@ -254,16 +256,9 @@ class Banners_Controller_User extends Zikula_Controller {
         $numrows = ModUtil::apiFunc('Banners', 'user', 'countitems', $catFilter);
         $banners = ModUtil::apiFunc('Banners', 'user', 'getall', $catFilter);
 
-        $count = $numrows;
         $banid = 0;
-        $allbanners = array();
-        
-        while ($count >= 1) {
-            $count--;
-            $allbanners[$count] = array(
-                'banid' => $banid,
-                'imageurl' => $banners[$count]['imageurl'],
-                'clickurl' => $banners[$count]['clickurl']);
+        foreach ($banners as $key => $banner) {
+            $banners[$key]['banid'] = $banid;
             $banid++;
         }
 
@@ -281,7 +276,6 @@ class Banners_Controller_User extends Zikula_Controller {
             ModUtil::apiFunc('Banners', 'user', 'finish', array('bid' => $banners['bid']));
         }
 
-        return $allbanners;
-
+        return $banners;
     }
 }

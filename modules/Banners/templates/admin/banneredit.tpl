@@ -61,7 +61,7 @@
                 </div>
                  <div class="z-buttons z-formbuttons">
                     {button src="button_ok.gif" set="icons/extrasmall" __alt="Update Banner" __title="Update Banner" __text="Update Banner"}
-                    <a href="{modurl modname="Banners" type="admin" func=view}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.gif" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.gif" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
                 </div>
             </fieldset>
         </div>
