@@ -366,7 +366,6 @@ class Banners_Api_User extends Zikula_Api {
 
         $banner = $this->computestats($banner);
         
-echo "<pre>"; print_r($client); print_r($banner); echo "</pre>";
         $this->view->assign('banner', $banner);
         $this->view->assign('client', $client);
         $this->view->assign('date', date("F jS Y, h:iA."));
