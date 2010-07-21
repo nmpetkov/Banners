@@ -1,8 +1,8 @@
-{*  $Id: banners_admin_view.htm 9 2008-11-05 21:42:16Z Guite $  *}
+{zdebug}{*  $Id: banners_admin_view.htm 9 2008-11-05 21:42:16Z Guite $  *}
 {ajaxheader module="Banners" ui=true}
 {include file="admin/menu.tpl"}
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname=core src=windowlist.gif set=icons/large alt='_BANNERS_ACTIVE' altml=true}</div>
+    <div class="z-adminpageicon">{img modname=core src=windowlist.gif set=icons/large __alt="Active Banners"}</div>
     {if $bannersenabled eq 0}
     <p>
         <em><strong>{gt text="Important note!"}</strong></em>
@@ -37,8 +37,8 @@
                 <td>{$activebanneritems[activebanneritems].name|safetext}</td>
                 <td>{$activebanneritems[activebanneritems].typename|safetext}</td>
                 <td>
-                    <a href="{modurl modname="Banners" type="admin" func="modify" bid=$activebanneritems[activebanneritems].bid}">{img modname=core set=icons/extrasmall src=xedit.gif alt=_EDIT altml=true}</a>
-                    <a href="{modurl modname="Banners" type="admin" func="delete" bid=$activebanneritems[activebanneritems].bid}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif alt=_DELETE altml=true}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="modify" bid=$activebanneritems[activebanneritems].bid}">{img modname=core set=icons/extrasmall src=xedit.gif __alt="edit"}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="delete" bid=$activebanneritems[activebanneritems].bid}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif __alt="Delete"}</a>
                 </td>
             </tr>
 	{sectionelse}
@@ -72,7 +72,7 @@
                 <td>{$finishedbanners[finishedbanners].name|safetext}</td>
                 <td>{$activebanneritems[activebanneritems].type|safetext}</td>
                 <td>
-                    <a href="{modurl modname="Banners" type="admin" func="deletefinished" authid="$authid" bid=""}{$finishedbanners[finishedbanners].bid|safetext}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif alt=_DELETE altml=true}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="deletefinished" authid="$authid" bid=""}{$finishedbanners[finishedbanners].bid|safetext}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif __alt="Delete"}</a>
                 </td>
             </tr>
 	{sectionelse}

@@ -210,7 +210,7 @@ class Banners_Controller_User extends Zikula_Controller {
         }
 
         // Check if this impression is the last one and print the banner
-        if ($banner['imptotal'] > 0 && $banner['imptotal'] == $banner['impmade']) {
+        if ($banner['imptotal'] > 0 && $banner['imptotal'] >= $banner['impmade']) {
             ModUtil::apiFunc('Banners', 'user', 'finish', array('bid' => $banner['bid']));
         }
 
@@ -227,13 +227,14 @@ class Banners_Controller_User extends Zikula_Controller {
             if ($banner['clickurl']) {
                 $title = '';
                 $target = '';
+                $url = DataUtil::formatForDisplay(ModUtil::url('Banners', 'user', 'click', array('bid' => $banner['bid'])));
                 if (!$args['hovertext']) {
                     $title = ' title="' . DataUtil::formatForDisplay($banner['clickurl']) . '"';
                 }
                 if (ModUtil::getVar('Banners', 'openinnewwindow')) {
                     $target = ' target="_blank"';
                 }
-                $bannerstring = '<a href="' . DataUtil::formatForDisplay(ModUtil::url('Banners', 'user', 'click', array('bid' => $banner['bid']))) . '"' . $title . $target . '>';
+                $bannerstring = "<a href='$url'" . $title . $target . '>';
                 $bannerstring .= '<img src="'.DataUtil::formatForDisplay($banner['imageurl']) . '" alt="'.DataUtil::formatForDisplay($banner['clickurl']) .'" />';
                 $bannerstring .= '</a>';
             }else {

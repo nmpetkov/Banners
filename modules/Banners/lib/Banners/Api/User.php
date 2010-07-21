@@ -367,7 +367,7 @@ class Banners_Api_User extends Zikula_Api {
         $obj['clickurl'] = $args['url'];
 
         // update object
-        $res = DBUtil::updateObject ($obj, 'banners', 'bid');
+        $res = DBUtil::updateObject ($obj, 'banners', '', 'bid');
 
         return (boolean)$res;
     }
@@ -402,7 +402,7 @@ class Banners_Api_User extends Zikula_Api {
         }
 
         // delete the banner
-        $this->delete(array(
+        ModUtil::apiFunc('Banners', 'admin', 'delete', array(
             'bid' => $args['bid']));
 
         return true;
