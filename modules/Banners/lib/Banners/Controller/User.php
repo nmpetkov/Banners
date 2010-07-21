@@ -58,21 +58,39 @@ class Banners_Controller_User extends Zikula_Controller {
      *
      * @return string HTML output string
      */
-    public function emailstats($args) {
-        $cid = FormUtil::getPassedValue('cid', isset($args['cid']) ? $args['cid'] : null, 'GET');
-        $bid = FormUtil::getPassedValue('bid', isset($args['bid']) ? $args['bid'] : null, 'GET');
+    public function emailstats() {
+        $cid = FormUtil::getPassedValue('cid', null, 'GET');
+        $bid = FormUtil::getPassedValue('bid', null, 'GET');
 
         // Security check
         if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ)) {
             return LogUtil::registerPermissionError();
         }
 
-        if (!ModUtil::apiFunc('Banners', 'user', 'emailstats', array(
-                'bid'   => $bid,
-                'cid'   => $cid))) {
-            LogUtil::registerError($this->__('Error! Could not email statistics.'));
-        } else {
+        $banner = ModUtil::apiFunc('Banners', 'user', 'get', (array(
+            'bid' => $bid,
+            'cid' => $cid)));
+        $client = ModUtil::apiFunc('Banners', 'user', 'getclient', (array(
+            'cid' => $cid)));
+        if (!$banner) {
+            return LogUtil::registerError($this->__f('Error! Could not find banner (%s)', $bid));
+        }
+
+        $banner = ModUtil::apiFunc('Banners', 'user', 'computestats', $banner);
+
+        $this->view->assign('banner', $banner);
+        $this->view->assign('client', $client);
+        $this->view->assign('date', date("F jS Y, h:iA."));
+        $message = $this->view->fetch('email/stats_body.tpl');
+        $mailsent = ModUtil::apiFunc('Mailer', 'user', 'sendmessage', array(
+                'toaddress' => $client['email'],
+                'toname'    => $client['contact'],
+                'subject'   => $this->__f('Advertising stats for %s', System::getVar('sitename')),
+                'body'      => $message));
+        if ($mailsent) {
             LogUtil::registerStatus($this->__('Statistics e-mailed'));
+        } else {
+            LogUtil::registerError($this->__('Error! Could not email statistics.'));
         }
 
         return System::redirect(ModUtil::url('Banners', 'user', 'client'));
@@ -84,9 +102,9 @@ class Banners_Controller_User extends Zikula_Controller {
      * @return string HTML output string
      */
     public function changeurl($args) {
-        $cid = FormUtil::getPassedValue('cid', isset($args['cid']) ? $args['cid'] : null, 'POST');
-        $bid = FormUtil::getPassedValue('bid', isset($args['bid']) ? $args['bid'] : null, 'POST');
-        $url = FormUtil::getPassedValue('url', isset($args['url']) ? $args['url'] : null, 'POST');
+        $cid = FormUtil::getPassedValue('cid', null, 'POST');
+        $bid = FormUtil::getPassedValue('bid', null, 'POST');
+        $url = FormUtil::getPassedValue('url', null, 'POST');
 
         if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ)) {
             return LogUtil::registerPermissionError();
@@ -124,7 +142,7 @@ class Banners_Controller_User extends Zikula_Controller {
             return DataUtil::formatForDisplay('Sorry! No authorization to access this module.');
         }
 
-        $bid = FormUtil::getPassedValue('bid', isset($args['bid']) ? $args['bid'] : null, 'GET');
+        $bid = FormUtil::getPassedValue('bid', null, 'GET');
 
         if (!isset($bid) && !is_numeric($bid)) {
             return LogUtil::registerArgsError();

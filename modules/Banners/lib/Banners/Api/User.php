@@ -34,6 +34,9 @@ class Banners_Api_User extends Zikula_Api {
         if (!isset($args['clientinfo']) || !is_bool($args['clientinfo'])) {
             $args['clientinfo'] = false;
         }
+        if (!isset($args['catFilter']) || !is_array($args['catFilter'])) {
+            $args['catFilter'] = array();
+        }
 
         $items = array();
 
@@ -144,6 +147,9 @@ class Banners_Api_User extends Zikula_Api {
      * @return   integer   number of items held by this module
      */
     public function countitems($args) {
+        if (!isset($args['catFilter']) || !is_array($args['catFilter'])) {
+            $args['catFilter'] = array();
+        }
         return DBUtil::selectObjectCount('banners', '', '1', false, $args['catFilter']);
     }
 
@@ -339,46 +345,6 @@ class Banners_Api_User extends Zikula_Api {
         }
 
         return DBUtil::incrementObjectFieldByID('banners', 'impmade', $args['bid'], 'bid');
-    }
-
-    /**
-     * send banner stats to the client
-     *
-     * @param $args['bid'] id of the banner
-     * @param $args['cid'] id of the client
-     * @return bool true if successful, false otherwise
-     */
-    public function emailstats($args) {
-        // Argument check
-        if (!isset($args['bid']) || !is_numeric($args['bid']) ||
-            !isset($args['cid']) || !is_numeric($args['cid'])) {
-            return LogUtil::registerArgsError();
-        }
-
-        $banner = $this->get(array(
-            'bid' => $args['bid'],
-            'cid' => $args['cid']));
-        $client = $this->getclient(array(
-            'cid' => $args['cid']));
-        if (!$banner) {
-            return LogUtil::registerError($this->__f('Error! Could not find banner (%s)', $args['bid']));
-        }
-
-        $banner = $this->computestats($banner);
-        
-        $this->view->assign('banner', $banner);
-        $this->view->assign('client', $client);
-        $this->view->assign('date', date("F jS Y, h:iA."));
-        $message = $this->view->fetch('email/stats_body.tpl');
-        $mailsent = ModUtil::apiFunc('Mailer', 'user', 'sendmessage', array(
-                'toaddress' => $client['email'],
-                'toname'    => $client['contact'],
-                'subject'   => $this->__f('Advertising stats for %s', System::getVar('sitename')),
-                'body'      => $message));
-        if ($mailsent) {
-            return true;
-        }
-        return false;
     }
 
     /**

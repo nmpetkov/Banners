@@ -119,7 +119,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
      * @return mixed int banner id if successful
      */
     public function create($args) {
-        $banner = FormUtil::getPassedValue('banner', isset($args['banner']) ? $args['banner'] : null, 'POST');
+        $banner = FormUtil::getPassedValue('banner', null, 'POST');
 
         // Confirm authorisation code.
         if (!SecurityUtil::confirmAuthKey()) {
@@ -149,7 +149,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
      */
     public function modify($args) {
 
-        $bid = FormUtil::getPassedValue('bid', isset($args['bid']) ? $args['bid'] : null, 'GET');
+        $bid = FormUtil::getPassedValue('bid', null, 'GET');
 
         if (!is_numeric($bid)) {
             return LogUtil::registerArgsError();
@@ -202,7 +202,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
      * @return bool
      */
     public function update($args) {
-        $banner = FormUtil::getPassedValue('banner', isset($args['banner']) ? $args['banner'] : null, 'POST');
+        $banner = FormUtil::getPassedValue('banner', null, 'POST');
 
         // Confirm authorisation code.
         if (!SecurityUtil::confirmAuthKey()) {
@@ -224,8 +224,8 @@ class Banners_Controller_Admin extends Zikula_Controller {
      * @return mixed HTML output string if no confirmation, true if succesful, false otherwise
      */
     public function delete($args) {
-        $bid          = (int)FormUtil::getPassedValue('bid', isset($args['bid']) ? $args['bid'] : null, 'REQUEST');
-        $objectid     = (int)FormUtil::getPassedValue('objectid', isset($args['objectid']) ? $args['objectid'] : null, 'REQUEST');
+        $bid          = (int)FormUtil::getPassedValue('bid', null, 'REQUEST');
+        $objectid     = (int)FormUtil::getPassedValue('objectid', null, 'REQUEST');
         $confirmation = FormUtil::getPassedValue('confirmation', null, 'POST');
         if ($objectid) {
             $bid = $objectid;
@@ -287,7 +287,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
      * @return mixed int banner id if successful
      */
     public function createclient($args) {
-        $client = FormUtil::getPassedValue('client', isset($args['client']) ? $args['client'] : null, 'POST');
+        $client = FormUtil::getPassedValue('client', null, 'POST');
 
         // Confirm authorisation code.
         if (!SecurityUtil::confirmAuthKey()) {
@@ -308,7 +308,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
      * @return string HTML output string
      */
     public function modifyclient($args) {
-        $cid = FormUtil::getPassedValue('cid', isset($args['cid']) ? $args['cid'] : null, 'GET');
+        $cid = FormUtil::getPassedValue('cid', null, 'GET');
 
         if (!is_numeric($cid)) {
             return LogUtil::registerArgsError();
@@ -345,7 +345,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
      * @return bool
      */
     public function updateclient($args) {
-        $client = FormUtil::getPassedValue('client', isset($args['client']) ? $args['client'] : null, 'POST');
+        $client = FormUtil::getPassedValue('client', null, 'POST');
 
         // Confirm authorisation code.
         if (!SecurityUtil::confirmAuthKey()) {
@@ -368,8 +368,8 @@ class Banners_Controller_Admin extends Zikula_Controller {
      * @return mixed HTML output string if no confirmation, true if succesful, false otherwise
      */
     public function deleteclient($args) {
-        $cid = FormUtil::getPassedValue('cid', isset($args['cid']) ? $args['cid'] : null, 'REQUEST');
-        $objectid = FormUtil::getPassedValue('objectid', isset($args['objectid']) ? $args['objectid'] : null, 'REQUEST');
+        $cid          = FormUtil::getPassedValue('cid', null, 'REQUEST');
+        $objectid     = FormUtil::getPassedValue('objectid', null, 'REQUEST');
         $confirmation = FormUtil::getPassedValue('confirmation', null, 'POST');
         if (!empty($objectid)) {
             $cid = $objectid;
@@ -429,8 +429,8 @@ class Banners_Controller_Admin extends Zikula_Controller {
      * @return mixed HTML output string if no confirmation, true if succesful, false otherwise
      */
     public function deletefinished($args) {
-        $bid = FormUtil::getPassedValue('bid', isset($args['bid']) ? $args['bid'] : null, 'REQUEST');
-        $objectid = FormUtil::getPassedValue('objectid', isset($args['objectid']) ? $args['objectid'] : null, 'REQUEST');
+        $bid          = FormUtil::getPassedValue('bid', null, 'REQUEST');
+        $objectid     = FormUtil::getPassedValue('objectid', null, 'REQUEST');
         $confirmation = FormUtil::getPassedValue('confirmation', null, 'POST');
         if (!empty($objectid)) {
             $bid = $objectid;
