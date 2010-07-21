@@ -25,8 +25,8 @@ function Banners_tables() {
     $table['banners_column'] = array(
             'bid'       => 'bid',
             'cid'       => 'cid',
-            'type'      => 'type',
-            'title'     => 'title',                 // becomes obsolete in v3.0.0
+            'type'      => 'type',                  // becomes obsolete in v3.0.0
+            'title'     => 'title',
             'imptotal'  => 'imptotal',
             'impmade'   => 'impmade',
             'clicks'    => 'clicks',
