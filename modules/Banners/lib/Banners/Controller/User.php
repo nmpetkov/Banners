@@ -67,18 +67,13 @@ class Banners_Controller_User extends Zikula_Controller {
             return LogUtil::registerPermissionError();
         }
 
-//        $client = ModUtil::apiFunc('Banners', 'user', 'validateclient');
-//        if (!$client) {
-//            LogUtil::registerError($this->__('Not a Valid Banners Client'));
-//        } else {
-            if (!ModUtil::apiFunc('Banners', 'user', 'emailstats', array(
-                    'bid'   => $bid,
-                    'cid'   => $cid))) { //$client['cid']))) {
-                LogUtil::registerError($this->__('Please contact the administrator.'));
-            } else {
-                LogUtil::registerStatus($this->__('Statistics e-mailed'));
-            }
-//        }
+        if (!ModUtil::apiFunc('Banners', 'user', 'emailstats', array(
+                'bid'   => $bid,
+                'cid'   => $cid))) {
+            LogUtil::registerError($this->__('Error! Could not email statistics.'));
+        } else {
+            LogUtil::registerStatus($this->__('Statistics e-mailed'));
+        }
 
         return System::redirect(ModUtil::url('Banners', 'user', 'client'));
     }

@@ -43,7 +43,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'MediumRectangle',
             'value'       => null,
-            'displayname' => __('Medium Rectangle', $dom),
+            'displayname' => __('Medium Rectangle 300x250', $dom),
             'description' => __('Medium Rectangle 300x250 IMU', $dom),
             'attributes'  => array(
                 'length' => 300,
@@ -55,7 +55,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'SquarePopUp',
             'value'       => null,
-            'displayname' => __('Square Pop-up', $dom),
+            'displayname' => __('Square Pop-up 250x250', $dom),
             'description' => __('Square Pop-up 250x250 IMU', $dom),
             'attributes'  => array(
                 'length' => 250,
@@ -67,7 +67,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'VerticalRectangle',
             'value'       => null,
-            'displayname' => __('Vertical Rectangle', $dom),
+            'displayname' => __('Vertical Rectangle 240x400', $dom),
             'description' => __('Vertical Rectangle 240x400 IMU', $dom),
             'attributes'  => array(
                 'length' => 240,
@@ -79,7 +79,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'LargeRectangle',
             'value'       => null,
-            'displayname' => __('Large Rectangle', $dom),
+            'displayname' => __('Large Rectangle 336x280', $dom),
             'description' => __('Large Rectangle 336x280 IMU', $dom),
             'attributes'  => array(
                 'length' => 336,
@@ -91,7 +91,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'Rectangle',
             'value'       => null,
-            'displayname' => __('Rectangle', $dom),
+            'displayname' => __('Rectangle 180x150', $dom),
             'description' => __('Rectangle 180x150 IMU', $dom),
             'attributes'  => array(
                 'length' => 180,
@@ -103,7 +103,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => '31Rectangle',
             'value'       => null,
-            'displayname' => __('3:1 Rectangle', $dom),
+            'displayname' => __('3:1 Rectangle 300x100', $dom),
             'description' => __('3:1 Rectangle 300x100 IMU', $dom),
             'attributes'  => array(
                 'length' => 300,
@@ -115,7 +115,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'PopUnder',
             'value'       => null,
-            'displayname' => __('Pop-Under', $dom),
+            'displayname' => __('Pop-Under 720x300', $dom),
             'description' => __('Pop-Under 720x300 IMU', $dom),
             'attributes'  => array(
                 'length' => 720,
@@ -127,7 +127,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'FullBanner',
             'value'       => null,
-            'displayname' => __('Full Banner', $dom),
+            'displayname' => __('Full Banner 468x60', $dom),
             'description' => __('Full Banner 468x60 IMU', $dom),
             'attributes'  => array(
                 'length' => 468,
@@ -139,7 +139,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'HalfBanner',
             'value'       => null,
-            'displayname' => __('Half Banner', $dom),
+            'displayname' => __('Half Banner 234x60', $dom),
             'description' => __('Half Banner 234x60 IMU', $dom),
             'attributes'  => array(
                 'length' => 234,
@@ -151,7 +151,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'MicroBar',
             'value'       => null,
-            'displayname' => __('Micro Bar', $dom),
+            'displayname' => __('Micro Bar 88x31', $dom),
             'description' => __('Micro Bar 88x31 IMU', $dom),
             'attributes'  => array(
                 'length' => 88,
@@ -163,7 +163,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'Button1',
             'value'       => null,
-            'displayname' => __('Button 1', $dom),
+            'displayname' => __('Button 1 120x90', $dom),
             'description' => __('Button 1 120x90 IMU', $dom),
             'attributes'  => array(
                 'length' => 120,
@@ -175,7 +175,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'Button 2',
             'value'       => null,
-            'displayname' => __('Button 2', $dom),
+            'displayname' => __('Button 2x120x60', $dom),
             'description' => __('Button 2 120x60 IMU', $dom),
             'attributes'  => array(
                 'length' => 120,
@@ -187,7 +187,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'VerticalBanner',
             'value'       => null,
-            'displayname' => __('Vertical Banner', $dom),
+            'displayname' => __('Vertical Banner 120x240', $dom),
             'description' => __('Vertical Banner 120x240 IMU', $dom),
             'attributes'  => array(
                 'length' => 120,
@@ -199,7 +199,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'SquareButton',
             'value'       => null,
-            'displayname' => __('Square Button', $dom),
+            'displayname' => __('Square Button 125x125', $dom),
             'description' => __('Square Button 125x125 IMU', $dom),
             'attributes'  => array(
                 'length' => 125,
@@ -211,7 +211,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'Leaderboard',
             'value'       => null,
-            'displayname' => __('Leaderboard', $dom),
+            'displayname' => __('Leaderboard 728x90', $dom),
             'description' => __('Leaderboard 728x90 IMU', $dom),
             'attributes'  => array(
                 'length' => 728,
@@ -223,7 +223,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'WideSkyscraper',
             'value'       => null,
-            'displayname' => __('Wide Skyscraper', $dom),
+            'displayname' => __('Wide Skyscraper 16x600', $dom),
             'description' => __('Wide Skyscraper 160x600 IMU', $dom),
             'attributes'  => array(
                 'length' => 160,
@@ -235,7 +235,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'Skyscraper',
             'value'       => null,
-            'displayname' => __('Skyscraper', $dom),
+            'displayname' => __('Skyscraper 120x600', $dom),
             'description' => __('Skyscraper 120x600 IMU', $dom),
             'attributes'  => array(
                 'length' => 120,
@@ -247,7 +247,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'HalfPageAd',
             'value'       => null,
-            'displayname' => __('Half Page Ad', $dom),
+            'displayname' => __('Half Page Ad 300x600', $dom),
             'description' => __('Half Page Ad 300x600 IMU', $dom),
             'attributes'  => array(
                 'length' => 300,
