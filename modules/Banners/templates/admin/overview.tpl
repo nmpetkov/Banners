@@ -31,19 +31,9 @@
                 <td>{$activebanneritems[activebanneritems].bid|safetext}</td>
                 <td>{$activebanneritems[activebanneritems].title|safetext}</td>
                 <td>{$activebanneritems[activebanneritems].impmade|safetext}</td>
-                <td>
-			{if $activebanneritems[activebanneritems].imptotal eq 0}{gt text='Unlimited Impression'}{else}{math equation="x-y" x=$activebanneritems[activebanneritems].imptotal y=$activebanneritems[activebanneritems].impmade}{/if}
-                </td>
+                <td>{$activebanneritems[activebanneritems].impleft|safetext}</td>
                 <td>{$activebanneritems[activebanneritems].clicks|safetext}</td>
-                <td>
-			{strip}
-			{if $activebanneritems[activebanneritems].clicks neq 0}
-			{math equation="(100*x)/y" x=$activebanneritems[activebanneritems].clicks y=$activebanneritems[activebanneritems].impmade}
-			{else}
-			0
-			{/if}%
-			{/strip}
-                </td>
+                <td>{$activebanneritems[activebanneritems].percent|safetext}%</td>
                 <td>{$activebanneritems[activebanneritems].name|safetext}</td>
                 <td>{$activebanneritems[activebanneritems].typename|safetext}</td>
                 <td>

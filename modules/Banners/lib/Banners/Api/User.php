@@ -55,7 +55,7 @@ class Banners_Api_User extends Zikula_Api {
         if (isset($args['cid'])) {
             $wheres[] = 'cid='.DataUtil::formatForStore((int)$args['cid']);
         }
-        $where = implode (' AND ', $wheres);
+        $where = implode(' AND ', $wheres);
 
         // get the objects from the db
         if ($args['clientinfo']) {
@@ -221,7 +221,11 @@ class Banners_Api_User extends Zikula_Api {
                         'instance_right' => '',
                         'level'          => ACCESS_READ));
 
-        return DBUtil::selectObjectByID('bannersclient', $args['cid'], 'cid', '', $permFilter);
+        $client = DBUtil::selectObjectByID('bannersclient', $args['cid'], 'cid', '', $permFilter);
+        $uservars = UserUtil::getVars($client['uid']);
+        $client['zuname'] = $uservars['uname'];
+        $client['email']  = $uservars['email'];
+        return $client;
     }
 
     /**
@@ -351,40 +355,31 @@ class Banners_Api_User extends Zikula_Api {
             return LogUtil::registerArgsError();
         }
 
-        $banner = ModUtil::apiFunc('Banners', 'user', 'get', array(
+        $banner = $this->get(array(
             'bid' => $args['bid'],
             'cid' => $args['cid']));
-        $client = ModUtil::apiFunc('Banners', 'user', 'getclient', array(
+        $client = $this->getclient(array(
             'cid' => $args['cid']));
         if (!$banner) {
-            return LogUtil::registerArgsError();
+            return LogUtil::registerError($this->__f('Error! Could not find banner (%s)', $args['bid']));
         }
 
-        // calculate some additional values
-        if ($banner['impmade'] == 0) {
-            $banner['percent'] = 0;
-        } else {
-            $banner['percent'] = substr(100 * $banner['clicks'] / $banner['impmade'], 0, 5);
-        }
-
-        if ($banner['imptotal'] == 0) {
-            $banner['left'] ='Unlimited';
-            $banner['imptotal'] = 'Unlimited';
-        } else {
-            $banner['left'] = $banner['imptotal']-$banner['impmade'];
-        }
-
+        $banner = $this->computestats($banner);
+        
+echo "<pre>"; print_r($client); print_r($banner); echo "</pre>";
         $this->view->assign('banner', $banner);
         $this->view->assign('client', $client);
         $this->view->assign('date', date("F jS Y, h:iA."));
-        $subject = $this->view->fetch('email/stats_subject.tpl');
         $message = $this->view->fetch('email/stats_body.tpl');
-        $mailsent = ModUtil::apiFunc('Mailer', 'user', 'sendmessage',
-                array('toaddress' => $client['email'], 'toname' => $client['contact'],
-                'subject' => $subject, 'body' => $message));
+        $mailsent = ModUtil::apiFunc('Mailer', 'user', 'sendmessage', array(
+                'toaddress' => $client['email'],
+                'toname'    => $client['contact'],
+                'subject'   => $this->__f('Advertising stats for %s', System::getVar('sitename')),
+                'body'      => $message));
         if ($mailsent) {
             return true;
         }
+        return false;
     }
 
     /**
@@ -425,7 +420,8 @@ class Banners_Api_User extends Zikula_Api {
         }
 
         // get the banner
-        $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $args['bid']));
+        $banner = $this->get(array(
+            'bid' => $args['bid']));
 
         // create object
         $obj = array();
@@ -441,7 +437,8 @@ class Banners_Api_User extends Zikula_Api {
         }
 
         // delete the banner
-        ModUtil::apiFunc('Banners', 'user', 'delete', array('bid' => $args['bid']));
+        $this->delete(array(
+            'bid' => $args['bid']));
 
         return true;
     }
@@ -458,5 +455,30 @@ class Banners_Api_User extends Zikula_Api {
                         'instance_right' => '',
                         'level'          => ACCESS_READ));
         return DBUtil::selectObjectByID('bannersclient', UserUtil::getVar('uid'), 'uid', '', $permFilter);
+    }
+    /**
+     * add computed stats to banner array
+     *
+     * @param  mixed banner array
+     * @return mixed banner array
+     */
+    public function computestats($banner) {
+        if (!is_array($banner)) {
+            return LogUtil::registerArgsError();
+        }
+        if ($banner['impmade'] == 0) {
+            $banner['percent'] = 0;
+        } else {
+            $percent = 100 * (int) $banner['clicks'] / (int) $banner['impmade'];
+            $banner['percent'] = round($percent, 3);
+        }
+
+        if ($banner['imptotal'] == 0) {
+            $banner['impleft'] = $this->__('Unlimited');
+            $banner['imptotal'] = $this->__('Unlimited');
+        } else {
+            $banner['impleft'] = $banner['imptotal'] - $banner['impmade'];
+        }
+        return $banner;
     }
 }

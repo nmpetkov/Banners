@@ -23,7 +23,7 @@
 		<td>{$banners[banners].impleft|safetext}</td>
 		<td>{$banners[banners].clicks|safetext}</td>
 		<td>{$banners[banners].percent|safetext}</td>
-		<td><a href="{modurl modname="Banners" type="user" func="emailstats" cid=$client.cid bid=""}{$banners[banners].bid|safetext}">{gt text="Email Stats"}</a></td>
+		<td><a href="{modurl modname="Banners" type="user" func="emailstats" cid=$client.cid bid=$banners[banners].bid|safetext}">{gt text="Email Stats"}</a></td>
 	 </tr>
 	{/section}
 </table>

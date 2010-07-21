@@ -45,17 +45,7 @@ class Banners_Controller_User extends Zikula_Controller {
 
         // calculate some additional values
         foreach($banners as $key => $banner) {
-            if ($banners[$key]['impmade'] == 0) {
-                $banners[$key]['percent'] = 0;
-            } else {
-                $banners[$key]['percent'] = substr(100 * $banners[$key]['clicks'] / $banners[$key]['impmade'], 0, 5);
-            }
-            if ($banners[$key]['imptotal'] == 0) {
-                $banners[$key]['impleft'] ='Unlimited';
-                $banners[$key]['imptotal'] = 'Unlimited';
-            } else {
-                $banners[$key]['impleft'] = $banners[$key]['imptotal']-$banners[$key]['impmade'];
-            }
+            $banners[$key] = ModUtil::apiFunc('Banners', 'user', 'computestats', $banner);
         }
 
         $this->view->assign('banners', $banners);
@@ -77,19 +67,18 @@ class Banners_Controller_User extends Zikula_Controller {
             return LogUtil::registerPermissionError();
         }
 
-        $client = ModUtil::apiFunc('Banners', 'user', 'validateclient');
-        if (!$client) {
-            LogUtil::registerError($this->__('Not a Valid Banners Client'));
-        } else {
+//        $client = ModUtil::apiFunc('Banners', 'user', 'validateclient');
+//        if (!$client) {
+//            LogUtil::registerError($this->__('Not a Valid Banners Client'));
+//        } else {
             if (!ModUtil::apiFunc('Banners', 'user', 'emailstats', array(
                     'bid'   => $bid,
-                    'email' => $client['email'],
-                    'cid'   => $client['cid']))) {
+                    'cid'   => $cid))) { //$client['cid']))) {
                 LogUtil::registerError($this->__('Please contact the administrator.'));
             } else {
                 LogUtil::registerStatus($this->__('Statistics e-mailed'));
             }
-        }
+//        }
 
         return System::redirect(ModUtil::url('Banners', 'user', 'client'));
     }

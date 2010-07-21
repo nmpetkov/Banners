@@ -91,8 +91,11 @@ class Banners_Controller_Admin extends Zikula_Controller {
         $this->view->assign('bannersenabled', ModUtil::getVar('Banners', 'banners'));
 
         // get list of banners
-        $activebanneritems = ModUtil::apiFunc('Banners', 'user', 'getall', array('clientinfo' => true));
-        $this->view->assign('activebanneritems', $activebanneritems);
+        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('clientinfo' => true));
+        foreach($banners as $key => $banner) {
+            $banners[$key] = ModUtil::apiFunc('Banners', 'user', 'computestats', $banner);
+        }
+        $this->view->assign('activebanneritems', $banners);
 
         // get list of finished banners
         $finishedbanners = ModUtil::apiFunc('Banners', 'user', 'getallfinished');
