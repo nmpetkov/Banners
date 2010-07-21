@@ -59,6 +59,10 @@
                     <label for="banners_clickurl">{gt text="Click URL"}</label>
                     <input type="text" id="banners_clickurl" name="banner[clickurl]" size="40" maxlength="255" value="{$banner.clickurl|safetext}" />
                 </div>
+                <div class="z-formrow">
+                    <label for="banners_hovertext">{gt text="Hover text"}</label>
+                    <input type="text" id="banners_hovertext" name="banner[hovertext]" size="40" maxlength="255" value="{$banner.hovertext|safetext}" />
+                </div>
                  <div class="z-buttons z-formbuttons">
                     {button src="button_ok.gif" set="icons/extrasmall" __alt="Update Banner" __title="Update Banner" __text="Update Banner"}
                     <a href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.gif" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>

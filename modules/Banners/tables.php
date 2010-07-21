@@ -26,13 +26,14 @@ function Banners_tables() {
             'bid'       => 'bid',
             'cid'       => 'cid',
             'type'      => 'type',
-            'title'     => 'title',
+            'title'     => 'title',                 // becomes obsolete in v3.0.0
             'imptotal'  => 'imptotal',
             'impmade'   => 'impmade',
             'clicks'    => 'clicks',
             'imageurl'  => 'imageurl',
             'clickurl'  => 'clickurl',
-            'date'      => 'date');
+            'date'      => 'date',
+            'hovertext' => 'hovertext');            // added in vers. 3.0.0
 
     $table['banners_column_def'] = array(
             'bid'       => 'I PRIMARY AUTO',
@@ -44,7 +45,8 @@ function Banners_tables() {
             'clicks'	=> "I DEFAULT '0'",
             'imageurl'	=> "C(255) DEFAULT ''",
             'clickurl'	=> "C(255) DEFAULT ''",
-            'date'      => 'T DEFAULT NULL');
+            'date'      => 'T DEFAULT NULL',
+            'hovertext' => "C(255) DEFAULT ''");
     // add standard data fields
     ObjectUtil::addStandardFieldsToTableDefinition($table['banners_column'], '');
     ObjectUtil::addStandardFieldsToTableDataDefinition($table['banners_column_def']);

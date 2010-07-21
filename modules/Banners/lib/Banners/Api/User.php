@@ -65,6 +65,7 @@ class Banners_Api_User extends Zikula_Api {
                     'object_field_name'   =>  'name',
                     'compare_field_table' =>  'cid',
                     'compare_field_join'  =>  'cid');
+            // cannot do category-based permissions here because cannot have join with Filter :-(
             $items = DBUtil::selectExpandedObjectArray('banners', $joininfo, $where, 'bid', $args['startnum']-1, $args['numitems'], '', $permFilter, $args['catFilter']);
         } else {
             $items = DBUtil::selectObjectArray('banners', $where, 'bid', $args['startnum']-1, $args['numitems'], '', $permFilter, $args['catFilter']);
@@ -346,12 +347,15 @@ class Banners_Api_User extends Zikula_Api {
     public function emailstats($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid']) ||
-                !isset($args['cid']) || !is_numeric($args['cid'])) {
+            !isset($args['cid']) || !is_numeric($args['cid'])) {
             return LogUtil::registerArgsError();
         }
 
-        $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $args['bid'], 'cid' => $args['cid']));
-        $client = ModUtil::apiFunc('Banners', 'user', 'getclient', array('cid' => $args['cid']));
+        $banner = ModUtil::apiFunc('Banners', 'user', 'get', array(
+            'bid' => $args['bid'],
+            'cid' => $args['cid']));
+        $client = ModUtil::apiFunc('Banners', 'user', 'getclient', array(
+            'cid' => $args['cid']));
         if (!$banner) {
             return LogUtil::registerArgsError();
         }

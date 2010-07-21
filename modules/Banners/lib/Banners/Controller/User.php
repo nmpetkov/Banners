@@ -82,9 +82,9 @@ class Banners_Controller_User extends Zikula_Controller {
             LogUtil::registerError($this->__('Not a Valid Banners Client'));
         } else {
             if (!ModUtil::apiFunc('Banners', 'user', 'emailstats', array(
-                    'bid' => $bid,
+                    'bid'   => $bid,
                     'email' => $client['email'],
-                    'cid' => $client['cid']))) {
+                    'cid'   => $client['cid']))) {
                 LogUtil::registerError($this->__('Please contact the administrator.'));
             } else {
                 LogUtil::registerStatus($this->__('Statistics e-mailed'));
@@ -223,18 +223,23 @@ class Banners_Controller_User extends Zikula_Controller {
             $bannerstring .= '</object>';
         } else {
             if ($banner['clickurl']) {
-                $bannerstring = '<a href="'. DataUtil::formatForDisplay(ModUtil::url('Banners', 'user', 'click', array('bid' => $banner['bid']))).'" title="' . DataUtil::formatForDisplay($banner['clickurl']);
-                if (ModUtil::getVar('Banners', 'openinnewwindow')) {
-                    $bannerstring .= ' " target="_blank';
+                $title = '';
+                $target = '';
+                if (!$args['hovertext']) {
+                    $title = ' title="' . DataUtil::formatForDisplay($banner['clickurl']) . '"';
                 }
-                $bannerstring .= '">';
+                if (ModUtil::getVar('Banners', 'openinnewwindow')) {
+                    $target = ' target="_blank"';
+                }
+                $bannerstring = '<a href="' . DataUtil::formatForDisplay(ModUtil::url('Banners', 'user', 'click', array('bid' => $banner['bid']))) . '"' . $title . $target . '>';
                 $bannerstring .= '<img src="'.DataUtil::formatForDisplay($banner['imageurl']) . '" alt="'.DataUtil::formatForDisplay($banner['clickurl']) .'" />';
                 $bannerstring .= '</a>';
             }else {
                 $bannerstring .= '<img src="'.DataUtil::formatForDisplay($banner['imageurl']) .'" />';
             }
         }
-        return $bannerstring;
+        $banner['displaystring'] = $bannerstring;
+        return $banner;
     }
     /**
      * display a random banner
@@ -252,8 +257,7 @@ class Banners_Controller_User extends Zikula_Controller {
         $catFilter = $args['type'];
         $catFilter['__META__']['module'] = 'Banners';
 
-        // get the banner count
-        $numrows = ModUtil::apiFunc('Banners', 'user', 'countitems', $catFilter);
+        // get the banners
         $banners = ModUtil::apiFunc('Banners', 'user', 'getall', $catFilter);
 
         $banid = 0;

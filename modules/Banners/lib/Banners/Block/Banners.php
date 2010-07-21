@@ -59,7 +59,8 @@ class Banners_Block_Banners extends Zikula_Block
         }
 
         // assign the banner
-        $this->view->assign('banner', ModUtil::func('Banners', 'user', 'display', array('type' => $vars['type'])));
+        $this->view->assign('banner', ModUtil::func('Banners', 'user', 'display', $vars));
+        $this->view->assign('hovertext', $vars['hovertext']);
 
         // Populate block info and pass to theme
         $blockinfo['content'] = $this->view->fetch('blocks/banners.tpl');
@@ -75,12 +76,12 @@ class Banners_Block_Banners extends Zikula_Block
      */
     public function modify($blockinfo)
     {
-
         // Get current content
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // Defaults
-        if (empty($vars['type'])) $vars['type'] = array();
+        if (empty($vars['type']))      $vars['type'] = array();
+        if (empty($vars['hovertext'])) $vars['hovertext'] = 0;
 
         // load the category registry util
         $catregistry = CategoryRegistryUtil::getRegisteredModuleCategories('Banners', 'banners');
@@ -101,12 +102,12 @@ class Banners_Block_Banners extends Zikula_Block
      */
     public function update($blockinfo)
     {
-
         // Get current content
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // alter the corresponding variable
-        $vars['type'] = FormUtil::getPassedValue('type', null, 'POST');
+        $vars['type']      = FormUtil::getPassedValue('type', null, 'POST');
+        $vars['hovertext'] = FormUtil::getPassedValue('hovertext', '', 'POST');
 
         // write back the new contents
         $blockinfo['content'] = BlockUtil::varsToContent($vars);

@@ -50,7 +50,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         }
         $this->view->assign('clients', $clientitems);
 
-        $this->view->assign('enablecats', true);
+        $this->view->assign('enablecats', ModUtil::getVar('Banners', 'enablecats'));
         $this->view->assign('catregistry', CategoryRegistryUtil::getRegisteredModuleCategories('Banners', 'banners'));
 
         // return the output
@@ -172,7 +172,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         // assign the banner item
         $this->view->assign('banner', $banner);
 
-        $this->view->assign('enablecats', true);
+        $this->view->assign('enablecats', ModUtil::getVar('Banners', 'enablecats'));
         $this->view->assign('catregistry', CategoryRegistryUtil::getRegisteredModuleCategories('Banners', 'banners'));
         $this->view->assign('selectedcatsarray', $selectedcatsarray);
 
@@ -512,6 +512,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         $banners         = FormUtil::getPassedValue('banners', null, 'POST');
         $myIP            = FormUtil::getPassedValue('myIP', null, 'POST');
         $openinnewwindow = FormUtil::getPassedValue('openinnewwindow', null, 'POST');
+        $enablecats      = FormUtil::getPassedValue('enablecats', true, 'POST');
 
         // Confirm authorisation code.
         if (!SecurityUtil::confirmAuthKey()) {
@@ -522,6 +523,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         ModUtil::setVar('Banners', 'banners', $banners);
         ModUtil::setVar('Banners', 'myIP', $myIP);
         ModUtil::setVar('Banners', 'openinnewwindow', $openinnewwindow);
+        ModUtil::setVar('Banners', 'enablecats', $enablecats);
 
         // Let any other modules know that the modules configuration has been updated
         $this->callHooks('module','updateconfig','Banners', array('module' => 'Banners'));

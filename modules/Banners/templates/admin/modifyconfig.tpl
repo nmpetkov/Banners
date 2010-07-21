@@ -6,11 +6,16 @@
 <form class="z-form" action="{modurl modname="Banners" type="admin" func="updateconfig"}" method="post" enctype="application/x-www-form-urlencoded">
     <div>
         <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
+        
         <fieldset>
             <legend>{gt text='General settings'}</legend>
             <div class="z-formrow">
                 <label for="banners">{gt text="Banners active"}</label>
                 <input type="checkbox" id="banners" name="banners" value="1" {if $banners} checked="checked"{/if} />
+            </div>
+            <div class="z-formrow">
+                <label for="enablecats">{gt text="Enable Categorization"}</label>
+                <input type="checkbox" id="enablecats" name="enablecats" value="1" {if $enablecats} checked="checked"{/if} />
             </div>
             <div class="z-formrow">
                 <label for="banners">{gt text="Banner clicks launch new window"}</label>
