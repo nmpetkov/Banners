@@ -128,7 +128,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         if (!SecurityUtil::confirmAuthKey()) {
             return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'overview'));
         }
-        $banner['active'] = 1; // activates the banner
+        //$banner['active'] = 1; // activates the banner
 
         // Create the banner
         $bid = ModUtil::apiFunc('Banners', 'admin', 'create', $banner);
@@ -150,7 +150,8 @@ class Banners_Controller_Admin extends Zikula_Controller {
      */
     public function modify($args) {
 
-        $bid = FormUtil::getPassedValue('bid', null, 'GET');
+        $bid   = FormUtil::getPassedValue('bid', null, 'GET');
+        $limit = FormUtil::getPassedValue('limit', 0, 'GET');
 
         if (!is_numeric($bid)) {
             return LogUtil::registerArgsError();
@@ -171,6 +172,9 @@ class Banners_Controller_Admin extends Zikula_Controller {
 
         if ($banner == false) {
             return LogUtil::registerError($this->__('No such item found.'));
+        }
+        if ($limit) {
+            $banner['imptotal'] = $banner['impmade'];
         }
 
         // assign the banner item

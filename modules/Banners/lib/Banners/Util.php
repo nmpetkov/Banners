@@ -272,7 +272,7 @@ class Banners_Util
     
         return $catresults;
     }
-        /**
+    /**
      * add computed stats to banner array
      *
      * @param  mixed banner array

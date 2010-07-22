@@ -46,6 +46,10 @@
                 </div>
             {/if}
             <div class="z-formrow">
+                <label for="active">{gt text="Banner is Active"}</label>
+                <input type="checkbox" id="active" name="banner[active]" value="1" checked="checked" />
+            </div>
+            <div class="z-formrow">
                 <label for="imgurl">{gt text="Image URL"}</label>
                 <input type="text" id="imgurl" name="banner[imageurl]" size="50" maxlength="250" />
             </div>

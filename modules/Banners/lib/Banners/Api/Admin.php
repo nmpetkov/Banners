@@ -121,6 +121,8 @@ class Banners_Api_Admin extends Zikula_Api {
                 !isset($args['clickurl'])) {
             return LogUtil::registerArgsError();
         }
+        $args['active']  = isset($args['active'])  ? $args['active'] : 0;
+        $args['unlimit'] = isset($args['unlimit']) ? $args['unlimit'] : 0;
 
         // Get the existing banner
         $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $args['bid']));
@@ -135,6 +137,10 @@ class Banners_Api_Admin extends Zikula_Api {
         }
 
         $args['imptotal'] += $args['impadded'];
+
+        if ($args['unlimit']) {
+            $args['imptotal'] = 0;
+        }
 
         if (!DBUtil::updateObject($args, 'banners', '', 'bid')) {
             return LogUtil::registerError($this->__('Error! Update attempt failed.'));

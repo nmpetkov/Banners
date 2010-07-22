@@ -25,6 +25,10 @@
                         {gt text="Purchased"}:{$banner.imptotal|safetext}
                         {gt text="Impressions Made"}:{$banner.impmade|safetext}
                     </div>
+                    <div class="z-formrow">
+                        <label for="banners_unlimit">{gt text="Convert to unlimited"}</label>
+                        <input type="checkbox" id="banners_unlimit" name="banner[unlimit]" value="1" />
+                    </div>
                 {else}
                     <input type="hidden" name="banner[impadded]" value="0" />
                 {/if}
@@ -51,6 +55,10 @@
                         {/nocache}
                     </div>
                 {/if}
+                <div class="z-formrow">
+                    <label for="banners_active">{gt text="Banner is Active"}</label>
+                    <input type="checkbox" id="banners_active" name="banner[active]" value="1" {if $banner.active} checked="checked"{/if}/>
+                </div>
                 <div class="z-formrow">
                     <label for="banners_imgurl">{gt text="Image URL"}</label>
                     <input type="text" id="banners_imgurl" name="banner[imageurl]" size="40" maxlength="255" value="{$banner.imageurl|safetext}" />
