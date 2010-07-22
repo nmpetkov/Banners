@@ -10,7 +10,7 @@
         {gt text="To active banners, please check your configuration."}
     </p>
     {/if}
-    <h2>{gt text="Banners active"}</h2>
+    <h2>{gt text="Active Banners"}</h2>
     <table class="z-admintable">
         <thead>
             <tr>
@@ -47,15 +47,17 @@
         </tbody>
     </table>
 
-    <h2>{gt text="Completed Campaigns"}</h2>
+    <h2>{gt text="Inactive Banners"}</h2>
     <table class="z-admintable">
         <thead>
             <tr>
+                <th>{gt text="ID"}</th>
+                <th>{gt text="Name"}</th>
                 <th>{gt text="Impressions"}</th>
                 <th>{gt text="Clicks"}</th>
                 <th>{gt text="Click Percent"}</th>
-                <th>{gt text="Date Started"}</th>
-                <th>{gt text="Date Ended"}</th>
+                <!-- <th>{gt text="Date Started"}</th>
+                <th>{gt text="Date Ended"}</th> -->
                 <th>{gt text="Client Name"}</th>
                 <th>{gt text="Banner Type"}</th>
                 <th>{gt text="Options"}</th>
@@ -64,15 +66,17 @@
         <tbody>
             {section name="finishedbanners" loop=$finishedbanners}
             <tr class="{cycle values=z-odd,z-even name=finishedbanners}">
-                <td>{$finishedbanners[finishedbanners].impressions|safetext}</td>
+                <td>{$finishedbanners[finishedbanners].bid|safetext}</td>
+                <td>{$finishedbanners[finishedbanners].title|safetext}</td>
+                <td>{$finishedbanners[finishedbanners].impmade|safetext}</td>
                 <td>{$finishedbanners[finishedbanners].clicks|safetext}</td>
                 <td>{$finishedbanners[finishedbanners].percent|safetext}</td>
-                <td>{$finishedbanners[finishedbanners].datestart|safetext}</td>
-                <td>{$finishedbanners[finishedbanners].dateend|safetext}</td>
+                <!-- <td>{$finishedbanners[finishedbanners].datestart|safetext}</td>
+                <td>{$finishedbanners[finishedbanners].dateend|safetext}</td> -->
                 <td>{$finishedbanners[finishedbanners].name|safetext}</td>
-                <td>{$activebanneritems[activebanneritems].type|safetext}</td>
+                <td>{$finishedbanners[finishedbanners].typename|safetext}</td>
                 <td>
-                    <a href="{modurl modname="Banners" type="admin" func="deletefinished" authid="$authid" bid=""}{$finishedbanners[finishedbanners].bid|safetext}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif __alt="Delete"}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="deletefinished" authid="$authid" bid=$finishedbanners[finishedbanners].bid|safetext}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif __alt="Delete"}</a>
                 </td>
             </tr>
 	{sectionelse}

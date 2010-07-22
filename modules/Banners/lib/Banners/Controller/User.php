@@ -45,7 +45,7 @@ class Banners_Controller_User extends Zikula_Controller {
 
         // calculate some additional values
         foreach($banners as $key => $banner) {
-            $banners[$key] = ModUtil::apiFunc('Banners', 'user', 'computestats', $banner);
+            $banners[$key] = Banners_Util::computestats($banner);
         }
 
         $this->view->assign('banners', $banners);
@@ -76,7 +76,7 @@ class Banners_Controller_User extends Zikula_Controller {
             return LogUtil::registerError($this->__f('Error! Could not find banner (%s)', $bid));
         }
 
-        $banner = ModUtil::apiFunc('Banners', 'user', 'computestats', $banner);
+        $banner = Banners_Util::computestats($banner);
 
         $this->view->assign('banner', $banner);
         $this->view->assign('client', $client);
@@ -193,12 +193,12 @@ class Banners_Controller_User extends Zikula_Controller {
             return '&nbsp;';
         }
 
-        // would be nice if we could randomly fetch only one banner instead of all of them.
+        // TODO would be nice if we could randomly fetch only one banner instead of all of them.
         $banners = ModUtil::apiFunc('Banners', 'user', 'getall', $catFilter);
         if (isset($banners[$bannum])) {
             $banner = $banners[$bannum];
         } else {
-            return '&nbsp;';
+            return array('displaystring' => '&nbsp;');
         }
 
         // check the current host and admin exceptions
@@ -207,10 +207,11 @@ class Banners_Controller_User extends Zikula_Controller {
         $myhost = System::serverGetVar('REMOTE_ADDR');
         if (!empty($myIP) && substr($myhost, 0, strlen($myIP)) != $myIP) {
             ModUtil::apiFunc('Banners', 'user', 'impmade', array('bid' => $banner['bid']));
+            $banner['impmade']++; // increment in local instance
         }
 
         // Check if this impression is the last one and print the banner
-        if ($banner['imptotal'] > 0 && $banner['imptotal'] >= $banner['impmade']) {
+        if (($banner['imptotal'] > 0) && ($banner['impmade'] >= $banner['imptotal'])) {
             ModUtil::apiFunc('Banners', 'user', 'finish', array('bid' => $banner['bid']));
         }
 
@@ -234,7 +235,7 @@ class Banners_Controller_User extends Zikula_Controller {
                 if (ModUtil::getVar('Banners', 'openinnewwindow')) {
                     $target = ' target="_blank"';
                 }
-                $bannerstring = "<a href='$url'" . $title . $target . '>';
+                $bannerstring  = "<a href='$url'" . $title . $target . '>';
                 $bannerstring .= '<img src="'.DataUtil::formatForDisplay($banner['imageurl']) . '" alt="'.DataUtil::formatForDisplay($banner['clickurl']) .'" />';
                 $bannerstring .= '</a>';
             }else {

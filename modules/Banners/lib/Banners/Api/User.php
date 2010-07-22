@@ -15,11 +15,12 @@ class Banners_Api_User extends Zikula_Api {
     /**
      * get all banners
      *
-     * @param    int     $args['startnum']   (optional) first item to return
-     * @param    int     $args['numitems']   (optional) number if items to return
-     * @param    int     $args['type']          (optional) banner type
-     * @param    int     $args['cid']            (optional) client id
-     * @param    bool  $args['clientinfo']  (optional) include client info
+     * @param    int     $args['startnum']    (optional) first item to return
+     * @param    int     $args['numitems']    (optional) number if items to return
+     * @param    int     $args['type']        (optional) banner type
+     * @param    int     $args['cid']         (optional) client id
+     * @param    bool    $args['clientinfo']  (optional) include client info
+     * @param    bool    $args['active']      (optional) default true return active banners
      *
      * @return   array   array of items, or false on failure
      */
@@ -36,6 +37,9 @@ class Banners_Api_User extends Zikula_Api {
         }
         if (!isset($args['catFilter']) || !is_array($args['catFilter'])) {
             $args['catFilter'] = array();
+        }
+        if (!isset($args['active'])) {
+            $args['active'] = 1;
         }
 
         $items = array();
@@ -58,6 +62,8 @@ class Banners_Api_User extends Zikula_Api {
         if (isset($args['cid'])) {
             $wheres[] = 'cid='.DataUtil::formatForStore((int)$args['cid']);
         }
+        $wheres[] = 'active=' . $args['active'];
+
         $where = implode(' AND ', $wheres);
 
         // get the objects from the db
@@ -89,7 +95,7 @@ class Banners_Api_User extends Zikula_Api {
     }
 
     /**
-     * Get a banner
+     * Get an active banner
      *
      * @param $args['bid'] id of the banner
      * @param $args['cid'] id of the client (optional)
@@ -114,7 +120,6 @@ class Banners_Api_User extends Zikula_Api {
                         'level'          => ACCESS_READ));
 
         // get the banner
-        
         if ($args['clientinfo']) {
             $join[] = array(
                     'join_table'          =>  'bannersclient',
@@ -140,7 +145,7 @@ class Banners_Api_User extends Zikula_Api {
     }
 
     /**
-     * utility function to count the number of items held by this module
+     * count the number of active banners
      *
      * @param    int     $args['type']       (optional) banner type
      * @todo     add support for the banner type parameter
@@ -150,7 +155,11 @@ class Banners_Api_User extends Zikula_Api {
         if (!isset($args['catFilter']) || !is_array($args['catFilter'])) {
             $args['catFilter'] = array();
         }
-        return DBUtil::selectObjectCount('banners', '', '1', false, $args['catFilter']);
+        if (!isset($args['active'])) {
+            $args['active'] = 1;
+        }
+        $where = 'active=' . $args['active'];
+        return DBUtil::selectObjectCount('banners', $where, '1', false, $args['catFilter']);
     }
 
     /**
@@ -183,16 +192,9 @@ class Banners_Api_User extends Zikula_Api {
                         'instance_left'  => 'cid',
                         'instance_right' => '',
                         'level'          => ACCESS_READ));
-//        $joinInfo = array(
-//                        'join_table'          => 'users',
-//                        'join_field'          => 'uname',
-//                        'object_field_name'   => 'zuname',
-//                        'compare_field_table' => 'uid',
-//                        'compare_field_join'  => 'uid');
 
         // get the objects from the db
         $items = DBUtil::selectObjectArray('bannersclient', '', 'cid', $args['startnum']-1, $args['numitems'], '', $permFilter);
-        //$items = DBUtil::selectExpandedObjectArray('bannersclient', $joinInfo, '', 'cid', $args['startnum']-1, $args['numitems'], '', $permFilter);
         // get the active banner counts for each client
         foreach ($items as $key => $item) {
             $items[$key]['bannercount'] = DBUtil::selectObjectCountByID('banners', $item['cid'], 'cid');
@@ -244,75 +246,36 @@ class Banners_Api_User extends Zikula_Api {
     }
 
     /**
-     * get all banners
+     * get all inactive banners
      *
      * @param    int     $args['startnum']   (optional) first item to return
      * @param    int     $args['numitems']   (optional) number if items to return
      * @return   array   array of items, or false on failure
      */
     public function getallfinished($args) {
-        // Optional arguments.
-        if (!isset($args['startnum']) || !is_numeric($args['startnum'])) {
-            $args['startnum'] = 1;
-        }
-        if (!isset($args['numitems']) || !is_numeric($args['numitems'])) {
-            $args['numitems'] = -1;
-        }
-
-        $items = array();
-
-        // Security check
-        if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ)) {
-            return $items;
-        }
-
-        // define the permission filter to apply
-        $permFilter = array(array('realm'          => 0,
-                        'component_left' => 'Banners',
-                        'instance_left'  => 'bid',
-                        'instance_right' => '',
-                        'level'          => ACCESS_READ));
-
-        // get the objects from the db
-        $items = DBUtil::selectObjectArray('bannersfinish', '', 'bid', $args['startnum']-1, $args['numitems'], '', $permFilter);
-
-        if ($items === false) {
-            return LogUtil::registerError($this->__('Error! Could not load items.'));
-        }
-
-        // Return the items
-        return $items;
+        $args['active'] = 0;
+        return $this->getall($args);
     }
 
     /**
-     * Get a banner
+     * Get an inactive banner
      *
      * @param $args['bid'] id of the banner
      * @return mixed array if bid is valid, false otherwise
      */
     public function getfinished($args) {
-        // Argument check
-        if (!isset($args['bid']) || !is_numeric($args['bid'])) {
-            return LogUtil::registerArgsError();
-        }
-
-        // define the permission filter to apply
-        $permFilter = array(array('realm'          => 0,
-                        'component_left' => 'Banners',
-                        'instance_left'  => 'bid',
-                        'instance_right' => '',
-                        'level'          => ACCESS_READ));
-
-        return DBUtil::selectObjectByID('bannersfinish', $args['bid'], 'bid', '', $permFilter);
+        $args['active'] = 0;
+        return $this->get($args);
     }
 
     /**
-     * utility function to count the number of items held by this module
+     * count the number of inactive banners
      *
      * @return   integer   number of items held by this module
      */
     public function countfinisheditems($args) {
-        return DBUtil::selectObjectCount('bannersfinish', '');
+        $args['active'] = 0;
+        return $this->countitems($args);
     }
 
     /**
@@ -332,12 +295,12 @@ class Banners_Api_User extends Zikula_Api {
         return DBUtil::incrementObjectFieldByID('banners', 'clicks', $args['bid'], 'bid');
     }
 
-    /*
- * register an impression
- *
- * @param $args['bid'] id of the banner
- * @return bool true if successful, false otherwise
-    */
+    /**
+     * register an impression
+     *
+     * @param $args['bid'] id of the banner
+     * @return bool true if successful, false otherwise
+     */
     public function impmade($args) {
         // Argument check
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
@@ -373,7 +336,7 @@ class Banners_Api_User extends Zikula_Api {
     }
 
     /**
-     * Move a banner to the finished banners table
+     * Mark the banner as inactive
      *
      * @param $args['bid'] banner id
      * @return true if successful, false otherwise
@@ -383,27 +346,12 @@ class Banners_Api_User extends Zikula_Api {
         if (!isset($args['bid']) || !is_numeric($args['bid'])) {
             return LogUtil::registerArgsError();
         }
-
-        // get the banner
-        $banner = $this->get(array(
-            'bid' => $args['bid']));
-
-        // create object
         $obj = array();
-        $obj['cid']         = $banner['cid'];
-        $obj['impressions'] = $banner['impmade'];
-        $obj['clicks']      = $banner['clicks'];
-        $obj['datestart']   = $banner['date'];
+        $obj['bid']    = $args['bid'];
+        $obj['active'] = 0;
 
-        // insert object
-        $res = DBUtil::insertObject ($obj, 'bannersfinish', 'bid');
-        if ($res === false) {
-            return false;
-        }
-
-        // delete the banner
-        ModUtil::apiFunc('Banners', 'admin', 'delete', array(
-            'bid' => $args['bid']));
+        // update object
+        $res = DBUtil::updateObject ($obj, 'banners', '', 'bid');
 
         return true;
     }
@@ -420,30 +368,5 @@ class Banners_Api_User extends Zikula_Api {
                         'instance_right' => '',
                         'level'          => ACCESS_READ));
         return DBUtil::selectObjectByID('bannersclient', UserUtil::getVar('uid'), 'uid', '', $permFilter);
-    }
-    /**
-     * add computed stats to banner array
-     *
-     * @param  mixed banner array
-     * @return mixed banner array
-     */
-    public function computestats($banner) {
-        if (!is_array($banner)) {
-            return LogUtil::registerArgsError();
-        }
-        if ($banner['impmade'] == 0) {
-            $banner['percent'] = 0;
-        } else {
-            $percent = 100 * (int) $banner['clicks'] / (int) $banner['impmade'];
-            $banner['percent'] = round($percent, 3);
-        }
-
-        if ($banner['imptotal'] == 0) {
-            $banner['impleft'] = $this->__('Unlimited');
-            $banner['imptotal'] = $this->__('Unlimited');
-        } else {
-            $banner['impleft'] = $banner['imptotal'] - $banner['impmade'];
-        }
-        return $banner;
     }
 }

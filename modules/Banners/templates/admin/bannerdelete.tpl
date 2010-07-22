@@ -7,9 +7,9 @@
 <div>
     <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
     <input type="hidden" name="confirmation" value="1" />
-    <input type="hidden" name="bid" value="{$bid|safetext}" />
-	<a href="{$clickurl|safetext}"><img src="{$imageurl|safetext}" alt="" title="{$clickurl|safetext}" /></a>
-	<br /><a href="{$clickurl|safetext}">{$clickurl|safetext}</a>
+    <input type="hidden" name="bid" value="{$banner.bid|safetext}" />
+	<a href="{$banner.clickurl|safetext}"><img src="{$banner.imageurl|safetext}" alt="" title="{$banner.clickurl|safetext}" /></a>
+	<br /><a href="{$banner.clickurl|safetext}">{$banner.clickurl|safetext}</a>
 	<table class="z-admintable">
 		<thead>
 		<tr>
@@ -23,20 +23,12 @@
 		</thead>
 		<tbody>
 		<tr>
-			<td>{$bid|safetext}</td>
-			<td>{$impmade|safetext}</td>
-			<td>{math equation="x-y" x=$imptotal y=$impmade}</td>
-			<td>{$clicks|safetext}</td>
-			<td>
-				{strip}
-				{if $clicks neq 0}
-				{math equation="(100*x)/y" x=$clicks y=$impmade}
-				{else}
-				0
-				{/if}%
-				{/strip}
-			</td>
-			<td>{$name|safetext}</td>
+			<td>{$banner.bid|safetext}</td>
+			<td>{$banner.impmade|safetext}</td>
+			<td>{$banner.impleft|safetext}</td>
+			<td>{$banner.clicks|safetext}</td>
+			<td>{$banner.percent}%</td>
+			<td>{$banner.name|safetext}</td>
 		</tr>
 		</tbody>
 	</table>

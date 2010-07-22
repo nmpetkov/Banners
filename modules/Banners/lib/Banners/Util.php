@@ -272,4 +272,31 @@ class Banners_Util
     
         return $catresults;
     }
+        /**
+     * add computed stats to banner array
+     *
+     * @param  mixed banner array
+     * @return mixed banner array
+     */
+    public static function computestats($banner) {
+        $dom = ZLanguage::getModuleDomain('Banners');
+
+        if (!is_array($banner)) {
+            return LogUtil::registerArgsError();
+        }
+        if ($banner['impmade'] == 0) {
+            $banner['percent'] = 0;
+        } else {
+            $percent = 100 * (int) $banner['clicks'] / (int) $banner['impmade'];
+            $banner['percent'] = round($percent, 3);
+        }
+
+        if ($banner['imptotal'] == 0) {
+            $banner['impleft'] = __('Unlimited', $dom);
+            $banner['imptotal'] = __('Unlimited', $dom);
+        } else {
+            $banner['impleft'] = $banner['imptotal'] - $banner['impmade'];
+        }
+        return $banner;
+    }
 } // end class def

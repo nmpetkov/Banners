@@ -33,7 +33,8 @@ function Banners_tables() {
             'imageurl'  => 'imageurl',
             'clickurl'  => 'clickurl',
             'date'      => 'date',
-            'hovertext' => 'hovertext');            // added in vers. 3.0.0
+            'hovertext' => 'hovertext',            // added in vers. 3.0.0
+            'active'    => 'active');              // added in vers. 3.0.0
 
     $table['banners_column_def'] = array(
             'bid'       => 'I PRIMARY AUTO',
@@ -46,7 +47,8 @@ function Banners_tables() {
             'imageurl'	=> "C(255) DEFAULT ''",
             'clickurl'	=> "C(255) DEFAULT ''",
             'date'      => 'T DEFAULT NULL',
-            'hovertext' => "C(255) DEFAULT ''");
+            'hovertext' => "C(255) DEFAULT ''",
+            'active'    => "I DEFAULT '1'");
     // add standard data fields
     ObjectUtil::addStandardFieldsToTableDefinition($table['banners_column'], '');
     ObjectUtil::addStandardFieldsToTableDataDefinition($table['banners_column_def']);
@@ -77,26 +79,6 @@ function Banners_tables() {
     // add standard data fields
     ObjectUtil::addStandardFieldsToTableDefinition($table['bannersclient_column'], '');
     ObjectUtil::addStandardFieldsToTableDataDefinition($table['bannersclient_column_def']);
-
-    // completed banners
-    $table['bannersfinish'] = DBUtil::getLimitedTablename('bannersfinish');
-    $table['bannersfinish_column'] = array(
-            'bid'         => 'bid',
-            'cid'         => 'cid',
-            'impressions' => 'impressions',
-            'clicks'      => 'clicks',
-            'datestart'   => 'datestart',
-            'dateend'     => 'dateend');
-    $table['bannersfinish_column_def'] = array(
-            'bid'         => 'I AUTOINCREMENT PRIMARY',
-            'cid'         => "I NOTNULL DEFAULT '0'",
-            'impressions' => "I NOTNULL DEFAULT '0'",
-            'clicks'      => "I NOTNULL DEFAULT '0'",
-            'datestart'   => 'T DEFAULT NULL',
-            'dateend'     => 'T DEFAULT NULL');
-    // add standard data fields
-    ObjectUtil::addStandardFieldsToTableDefinition($table['bannersfinish_column'], '');
-    ObjectUtil::addStandardFieldsToTableDataDefinition($table['bannersfinish_column_def']);
 
     // Return the table information
     return $table;

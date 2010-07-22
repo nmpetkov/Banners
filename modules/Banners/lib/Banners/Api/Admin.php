@@ -122,7 +122,7 @@ class Banners_Api_Admin extends Zikula_Api {
             return LogUtil::registerArgsError();
         }
 
-        // Get the existing admin message
+        // Get the existing banner
         $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $args['bid']));
 
         if ($banner == false) {
@@ -201,8 +201,6 @@ class Banners_Api_Admin extends Zikula_Api {
         return true;
     }
 
-    /********************* client functions *************************/
-
     /**
      * create a client
      *
@@ -265,7 +263,7 @@ class Banners_Api_Admin extends Zikula_Api {
             return LogUtil::registerArgsError();
         }
 
-        // Get the existing admin message
+        // Get the existing banner
         $client = ModUtil::apiFunc('Banners', 'user', 'getclient', array('cid' => $args['cid']));
 
         if ($client == false) {
@@ -304,7 +302,7 @@ class Banners_Api_Admin extends Zikula_Api {
             return LogUtil::registerArgsError();
         }
 
-        // Get the existing admin message
+        // Get the existing banner
         $client = ModUtil::apiFunc('Banners', 'user', 'getclient', array('cid' => $args['cid']));
 
         if ($client == false) {
@@ -330,37 +328,14 @@ class Banners_Api_Admin extends Zikula_Api {
         return true;
     }
 
-    /******************* finished banners functions ************************/
-
     /**
-     * delete a finished banner
+     * delete an inactive banner
      *
      * @param int $bid banner id
      * @return bool true on success, false on failure
      */
     public function deletefinished($args) {
-        // Argument check
-        if (!isset($args['bid'])) {
-            return LogUtil::registerArgsError();
-        }
-
-        // Get the existing admin message
-        $banner = ModUtil::apiFunc('Banners', 'user', 'getfinished', array('bid' => $args['bid']));
-
-        if ($banner == false) {
-            return LogUtil::registerError($this->__('No such item found.'));
-        }
-
-        // Security check
-        if (!SecurityUtil::checkPermission('Banners::', "$args[bid]::", ACCESS_DELETE)) {
-            return LogUtil::registerPermissionError();
-        }
-
-        if (!DBUtil::deleteObjectByID('bannersfinished', $args['bid'], 'bid')) {
-            return LogUtil::registerError($this->__('Error! Deletion attempt failed.'));
-        }
-
-        // Let the calling process know that we have finished successfully
-        return true;
+        $args['active'] = 0;
+        return $this->delete($args);
     }
 }

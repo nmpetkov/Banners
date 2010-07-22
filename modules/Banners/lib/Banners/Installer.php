@@ -55,14 +55,6 @@ class Banners_Installer extends Zikula_Installer
      * @return bool true if successful, false otherwise
      */
     public function upgrade($oldversion) {
-        // create the three tables
-        // TODO really? is this needed here?
-        $tables = array('banners', 'bannersclient', 'bannersfinish');
-        foreach ($tables as $table) {
-            if (!DBUtil::changeTable($table)) {
-                return false;
-            }
-        }
 
         // Upgrade dependent on old version number
         switch($oldversion) {
@@ -83,9 +75,13 @@ class Banners_Installer extends Zikula_Installer
                 $util = new Banners_Util;
                 $result = $util->createCategories();
 
-                DBUtil::changeTable('bannersclient'); // upgrade table to include new cols // dups previous (-22 lines)
+                // upgrade tables to include new cols
+                DBUtil::changeTable('bannersclient');
+                DBUtil::changeTable('banners');
 
+                // TODO need to move old finishedbanners back to regular table.
                 // TODO should do something with existing banner types, I guess.
+                DBUtil::dropTable('bannersfinish');
                 if ($result) {
                     LogUtil::registerStatus($this->__('IAB Banner Types entered into Categories module.'));
                 }
