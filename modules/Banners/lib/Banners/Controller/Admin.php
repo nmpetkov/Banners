@@ -128,7 +128,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
         if (!SecurityUtil::confirmAuthKey()) {
             return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'overview'));
         }
-        //$banner['active'] = 1; // activates the banner
 
         // Create the banner
         $bid = ModUtil::apiFunc('Banners', 'admin', 'create', $banner);

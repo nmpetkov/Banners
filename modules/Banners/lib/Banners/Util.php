@@ -11,7 +11,7 @@ class Banners_Util
      * @author Craig Heydenburg
      * @return boolean
      */
-    public static function createCategories()
+    public static function createCategories(array $importedCategories)
     {
         $dom = ZLanguage::getModuleDomain('Banners');
         $categories = array();
@@ -255,6 +255,18 @@ class Banners_Util
                 'time'   => 15
                 )
         );
+        $categories[] = array(
+            'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
+            'name'        => 'Undefined',
+            'value'       => null,
+            'displayname' => __('Undefined Ad Type', $dom),
+            'description' => __('Used for conversion of old finished banner types', $dom),
+            'attributes'  => array(
+                'time'   => 15
+                )
+        );
+
+        $categories = $categories + $importedCategories; // combine the arrays
 
         // enter categories into category table
         $catresults = array();
