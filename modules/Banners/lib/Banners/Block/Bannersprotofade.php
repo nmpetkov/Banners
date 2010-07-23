@@ -59,8 +59,9 @@ class Banners_Block_Bannersprotofade extends Zikula_Block
         }
         $banner = ModUtil::func('Banners', 'user', 'rotate', array('type' => $vars['type']));
         // assign the banner
+        $this->view->assign('blockid', $blockinfo['bid']);
         $this->view->assign('banner', $banner);
-        $this->view->assign('hovertext', true);
+        $this->view->assign('vars', $vars);
 
         // Populate block info and pass to theme
         $blockinfo['content'] = $this->view->fetch('blocks/protofade.tpl');
@@ -81,6 +82,7 @@ class Banners_Block_Bannersprotofade extends Zikula_Block
 
         // Defaults
         if (empty($vars['type'])) $vars['type'] = array();
+        if (empty($vars['hovertext'])) $vars['hovertext'] = 0;
 
         // load the category registry util
         $catregistry = CategoryRegistryUtil::getRegisteredModuleCategories('Banners', 'banners');
@@ -106,6 +108,7 @@ class Banners_Block_Bannersprotofade extends Zikula_Block
 
         // alter the corresponding variable
         $vars['type'] = FormUtil::getPassedValue('type', null, 'POST');
+        $vars['hovertext'] = FormUtil::getPassedValue('hovertext', '', 'POST');
 
         // write back the new contents
         $blockinfo['content'] = BlockUtil::varsToContent($vars);

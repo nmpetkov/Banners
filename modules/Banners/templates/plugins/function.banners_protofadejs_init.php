@@ -13,8 +13,12 @@
  */
 function smarty_function_banners_protofadejs_init ($params, &$smarty)
 {
-    $element  = $params['element'];
+    $element = $params['element'];
+    $banner  = $params['banner'];
+    $vars    = $params['vars'];
 	unset($params);
+
+    $delay = $banner['0']['__CATEGORIES__']['Main']['__ATTRIBUTES__']['time'];
 
     // protofade: http://cssrevolt.com/upload/files/protofade/
     // protofade license: MIT: http://www.opensource.org/licenses/mit-license.php
@@ -24,7 +28,9 @@ function smarty_function_banners_protofadejs_init ($params, &$smarty)
         <script type='text/javascript'>
         <!--//
         function StartUp() {
-	        new Protofade('{$element}', { randomize:true, delay:2.0 });
+	        new Protofade('{$element}', {
+                randomize:true,
+                delay:{$delay} });
         }
         document.observe ('dom:loaded', StartUp);
         //-->

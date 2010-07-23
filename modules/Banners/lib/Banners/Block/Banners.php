@@ -59,6 +59,7 @@ class Banners_Block_Banners extends Zikula_Block
         }
 
         // assign the banner
+        $this->view->assign('blockid', $blockinfo['bid']);
         $this->view->assign('banner', ModUtil::func('Banners', 'user', 'display', $vars));
         $this->view->assign('hovertext', $vars['hovertext']);
 

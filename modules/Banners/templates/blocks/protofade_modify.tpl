@@ -15,3 +15,7 @@
     </span>
     {/nocache}
 </div>
+<div class="z-formrow">
+    <label for="bannerblock_hovertext">{gt text='Show hovertext in JS tooltip'}</label>
+    <input type="checkbox" id="bannerblock_hovertext" name="hovertext" value="1" {if $vars.hovertext} checked="checked"{/if} />
+</div>
