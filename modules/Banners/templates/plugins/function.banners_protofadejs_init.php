@@ -19,7 +19,7 @@ function smarty_function_banners_protofadejs_init ($params, &$smarty)
     // protofade: http://cssrevolt.com/upload/files/protofade/
     // protofade license: MIT: http://www.opensource.org/licenses/mit-license.php
     
-	PageUtil::addVar("javascript", "modules/Banners/javascript/protofade.1.2.js");
+    PageUtil::addVar("javascript", "modules/Banners/javascript/protofade.1.2.js");
     $pagescript = "
         <script type='text/javascript'>
         <!--//
