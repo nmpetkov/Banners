@@ -15,7 +15,7 @@ function smarty_function_banners_protofadejs_init ($params, &$smarty)
 {
     $element = $params['element'];
     $banner  = $params['banner'];
-    $vars    = $params['vars'];
+    extract($params['vars']);
 	unset($params);
 
     $delay = $banner['0']['__CATEGORIES__']['Main']['__ATTRIBUTES__']['time'];
@@ -30,7 +30,14 @@ function smarty_function_banners_protofadejs_init ($params, &$smarty)
         function StartUp() {
 	        new Protofade('{$element}', {
                 randomize:true,
-                delay:{$delay} });
+                delay:{$delay},
+                controls:{$controls},
+                autostart:{$autostart},
+                eSquare:{$esquare},
+                eRows:{$erows},
+                eCols:{$ecols},
+                eColor:'{$ecolor}'
+                });
         }
         document.observe ('dom:loaded', StartUp);
         //-->

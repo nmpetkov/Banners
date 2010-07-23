@@ -52,6 +52,11 @@ class Banners_Block_Bannersprotofade extends Zikula_Block
 
         // Get variables from content block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
+        $vars['controls']  = (!isset($vars['controls'])  || empty($vars['controls']))  ? 'false' : 'true';
+        $vars['autostart'] = (!isset($vars['autostart']) || empty($vars['autostart'])) ? 'false' : 'true';
+        $vars['esquare']   = (!isset($vars['esquare'])   || empty($vars['esquare']))   ? 'false' : 'true';
+
+        //echo "<pre>"; print_r($vars); echo "</pre>";
 
         // Check if the Banners module is available.
         if (!ModUtil::available('Banners')) {
@@ -81,8 +86,15 @@ class Banners_Block_Bannersprotofade extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // Defaults
-        if (empty($vars['type'])) $vars['type'] = array();
+        if (empty($vars['type']))      $vars['type']      = array();
         if (empty($vars['hovertext'])) $vars['hovertext'] = 0;
+        if (empty($vars['duration']))  $vars['duration']  = 1.0;
+        if (empty($vars['controls']))  $vars['controls']  = 0;
+        if (empty($vars['autostart'])) $vars['autostart'] = 0;
+        if (empty($vars['esquare']))   $vars['esquare']   = 0;
+        if (empty($vars['erows']))     $vars['erows']     = 3;
+        if (empty($vars['ecols']))     $vars['ecols']     = 5;
+        if (empty($vars['ecolor']))    $vars['ecolor']    = '#FFFFFF';
 
         // load the category registry util
         $catregistry = CategoryRegistryUtil::getRegisteredModuleCategories('Banners', 'banners');
@@ -107,8 +119,15 @@ class Banners_Block_Bannersprotofade extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // alter the corresponding variable
-        $vars['type'] = FormUtil::getPassedValue('type', null, 'POST');
-        $vars['hovertext'] = FormUtil::getPassedValue('hovertext', '', 'POST');
+        $vars['type']      = FormUtil::getPassedValue('type',      null,      'POST');
+        $vars['hovertext'] = FormUtil::getPassedValue('hovertext', '',        'POST');
+        $vars['duration']  = FormUtil::getPassedValue('duration',  '1.0',     'POST');
+        $vars['controls']  = FormUtil::getPassedValue('controls',  '',        'POST');
+        $vars['autostart'] = FormUtil::getPassedValue('autostart', '',        'POST');
+        $vars['esquare']   = FormUtil::getPassedValue('esquare',   '',        'POST');
+        $vars['erows']     = FormUtil::getPassedValue('erows',     '3',       'POST');
+        $vars['ecols']     = FormUtil::getPassedValue('ecols',     '5',       'POST');
+        $vars['ecolor']    = FormUtil::getPassedValue('ecolor',    '#FFFFFF', 'POST');
 
         // write back the new contents
         $blockinfo['content'] = BlockUtil::varsToContent($vars);

@@ -28,6 +28,20 @@
         padding: 0;
         background: none;
     }
+    {{if $vars.controls eq 'true'}}
+    .next,
+    .previous,
+    .start,
+    .stop {
+        cursor: pointer;
+        display: block;
+        margin: 5px 15px 15px 15px;
+        float: left;
+    }
+    .controls {
+        margin-bottom: 1.5em;
+    }
+    {{/if}}
 </style>
 {if $vars.hovertext}
 {ajaxheader ui=true}
