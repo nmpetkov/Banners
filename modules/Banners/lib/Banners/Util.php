@@ -13,7 +13,7 @@ class Banners_Util
      * @author Craig Heydenburg
      * @return boolean
      */
-    public static function createCategories(array $importedCategories)
+    public static function createCategories($importedCategories)
     {
         $dom = ZLanguage::getModuleDomain('Banners');
         $categories = array();
@@ -268,7 +268,12 @@ class Banners_Util
                 )
         );
 
-        $categories = $categories + $importedCategories; // combine the arrays
+        if (is_array($importedCategories) && !empty($importedCategories)) {
+            // combine the arrays
+            foreach ($importedCategories as $importedCategory) {
+                $categories[] = $importedCategory;
+            }
+        }
 
         // enter categories into category table
         $catresults = array();
