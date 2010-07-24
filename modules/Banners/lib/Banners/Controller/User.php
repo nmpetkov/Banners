@@ -275,13 +275,15 @@ class Banners_Controller_User extends Zikula_Controller {
         $myIP = ModUtil::getVar('banners', 'myIP');
         $myhost = System::serverGetVar('REMOTE_ADDR');
 
-        if ((!empty($myIP) && substr($myhost, 0, strlen($myIP)) != $myIP) && (isset($banners['bid']))) {
-            ModUtil::apiFunc('Banners', 'user', 'impmade', array('bid' => $banners['bid']));
-        }
+        foreach($banners as $banner) {
+            if ((!empty($myIP) && substr($myhost, 0, strlen($myIP)) != $myIP)) {
+                ModUtil::apiFunc('Banners', 'user', 'impmade', array('bid' => $banner['bid']));
+            }
 
-        // Check if this impression is the last one and print the banner
-        if ((isset($banners['impmade'])) && ($banners['imptotal'] > 0 && $banners['imptotal'] == $banners['impmade'])) {
-            ModUtil::apiFunc('Banners', 'user', 'finish', array('bid' => $banners['bid']));
+            // Check if this impression is the last one and print the banner
+            if (($banner['imptotal'] > 0) && ($banner['impmade'] >= $banner['imptotal'])) {
+                ModUtil::apiFunc('Banners', 'user', 'finish', array('bid' => $banner['bid']));
+            }
         }
 
         return $banners;
