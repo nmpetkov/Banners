@@ -148,12 +148,12 @@ class Banners_Installer extends Zikula_Installer
         foreach ($types as $type) {
             $catdef[] = array(
                 'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
-                'name'        => $type,
+                'name'        => 'imported_' . $type,
                 'value'       => null,
                 'displayname' => $this->__("imported_") . $type,
                 'description' => $this->__("imported_") . $type,
                 'attributes'  => array(
-                'time'        => 15
+                    'time'        => 15
                 )
             );
         }
