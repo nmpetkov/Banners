@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package      Banners
  * @version      $Id:
@@ -9,9 +10,9 @@
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
-
 class Banners_Installer extends Zikula_Installer
 {
+
     /**
      * initialise the Banners module
      * This function is only ever called once during the lifetime of a particular
@@ -53,7 +54,7 @@ class Banners_Installer extends Zikula_Installer
     public function upgrade($oldversion) {
 
         // Upgrade dependent on old version number
-        switch($oldversion) {
+        switch ($oldversion) {
             case '1.0': // version 1.0 was shipped with PN .7x
             case '1.0.0':
                 // migrate the old config vars into module vars
@@ -89,7 +90,7 @@ class Banners_Installer extends Zikula_Installer
                     $url = ModUtil::url('Banners', 'admin');
                     $linktext = $this->__('Banners admin interface');
                     LogUtil::registerStatus($this->__('You must manually reassociate ALL your clients with a Zikula Username in the <a href="%1$s">%2$s</a>.', array(
-                        $url, $linktext)));
+                                        $url, $linktext)));
                 } else {
                     LogUtil::registerError($this->__('Error! Unable to reassociate clients with Current User.'));
                 }
@@ -102,7 +103,7 @@ class Banners_Installer extends Zikula_Installer
                 DBUtil::dropTable('bannersfinish');
 
             case '3.0.0':
-                // future development
+            // future development
         }
 
         // Update successful
@@ -135,28 +136,30 @@ class Banners_Installer extends Zikula_Installer
         // Delete successful
         return true;
     }
+
     /**
      * Setup the old banner types (<v2.1) as Category arrays to be added
      *
      * @return array
      */
     private function setupOldTypes() {
-        $types = DBUtil::selectFieldArray('banners', 'type', '', 'type' , true);
+        $types = DBUtil::selectFieldArray('banners', 'type', '', 'type', true);
         $catdef = array();
         foreach ($types as $type) {
             $catdef[] = array(
-            'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
-            'name'        => $type,
-            'value'       => null,
-            'displayname' => $this->__("imported_") . $type,
-            'description' => $this->__("imported_") . $type,
-            'attributes'  => array(
-                'time'   => 15
+                'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
+                'name'        => $type,
+                'value'       => null,
+                'displayname' => $this->__("imported_") . $type,
+                'description' => $this->__("imported_") . $type,
+                'attributes'  => array(
+                'time'        => 15
                 )
             );
         }
         return $catdef;
     }
+
     /**
      * update old banners (<v2.1) to new categorization (v3+)
      * and activate old banners
@@ -176,6 +179,7 @@ class Banners_Installer extends Zikula_Installer
         }
         return $result;
     }
+
     /**
      * move finished banners back to banners table as inactive
      * 
@@ -189,18 +193,19 @@ class Banners_Installer extends Zikula_Installer
         foreach ($banners as $banner) {
             $newbanner = array(
                 '__CATEGORIES__' => array('Main' => $cats['Undefined']),
-                'active'   => 0,
-                'title'    => $this->__f('Inactive Banner %s', $count),
-                'imageurl' => $this->__('undefined'),
-                'clickurl' => $this->__('undefined'),
-                'cid'      => $banner['cid'],
-                'impmade'  => $banner['impressions'],
-                'imptotal' => $banner['impressions'],
-                'clicks'   => $banner['clicks'],
-                'bid'      => null);
+                'active'         => 0,
+                'title'          => $this->__f('Inactive Banner %s', $count),
+                'imageurl'       => $this->__('undefined'),
+                'clickurl'       => $this->__('undefined'),
+                'cid'            => $banner['cid'],
+                'impmade'        => $banner['impressions'],
+                'imptotal'       => $banner['impressions'],
+                'clicks'         => $banner['clicks'],
+                'bid'            => null);
             $result = $result && ModUtil::apiFunc('Banners', 'admin', 'create', $newbanner);
             $count++;
         }
         return $result;
     }
+
 }

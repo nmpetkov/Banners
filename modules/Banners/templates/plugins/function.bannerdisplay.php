@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Smarty function to display .
  *
@@ -17,12 +18,12 @@
  * @param        sting
  * @return       string      the banner
  */
-function smarty_function_bannerdisplay ($params, &$smarty)
+function smarty_function_bannerdisplay($params, &$smarty)
 {
     $id     = isset($params['type'])   ? (int)$params['type'] : 0;
     $assign = isset($params['assign']) ? $params['assign']    : null;
 
-    if (ModUtil::available('Banners'))  {
+    if (ModUtil::available('Banners')) {
         $banner = ModUtil::func('Banners', 'user', 'display', array('type' => $type));
         if ($banner) {
             if ($assign) {

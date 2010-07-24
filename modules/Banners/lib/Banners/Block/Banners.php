@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package      Banners
  * @version      $Id:
@@ -10,6 +11,7 @@
  */
 class Banners_Block_Banners extends Zikula_Block
 {
+
     /**
      * initialise block
      *
@@ -17,7 +19,7 @@ class Banners_Block_Banners extends Zikula_Block
     public function init()
     {
         // Security
-            SecurityUtil::registerPermissionSchema('Bannersblock::', 'Block title::');
+        SecurityUtil::registerPermissionSchema('Bannersblock::', 'Block title::');
     }
 
     /**
@@ -81,8 +83,12 @@ class Banners_Block_Banners extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // Defaults
-        if (empty($vars['type']))      $vars['type'] = array();
-        if (empty($vars['hovertext'])) $vars['hovertext'] = 0;
+        if (empty($vars['type'])) {
+            $vars['type'] = array();
+        }
+        if (empty($vars['hovertext'])) {
+            $vars['hovertext'] = 0;
+        }
 
         // load the category registry util
         $catregistry = CategoryRegistryUtil::getRegisteredModuleCategories('Banners', 'banners');
@@ -117,4 +123,5 @@ class Banners_Block_Banners extends Zikula_Block
 
         return $blockinfo;
     }
+
 }

@@ -1,5 +1,6 @@
 <?php
-/** 
+
+/**
  * @package      Banners
  * @version      $Id:
  * @author       Halbrook Technologies
@@ -11,6 +12,7 @@
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 class Banners_Controller_Admin extends Zikula_Controller {
+
     /**
      * the main administration function
      *
@@ -44,7 +46,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         $clients = ModUtil::apiFunc('Banners', 'user', 'getallclients');
         $clientitems = array();
         if (is_array($clients)) {
-            foreach($clients as $client) {
+            foreach ($clients as $client) {
                 $clientitems[$client['cid']] = $client['name'];
             }
         }
@@ -92,14 +94,14 @@ class Banners_Controller_Admin extends Zikula_Controller {
 
         // get list of banners
         $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('clientinfo' => true));
-        foreach($banners as $key => $banner) {
+        foreach ($banners as $key => $banner) {
             $banners[$key] = Banners_Util::computestats($banner);
         }
         $this->view->assign('activebanneritems', $banners);
 
         // get list of finished banners
         $finishedbanners = ModUtil::apiFunc('Banners', 'user', 'getallfinished', array('clientinfo' => true));
-        foreach($finishedbanners as $key => $banner) {
+        foreach ($finishedbanners as $key => $banner) {
             $finishedbanners[$key] = Banners_Util::computestats($banner);
         }
         $this->view->assign('finishedbanners', $finishedbanners);
@@ -210,7 +212,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
 
         // Confirm authorisation code.
         if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError (ModUtil::url('Banners', 'admin', 'overview'));
+            return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'overview'));
         }
         if (ModUtil::apiFunc('Banners', 'admin', 'update', $banner)) {
             LogUtil::registerStatus($this->__('Banner Updated'));
@@ -228,8 +230,8 @@ class Banners_Controller_Admin extends Zikula_Controller {
      * @return mixed HTML output string if no confirmation, true if succesful, false otherwise
      */
     public function delete($args) {
-        $bid          = (int)FormUtil::getPassedValue('bid', null, 'REQUEST');
-        $objectid     = (int)FormUtil::getPassedValue('objectid', null, 'REQUEST');
+        $bid          = (int) FormUtil::getPassedValue('bid', null, 'REQUEST');
+        $objectid     = (int) FormUtil::getPassedValue('objectid', null, 'REQUEST');
         $confirmation = FormUtil::getPassedValue('confirmation', null, 'POST');
         if ($objectid) {
             $bid = $objectid;
@@ -237,8 +239,8 @@ class Banners_Controller_Admin extends Zikula_Controller {
 
         // Get the existing banner
         $banner = ModUtil::apiFunc('Banners', 'user', 'get', array(
-            'bid' => $bid,
-            'clientinfo' => true));
+                    'bid' => $bid,
+                    'clientinfo' => true));
         if ($banner == false) {
             return LogUtil::registerError($this->__('No such item found.'));
         }
@@ -252,7 +254,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
         // Check for confirmation.
         if (empty($confirmation)) {
             // No confirmation yet
-
             // Add the message id
             $this->view->assign('bid', $bid);
 
@@ -280,7 +281,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         return System::redirect(ModUtil::url('Banners', 'admin', 'overview'));
     }
 
-   /**
+    /**
      * create a client
      *
      * @param int $name client name
@@ -395,7 +396,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
         // Check for confirmation.
         if (empty($confirmation)) {
             // No confirmation yet
-
             // Add the message id
             $this->view->assign('client', $client);
 
@@ -441,8 +441,8 @@ class Banners_Controller_Admin extends Zikula_Controller {
 
         // Get the existing banner
         $banner = ModUtil::apiFunc('Banners', 'user', 'get', array(
-            'bid' => $bid,
-            'clientinfo' => true));
+                    'bid' => $bid,
+                    'clientinfo' => true));
         $banner = Banners_Util::computestats($banner);
 
         if ($banner == false) {
@@ -457,7 +457,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
         // Check for confirmation.
         if (empty($confirmation)) {
             // No confirmation yet
-
             // Add the message id
             $this->view->assign('bid', $bid);
 
@@ -531,11 +530,12 @@ class Banners_Controller_Admin extends Zikula_Controller {
         ModUtil::setVar('Banners', 'enablecats', $enablecats);
 
         // Let any other modules know that the modules configuration has been updated
-        $this->callHooks('module','updateconfig','Banners', array('module' => 'Banners'));
+        $this->callHooks('module', 'updateconfig', 'Banners', array('module' => 'Banners'));
 
         // the module configuration has been updated successfuly
         LogUtil::registerStatus($this->__('Configuration Updated'));
 
         return System::redirect(ModUtil::url('Banners', 'admin', 'overview'));
     }
+
 }

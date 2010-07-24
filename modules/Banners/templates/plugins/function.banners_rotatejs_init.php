@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package     Banners
  * @author      $Author: halbrooktech $
@@ -6,6 +7,7 @@
  * @copyright   Copyright (c) 2010, Michael Halbrook, Halbrook Technologies
  * @license     http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
+
 /**
  * banners_pagejs_init: include the required javascript in header if needed
  *
@@ -16,7 +18,7 @@ function smarty_function_banners_rotatejs_init($params, &$smarty)
 {
     $banner = $params['banner'];
     $divid  = $params['divid'];
-	unset($params);
+    unset($params);
 
     $slideshowcontent = "";
     foreach ($banner as $bannerinfo) {
@@ -24,7 +26,7 @@ function smarty_function_banners_rotatejs_init($params, &$smarty)
     }
     $imageheight = $banner[0]['__CATEGORIES__']['Main']['__ATTRIBUTES__']['width'];
     $imagelength = $banner[0]['__CATEGORIES__']['Main']['__ATTRIBUTES__']['length'];
-    
+
     $pagescript = "
         <script type='text/javascript'>
         <!--//
@@ -152,5 +154,5 @@ function smarty_function_banners_rotatejs_init($params, &$smarty)
         </script>";
     //PageUtil::addVar("rawtext", $pagescript);
 
-	return $pagescript;
+    return $pagescript;
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package      Banners
  * @version      $Id:
@@ -8,9 +9,9 @@
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
-
 class Banners_Version extends Zikula_Version
 {
+
     public function getMetaData()
     {
         $meta = array();
@@ -22,8 +23,9 @@ class Banners_Version extends Zikula_Version
         $meta['securityschema'] = array(
             'Banners::' => 'Banner ID::',
             'Banners::Client' => 'Client ID::');
-        $meta['core_min']       = '1.3.0'; // requires minimum 1.3.0 or later
+        $meta['core_min'] = '1.3.0'; // requires minimum 1.3.0 or later
 
         return $meta;
     }
+
 }

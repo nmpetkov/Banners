@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package      Banners
  * @version      $Id:
@@ -10,6 +11,7 @@
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 class Banners_Controller_User extends Zikula_Controller {
+
     /**
      * the main user function
      *
@@ -44,7 +46,7 @@ class Banners_Controller_User extends Zikula_Controller {
         }
 
         // calculate some additional values
-        foreach($banners as $key => $banner) {
+        foreach ($banners as $key => $banner) {
             $banners[$key] = Banners_Util::computestats($banner);
         }
 
@@ -68,10 +70,10 @@ class Banners_Controller_User extends Zikula_Controller {
         }
 
         $banner = ModUtil::apiFunc('Banners', 'user', 'get', (array(
-            'bid' => $bid,
-            'cid' => $cid)));
+                    'bid' => $bid,
+                    'cid' => $cid)));
         $client = ModUtil::apiFunc('Banners', 'user', 'getclient', (array(
-            'cid' => $cid)));
+                    'cid' => $cid)));
         if (!$banner) {
             return LogUtil::registerError($this->__f('Error! Could not find banner (%s)', $bid));
         }
@@ -83,10 +85,10 @@ class Banners_Controller_User extends Zikula_Controller {
         $this->view->assign('date', date("F jS Y, h:iA."));
         $message = $this->view->fetch('email/stats_body.tpl');
         $mailsent = ModUtil::apiFunc('Mailer', 'user', 'sendmessage', array(
-                'toaddress' => $client['email'],
-                'toname'    => $client['contact'],
-                'subject'   => $this->__f('Advertising stats for %s', System::getVar('sitename')),
-                'body'      => $message));
+                    'toaddress' => $client['email'],
+                    'toname' => $client['contact'],
+                    'subject' => $this->__f('Advertising stats for %s', System::getVar('sitename')),
+                    'body' => $message));
         if ($mailsent) {
             LogUtil::registerStatus($this->__('Statistics e-mailed'));
         } else {
@@ -120,8 +122,8 @@ class Banners_Controller_User extends Zikula_Controller {
             LogUtil::registerError($this->__('Not a Valid Banners Client'));
         } else {
             if (!ModUtil::apiFunc('Banners', 'user', 'changeurl', array(
-                    'bid' => $bid,
-                    'url' => $url))) {
+                        'bid' => $bid,
+                        'url' => $url))) {
                 LogUtil::registerError($this->__('Please contact the administrator.'));
             } else {
                 LogUtil::registerStatus($this->__('URL Changed'));
@@ -158,7 +160,7 @@ class Banners_Controller_User extends Zikula_Controller {
             if (strpos($banner['clickurl'], 'index.php') === 0) {
                 // do nothing, local system URL
             } elseif (substr($banner['clickurl'], 0, 7) != 'http://') {
-                $banner['clickurl'] = 'http://'.$banner['clickurl'];
+                $banner['clickurl'] = 'http://' . $banner['clickurl'];
             }
             return System::redirect($banner['clickurl'], array('HTTP/1.1 301 Moved Permanently'));
         }
@@ -180,21 +182,21 @@ class Banners_Controller_User extends Zikula_Controller {
         $catFilter = $args['type'];
         $catFilter['__META__']['module'] = 'Banners';
         // get the banner count
-        $numrows = ModUtil::apiFunc('Banners', 'user', 'countitems',  array('catFilter' =>$catFilter));
+        $numrows = ModUtil::apiFunc('Banners', 'user', 'countitems', array('catFilter' => $catFilter));
 
 
         // Get a random banner if exist any.
         // More efficient random stuff, thanks to Cristian Arroyo from http://www.planetalinux.com.ar
         if ($numrows >= 1) {
-            $numrows = $numrows-1;
-            mt_srand((double)microtime() * 1000000);
+            $numrows = $numrows - 1;
+            mt_srand((double) microtime() * 1000000);
             $bannum = mt_rand(0, $numrows);
         } else {
             return '&nbsp;';
         }
 
         // TODO would be nice if we could randomly fetch only one banner instead of all of them.
-        $banners = ModUtil::apiFunc('Banners', 'user', 'getall',  array('catFilfer' =>$catFilter));
+        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('catFilfer' => $catFilter));
         if (isset($banners[$bannum])) {
             $banner = $banners[$bannum];
         } else {
@@ -219,10 +221,10 @@ class Banners_Controller_User extends Zikula_Controller {
         if (strtolower(substr($banner['imageurl'], -4)) == '.swf') {
             // flash banner code based on Banners Plus code; tidied for (x)html
             // Original comment (Powered by E.U LUGUNAR (http://www.lugunar.com))
-            $bannerstring = '<object codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" classid="clsid:D27CDB6E-AE6D-11CF-96B8-444553540000">';
-            $bannerstring .= '<param name="movie" value="'.DataUtil::formatForDisplay($banner['imageurl']).'" />';
+            $bannerstring  = '<object codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" classid="clsid:D27CDB6E-AE6D-11CF-96B8-444553540000">';
+            $bannerstring .= '<param name="movie" value="' . DataUtil::formatForDisplay($banner['imageurl']) . '" />';
             $bannerstring .= '<param name="quality" value="high" />';
-            $bannerstring .= '<embed name="animacion" src='.DataUtil::formatForDisplay($banner['imageurl']).' quality="high" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" />';
+            $bannerstring .= '<embed name="animacion" src=' . DataUtil::formatForDisplay($banner['imageurl']) . ' quality="high" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" />';
             $bannerstring .= '</object>';
         } else {
             if ($banner['clickurl']) {
@@ -236,15 +238,16 @@ class Banners_Controller_User extends Zikula_Controller {
                     $target = ' target="_blank"';
                 }
                 $bannerstring  = "<a href='$url'" . $title . $target . '>';
-                $bannerstring .= '<img src="'.DataUtil::formatForDisplay($banner['imageurl']) . '" alt="'.DataUtil::formatForDisplay($banner['clickurl']) .'" />';
+                $bannerstring .= '<img src="' . DataUtil::formatForDisplay($banner['imageurl']) . '" alt="' . DataUtil::formatForDisplay($banner['clickurl']) . '" />';
                 $bannerstring .= '</a>';
-            }else {
-                $bannerstring .= '<img src="'.DataUtil::formatForDisplay($banner['imageurl']) .'" />';
+            } else {
+                $bannerstring .= '<img src="' . DataUtil::formatForDisplay($banner['imageurl']) . '" />';
             }
         }
         $banner['displaystring'] = $bannerstring;
         return $banner;
     }
+
     /**
      * display a random banner
      *
@@ -262,7 +265,7 @@ class Banners_Controller_User extends Zikula_Controller {
         $catFilter['__META__']['module'] = 'Banners';
 
         // get the banners
-        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('catFilter' =>$catFilter));
+        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('catFilter' => $catFilter));
 
         $banid = 0;
         foreach ($banners as $key => $banner) {
@@ -275,7 +278,7 @@ class Banners_Controller_User extends Zikula_Controller {
         $myIP = ModUtil::getVar('banners', 'myIP');
         $myhost = System::serverGetVar('REMOTE_ADDR');
 
-        foreach($banners as $banner) {
+        foreach ($banners as $banner) {
             if ((!empty($myIP) && substr($myhost, 0, strlen($myIP)) != $myIP)) {
                 ModUtil::apiFunc('Banners', 'user', 'impmade', array('bid' => $banner['bid']));
             }
@@ -288,4 +291,5 @@ class Banners_Controller_User extends Zikula_Controller {
 
         return $banners;
     }
+
 }

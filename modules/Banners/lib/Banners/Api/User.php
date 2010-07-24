@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package      Banners
  * @version      $Id:
@@ -12,6 +13,7 @@
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 class Banners_Api_User extends Zikula_Api {
+
     /**
      * get all banners
      *
@@ -51,16 +53,16 @@ class Banners_Api_User extends Zikula_Api {
 
         // define the permission filter to apply
         $permFilter = array(array(
-                        'realm'          => 0,
-                        'component_left' => 'Banners',
-                        'instance_left'  => 'bid',
-                        'instance_right' => '',
-                        'level'          => ACCESS_READ));
+                'realm'          => 0,
+                'component_left' => 'Banners',
+                'instance_left'  => 'bid',
+                'instance_right' => '',
+                'level'          => ACCESS_READ));
 
         $wheres = array();
         // allow filtering by client id
         if (isset($args['cid'])) {
-            $wheres[] = 'cid='.DataUtil::formatForStore((int)$args['cid']);
+            $wheres[] = 'cid=' . DataUtil::formatForStore((int) $args['cid']);
         }
         $wheres[] = 'active=' . $args['active'];
 
@@ -68,16 +70,16 @@ class Banners_Api_User extends Zikula_Api {
 
         // get the objects from the db
         if ($args['clientinfo']) {
-            $joininfo[] = array (
-                    'join_table'          =>  'bannersclient',
-                    'join_field'          =>  'name',
-                    'object_field_name'   =>  'name',
-                    'compare_field_table' =>  'cid',
-                    'compare_field_join'  =>  'cid');
+            $joininfo[] = array(
+                'join_table'          => 'bannersclient',
+                'join_field'          => 'name',
+                'object_field_name'   => 'name',
+                'compare_field_table' => 'cid',
+                'compare_field_join'  => 'cid');
             // cannot do category-based permissions here because cannot have join with Filter :-(
-            $items = DBUtil::selectExpandedObjectArray('banners', $joininfo, $where, 'bid', $args['startnum']-1, $args['numitems'], '', $permFilter, $args['catFilter']);
+            $items = DBUtil::selectExpandedObjectArray('banners', $joininfo, $where, 'bid', $args['startnum'] - 1, $args['numitems'], '', $permFilter, $args['catFilter']);
         } else {
-            $items = DBUtil::selectObjectArray('banners', $where, 'bid', $args['startnum']-1, $args['numitems'], '', $permFilter, $args['catFilter']);
+            $items = DBUtil::selectObjectArray('banners', $where, 'bid', $args['startnum'] - 1, $args['numitems'], '', $permFilter, $args['catFilter']);
         }
 
         // ease display of blocktype
@@ -113,20 +115,20 @@ class Banners_Api_User extends Zikula_Api {
 
         // define the permission filter to apply
         $permFilter = array(array(
-                        'realm'          => 0,
-                        'component_left' => 'Banners',
-                        'instance_left'  => 'bid',
-                        'instance_right' => '',
-                        'level'          => ACCESS_READ));
+                'realm'          => 0,
+                'component_left' => 'Banners',
+                'instance_left'  => 'bid',
+                'instance_right' => '',
+                'level'          => ACCESS_READ));
 
         // get the banner
         if ($args['clientinfo']) {
             $join[] = array(
-                    'join_table'          =>  'bannersclient',
-                    'join_field'          =>  'name',
-                    'object_field_name'   =>  'name',
-                    'compare_field_table' =>  'cid',
-                    'compare_field_join'  =>  'cid');
+                'join_table'          => 'bannersclient',
+                'join_field'          => 'name',
+                'object_field_name'   => 'name',
+                'compare_field_table' => 'cid',
+                'compare_field_join'  => 'cid');
 
             $banner = DBUtil::selectExpandedObjectByID('banners', $join, $args['bid'], 'bid', '', $permFilter);
         } else {
@@ -187,20 +189,20 @@ class Banners_Api_User extends Zikula_Api {
 
         // define the permission filter to apply
         $permFilter = array(array(
-                        'realm'          => 0,
-                        'component_left' => 'Banners',
-                        'instance_left'  => 'cid',
-                        'instance_right' => '',
-                        'level'          => ACCESS_READ));
+                'realm'          => 0,
+                'component_left' => 'Banners',
+                'instance_left'  => 'cid',
+                'instance_right' => '',
+                'level'          => ACCESS_READ));
 
         // get the objects from the db
-        $items = DBUtil::selectObjectArray('bannersclient', '', 'cid', $args['startnum']-1, $args['numitems'], '', $permFilter);
+        $items = DBUtil::selectObjectArray('bannersclient', '', 'cid', $args['startnum'] - 1, $args['numitems'], '', $permFilter);
         // get the active banner counts for each client
         foreach ($items as $key => $item) {
             $items[$key]['bannercount'] = DBUtil::selectObjectCountByID('banners', $item['cid'], 'cid');
             $uservars = UserUtil::getVars($item['uid']);
             $items[$key]['zuname'] = $uservars['uname'];
-            $items[$key]['email']  = $uservars['email'];
+            $items[$key]['email'] = $uservars['email'];
         }
         if ($items === false) {
             return LogUtil::registerError($this->__('Error! Could not load items.'));
@@ -223,16 +225,17 @@ class Banners_Api_User extends Zikula_Api {
         }
 
         // define the permission filter to apply
-        $permFilter = array(array('realm'          => 0,
-                        'component_left' => 'Banners',
-                        'instance_left'  => 'cid',
-                        'instance_right' => '',
-                        'level'          => ACCESS_READ));
+        $permFilter = array(array(
+                'realm'          => 0,
+                'component_left' => 'Banners',
+                'instance_left'  => 'cid',
+                'instance_right' => '',
+                'level'          => ACCESS_READ));
 
         $client = DBUtil::selectObjectByID('bannersclient', $args['cid'], 'cid', '', $permFilter);
         $uservars = UserUtil::getVars($client['uid']);
         $client['zuname'] = $uservars['uname'];
-        $client['email']  = $uservars['email'];
+        $client['email'] = $uservars['email'];
         return $client;
     }
 
@@ -330,9 +333,9 @@ class Banners_Api_User extends Zikula_Api {
         $obj['clickurl'] = $args['url'];
 
         // update object
-        $res = DBUtil::updateObject ($obj, 'banners', '', 'bid');
+        $res = DBUtil::updateObject($obj, 'banners', '', 'bid');
 
-        return (boolean)$res;
+        return (boolean) $res;
     }
 
     /**
@@ -347,11 +350,11 @@ class Banners_Api_User extends Zikula_Api {
             return LogUtil::registerArgsError();
         }
         $obj = array();
-        $obj['bid']    = $args['bid'];
+        $obj['bid'] = $args['bid'];
         $obj['active'] = 0;
 
         // update object
-        $res = DBUtil::updateObject ($obj, 'banners', '', 'bid');
+        $res = DBUtil::updateObject($obj, 'banners', '', 'bid');
 
         return true;
     }
@@ -362,11 +365,13 @@ class Banners_Api_User extends Zikula_Api {
      * @return mixed client array if successful, false otherwise
      */
     public function validateclient() {
-        $permFilter = array(array('realm'          => 0,
-                        'component_left' => 'Banners',
-                        'instance_left'  => 'cid',
-                        'instance_right' => '',
-                        'level'          => ACCESS_READ));
+        $permFilter = array(array(
+                'realm'          => 0,
+                'component_left' => 'Banners',
+                'instance_left'  => 'cid',
+                'instance_right' => '',
+                'level'          => ACCESS_READ));
         return DBUtil::selectObjectByID('bannersclient', UserUtil::getVar('uid'), 'uid', '', $permFilter);
     }
+
 }

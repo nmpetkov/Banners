@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package      Banners
  * @version      $Id:
@@ -8,9 +9,9 @@
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
-
 class Banners_Block_Bannersrotate extends Zikula_Block
 {
+
     /**
      * initialise block
      *
@@ -28,14 +29,15 @@ class Banners_Block_Bannersrotate extends Zikula_Block
      */
     public function info()
     {
-        return array('text_type'       => $this->__('Rotating'),
-                     'module'          => 'Banners',
-                     'text_type_long'  => $this->__('Rotating Banner Display'),
-                     'allow_multiple'  => true,
-                     'form_content'    => false,
-                     'form_refresh'    => false,
-                     'show_preview'    => true,
-                     'admin_tableless' => true);
+        return array(
+            'text_type'       => $this->__('Rotating'),
+            'module'          => 'Banners',
+            'text_type_long'  => $this->__('Rotating Banner Display'),
+            'allow_multiple'  => true,
+            'form_content'    => false,
+            'form_refresh'    => false,
+            'show_preview'    => true,
+            'admin_tableless' => true);
     }
 
     /**
@@ -82,12 +84,14 @@ class Banners_Block_Bannersrotate extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // Defaults
-        if (empty($vars['type'])) $vars['type'] = array();
+        if (empty($vars['type'])) {
+            $vars['type'] = array();
+        }
 
         // load the category registry util
         $catregistry = CategoryRegistryUtil::getRegisteredModuleCategories('Banners', 'banners');
         $this->view->assign('catregistry', $catregistry);
-        
+
         // assign the approriate values
         $this->view->assign('vars', $vars);
 
@@ -117,4 +121,5 @@ class Banners_Block_Bannersrotate extends Zikula_Block
 
         return $blockinfo;
     }
+
 }

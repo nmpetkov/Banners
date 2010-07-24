@@ -1,10 +1,12 @@
 <?php
+
 /* 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 class Banners_Util
 {
+
     /**
      * Create Banner Type Category Entries
      *
@@ -284,6 +286,7 @@ class Banners_Util
     
         return $catresults;
     }
+    
     /**
      * add computed stats to banner array
      *
@@ -311,4 +314,5 @@ class Banners_Util
         }
         return $banner;
     }
+    
 } // end class def

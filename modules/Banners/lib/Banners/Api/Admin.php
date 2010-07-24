@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package      Banners
  * @version      $Id:
@@ -11,6 +12,7 @@
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 class Banners_Api_Admin extends Zikula_Api {
+
     /**
      * get available admin panel links
      *
@@ -46,7 +48,6 @@ class Banners_Api_Admin extends Zikula_Api {
                     'text' => $this->__('New Banner'),
                     'class' => 'z-icon-es-new');
             }
-
         }
         if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN)) {
             $links[] = array(
@@ -63,7 +64,7 @@ class Banners_Api_Admin extends Zikula_Api {
 
         return $links;
     }
-    
+
     /**
      * create a banner
      *
@@ -111,7 +112,7 @@ class Banners_Api_Admin extends Zikula_Api {
      */
     public function update($args) {
         // Argument check
-        
+
         if (!isset($args['bid']) ||
                 !isset($args['cid']) ||
                 !isset($args['title']) ||
@@ -121,7 +122,7 @@ class Banners_Api_Admin extends Zikula_Api {
                 !isset($args['clickurl'])) {
             return LogUtil::registerArgsError();
         }
-        $args['active']  = isset($args['active'])  ? $args['active'] : 0;
+        $args['active']  = isset($args['active'])  ? $args['active']  : 0;
         $args['unlimit'] = isset($args['unlimit']) ? $args['unlimit'] : 0;
 
         // Get the existing banner
@@ -221,9 +222,9 @@ class Banners_Api_Admin extends Zikula_Api {
     public function createclient($args) {
         // Argument check
         if (!isset($args['name']) ||
-            !isset($args['contact']) ||
-            !isset($args['uid']) ||
-            !isset($args['extrainfo'])) {
+                !isset($args['contact']) ||
+                !isset($args['uid']) ||
+                !isset($args['extrainfo'])) {
             return LogUtil::registerArgsError();
         }
 
@@ -234,10 +235,10 @@ class Banners_Api_Admin extends Zikula_Api {
 
         // create the item array
         $client = array(
-                'name'      => $args['name'],
-                'contact'   => $args['contact'],
-                'uid'       => $args['uid'],
-                'extrainfo' => $args['extrainfo']);
+            'name'      => $args['name'],
+            'contact'   => $args['contact'],
+            'uid'       => $args['uid'],
+            'extrainfo' => $args['extrainfo']);
 
         if (!DBUtil::insertObject($client, 'bannersclient', 'cid')) {
             return LogUtil::registerError($this->__('Error! Creation attempt failed.'));
@@ -262,10 +263,10 @@ class Banners_Api_Admin extends Zikula_Api {
     public function updateclient($args) {
         // Argument check
         if (!isset($args['cid']) ||
-            !isset($args['name']) ||
-            !isset($args['contact']) ||
-            !isset($args['uid']) ||
-            !isset($args['extrainfo'])) {
+                !isset($args['name']) ||
+                !isset($args['contact']) ||
+                !isset($args['uid']) ||
+                !isset($args['extrainfo'])) {
             return LogUtil::registerArgsError();
         }
 
@@ -283,11 +284,11 @@ class Banners_Api_Admin extends Zikula_Api {
 
         // create the new item array
         $client = array(
-                'cid'       => $args['cid'],
-                'name'      => $args['name'],
-                'contact'   => $args['contact'],
-                'uid'       => $args['uid'],
-                'extrainfo' => $args['extrainfo']);
+            'cid'       => $args['cid'],
+            'name'      => $args['name'],
+            'contact'   => $args['contact'],
+            'uid'       => $args['uid'],
+            'extrainfo' => $args['extrainfo']);
 
         if (!DBUtil::updateObject($client, 'bannersclient', '', 'cid')) {
             return LogUtil::registerError($this->__('Error! Update attempt failed.'));
@@ -344,4 +345,5 @@ class Banners_Api_Admin extends Zikula_Api {
         $args['active'] = 0;
         return $this->delete($args);
     }
+
 }
