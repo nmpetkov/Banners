@@ -33,7 +33,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
      *
      * @return string HTML output string
      */
-    public function newentry($args) {
+    public function newentry() {
         // Security check
         if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN)) {
             return LogUtil::registerPermissionError();
@@ -64,7 +64,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
      *
      * @return string HTML output string
      */
-    public function newclient($args) {
+    public function newclient() {
         // Security check
         if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN)) {
             return LogUtil::registerPermissionError();
@@ -83,7 +83,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
      * @param int $startnum the start item id for the pager
      * @return string HTML output string
      */
-    public function overview($args) {
+    public function overview() {
         // Security check
         if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN)) {
             return LogUtil::registerPermissionError();
@@ -116,14 +116,9 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * create a banner
      *
-     * @param int $cid client id
-     * @param int $idtype banner type id
-     * @param int $imptotal total impressions purchased
-     * @param string $imageurl source url of the banner image
-     * @param string $clickurl destination url for the banner
      * @return mixed int banner id if successful
      */
-    public function create($args) {
+    public function create() {
         $banner = FormUtil::getPassedValue('banner', null, 'POST');
 
         // Confirm authorisation code.
@@ -146,10 +141,9 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * modify a banner
      *
-     * @param int $args['bid'] the banner id
      * @return string HTML output string
      */
-    public function modify($args) {
+    public function modify() {
 
         $bid   = FormUtil::getPassedValue('bid', null, 'GET');
         $limit = FormUtil::getPassedValue('limit', 0, 'GET');
@@ -199,15 +193,9 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * update a banner
      *
-     * @param int $cid client id
-     * @param int $idtype banner type id
-     * @param int $imptotal total impressions purchased
-     * @param int $impadded additional impressions added
-     * @param string $imageurl source url of the banner image
-     * @param string $clickurl destination url for the banner
      * @return bool
      */
-    public function update($args) {
+    public function update() {
         $banner = FormUtil::getPassedValue('banner', null, 'POST');
 
         // Confirm authorisation code.
@@ -224,12 +212,9 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * delete a banner
      *
-     * @param int $bid banner id
-     * @param int $objectid generic object id maps to bid if present
-     * @param bool $confirmation confirmation of the deletion
      * @return mixed HTML output string if no confirmation, true if succesful, false otherwise
      */
-    public function delete($args) {
+    public function delete() {
         $bid          = (int) FormUtil::getPassedValue('bid', null, 'REQUEST');
         $objectid     = (int) FormUtil::getPassedValue('objectid', null, 'REQUEST');
         $confirmation = FormUtil::getPassedValue('confirmation', null, 'POST');
@@ -284,15 +269,9 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * create a client
      *
-     * @param int $name client name
-     * @param int $contact client contact name
-     * @param int $email client e-mail address
-     * @param string $login client login name
-     * @param string $passwd client login password
-     * @param string $extrainfo additional client information
      * @return mixed int banner id if successful
      */
-    public function createclient($args) {
+    public function createclient() {
         $client = FormUtil::getPassedValue('client', null, 'POST');
 
         // Confirm authorisation code.
@@ -310,10 +289,9 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * modify a banner client
      *
-     * @param int $cid the client id
      * @return string HTML output string
      */
-    public function modifyclient($args) {
+    public function modifyclient() {
         $cid = FormUtil::getPassedValue('cid', null, 'GET');
 
         if (!is_numeric($cid)) {
@@ -341,16 +319,9 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * update a banner client
      *
-     * @param int $cid client id
-     * @param int $name client name
-     * @param int $contact client contact name
-     * @param int $email client e-mail address
-     * @param string $login client login name
-     * @param string $passwd client login password
-     * @param string $extrainfo additional client information
      * @return bool
      */
-    public function updateclient($args) {
+    public function updateclient() {
         $client = FormUtil::getPassedValue('client', null, 'POST');
 
         // Confirm authorisation code.
@@ -368,12 +339,9 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * delete a banner
      *
-     * @param int $cid client id
-     * @param int $objectid generic object id maps to bid if present
-     * @param bool $confirmation confirmation of the deletion
      * @return mixed HTML output string if no confirmation, true if succesful, false otherwise
      */
-    public function deleteclient($args) {
+    public function deleteclient() {
         $cid          = FormUtil::getPassedValue('cid', null, 'REQUEST');
         $objectid     = FormUtil::getPassedValue('objectid', null, 'REQUEST');
         $confirmation = FormUtil::getPassedValue('confirmation', null, 'POST');
@@ -426,12 +394,9 @@ class Banners_Controller_Admin extends Zikula_Controller {
     /**
      * delete a finished banner
      *
-     * @param int $bid banner id
-     * @param int $objectid generic object id maps to bid if present
-     * @param bool $confirmation confirmation of the deletion
      * @return mixed HTML output string if no confirmation, true if succesful, false otherwise
      */
-    public function deletefinished($args) {
+    public function deletefinished() {
         $bid          = FormUtil::getPassedValue('bid', null, 'REQUEST');
         $objectid     = FormUtil::getPassedValue('objectid', null, 'REQUEST');
         $confirmation = FormUtil::getPassedValue('confirmation', null, 'POST');

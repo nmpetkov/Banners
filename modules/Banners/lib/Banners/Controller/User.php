@@ -31,7 +31,7 @@ class Banners_Controller_User extends Zikula_Controller {
      *
      * @return string HTML output string
      */
-    public function client($args) {
+    public function client() {
         // Security check
         if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ)) {
             return LogUtil::registerPermissionError();
@@ -103,7 +103,7 @@ class Banners_Controller_User extends Zikula_Controller {
      *
      * @return string HTML output string
      */
-    public function changeurl($args) {
+    public function changeurl() {
         $cid = FormUtil::getPassedValue('cid', null, 'POST');
         $bid = FormUtil::getPassedValue('bid', null, 'POST');
         $url = FormUtil::getPassedValue('url', null, 'POST');
@@ -138,7 +138,7 @@ class Banners_Controller_User extends Zikula_Controller {
      *
      * @return string HTML output string
      */
-    public function click($args) {
+    public function click() {
         // check that were coming from a local referer
         if (!System::localReferer(true)) {
             return DataUtil::formatForDisplay('Sorry! No authorization to access this module.');

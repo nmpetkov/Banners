@@ -118,7 +118,7 @@ class Banners_Installer extends Zikula_Installer
      */
     public function uninstall() {
         // drop the three tables for the module
-        $tables = array('banners', 'bannersclient', 'bannersfinish');
+        $tables = array('banners', 'bannersclient');
         foreach ($tables as $table) {
             if (!DBUtil::dropTable($table)) {
                 return false;
