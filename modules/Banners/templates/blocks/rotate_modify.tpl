@@ -16,8 +16,8 @@
     {/nocache}
 </div>
 <div class="z-formrow">
-    <label for="bannerblock_duration">{gt text='Transition duration'}</label>
+    <label for="bannerblock_duration">{gt text='Transition speed'}</label>
     <input type="text" id="bannerblock_duration" name="duration" value="{$vars.duration}" />
-    <em class='z-formnote'>({gt text='in seconds'})</em>
+    <em class='z-formnote'>({gt text='NOT in seconds'}) Greater is faster. recommended value: 50.</em>
     <em class='z-formnote'>{gt text='Note: The display duration is set in the Category Attributes'}</em>
 </div>

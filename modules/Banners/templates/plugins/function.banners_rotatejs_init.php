@@ -28,7 +28,7 @@ function smarty_function_banners_rotatejs_init($params, &$smarty)
     $imageheight = $banner[0]['__CATEGORIES__']['Main']['__ATTRIBUTES__']['width'];
     $imagelength = $banner[0]['__CATEGORIES__']['Main']['__ATTRIBUTES__']['length'];
     $delay       = (float) $banner[0]['__CATEGORIES__']['Main']['__ATTRIBUTES__']['time'] * 1000;
-    $degree      = (float) $vars['duration'] * 1000;
+    $degree      = (float) $vars['duration'];
 
     $pagescript = "
         <script type='text/javascript'>
