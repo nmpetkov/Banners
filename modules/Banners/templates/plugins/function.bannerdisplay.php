@@ -20,11 +20,11 @@
  */
 function smarty_function_bannerdisplay($params, &$smarty)
 {
-    $id     = isset($params['type'])   ? (int)$params['type'] : 0;
-    $assign = isset($params['assign']) ? $params['assign']    : null;
+    $id     = isset($params['blocktype']) ? (int)$params['blocktype'] : 0;
+    $assign = isset($params['assign'])    ? $params['assign']         : null;
 
     if (ModUtil::available('Banners')) {
-        $banner = ModUtil::func('Banners', 'user', 'display', array('type' => $type));
+        $banner = ModUtil::func('Banners', 'user', 'display', array('blocktype' => $id));
         if ($banner) {
             if ($assign) {
                 $smarty->assign($assign, $banner['displaystring']);

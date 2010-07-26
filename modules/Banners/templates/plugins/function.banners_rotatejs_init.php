@@ -17,7 +17,8 @@
 function smarty_function_banners_rotatejs_init($params, &$smarty)
 {
     $banner = $params['banner'];
-    $divid  = $params['divid'];
+    //$divid  = $params['divid'];
+    $vars   = $params['vars'];
     unset($params);
 
     $slideshowcontent = "";
@@ -26,6 +27,8 @@ function smarty_function_banners_rotatejs_init($params, &$smarty)
     }
     $imageheight = $banner[0]['__CATEGORIES__']['Main']['__ATTRIBUTES__']['width'];
     $imagelength = $banner[0]['__CATEGORIES__']['Main']['__ATTRIBUTES__']['length'];
+    $delay       = (float) $banner[0]['__CATEGORIES__']['Main']['__ATTRIBUTES__']['time'] * 1000;
+    $degree      = (float) $vars['duration'] * 1000;
 
     $pagescript = "
         <script type='text/javascript'>
@@ -39,8 +42,8 @@ function smarty_function_banners_rotatejs_init($params, &$smarty)
 
         var trans_width='{$imagelength}px' //slideshow width
         var trans_height='{$imageheight}px' //slideshow height
-        var pause=5000 //SET PAUSE BETWEEN SLIDE (3000=3 seconds)
-        var degree=50 //animation speed. Greater is faster.
+        var pause={$delay} //SET PAUSE BETWEEN SLIDE (3000=3 seconds)
+        var degree={$degree} //animation speed. Greater is faster.
 
         var slideshowcontent=new Array()
         //Define slideshow contents: [image URL, OPTIONAL LINK, OPTIONAL LINK TARGET]

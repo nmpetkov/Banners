@@ -56,18 +56,19 @@ class Banners_Block_Bannersrotate extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // Defaults
-        $blocktemplate = (empty($vars['blocktemplate'])) ? "blocks/rotate.tpl" : $vars['blocktemplate'];
+        $vars['duration'] = (empty($vars['duration'])) ? 1 : $vars['duration'];
 
         // Check if the Banners module is available.
         if (!ModUtil::available('Banners')) {
             return false;
         }
 
-        $banner = ModUtil::func('Banners', 'user', 'rotate', array('type' => $vars['type']));
+        $banner = ModUtil::func('Banners', 'user', 'rotate', array('blocktype' => $vars['blocktype']));
         // assign the banner
         $this->view->assign('banner', $banner);
+        $this->view->assign('vars', $vars);
         // Populate block info and pass to theme
-        $blockinfo['content'] = $this->view->fetch($blocktemplate);
+        $blockinfo['content'] = $this->view->fetch('blocks/rotate.tpl');
 
         return BlockUtil::themeBlock($blockinfo);
     }
@@ -84,9 +85,8 @@ class Banners_Block_Bannersrotate extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // Defaults
-        if (empty($vars['type'])) {
-            $vars['type'] = array();
-        }
+        $vars['blocktype'] = empty($vars['blocktype']) ? array() : $vars['blocktype'];
+        $vars['duration']  = empty($vars['duration'])  ? 1       : $vars['duration'];
 
         // load the category registry util
         $catregistry = CategoryRegistryUtil::getRegisteredModuleCategories('Banners', 'banners');
@@ -111,13 +111,13 @@ class Banners_Block_Bannersrotate extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // alter the corresponding variable
-        $vars['type']          = FormUtil::getPassedValue('type',          null, 'POST');
-        $vars['blocktemplate'] = FormUtil::getPassedValue('blocktemplate', null, 'POST');
+        $vars['blocktype'] = FormUtil::getPassedValue('blocktype', null, 'POST');
+        $vars['duration']  = FormUtil::getPassedValue('duration' , 1,    'POST');
 
         // write back the new contents
         $blockinfo['content'] = BlockUtil::varsToContent($vars);
 
-        $this->view->clear_cache('blocks/fade.tpl');
+        $this->view->clear_cache('blocks/rotate.tpl');
 
         return $blockinfo;
     }

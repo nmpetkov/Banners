@@ -143,19 +143,33 @@ class Banners_Installer extends Zikula_Installer
      * @return array
      */
     private function setupOldTypes() {
-        $types = DBUtil::selectFieldArray('banners', 'type', '', 'type', true);
+        $types = DBUtil::selectObjectArray('banners', '', 'type', -1, -1, '', null, null, array('type', 'imageurl'));
         $catdef = array();
-        foreach ($types as $type) {
-            $catdef[] = array(
-                'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
-                'name'        => 'imported_' . $type,
-                'value'       => null,
-                'displayname' => $this->__("imported_") . $type,
-                'description' => $this->__("imported_") . $type,
-                'attributes'  => array(
-                    'time'        => 15
-                )
-            );
+        $previous_type = '';
+        foreach ($types as $key => $type) {
+            if ($type['type'] <> $previous_type) { // only keep distinct typenames
+                $imageinfo = getimagesize($type['imageurl']);
+                if (!$imageinfo) {
+                    $imagewidth  = 250; // default if can't find value
+                    $imageheight = 250; // default if can't find value
+                } else {
+                    $imagewidth  = $imageinfo[0];
+                    $imageheight = $imageinfo[1];
+                }
+                $catdef[] = array(
+                    'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
+                    'name'        => 'imported_' . $type['type'],
+                    'value'       => null,
+                    'displayname' => $this->__("imported_") . $type['type'],
+                    'description' => $this->__("imported_") . $type['type'],
+                    'attributes'  => array(
+                        'length'  => $imagewidth,
+                        'width'   => $imageheight,
+                        'time'    => 15
+                        )
+                );
+                $previous_type = $type['type'];
+            }
         }
         return $catdef;
     }

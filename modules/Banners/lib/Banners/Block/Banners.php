@@ -83,8 +83,8 @@ class Banners_Block_Banners extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // Defaults
-        if (empty($vars['type'])) {
-            $vars['type'] = array();
+        if (empty($vars['blocktype'])) {
+            $vars['blocktype'] = array();
         }
         if (empty($vars['hovertext'])) {
             $vars['hovertext'] = 0;
@@ -113,7 +113,7 @@ class Banners_Block_Banners extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // alter the corresponding variable
-        $vars['type']      = FormUtil::getPassedValue('type', null, 'POST');
+        $vars['blocktype'] = FormUtil::getPassedValue('blocktype', null, 'POST');
         $vars['hovertext'] = FormUtil::getPassedValue('hovertext', '', 'POST');
 
         // write back the new contents

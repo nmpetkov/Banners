@@ -63,7 +63,7 @@ class Banners_Block_Bannersprotofade extends Zikula_Block
         if (!ModUtil::available('Banners')) {
             return false;
         }
-        $banner = ModUtil::func('Banners', 'user', 'rotate', array('type' => $vars['type']));
+        $banner = ModUtil::func('Banners', 'user', 'rotate', array('blocktype' => $vars['blocktype']));
         // assign the banner
         $this->view->assign('blockid', $blockinfo['bid']);
         $this->view->assign('banner', $banner);
@@ -87,15 +87,15 @@ class Banners_Block_Bannersprotofade extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // Defaults
-        $vars['type'] = (empty($vars['type']))      ? array()   : $vars['type'];
-        $vars['type'] = (empty($vars['hovertext'])) ? 0         : $vars['hovertext'];
-        $vars['type'] = (empty($vars['duration']))  ? '1.0'     : $vars['duration'];
-        $vars['type'] = (empty($vars['controls']))  ? 0         : $vars['controls'];
-        $vars['type'] = (empty($vars['autostart'])) ? 0         : $vars['autostart'];
-        $vars['type'] = (empty($vars['esquare']))   ? 0         : $vars['esquare'];
-        $vars['type'] = (empty($vars['erows']))     ? 3         : $vars['erows'];
-        $vars['type'] = (empty($vars['ecols']))     ? 5         : $vars['ecols'];
-        $vars['type'] = (empty($vars['ecolor']))    ? '#FFFFFF' : $vars['ecolor'];
+        $vars['blocktype'] = (empty($vars['blocktype']))      ? array()   : $vars['blocktype'];
+        $vars['hovertext'] = (empty($vars['hovertext'])) ? 0         : $vars['hovertext'];
+        $vars['duration']  = (empty($vars['duration']))  ? '1.0'     : $vars['duration'];
+        $vars['controls']  = (empty($vars['controls']))  ? 0         : $vars['controls'];
+        $vars['autostart'] = (empty($vars['autostart'])) ? 0         : $vars['autostart'];
+        $vars['esquare']   = (empty($vars['esquare']))   ? 0         : $vars['esquare'];
+        $vars['erows']     = (empty($vars['erows']))     ? 3         : $vars['erows'];
+        $vars['ecols']     = (empty($vars['ecols']))     ? 5         : $vars['ecols'];
+        $vars['ecolor']    = (empty($vars['ecolor']))    ? '#FFFFFF' : $vars['ecolor'];
 
         // load the category registry util
         $catregistry = CategoryRegistryUtil::getRegisteredModuleCategories('Banners', 'banners');
@@ -120,7 +120,7 @@ class Banners_Block_Bannersprotofade extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // alter the corresponding variable
-        $vars['type']      = FormUtil::getPassedValue('type',      null,      'POST');
+        $vars['blocktype'] = FormUtil::getPassedValue('blocktype',      null,      'POST');
         $vars['hovertext'] = FormUtil::getPassedValue('hovertext', '',        'POST');
         $vars['duration']  = FormUtil::getPassedValue('duration',  '1.0',     'POST');
         $vars['controls']  = FormUtil::getPassedValue('controls',  '',        'POST');

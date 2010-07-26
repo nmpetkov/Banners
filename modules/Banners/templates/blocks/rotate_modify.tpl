@@ -2,12 +2,12 @@
 <div class="z-formrow">
     <label for="bannerblock_type">{gt text='Block Type'}</label>
     {nocache}
-    <span id="bannerblock_type">{foreach from=$catregistry key=property item=category}
-        {array_field_isset assign="selectedValue" array=$vars.type field=$property returnValue=1}
+    <span id="bannerblock_blocktype">{foreach from=$catregistry key=property item=category}
+        {array_field_isset assign="selectedValue" array=$vars.blocktype field=$property returnValue=1}
         {selector_category
             editLink=false
             category=$category
-            name="type[$property]"
+            name="blocktype[$property]"
             field="id"
             selectedValue=$selectedValue
             defaultValue="0"}
@@ -16,6 +16,8 @@
     {/nocache}
 </div>
 <div class="z-formrow">
-    <label for="bannerblock_template">{gt text='Block Template'}</label>
-	<input id="bannerblock_rotate_blocktemplate" type="text" name="blocktemplate" size="30" value="{$blocktemplate|safetext}" />
+    <label for="bannerblock_duration">{gt text='Transition duration'}</label>
+    <input type="text" id="bannerblock_duration" name="duration" value="{$vars.duration}" />
+    <em class='z-formnote'>({gt text='in seconds'})</em>
+    <em class='z-formnote'>{gt text='Note: The display duration is set in the Category Attributes'}</em>
 </div>

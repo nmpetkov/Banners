@@ -170,7 +170,7 @@ class Banners_Controller_User extends Zikula_Controller {
     /**
      * display a random banner
      *
-     * @param $args['type'] banner type
+     * @param $args['blocktype'] banner type
      * @return string containing banner or &nbsp;
      */
     public function display($args) {
@@ -179,7 +179,7 @@ class Banners_Controller_User extends Zikula_Controller {
         if (ModUtil::getVar('Banners', 'banners') != 1) {
             return '&nbsp;';
         }
-        $catFilter = $args['type'];
+        $catFilter = $args['blocktype'];
         $catFilter['__META__']['module'] = 'Banners';
         // get the banner count
         $numrows = ModUtil::apiFunc('Banners', 'user', 'countitems', array('catFilter' => $catFilter));
@@ -251,7 +251,7 @@ class Banners_Controller_User extends Zikula_Controller {
     /**
      * display a random banner
      *
-     * @param $args['type'] banner type
+     * @param $args['blocktype'] banner type
      * @return string containing banner or &nbsp;
      */
     public function rotate($args) {
@@ -261,7 +261,7 @@ class Banners_Controller_User extends Zikula_Controller {
             return '&nbsp;';
         }
 
-        $catFilter = $args['type'];
+        $catFilter = $args['blocktype'];
         $catFilter['__META__']['module'] = 'Banners';
 
         // get the banners

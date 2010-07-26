@@ -19,7 +19,7 @@ class Banners_Api_User extends Zikula_Api {
      *
      * @param    int     $args['startnum']    (optional) first item to return
      * @param    int     $args['numitems']    (optional) number if items to return
-     * @param    int     $args['type']        (optional) banner type
+     * @param    int     $args['catFilter']   (optional) banner blocktype
      * @param    int     $args['cid']         (optional) client id
      * @param    bool    $args['clientinfo']  (optional) include client info
      * @param    bool    $args['active']      (optional) default true return active banners
@@ -149,8 +149,6 @@ class Banners_Api_User extends Zikula_Api {
     /**
      * count the number of active banners
      *
-     * @param    int     $args['type']       (optional) banner type
-     * @todo     add support for the banner type parameter
      * @return   integer   number of items held by this module
      */
     public function countitems($args) {

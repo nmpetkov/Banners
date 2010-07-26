@@ -257,22 +257,23 @@ class Banners_Util
                 'time'   => 15
                 )
         );
-        $categories[] = array(
-            'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
-            'name'        => 'Undefined',
-            'value'       => null,
-            'displayname' => __('Undefined Ad Type', $dom),
-            'description' => __('Used for conversion of old finished banner types', $dom),
-            'attributes'  => array(
-                'time'   => 15
-                )
-        );
 
         if (is_array($importedCategories) && !empty($importedCategories)) {
             // combine the arrays
             foreach ($importedCategories as $importedCategory) {
                 $categories[] = $importedCategory;
             }
+            // add undefined category for upgrade of old finished banners
+            $categories[] = array(
+                'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
+                'name'        => 'Undefined',
+                'value'       => null,
+                'displayname' => __('Undefined Ad Type', $dom),
+                'description' => __('Used for conversion of old finished banner types', $dom),
+                'attributes'  => array(
+                    'time'   => 15
+                    )
+            );
         }
 
         // enter categories into category table
