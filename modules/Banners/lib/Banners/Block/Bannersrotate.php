@@ -62,7 +62,10 @@ class Banners_Block_Bannersrotate extends Zikula_Block
         if (!ModUtil::available('Banners')) {
             return false;
         }
-
+        if (empty($vars['blocktype'])) {
+            return false;
+        }
+        
         $banner = ModUtil::func('Banners', 'user', 'rotate', array('blocktype' => $vars['blocktype']));
         // assign the banner
         $this->view->assign('banner', $banner);

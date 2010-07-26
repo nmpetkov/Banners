@@ -58,11 +58,14 @@ class Banners_Block_Bannersprotofade extends Zikula_Block
         $vars['autostart'] = (!isset($vars['autostart']) || empty($vars['autostart'])) ? 'false' : 'true';
         $vars['esquare']   = (!isset($vars['esquare'])   || empty($vars['esquare']))   ? 'false' : 'true';
 
-        //echo "<pre>"; print_r($vars); echo "</pre>";
         // Check if the Banners module is available.
         if (!ModUtil::available('Banners')) {
             return false;
         }
+        if (empty($vars['blocktype'])) {
+            return false;
+        }
+
         $banner = ModUtil::func('Banners', 'user', 'rotate', array('blocktype' => $vars['blocktype']));
         // assign the banner
         $this->view->assign('blockid', $blockinfo['bid']);
@@ -87,7 +90,7 @@ class Banners_Block_Bannersprotofade extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // Defaults
-        $vars['blocktype'] = (empty($vars['blocktype']))      ? array()   : $vars['blocktype'];
+        $vars['blocktype'] = (empty($vars['blocktype'])) ? array()   : $vars['blocktype'];
         $vars['hovertext'] = (empty($vars['hovertext'])) ? 0         : $vars['hovertext'];
         $vars['duration']  = (empty($vars['duration']))  ? '1.0'     : $vars['duration'];
         $vars['controls']  = (empty($vars['controls']))  ? 0         : $vars['controls'];
@@ -120,7 +123,7 @@ class Banners_Block_Bannersprotofade extends Zikula_Block
         $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
         // alter the corresponding variable
-        $vars['blocktype'] = FormUtil::getPassedValue('blocktype',      null,      'POST');
+        $vars['blocktype'] = FormUtil::getPassedValue('blocktype', null,      'POST');
         $vars['hovertext'] = FormUtil::getPassedValue('hovertext', '',        'POST');
         $vars['duration']  = FormUtil::getPassedValue('duration',  '1.0',     'POST');
         $vars['controls']  = FormUtil::getPassedValue('controls',  '',        'POST');

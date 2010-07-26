@@ -59,6 +59,9 @@ class Banners_Block_Banners extends Zikula_Block
         if (!ModUtil::available('Banners')) {
             return false;
         }
+        if (empty($vars['blocktype'])) {
+            return false;
+        }
 
         // assign the banner
         $this->view->assign('blockid', $blockinfo['bid']);
