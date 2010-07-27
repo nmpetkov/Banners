@@ -9,10 +9,12 @@
  */
 
 /**
- * banners_pagejs_init: include the required javascript in header if needed
+ * banners_rotatejs_init: include the required javascript in body
  *
- * @author Michael Halbrook.
- * @param  none
+ * @author Michael Halbrook
+ * @author Craig Heydenburg
+ * @param  array banner the banners collected to display
+ * @param  array vars   the blockvars
  */
 function smarty_function_banners_rotatejs_init($params, &$smarty)
 {

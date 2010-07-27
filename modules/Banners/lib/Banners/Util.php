@@ -322,7 +322,12 @@ class Banners_Util
     }
 
     /**
+     * add Banners/templates/plugins to core template search in order to
+     * make Banners  template plugins available to any module.
+     * Specifically, the bannnerdisplay.php plugin.
      *
+     * @param   object $event
+     * @return  null
      */
     public static function registerPluginDir(Zikula_Event $event) {
         $modinfo = ModUtil::getInfoFromName('Banners');
@@ -331,7 +336,6 @@ class Banners_Util
         }
         $view = $event->getSubject();
         $view->addPluginDir("modules/$modinfo[directory]/templates/plugins");
-        return;
     }
 
 } // end class def

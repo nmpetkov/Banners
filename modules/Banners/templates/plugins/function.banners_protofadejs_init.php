@@ -9,9 +9,12 @@
  */
 
 /**
- * banners_pagejs_init: include the required javascript in header if needed
+ * banners_protofadejs_init: include the required javascript in header if needed
  *
- * @param  element the id of the html element (UL) containing the images (LI)
+ * @param  string element the id of the html element (UL) containing the images (LI)
+ * @param  array  banner  banners collected
+ * @param  array  vars    the blockvars
+ * @return null
  */
 function smarty_function_banners_protofadejs_init($params, &$smarty)
 {
