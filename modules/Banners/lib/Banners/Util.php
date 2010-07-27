@@ -320,5 +320,18 @@ class Banners_Util
         }
         return $banner;
     }
-    
+
+    /**
+     *
+     */
+    public static function registerPluginDir(Zikula_Event $event) {
+        $modinfo = ModUtil::getInfoFromName('Banners');
+        if (!$modinfo) {
+            return;
+        }
+        $view = $event->getSubject();
+        $view->addPluginDir("modules/$modinfo[directory]/templates/plugins");
+        return;
+    }
+
 } // end class def

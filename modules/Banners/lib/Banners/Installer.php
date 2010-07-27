@@ -41,6 +41,9 @@ class Banners_Installer extends Zikula_Installer
             LogUtil::registerStatus($this->__('IAB Banner Types entered into Categories module.'));
         }
 
+        // register plugins with View so plugins can be used systemwide
+        EventUtil::registerPersistentModuleHandler('Banners', 'view.init', array('Banners_Util', 'registerPluginDir'));
+
         // Initialisation successful
         LogUtil::registerStatus($this->__('Banners module installed'));
         return true;
@@ -102,8 +105,11 @@ class Banners_Installer extends Zikula_Installer
                 }
                 DBUtil::dropTable('bannersfinish');
 
+                // register plugins with View so plugins can be used systemwide
+                EventUtil::registerPersistentModuleHandler('Banners', 'view.init', array('Banners_Util', 'registerPluginDir'));
+
             case '3.0.0':
-            // future development
+                // future development
         }
 
         // Update successful
@@ -132,6 +138,9 @@ class Banners_Installer extends Zikula_Installer
         ModUtil::dbInfoLoad('Categories');
         DBUtil::deleteWhere('categories_registry', "crg_modname='Banners'");
         DBUtil::deleteWhere('categories_mapobj', "cmo_modname='Banners'");
+
+        // unregister plugins dir
+        EventUtil::unregisterPersistentModuleHandler('Banners', 'view.init', array('Banners_Util', 'registerPluginDir'));
 
         // Delete successful
         return true;
