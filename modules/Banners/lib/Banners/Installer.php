@@ -33,7 +33,7 @@ class Banners_Installer extends Zikula_Installer
         // set default mod values
         ModUtil::setVar('Banners', 'myIP', '127.0.0.1');
         ModUtil::setVar('Banners', 'banners', true); // active
-        ModUtil::setVar('Banners', 'openinnewwinow', false);
+        ModUtil::setVar('Banners', 'openinnewwindow', false);
         ModUtil::setVar('Banners', 'enablecats', true);
 
         $result = Banners_Util::createCategories();
@@ -66,7 +66,7 @@ class Banners_Installer extends Zikula_Installer
                     $banners = Config::getVar('banners');
                     ModUtil::setVar('Banners', 'myIP', $myIP);
                     ModUtil::setVar('Banners', 'banners', $banners);
-                    ModUtil::setVar('Banners', 'openinnewwinow', false);
+                    ModUtil::setVar('Banners', 'openinnewwindow', false);
                     Config::delVar('myIP');
                     Config::delVar('banners');
                 }
