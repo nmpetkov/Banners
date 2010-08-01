@@ -1,0 +1,1 @@
+{banners_rotatejs_init banner=$banner vars=$vars}
