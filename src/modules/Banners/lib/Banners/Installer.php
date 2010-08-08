@@ -24,10 +24,10 @@ class Banners_Installer extends Zikula_Installer
     public function install() {
         // create the table
         if (!DBUtil::createTable('banners')) {
-            return LogUtil::registerError($this->__('Error! Could not create the table [%s].', 'banners'));
+            return LogUtil::registerError($this->__f('Error! Could not create the table [%s].', 'banners'));
         }
         if (!DBUtil::createTable('bannersclient')) {
-            return LogUtil::registerError($this->__('Error! Could not create the table [%s].', 'bannersclient'));
+            return LogUtil::registerError($this->__f('Error! Could not create the table [%s].', 'bannersclient'));
         }
 
         // set default mod values
@@ -92,7 +92,7 @@ class Banners_Installer extends Zikula_Installer
                 if (DBUtil::executeSQL($sql)) {
                     $url = ModUtil::url('Banners', 'admin');
                     $linktext = $this->__('Banners admin interface');
-                    LogUtil::registerStatus($this->__('You must manually reassociate ALL your clients with a Zikula Username in the <a href="%1$s">%2$s</a>.', array(
+                    LogUtil::registerStatus($this->__f('You must manually reassociate ALL your clients with a Zikula Username in the <a href="%1$s">%2$s</a>.', array(
                                         $url, $linktext)));
                 } else {
                     LogUtil::registerError($this->__('Error! Unable to reassociate clients with Current User.'));
@@ -123,13 +123,9 @@ class Banners_Installer extends Zikula_Installer
      * @return bool true if successful, false otherwise
      */
     public function uninstall() {
-        // drop the three tables for the module
-        $tables = array('banners', 'bannersclient');
-        foreach ($tables as $table) {
-            if (!DBUtil::dropTable($table)) {
-                return false;
-            }
-        }
+        // drop the tables for the module
+        DBUtil::dropTable('banners');
+        DBUtil::dropTable('bannersclient');
 
         // delete all module vars
         ModUtil::delVar('Banners');
