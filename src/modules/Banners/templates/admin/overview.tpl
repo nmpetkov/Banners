@@ -50,7 +50,7 @@
                 </td>
             </tr>
 	{sectionelse}
-            <tr class="z-admintableempty"><td colspan="9">{gt text='No Items Found'}</td></tr>
+            <tr class="z-admintableempty"><td colspan="10">{gt text='No Active Banners Found'}</td></tr>
 	{/section}
         </tbody>
     </table>
@@ -99,7 +99,7 @@
                 </td>
             </tr>
 	{sectionelse}
-            <tr class="z-admintableempty"><td colspan="8">{gt text='No Items Found'}</td></tr>
+            <tr class="z-admintableempty"><td colspan="10">{gt text='No Inactive Banners Found'}</td></tr>
 	{/section}
         </tbody>
     </table>
@@ -130,7 +130,7 @@
                 </td>
             </tr>
 	{sectionelse}
-            <tr class="z-admintableempty"><td colspan="5">{gt text='No Items Found'}</td></tr>
+            <tr class="z-admintableempty"><td colspan="6">{gt text='No Clients Found'}</td></tr>
 	{/section}
         </tbody>
     </table>
