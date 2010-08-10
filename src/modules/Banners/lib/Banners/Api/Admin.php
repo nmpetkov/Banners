@@ -2,7 +2,6 @@
 
 /**
  * @package      Banners
- * @version      $Id:
  * @author       Devin Hayes
  * @author       Halbrook Technologies
  * @author       Craig Heydenburg

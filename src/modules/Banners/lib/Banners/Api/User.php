@@ -2,7 +2,6 @@
 
 /**
  * @package      Banners
- * @version      $Id:
  * @author       Halbrook Technologies
  * @author       Michael D. Halbrook
  * @author       Devin Hayes

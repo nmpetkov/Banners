@@ -2,7 +2,6 @@
 
 /**
  * @package      Banners
- * @version      $Id:
  * @author       Halbrook Technologies
  * @author       Devin Hayes
  * @author       Craig Heydenburg
@@ -31,7 +30,7 @@ class Banners_Installer extends Zikula_Installer
         }
 
         // set default mod values
-        ModUtil::setVar('Banners', 'myIP', '127.0.0.1');
+        ModUtil::setVar('Banners', 'myIP', array('127.0.0.1'));
         ModUtil::setVar('Banners', 'banners', true); // active
         ModUtil::setVar('Banners', 'openinnewwindow', false);
         ModUtil::setVar('Banners', 'enablecats', true);
@@ -64,7 +63,7 @@ class Banners_Installer extends Zikula_Installer
                 if (Config::getVar('banners') != '') {
                     $myIP = Config::getVar('myIP');
                     $banners = Config::getVar('banners');
-                    ModUtil::setVar('Banners', 'myIP', $myIP);
+                    ModUtil::setVar('Banners', 'myIP', array($myIP));
                     ModUtil::setVar('Banners', 'banners', $banners);
                     ModUtil::setVar('Banners', 'openinnewwindow', false);
                     Config::delVar('myIP');

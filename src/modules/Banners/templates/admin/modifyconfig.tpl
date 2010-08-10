@@ -1,4 +1,3 @@
-{*  $Id: banners_admin_modifyconfig.htm 9 2008-11-05 21:42:16Z Guite $  *}
 {include file="admin/menu.tpl"}
 <div class="z-admincontainer">
 <div class="z-adminpageicon">{img modname=core src=configure.gif set=icons/large alt='_MODIFYCONFIG' altml=true}</div>
@@ -22,8 +21,10 @@
                 <input type="checkbox" id="openinnewwinow" name="openinnewwindow" value="1" {if $openinnewwindow} checked="checked"{/if} />
             </div>
             <div class="z-formrow">
-                <label for="myIP">{gt text="Your IP to not count the hits"}</label>
-                <input type="text" id="myIP" name="myIP" value="{$myIP|safetext}" size="30" />
+                <label for="myIP">{gt text="List of IPs to not count hits"}</label>
+                <input type="text" id="myIP" name="myIP" value="{$IPlist|safetext}" />
+                <em class="z-sub z-formnote">Enter comma-seperated value list</em>
+                <em class="z-sub z-formnote">Your current IP address is <span style='background-color:#ffffbb;'>{$currentip}</span></em>
             </div>
             {modcallhooks hookobject=module hookaction=modifyconfig module=Banners}
             <div class="z-buttons z-formbuttons">

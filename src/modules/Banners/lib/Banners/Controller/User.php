@@ -2,7 +2,6 @@
 
 /**
  * @package      Banners
- * @version      $Id:
  * @author       Halbrook Technologies
  * @author       Devin Hayes
  * @author       Craig Heydenburg
@@ -205,9 +204,10 @@ class Banners_Controller_User extends Zikula_Controller {
 
         // check the current host and admin exceptions
         // log the impression if required
-        $myIP = ModUtil::getVar('banners', 'myIP');
+        $myIParray = ModUtil::getVar('banners', 'myIP');
         $myhost = System::serverGetVar('REMOTE_ADDR');
-        if (!empty($myIP) && substr($myhost, 0, strlen($myIP)) != $myIP) {
+        //if (!empty($myIP) && substr($myhost, 0, strlen($myIP)) != $myIP) {
+        if (!in_array($myhost, $myIParray)) {
             ModUtil::apiFunc('Banners', 'user', 'impmade', array('bid' => $banner['bid']));
             $banner['impmade']++; // increment in local instance
         }
@@ -275,11 +275,12 @@ class Banners_Controller_User extends Zikula_Controller {
 
         // check the current host and admin exceptions
         // log the impression if required
-        $myIP = ModUtil::getVar('banners', 'myIP');
+        $myIParray = ModUtil::getVar('banners', 'myIP');
         $myhost = System::serverGetVar('REMOTE_ADDR');
 
         foreach ($banners as $banner) {
-            if ((!empty($myIP) && substr($myhost, 0, strlen($myIP)) != $myIP)) {
+            //if ((!empty($myIP) && substr($myhost, 0, strlen($myIP)) != $myIP)) {
+            if (!in_array($myhost, $myIParray)) {
                 ModUtil::apiFunc('Banners', 'user', 'impmade', array('bid' => $banner['bid']));
             }
 

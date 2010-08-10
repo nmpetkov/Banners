@@ -1,4 +1,3 @@
-{*  $Id: banners_admin_view.htm 9 2008-11-05 21:42:16Z Guite $  *}
 {ajaxheader module="Banners" ui=true}
 {include file="admin/menu.tpl"}
 <div class="z-admincontainer">

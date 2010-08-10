@@ -1,4 +1,3 @@
-{*  $Id: banners_user_config.htm 9 2008-11-05 21:42:16Z Guite $  *}
 {insert name="getstatusmsg"}
 <h1>{gt text='Banner Ad Statistics.'}</h1>
 <h2>{gt text="Currently active banners for %s." tag1=$client.name}</h2>

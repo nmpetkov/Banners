@@ -2,7 +2,6 @@
 
 /**
  * @package      Banners
- * @version      $Id:
  * @author       Halbrook Technologies
  * @author       Craig Heydenburg
  * @link         http://www.halbrooktech.com

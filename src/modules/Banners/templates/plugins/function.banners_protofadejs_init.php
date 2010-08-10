@@ -2,8 +2,7 @@
 
 /**
  * @package     Banners
- * @author      $Author: halbrooktech $
- * @version     $Id: function.banners_pagejs_init.php 472 2010-01-06 01:34:38Z halbrooktech $
+ * @author      Michael Halbrook / Craig Heydenburg
  * @copyright   Copyright (c) 2010, Michael Halbrook, Halbrook Technologies
  * @license     http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */

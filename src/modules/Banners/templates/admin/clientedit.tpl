@@ -1,4 +1,3 @@
-{*  $Id: banners_admin_clientedit.htm 9 2008-11-05 21:42:16Z Guite $  *}
 {include file="admin/menu.tpl"}
 <div class="z-admincontainer">
     <div class="z-adminpageicon">{img modname=core src=edit.gif set=icons/large alt='Edit Client' altml=true}</div>

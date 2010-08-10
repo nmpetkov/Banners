@@ -2,8 +2,7 @@
 /**
  /**
  * @package      Banners
- * @version      $Id:
- * @author       Halbrook Technologies
+ * @author       Michael Halbrook / Craig Heydenburg
  * @link         http://www.halbrooktech.com
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License

@@ -1,4 +1,3 @@
-{*  $Id: banners_admin_bannerdelete.htm 9 2008-11-05 21:42:16Z Guite $  *}
 {include file="admin/menu.tpl"}
 <div class="z-admincontainer">
 <div class="z-adminpageicon">{img modname=core src=editdelete.gif set=icons/large alt='Delete banner' altml=true}</div>

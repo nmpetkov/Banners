@@ -1,8 +1,12 @@
 <?php
 
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @package      Banners
+ * @author       Halbrook Technologies
+ * @author       Craig Heydenburg
+ * @link         http://www.halbrooktech.com
+ * @copyright    Copyright (C) 2010
+ * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 class Banners_Util
 {
