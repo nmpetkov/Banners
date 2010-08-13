@@ -65,7 +65,7 @@
                 <th>{gt text="Impressions Left"}</th>
                 <th>{gt text="Clicks"}</th>
                 <th>{gt text="Click Percent"}</th>
-                <!-- <th>{gt text="Date Started"}</th>
+                <!-- <th>{* gt text="Date Started" *}</th>
                 <th>{gt text="Date Ended"}</th> -->
                 <th>{gt text="Client Name"}</th>
                 <th>{gt text="Banner Type"}</th>
@@ -88,13 +88,13 @@
                 </td>
                 <td>{$finishedbanners[finishedbanners].clicks|safetext}</td>
                 <td>{$finishedbanners[finishedbanners].percent|safetext}%</td>
-                <!-- <td>{$finishedbanners[finishedbanners].datestart|safetext}</td>
-                <td>{$finishedbanners[finishedbanners].dateend|safetext}</td> -->
+                <!-- <td>{* $finishedbanners[finishedbanners].datestart|safetext *}</td>
+                <td>{* $finishedbanners[finishedbanners].dateend|safetext *}</td> -->
                 <td>{$finishedbanners[finishedbanners].name|safetext}</td>
                 <td>{$finishedbanners[finishedbanners].typename|safetext}</td>
                 <td>
                     <a href="{modurl modname="Banners" type="admin" func="modify" bid=$finishedbanners[finishedbanners].bid}">{img modname=core set=icons/extrasmall src=xedit.gif __alt="edit" __title="edit"}</a>
-                    <a href="{modurl modname="Banners" type="admin" func="deletefinished" authid="$authid" bid=$finishedbanners[finishedbanners].bid|safetext}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif __alt="Delete" __title="Delete"}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="deletefinished" bid=$finishedbanners[finishedbanners].bid|safetext}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif __alt="Delete" __title="Delete"}</a>
                 </td>
             </tr>
 	{sectionelse}
