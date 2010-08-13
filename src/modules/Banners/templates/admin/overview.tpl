@@ -28,14 +28,14 @@
         <tbody>
             {section name="activebanneritems" loop=$activebanneritems}
             <tr class="{cycle values=z-odd,z-even name=activebanners}">
-                <td>{img src=greenled.gif modname=core set=icons/extrasmall __title="Active" __alt="Active" }</td>
+                <td>{img src=greenled.gif modname=core set=icons/extrasmall __title="Active" __alt="Active"}</td>
                 <td>{$activebanneritems[activebanneritems].bid|safetext}</td>
                 <td>{$activebanneritems[activebanneritems].title|safetext}</td>
                 <td>{$activebanneritems[activebanneritems].impmade|safetext}</td>
                 <td>{$activebanneritems[activebanneritems].impleft|safetext}
                     {if $activebanneritems[activebanneritems].imptotal eq 0}
                         <a href="{modurl modname="Banners" type="admin" func="modify" limit=1 bid=$activebanneritems[activebanneritems].bid}">
-                            {img src=remove.gif modname=core set=icons/extrasmall __title="Convert to limited" __alt="Convert to limited" }
+                            {img src=remove.gif modname=core set=icons/extrasmall __title="Convert to limited" __alt="Convert to limited"}
                         </a>
                     {/if}
                 </td>
@@ -75,14 +75,14 @@
         <tbody>
             {section name="finishedbanners" loop=$finishedbanners}
             <tr class="{cycle values=z-odd,z-even name=finishedbanners}">
-                <td>{img src=redled.gif modname=core set=icons/extrasmall __title="Inactive" __alt="Inactive" }</td>
+                <td>{img src=redled.gif modname=core set=icons/extrasmall __title="Inactive" __alt="Inactive"}</td>
                 <td>{$finishedbanners[finishedbanners].bid|safetext}</td>
                 <td>{$finishedbanners[finishedbanners].title|safetext}</td>
                 <td>{$finishedbanners[finishedbanners].impmade|safetext}</td>
                 <td>{$finishedbanners[finishedbanners].impleft|safetext}
                     {if $finishedbanners[finishedbanners].imptotal eq 0}
                         <a href="{modurl modname="Banners" type="admin" func="modify" limit=1 bid=$finishedbanners[finishedbanners].bid}">
-                            {img src=remove.gif modname=core set=icons/extrasmall __title="Convert to limited" __alt="Convert to limited" }
+                            {img src=remove.gif modname=core set=icons/extrasmall __title="Convert to limited" __alt="Convert to limited"}
                         </a>
                     {/if}
                 </td>
@@ -93,8 +93,8 @@
                 <td>{$finishedbanners[finishedbanners].name|safetext}</td>
                 <td>{$finishedbanners[finishedbanners].typename|safetext}</td>
                 <td>
-                    <a href="{modurl modname="Banners" type="admin" func="modify" bid=$finishedbanners[finishedbanners].bid}">{img modname=core set=icons/extrasmall src=xedit.gif __alt="edit"}</a>
-                    <a href="{modurl modname="Banners" type="admin" func="deletefinished" authid="$authid" bid=$finishedbanners[finishedbanners].bid|safetext}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif __alt="Delete"}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="modify" bid=$finishedbanners[finishedbanners].bid}">{img modname=core set=icons/extrasmall src=xedit.gif __alt="edit" __title="edit"}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="deletefinished" authid="$authid" bid=$finishedbanners[finishedbanners].bid|safetext}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif __alt="Delete" __title="Delete"}</a>
                 </td>
             </tr>
 	{sectionelse}
@@ -124,8 +124,8 @@
                 <td>{$activeclients[activeclients].contact|safetext}</td>
                 <td>{$activeclients[activeclients].email|safetext}</td>
                 <td>
-                    <a href="{modurl modname="Banners" type="admin" func="modifyclient" cid=$activeclients[activeclients].cid}">{img modname=core set=icons/extrasmall src=xedit.gif alt=_EDIT altml=true}</a>
-                    <a href="{modurl modname="Banners" type="admin" func="deleteclient" cid=$activeclients[activeclients].cid}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif alt=_DELETE altml=true}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="modifyclient" cid=$activeclients[activeclients].cid}">{img modname=core set=icons/extrasmall src=xedit.gif __alt='Edit' __title='Edit'}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="deleteclient" cid=$activeclients[activeclients].cid}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif __alt='Delete' __title='Delete'}</a>
                 </td>
             </tr>
 	{sectionelse}

@@ -89,7 +89,7 @@ class Banners_Api_Admin extends Zikula_Api {
             return LogUtil::registerPermissionError();
         }
 
-        if (!DBUtil::insertObject($args, 'banners', 'bid')) {
+        if (!$banner = DBUtil::insertObject($args, 'banners', 'bid')) {
             return LogUtil::registerError($this->__('Error! Creation attempt failed.'));
         }
 
@@ -131,6 +131,7 @@ class Banners_Api_Admin extends Zikula_Api {
             return LogUtil::registerError($this->__('No such item found.'));
         }
 
+        $bid = $args['bid'];
         // Security check
         if (!SecurityUtil::checkPermission('Banners::', "$bid::", ACCESS_EDIT)) {
             return LogUtil::registerPermissionError();

@@ -41,12 +41,15 @@ class Banners_Controller_User extends Zikula_Controller {
         if (!$client) {
             return $this->view->fetch('user/nonclient.tpl');
         } else {
-            $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('cid' => $client['cid']));
+            $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array(
+                'cid' => $client['cid'],
+                'active' => -1));
         }
 
         // calculate some additional values
         foreach ($banners as $key => $banner) {
             $banners[$key] = Banners_Util::computestats($banner);
+            $banners[$key]['led'] = $banner['active'] ? 'greenled.gif' : 'redled.gif';
         }
 
         $this->view->assign('banners', $banners);
@@ -95,6 +98,22 @@ class Banners_Controller_User extends Zikula_Controller {
         }
 
         return System::redirect(ModUtil::url('Banners', 'user', 'client'));
+    }
+
+    public function editurl() {
+        $bid = FormUtil::getPassedValue('bid', null, 'GET');
+
+        // validate the user
+        $client = ModUtil::apiFunc('Banners', 'user', 'validateclient');
+        if (!$client) {
+            return $this->view->fetch('user/nonclient.tpl');
+        } else {
+            $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $bid));
+        }
+
+        $this->view->assign('banner', $banner);
+        $this->view->assign('client', $client);
+        return $this->view->fetch('user/editurl.tpl');
     }
 
     /**

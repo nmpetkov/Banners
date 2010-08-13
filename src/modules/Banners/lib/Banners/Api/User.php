@@ -21,7 +21,7 @@ class Banners_Api_User extends Zikula_Api {
      * @param    int     $args['catFilter']   (optional) banner blocktype
      * @param    int     $args['cid']         (optional) client id
      * @param    bool    $args['clientinfo']  (optional) include client info
-     * @param    bool    $args['active']      (optional) default true return active banners
+     * @param    bool    $args['active']      (optional) default true return active banners (-1 to return all)
      *
      * @return   array   array of items, or false on failure
      */
@@ -63,7 +63,9 @@ class Banners_Api_User extends Zikula_Api {
         if (isset($args['cid'])) {
             $wheres[] = 'cid=' . DataUtil::formatForStore((int) $args['cid']);
         }
-        $wheres[] = 'active=' . $args['active'];
+        if ($args['active'] == 1 || $args['active'] == 0) {
+            $wheres[] = 'active=' . $args['active'];
+        }
 
         $where = implode(' AND ', $wheres);
 
