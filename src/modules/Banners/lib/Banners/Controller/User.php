@@ -207,6 +207,10 @@ class Banners_Controller_User extends Zikula_Controller {
 
         // Get a random banner if exist any.
         // More efficient random stuff, thanks to Cristian Arroyo from http://www.planetalinux.com.ar
+        // Craig Heydenburg -  14 Aug 2010
+        // Note: As of PHP 4.2.0, there is no need to seed the random number generator with srand() or mt_srand() as this is now done automatically.
+        // http://us2.php.net/manual/en/function.mt-srand.php
+        // TODO: change this ???
         if ($numrows >= 1) {
             $numrows = $numrows - 1;
             mt_srand((double) microtime() * 1000000);

@@ -43,14 +43,14 @@ class banners_contenttypesapi_bannerPlugin extends contentTypeBase
     function display() {
         $view = Zikula_View::getInstance('Banners');
 
-        $rand_id = substr(microtime(true), -4);
+        // generate a unique 4 digit id
+        $rand_id = substr(microtime() * 1000000, -4);
         $view->assign('blockid', $rand_id);
 
-        $cats['__CATEGORIES__'] = $this->categories; //reformat array
         $view->assign('banner', ModUtil::func('Banners', 'user', 'display', array(
-            'blocktype' => $cats)));
+            'blocktype' => array('Main' => $this->categories))));
         
-        $view->assign('hovertext', $vars['hovertext']);
+        $view->assign('hovertext', $this->hovertext);
     
         return $view->fetch('contenttype/banner_view.html');
     }
