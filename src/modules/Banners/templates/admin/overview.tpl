@@ -32,7 +32,7 @@
                 <td>{$activebanneritems[activebanneritems].bid|safetext}</td>
                 <td>{$activebanneritems[activebanneritems].title|safetext}</td>
                 <td>{$activebanneritems[activebanneritems].impmade|safetext}</td>
-                <td>{$activebanneritems[activebanneritems].impleft|safetext}
+                <td {$activebanneritems[activebanneritems].impleft_fontstyle}>{$activebanneritems[activebanneritems].impleft|safetext}
                     {if $activebanneritems[activebanneritems].imptotal eq 0}
                         <a href="{modurl modname="Banners" type="admin" func="modify" limit=1 bid=$activebanneritems[activebanneritems].bid}">
                             {img src=remove.gif modname=core set=icons/extrasmall __title="Convert to limited" __alt="Convert to limited"}
@@ -79,7 +79,7 @@
                 <td>{$finishedbanners[finishedbanners].bid|safetext}</td>
                 <td>{$finishedbanners[finishedbanners].title|safetext}</td>
                 <td>{$finishedbanners[finishedbanners].impmade|safetext}</td>
-                <td>{$finishedbanners[finishedbanners].impleft|safetext}
+                <td {$finishedbanners[finishedbanners].impleft_fontstyle}>{$finishedbanners[finishedbanners].impleft|safetext}
                     {if $finishedbanners[finishedbanners].imptotal eq 0}
                         <a href="{modurl modname="Banners" type="admin" func="modify" limit=1 bid=$finishedbanners[finishedbanners].bid}">
                             {img src=remove.gif modname=core set=icons/extrasmall __title="Convert to limited" __alt="Convert to limited"}

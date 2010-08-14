@@ -318,9 +318,15 @@ class Banners_Util
 
         if ($banner['imptotal'] == 0) {
             $banner['impleft'] = __('Unlimited', $dom);
+            $banner['impleft_fontstyle'] = "style='font-style:italic; color:#009900;'";
             $banner['imptotal'] = __('Unlimited', $dom);
         } else {
             $banner['impleft'] = $banner['imptotal'] - $banner['impmade'];
+            if ($banner['impleft'] == 0) {
+                $banner['impleft_fontstyle'] = "style='font-weight:bold; color:#ff0000;'";
+            } else {
+                $banner['impleft_fontstyle'] = "style='font-weight:bold; color:#009900;'";
+            }
         }
         return $banner;
     }
