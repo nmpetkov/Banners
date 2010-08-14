@@ -294,6 +294,14 @@ class Banners_Api_User extends Zikula_Api {
             return LogUtil::registerArgsError();
         }
 
+        // check the current host and admin exceptions
+        // do not register click if exception
+        $myIParray = ModUtil::getVar('banners', 'myIP');
+        $myhost = System::serverGetVar('REMOTE_ADDR');
+        if (in_array($myhost, $myIParray)) {
+            return true;
+        }
+
         return DBUtil::incrementObjectFieldByID('banners', 'clicks', $args['bid'], 'bid');
     }
 

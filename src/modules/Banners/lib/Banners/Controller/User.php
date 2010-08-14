@@ -225,7 +225,6 @@ class Banners_Controller_User extends Zikula_Controller {
         // log the impression if required
         $myIParray = ModUtil::getVar('banners', 'myIP');
         $myhost = System::serverGetVar('REMOTE_ADDR');
-        //if (!empty($myIP) && substr($myhost, 0, strlen($myIP)) != $myIP) {
         if (!in_array($myhost, $myIParray)) {
             ModUtil::apiFunc('Banners', 'user', 'impmade', array('bid' => $banner['bid']));
             $banner['impmade']++; // increment in local instance
