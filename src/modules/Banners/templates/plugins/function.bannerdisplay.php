@@ -23,7 +23,7 @@ function smarty_function_bannerdisplay($params, &$smarty)
     $assign = isset($params['assign'])    ? $params['assign']         : null;
 
     if (ModUtil::available('Banners')) {
-        $banner = ModUtil::func('Banners', 'user', 'display', array('blocktype' => $id));
+        $banner = ModUtil::func('Banners', 'user', 'display', array('blocktype' => array('Main' => $id)));
         if ($banner) {
             if ($assign) {
                 $smarty->assign($assign, $banner['displaystring']);

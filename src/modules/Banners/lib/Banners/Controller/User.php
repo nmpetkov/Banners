@@ -188,7 +188,8 @@ class Banners_Controller_User extends Zikula_Controller {
     /**
      * display a random banner
      *
-     * @param $args['blocktype'] banner type
+     * @param array $args['blocktype'] banner type
+     * @param string $args['hovertext']
      * @return string containing banner or &nbsp;
      */
     public function display($args) {
@@ -197,6 +198,7 @@ class Banners_Controller_User extends Zikula_Controller {
         if (ModUtil::getVar('Banners', 'banners') != 1) {
             return '&nbsp;';
         }
+        $hovertext = !empty($args['hovertext']) ? $args['hovertext'] : '';
         $catFilter = $args['blocktype'];
         $catFilter['__META__']['module'] = 'Banners';
         // get the banner count
@@ -249,7 +251,7 @@ class Banners_Controller_User extends Zikula_Controller {
                 $title = '';
                 $target = '';
                 $url = DataUtil::formatForDisplay(ModUtil::url('Banners', 'user', 'click', array('bid' => $banner['bid'])));
-                if (!$args['hovertext']) {
+                if (empty($hovertext)) {
                     $title = ' title="' . DataUtil::formatForDisplay($banner['clickurl']) . '"';
                 }
                 if (ModUtil::getVar('Banners', 'openinnewwindow')) {
