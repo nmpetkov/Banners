@@ -1,4 +1,4 @@
-{ajaxheader module="Banners" ui=true}
+{ajaxheader module="Banners" ui=true imageviewer=true}
 {include file="admin/menu.tpl"}
 <div class="z-admincontainer">
     <div class="z-adminpageicon">{img modname=core src=windowlist.gif set=icons/large __alt="Active Banners"}</div>
@@ -13,13 +13,18 @@
     <table class="z-admintable">
         <thead>
             <tr>
-                <th></th>
-                <th>{gt text="ID"}</th>
-                <th>{gt text="Name"}</th>
-                <th>{gt text="Impressions"}</th>
-                <th>{gt text="Impressions Left"}</th>
-                <th>{gt text="Clicks"}</th>
-                <th>{gt text="Clicks Percent"}</th>
+                <th>{gt text="Banner"}</th>
+                <th colspan='3'>Impressions</th>
+                <th colspan='2'>Clicks</th>
+                <th colspan='3'></th>
+            </tr>
+            <tr>
+                <th>{gt text="Name (#ID)"}</th>
+                <th>{gt text="Purchased"}</th>
+                <th>{gt text="Made"}</th>
+                <th>{gt text="Remaining"}</th>
+                <th>{gt text="Registered"}</th>
+                <th>{gt text="% Clicks/Imp"}</th>
                 <th>{gt text="Client Name"}</th>
                 <th>{gt text="Banner Type"}</th>
                 <th>{gt text="Options"}</th>
@@ -28,9 +33,9 @@
         <tbody>
             {section name="activebanneritems" loop=$activebanneritems}
             <tr class="{cycle values=z-odd,z-even name=activebanners}">
-                <td>{img src=greenled.gif modname=core set=icons/extrasmall __title="Active" __alt="Active"}</td>
-                <td>{$activebanneritems[activebanneritems].bid|safetext}</td>
-                <td>{$activebanneritems[activebanneritems].title|safetext}</td>
+                <td>{img src=greenled.gif modname=core set=icons/extrasmall __title="Active" __alt="Active"}
+                {$activebanneritems[activebanneritems].title|safetext} (#{$activebanneritems[activebanneritems].bid|safetext})</td>
+                <td>{$activebanneritems[activebanneritems].imptotal|safetext}</td>
                 <td>{$activebanneritems[activebanneritems].impmade|safetext}</td>
                 <td {$activebanneritems[activebanneritems].impleft_fontstyle}>{$activebanneritems[activebanneritems].impleft|safetext}
                     {if $activebanneritems[activebanneritems].imptotal eq 0}
@@ -44,8 +49,9 @@
                 <td>{$activebanneritems[activebanneritems].name|safetext}</td>
                 <td>{$activebanneritems[activebanneritems].typename|safetext}</td>
                 <td>
-                    <a href="{modurl modname="Banners" type="admin" func="modify" bid=$activebanneritems[activebanneritems].bid}">{img modname=core set=icons/extrasmall src=xedit.gif __alt="edit"}</a>
-                    <a href="{modurl modname="Banners" type="admin" func="delete" bid=$activebanneritems[activebanneritems].bid}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif __alt="Delete"}</a>
+                    <a href="{$activebanneritems[activebanneritems].imageurl|safetext}" rel="imageviewer">{img modname=core set=icons/extrasmall src=demo.gif __alt="image" __title='View Image'}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="modify" bid=$activebanneritems[activebanneritems].bid}">{img modname=core set=icons/extrasmall src=xedit.gif __alt="edit" __title="Edit Banner"}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="delete" bid=$activebanneritems[activebanneritems].bid}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif __alt="Delete" __title="Delete Banner"}</a>
                 </td>
             </tr>
 	{sectionelse}
@@ -58,15 +64,20 @@
     <table class="z-admintable">
         <thead>
             <tr>
-                <th></th>
-                <th>{gt text="ID"}</th>
-                <th>{gt text="Name"}</th>
-                <th>{gt text="Impressions"}</th>
-                <th>{gt text="Impressions Left"}</th>
-                <th>{gt text="Clicks"}</th>
-                <th>{gt text="Click Percent"}</th>
+                <th>{gt text="Banner"}</th>
+                <th colspan='3'>Impressions</th>
+                <th colspan='2'>Clicks</th>
+                <th colspan='3'></th>
+            </tr>
+            <tr>
+                <th>{gt text="Name (#ID)"}</th>
+                <th>{gt text="Purchased"}</th>
+                <th>{gt text="Made"}</th>
+                <th>{gt text="Remaining"}</th>
+                <th>{gt text="Registered"}</th>
+                <th>{gt text="% Clicks/Imp"}</th>
                 <!-- <th>{* gt text="Date Started" *}</th>
-                <th>{gt text="Date Ended"}</th> -->
+                <th>{* gt text="Date Ended" *}</th> -->
                 <th>{gt text="Client Name"}</th>
                 <th>{gt text="Banner Type"}</th>
                 <th>{gt text="Options"}</th>
@@ -75,9 +86,9 @@
         <tbody>
             {section name="finishedbanners" loop=$finishedbanners}
             <tr class="{cycle values=z-odd,z-even name=finishedbanners}">
-                <td>{img src=redled.gif modname=core set=icons/extrasmall __title="Inactive" __alt="Inactive"}</td>
-                <td>{$finishedbanners[finishedbanners].bid|safetext}</td>
-                <td>{$finishedbanners[finishedbanners].title|safetext}</td>
+                <td>{img src=redled.gif modname=core set=icons/extrasmall __title="Inactive" __alt="Inactive"}
+                {$finishedbanners[finishedbanners].title|safetext} (#{$finishedbanners[finishedbanners].bid|safetext})</td>
+                <td>{$finishedbanners[finishedbanners].imptotal|safetext}</td>
                 <td>{$finishedbanners[finishedbanners].impmade|safetext}</td>
                 <td {$finishedbanners[finishedbanners].impleft_fontstyle}>{$finishedbanners[finishedbanners].impleft|safetext}
                     {if $finishedbanners[finishedbanners].imptotal eq 0}
@@ -93,8 +104,9 @@
                 <td>{$finishedbanners[finishedbanners].name|safetext}</td>
                 <td>{$finishedbanners[finishedbanners].typename|safetext}</td>
                 <td>
-                    <a href="{modurl modname="Banners" type="admin" func="modify" bid=$finishedbanners[finishedbanners].bid}">{img modname=core set=icons/extrasmall src=xedit.gif __alt="edit" __title="edit"}</a>
-                    <a href="{modurl modname="Banners" type="admin" func="deletefinished" bid=$finishedbanners[finishedbanners].bid|safetext}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif __alt="Delete" __title="Delete"}</a>
+                    <a href="{$finishedbanners[finishedbanners].imageurl|safetext}" rel="imageviewer">{img modname=core set=icons/extrasmall src=demo.gif __alt="image" __title='View Image'}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="modify" bid=$finishedbanners[finishedbanners].bid}">{img modname=core set=icons/extrasmall src=xedit.gif __alt="edit" __title="Edit Banner"}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="deletefinished" bid=$finishedbanners[finishedbanners].bid|safetext}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.gif __alt="Delete" __title="Delete Banner"}</a>
                 </td>
             </tr>
 	{sectionelse}

@@ -1,4 +1,4 @@
-{pnajaxheader imageviewer="true"}
+{pnajaxheader imageviewer=true}
 {insert name="getstatusmsg"}
 <h1>{gt text='Banner Ad Statistics'}</h1>
 <h2>{gt text="Current banners for %s" tag1=$client.name}</h2>
@@ -36,12 +36,12 @@
             <td>{$banners[banners].clicks|safetext}</td>
             <td>{$banners[banners].percent|safetext}%</td>
             <td>
-                <a href="{$banners[banners].imageurl|safetext}" rel="imageviewer">{img modname=core set=icons/extrasmall src=demo.gif __alt="image" title='view image'}</a>
+                <a href="{$banners[banners].imageurl|safetext}" rel="imageviewer">{img modname=core set=icons/extrasmall src=demo.gif __alt="image" __title='View Image'}</a>
                 <a href="{modurl modname="Banners" type="user" func="emailstats" cid=$client.cid bid=$banners[banners].bid|safetext}">{img modname=core set=icons/extrasmall src=mail_send.gif __alt="Email Stats" __title="Email Stats"}</a>
-                <a href="{modurl modname="Banners" type="user" func="editurl" bid=$banners[banners].bid}">{img modname=core set=icons/extrasmall src=xedit.gif __alt="edit URL" __title="edit URL"}</a>
+                <a href="{modurl modname="Banners" type="user" func="editurl" bid=$banners[banners].bid}">{img modname=core set=icons/extrasmall src=xedit.gif __alt="edit URL" __title="Edit URL"}</a>
             </td>
         </tr>
 	{/section}
     </tbody>
 </table>
-&nbsp;&nbsp;{img src=greenled.gif modname=core set=icons/extrasmall}={gt text="active"} | {img src=redled.gif modname=core set=icons/extrasmall}={gt text="deactivated"}
+&nbsp;&nbsp;{img src=greenled.gif modname=core set=icons/extrasmall}={gt text="active"} | {img src=redled.gif modname=core set=icons/extrasmall}={gt text="inactive"}
