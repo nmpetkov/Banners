@@ -64,7 +64,7 @@ class Banners_Api_User extends Zikula_Api {
             $wheres[] = 'cid=' . DataUtil::formatForStore((int) $args['cid']);
         }
         if ($args['active'] == 1 || $args['active'] == 0) {
-            $wheres[] = 'active=' . $args['active'];
+            $wheres[] = 'pn_active=' . $args['active'];
         }
 
         $where = implode(' AND ', $wheres);

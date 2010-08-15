@@ -220,7 +220,7 @@ class Banners_Controller_User extends Zikula_Controller {
         }
 
         // TODO would be nice if we could randomly fetch only one banner instead of all of them.
-        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('catFilfer' => $catFilter));
+        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('catFilter' => $catFilter));
         if (isset($banners[$bannum])) {
             $banner = $banners[$bannum];
         } else {

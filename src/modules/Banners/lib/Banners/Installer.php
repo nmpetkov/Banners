@@ -34,6 +34,7 @@ class Banners_Installer extends Zikula_Installer
         ModUtil::setVar('Banners', 'banners', true); // active
         ModUtil::setVar('Banners', 'openinnewwindow', false);
         ModUtil::setVar('Banners', 'enablecats', true);
+        ModUtil::setVar('Banners', 'banners', false);
 
         $result = Banners_Util::createCategories();
         if ($result) {
@@ -74,11 +75,11 @@ class Banners_Installer extends Zikula_Installer
             case '2.1.0':
                 ModUtil::setVar('Banners', 'enablecats', true);
                 DBUtil::changeTable('banners');
-                $oldtypes = $this->setupOldTypes();
+                $oldtypes = $this->_setupOldTypes();
                 $cats = Banners_Util::createCategories($oldtypes); // install module types into Categories mod
                 if ($cats) {
                     LogUtil::registerStatus($this->__('IAB Banner Types entered into Categories module.'));
-                    if ($this->updateBanners($cats)) {
+                    if ($this->_updateBanners($cats)) {
                         LogUtil::registerStatus($this->__('Banners updated to new Banner Types'));
                     } else {
                         LogUtil::registerError($this->__('Error! Could not update Banners to new Banner Types'));
@@ -87,7 +88,10 @@ class Banners_Installer extends Zikula_Installer
 
                 DBUtil::changeTable('bannersclient');
                 $currentuser = UserUtil::getVar('uid');
-                $sql = "UPDATE bannersclient SET uid='$currentuser'"; // associates existing clients with current user
+                $tables = DBUtil::getTables();
+                $tableName = $tables['bannersclient'];
+                $column = $tables["bannersclient_column"]['uid'];
+                $sql = "UPDATE $tableName SET $column='$currentuser'"; // associates existing clients with current user
                 if (DBUtil::executeSQL($sql)) {
                     $url = ModUtil::url('Banners', 'admin');
                     $linktext = $this->__('Banners admin interface');
@@ -97,12 +101,16 @@ class Banners_Installer extends Zikula_Installer
                     LogUtil::registerError($this->__('Error! Unable to reassociate clients with Current User.'));
                 }
 
-                if ($this->moveFinished($cats)) {
+                if ($this->_moveFinished($cats)) {
                     LogUtil::registerStatus($this->__('Old finished banners moved to inactive.'));
                 } else {
                     LogUtil::registerError($this->__('Error! Could not move old finished banners to inactive.'));
                 }
                 DBUtil::dropTable('bannersfinish');
+
+                ModUtil::setVar('Banners', 'banners', false); // activate banners
+                $myIP = ModUtil::getVar('Banners', 'myIP');
+                ModUtil::setVar('Banners', 'myIP', array($myIP));
 
                 // register plugins with View so plugins can be used systemwide
                 EventUtil::registerPersistentModuleHandler('Banners', 'view.init', array('Banners_Util', 'registerPluginDir'));
@@ -146,34 +154,34 @@ class Banners_Installer extends Zikula_Installer
      *
      * @return array
      */
-    private function setupOldTypes() {
-        $types = DBUtil::selectObjectArray('banners', '', 'type', -1, -1, '', null, null, array('type', 'imageurl'));
+    private function _setupOldTypes() {
+        $types = DBUtil::selectFieldArray('banners', 'imageurl', '', 'pn_type', TRUE, 'type');
         $catdef = array();
-        $previous_type = '';
-        foreach ($types as $key => $type) {
-            if ($type['type'] <> $previous_type) { // only keep distinct typenames
-                $imageinfo = getimagesize($type['imageurl']);
-                if (!$imageinfo) {
-                    $imagewidth  = 250; // default if can't find value
-                    $imageheight = 250; // default if can't find value
-                } else {
-                    $imagewidth  = $imageinfo[0];
-                    $imageheight = $imageinfo[1];
-                }
-                $catdef[] = array(
-                    'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
-                    'name'        => 'imported_' . $type['type'],
-                    'value'       => null,
-                    'displayname' => $this->__("imported_") . $type['type'],
-                    'description' => $this->__("imported_") . $type['type'],
-                    'attributes'  => array(
-                        'length'  => $imagewidth,
-                        'width'   => $imageheight,
-                        'time'    => 15
-                        )
-                );
-                $previous_type = $type['type'];
+        foreach ($types as $type => $imageurl) {
+            if (is_file($imageurl)) {
+                $imageinfo = getimagesize($imageurl);
+            } else {
+                $imageinfo = FALSE;
             }
+            if (!$imageinfo) {
+                $imagewidth  = 250; // default if can't find value
+                $imageheight = 250; // default if can't find value
+            } else {
+                $imagewidth  = $imageinfo[0];
+                $imageheight = $imageinfo[1];
+            }
+            $catdef[] = array(
+                'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
+                'name'        => 'imported_' . $type,
+                'value'       => null,
+                'displayname' => $this->__("imported_") . $type,
+                'description' => $this->__("imported_") . $type,
+                'attributes'  => array(
+                    'length'  => $imagewidth,
+                    'width'   => $imageheight,
+                    'time'    => 15
+                    )
+            );
         }
         return $catdef;
     }
@@ -185,17 +193,20 @@ class Banners_Installer extends Zikula_Installer
      * @param array $cats (catname => catid)
      * @return bool success
      */
-    private function updateBanners($cats) {
-        $banners = ModUtil::apiFunc('Banners', 'user', 'getall');
+    private function _updateBanners($cats) {
+        $cols = array(
+            'bid',
+            'type',
+            'active');
+        $banners = DBUtil::selectObjectArray('banners', '', '', -1, -1, 'bid', null, null, $cols);
         $result = true;
-        foreach ($banners as $banner) {
-            $banner['__CATEGORIES__']['Main'] = $cats[$banner['type']];
-            if (!$banner['active']) {
-                $banner['active'] = 1;
-            }
-            $result = $result && ModUtil::apiFunc('Banners', 'admin', 'update', $banner);
+        foreach ($banners as $bid => $banner) {
+            $catkey = $this->__("imported_") . $banner['type'];
+            $banners[$bid]['__CATEGORIES__'] = array('Main' => $cats[$catkey]);
+            $banners[$bid]['active'] = 1;
         }
-        return $result;
+
+        return DBUtil::updateObjectArray($banners, 'banners', 'bid');
     }
 
     /**
@@ -204,24 +215,28 @@ class Banners_Installer extends Zikula_Installer
      * @param array $cats (catname => catid)
      * @return bool success
      */
-    private function moveFinished($cats) {
-        $banners = DBUtil::selectObject('bannersfinish');
-        $result = true;
-        $count = 1;
-        foreach ($banners as $banner) {
-            $newbanner = array(
-                '__CATEGORIES__' => array('Main' => $cats['Undefined']),
-                'active'         => 0,
-                'title'          => $this->__f('Inactive Banner %s', $count),
-                'imageurl'       => $this->__('undefined'),
-                'clickurl'       => $this->__('undefined'),
-                'cid'            => $banner['cid'],
-                'impmade'        => $banner['impressions'],
-                'imptotal'       => $banner['impressions'],
-                'clicks'         => $banner['clicks'],
-                'bid'            => null);
-            $result = $result && ModUtil::apiFunc('Banners', 'admin', 'create', $newbanner);
-            $count++;
+    private function _moveFinished($cats) {
+        $pfx = System::getVar('prefix');
+        $sql = "SELECT * from " . $pfx . "_bannersfinish";
+        if ($result = DBUtil::executeSQL($sql)) {
+            $banners = DBUtil::marshallFieldArray($result);
+            $result = true;
+            $count = 1;
+            foreach ($banners as $banner) {
+                $newbanner = array(
+                    '__CATEGORIES__' => array('Main' => $cats['Undefined']),
+                    'active'         => 0,
+                    'title'          => $this->__f('Inactive Banner %s', $count),
+                    'imageurl'       => $this->__('undefined'),
+                    'clickurl'       => $this->__('undefined'),
+                    'cid'            => $banner['cid'],
+                    'impmade'        => $banner['impressions'],
+                    'imptotal'       => $banner['impressions'],
+                    'clicks'         => $banner['clicks'],
+                    'bid'            => null);
+                $result = $result && ModUtil::apiFunc('Banners', 'admin', 'create', $newbanner);
+                $count++;
+            }
         }
         return $result;
     }
