@@ -30,7 +30,12 @@ class Banners_Installer extends Zikula_Installer
         }
 
         // set default mod values
-        ModUtil::setVar('Banners', 'myIP', array('127.0.0.1'));
+        if (!empty($_SERVER['HTTP_X_FORWARD_FOR'])) {
+            $currentip = $_SERVER['HTTP_X_FORWARD_FOR'];
+        } else {
+            $currentip = $_SERVER['REMOTE_ADDR'];
+        }
+        ModUtil::setVar('Banners', 'myIP', array($currentip));
         ModUtil::setVar('Banners', 'banners', true); // active
         ModUtil::setVar('Banners', 'openinnewwindow', false);
         ModUtil::setVar('Banners', 'enablecats', true);
@@ -108,15 +113,17 @@ class Banners_Installer extends Zikula_Installer
                 }
                 DBUtil::dropTable('bannersfinish');
 
-                ModUtil::setVar('Banners', 'banners', true); // activate banners
+                ModUtil::setVar('Banners', 'banners', true);  // assume upgrade = enabled
                 $myIP = ModUtil::getVar('Banners', 'myIP');
-                ModUtil::setVar('Banners', 'myIP', array($myIP));
+                if (!is_array($myIP)) {
+                    ModUtil::setVar('Banners', 'myIP', array($myIP));
+                }
 
                 // register plugins with View so plugins can be used systemwide
                 EventUtil::registerPersistentModuleHandler('Banners', 'view.init', array('Banners_Util', 'registerPluginDir'));
 
             case '3.0.0':
-                // future development
+            // future development
         }
 
         // Update successful
@@ -164,23 +171,23 @@ class Banners_Installer extends Zikula_Installer
                 $imageinfo = FALSE;
             }
             if (!$imageinfo) {
-                $imagewidth  = 250; // default if can't find value
+                $imagewidth = 250; // default if can't find value
                 $imageheight = 250; // default if can't find value
             } else {
-                $imagewidth  = $imageinfo[0];
+                $imagewidth = $imageinfo[0];
                 $imageheight = $imageinfo[1];
             }
             $catdef[] = array(
-                'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
-                'name'        => 'imported_' . $type,
-                'value'       => null,
+                'rootpath' => '/__SYSTEM__/General/IAB_Ad_Units',
+                'name' => 'imported_' . $type,
+                'value' => null,
                 'displayname' => $this->__("imported_") . $type,
                 'description' => $this->__("imported_") . $type,
-                'attributes'  => array(
-                    'length'  => $imagewidth,
-                    'width'   => $imageheight,
-                    'time'    => 15
-                    )
+                'attributes' => array(
+                    'length' => $imagewidth,
+                    'width' => $imageheight,
+                    'time' => 15
+                )
             );
         }
         return $catdef;
@@ -207,8 +214,7 @@ class Banners_Installer extends Zikula_Installer
             $updatedbanner[$bid]['active'] = 1;
             $updatedbanner[$bid]['title'] = $this->__('unnamed_') . $count;
             $updatedbanner[$bid]['__CATEGORIES__'] = array('Main' => $cats[$catkey]);
-            $updatedbanner[$bid]['__META__'] = array(
-                'module' => 'Banners');
+            $updatedbanner[$bid]['__META__'] = array('module' => 'Banners');
             $count++;
         }
 
@@ -231,15 +237,16 @@ class Banners_Installer extends Zikula_Installer
             foreach ($banners as $banner) {
                 $newbanner = array(
                     '__CATEGORIES__' => array('Main' => $cats['Undefined']),
-                    'active'         => 0,
-                    'title'          => $this->__f('Inactive Banner %s', $count),
-                    'imageurl'       => $this->__('undefined'),
-                    'clickurl'       => $this->__('undefined'),
-                    'cid'            => $banner['cid'],
-                    'impmade'        => $banner['impressions'],
-                    'imptotal'       => $banner['impressions'],
-                    'clicks'         => $banner['clicks'],
-                    'bid'            => null);
+                    '__META__' => array('module' => 'Banners'),
+                    'active' => 0,
+                    'title' => $this->__f('Inactive Banner %s', $count),
+                    'imageurl' => $this->__('undefined'),
+                    'clickurl' => $this->__('undefined'),
+                    'cid' => $banner['cid'],
+                    'impmade' => $banner['impressions'],
+                    'imptotal' => $banner['impressions'],
+                    'clicks' => $banner['clicks'],
+                    'bid' => null);
                 $result = $result && ModUtil::apiFunc('Banners', 'admin', 'create', $newbanner);
                 $count++;
             }
