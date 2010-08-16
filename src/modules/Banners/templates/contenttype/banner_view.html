@@ -1,4 +1,4 @@
-<div {if $hovertext}class='banners_banners_tooltips{$blockid}' title='{$banner.hovertext|safehtml} ({$banner.clickurl|safehtml})' {/if}style="text-align:center">{$banner.displaystring}</div>
+<span {if $hovertext}class='banners_banners_tooltips{$blockid}' title='{$banner.hovertext|safehtml} ({$banner.clickurl|safehtml})' {/if}style="text-align:center">{$banner.displaystring}</span>
 {if $hovertext}
 {ajaxheader module="Banners" ui=true}
 <script type="text/javascript">
