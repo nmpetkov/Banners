@@ -45,6 +45,7 @@ class Banners_Util
         );
         // sub-categories
         // data taken from http://www.iab.net/iab_products_and_industry_services/1421/1443/1452
+        // also similar info here: https://www.google.com/adsense/static/en_US/AdFormats.html
         $categories[] = array(
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'MediumRectangle',
@@ -229,7 +230,7 @@ class Banners_Util
             'rootpath'    => '/__SYSTEM__/General/IAB_Ad_Units',
             'name'        => 'WideSkyscraper',
             'value'       => null,
-            'displayname' => __('Wide Skyscraper 16x600', $dom),
+            'displayname' => __('Wide Skyscraper 160x600', $dom),
             'description' => __('Wide Skyscraper 160x600 IMU', $dom),
             'attributes'  => array(
                 'width'   => 160,
