@@ -108,7 +108,7 @@ class Banners_Installer extends Zikula_Installer
                 }
                 DBUtil::dropTable('bannersfinish');
 
-                ModUtil::setVar('Banners', 'banners', false); // activate banners
+                ModUtil::setVar('Banners', 'banners', true); // activate banners
                 $myIP = ModUtil::getVar('Banners', 'myIP');
                 ModUtil::setVar('Banners', 'myIP', array($myIP));
 
@@ -196,17 +196,22 @@ class Banners_Installer extends Zikula_Installer
     private function _updateBanners($cats) {
         $cols = array(
             'bid',
-            'type',
-            'active');
+            'type');
         $banners = DBUtil::selectObjectArray('banners', '', '', -1, -1, 'bid', null, null, $cols);
         $result = true;
+        $count = 1;
         foreach ($banners as $bid => $banner) {
             $catkey = $this->__("imported_") . $banner['type'];
-            $banners[$bid]['__CATEGORIES__'] = array('Main' => $cats[$catkey]);
-            $banners[$bid]['active'] = 1;
+            $updatedbanner = array();
+            $updatedbanner['bid'] = $bid;
+            $updatedbanner['active'] = 1;
+            $updatedbanner['name'] = $this->__('unnamed_') . $count;
+            $updatedbanner['__CATEGORIES__'] = array('Main' => $cats[$catkey]);
+            $result = $result && DBUtil::updateObject($updatedbanner, 'banners', '', 'bid');
+            $count++;
         }
 
-        return DBUtil::updateObjectArray($banners, 'banners', 'bid');
+        return $result;
     }
 
     /**
