@@ -26,8 +26,8 @@ function smarty_function_banners_rotatejs_init($params, &$smarty)
     foreach ($banner as $bannerinfo) {
         $slideshowcontent .= "slideshowcontent[" . $bannerinfo['banid'] . "]=[\"" . $bannerinfo['imageurl'] . "\", \"" . $bannerinfo['clickurl'] . "\", \"\"]\n";
     }
-    $imageheight = $banner[0]['__CATEGORIES__']['Main']['__ATTRIBUTES__']['width'];
-    $imagelength = $banner[0]['__CATEGORIES__']['Main']['__ATTRIBUTES__']['length'];
+    $imageheight = $banner[0]['__CATEGORIES__']['Main']['__ATTRIBUTES__']['height'];
+    $imagewidth = $banner[0]['__CATEGORIES__']['Main']['__ATTRIBUTES__']['width'];
     $delay       = (float) $banner[0]['__CATEGORIES__']['Main']['__ATTRIBUTES__']['time'] * 1000;
     $degree      = (float) $vars['duration'];
 
@@ -41,7 +41,7 @@ function smarty_function_banners_rotatejs_init($params, &$smarty)
         * Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
         ***********************************************/
 
-        var trans_width='{$imagelength}px' //slideshow width
+        var trans_width='{$imagewidth}px' //slideshow width
         var trans_height='{$imageheight}px' //slideshow height
         var pause={$delay} //SET PAUSE BETWEEN SLIDE (3000=3 seconds)
         var degree={$degree} //animation speed. Greater is faster.

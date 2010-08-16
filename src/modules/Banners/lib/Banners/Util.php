@@ -29,9 +29,9 @@ class Banners_Util
 //            'displayname' => '',     // translated string
 //            'description' => '',     // translated string
 //            'attributes'  => array(  // array ('key' hard string => 'value' hard string/int)
-//                'length' => 0,       // graphic length in pixels (int)
-//                'width'  => 0,       // graphic width in pixels (int)
-//                'time'   => 0        // time in seconds for display (int)
+//                'width'   => 0,       // graphic width in pixels (int)
+//                'height'  => 0,       // graphic height in pixels (int)
+//                'time'    => 0        // time in seconds for display (int)
 //                )
 //        );
         // root category
@@ -52,9 +52,9 @@ class Banners_Util
             'displayname' => __('Medium Rectangle 300x250', $dom),
             'description' => __('Medium Rectangle 300x250 IMU', $dom),
             'attributes'  => array(
-                'length' => 300,
-                'width'  => 250,
-                'time'   => 15
+                'width'   => 300,
+                'height'  => 250,
+                'time'    => 15
                 )
         );
         $categories[] = array(
@@ -64,9 +64,9 @@ class Banners_Util
             'displayname' => __('Square Pop-up 250x250', $dom),
             'description' => __('Square Pop-up 250x250 IMU', $dom),
             'attributes'  => array(
-                'length' => 250,
-                'width'  => 250,
-                'time'   => 15
+                'width'   => 250,
+                'height'  => 250,
+                'time'    => 15
                 )
         );
         $categories[] = array(
@@ -76,9 +76,9 @@ class Banners_Util
             'displayname' => __('Vertical Rectangle 240x400', $dom),
             'description' => __('Vertical Rectangle 240x400 IMU', $dom),
             'attributes'  => array(
-                'length' => 240,
-                'width'  => 400,
-                'time'   => 15
+                'width'   => 240,
+                'height'  => 400,
+                'time'    => 15
                 )
         );
         $categories[] = array(
@@ -88,9 +88,9 @@ class Banners_Util
             'displayname' => __('Large Rectangle 336x280', $dom),
             'description' => __('Large Rectangle 336x280 IMU', $dom),
             'attributes'  => array(
-                'length' => 336,
-                'width'  => 280,
-                'time'   => 15
+                'width'   => 336,
+                'height'  => 280,
+                'time'    => 15
                 )
         );
         $categories[] = array(
@@ -100,9 +100,9 @@ class Banners_Util
             'displayname' => __('Rectangle 180x150', $dom),
             'description' => __('Rectangle 180x150 IMU', $dom),
             'attributes'  => array(
-                'length' => 180,
-                'width'  => 150,
-                'time'   => 15
+                'width'   => 180,
+                'height'  => 150,
+                'time'    => 15
                 )
         );
         $categories[] = array(
@@ -112,9 +112,9 @@ class Banners_Util
             'displayname' => __('3:1 Rectangle 300x100', $dom),
             'description' => __('3:1 Rectangle 300x100 IMU', $dom),
             'attributes'  => array(
-                'length' => 300,
-                'width'  => 100,
-                'time'   => 15
+                'width'   => 300,
+                'height'  => 100,
+                'time'    => 15
                 )
         );
         $categories[] = array(
@@ -124,9 +124,9 @@ class Banners_Util
             'displayname' => __('Pop-Under 720x300', $dom),
             'description' => __('Pop-Under 720x300 IMU', $dom),
             'attributes'  => array(
-                'length' => 720,
-                'width'  => 300,
-                'time'   => 15
+                'width'   => 720,
+                'height'  => 300,
+                'time'    => 15
                 )
         );
         $categories[] = array(
@@ -136,9 +136,9 @@ class Banners_Util
             'displayname' => __('Full Banner 468x60', $dom),
             'description' => __('Full Banner 468x60 IMU', $dom),
             'attributes'  => array(
-                'length' => 468,
-                'width'  => 60,
-                'time'   => 15
+                'width'   => 468,
+                'height'  => 60,
+                'time'    => 15
                 )
         );
         $categories[] = array(
@@ -148,9 +148,9 @@ class Banners_Util
             'displayname' => __('Half Banner 234x60', $dom),
             'description' => __('Half Banner 234x60 IMU', $dom),
             'attributes'  => array(
-                'length' => 234,
-                'width'  => 60,
-                'time'   => 15
+                'width'   => 234,
+                'height'  => 60,
+                'time'    => 15
                 )
         );
         $categories[] = array(
@@ -160,9 +160,9 @@ class Banners_Util
             'displayname' => __('Micro Bar 88x31', $dom),
             'description' => __('Micro Bar 88x31 IMU', $dom),
             'attributes'  => array(
-                'length' => 88,
-                'width'  => 31,
-                'time'   => 15
+                'width'   => 88,
+                'height'  => 31,
+                'time'    => 15
                 )
         );
         $categories[] = array(
@@ -172,9 +172,9 @@ class Banners_Util
             'displayname' => __('Button 1 120x90', $dom),
             'description' => __('Button 1 120x90 IMU', $dom),
             'attributes'  => array(
-                'length' => 120,
-                'width'  => 90,
-                'time'   => 15
+                'width'   => 120,
+                'height'  => 90,
+                'time'    => 15
                 )
         );
         $categories[] = array(
@@ -184,9 +184,9 @@ class Banners_Util
             'displayname' => __('Button 2x120x60', $dom),
             'description' => __('Button 2 120x60 IMU', $dom),
             'attributes'  => array(
-                'length' => 120,
-                'width'  => 60,
-                'time'   => 15
+                'width'   => 120,
+                'height'  => 60,
+                'time'    => 15
                 )
         );
         $categories[] = array(
@@ -196,9 +196,9 @@ class Banners_Util
             'displayname' => __('Vertical Banner 120x240', $dom),
             'description' => __('Vertical Banner 120x240 IMU', $dom),
             'attributes'  => array(
-                'length' => 120,
-                'width'  => 240,
-                'time'   => 15
+                'width'   => 120,
+                'height'  => 240,
+                'time'    => 15
                 )
         );
         $categories[] = array(
@@ -208,9 +208,9 @@ class Banners_Util
             'displayname' => __('Square Button 125x125', $dom),
             'description' => __('Square Button 125x125 IMU', $dom),
             'attributes'  => array(
-                'length' => 125,
-                'width'  => 125,
-                'time'   => 15
+                'width'   => 125,
+                'height'  => 125,
+                'time'    => 15
                 )
         );
         $categories[] = array(
@@ -220,9 +220,9 @@ class Banners_Util
             'displayname' => __('Leaderboard 728x90', $dom),
             'description' => __('Leaderboard 728x90 IMU', $dom),
             'attributes'  => array(
-                'length' => 728,
-                'width'  => 90,
-                'time'   => 15
+                'width'   => 728,
+                'height'  => 90,
+                'time'    => 15
                 )
         );
         $categories[] = array(
@@ -232,9 +232,9 @@ class Banners_Util
             'displayname' => __('Wide Skyscraper 16x600', $dom),
             'description' => __('Wide Skyscraper 160x600 IMU', $dom),
             'attributes'  => array(
-                'length' => 160,
-                'width'  => 600,
-                'time'   => 15
+                'width'   => 160,
+                'height'  => 600,
+                'time'    => 15
                 )
         );
         $categories[] = array(
@@ -244,9 +244,9 @@ class Banners_Util
             'displayname' => __('Skyscraper 120x600', $dom),
             'description' => __('Skyscraper 120x600 IMU', $dom),
             'attributes'  => array(
-                'length' => 120,
-                'width'  => 600,
-                'time'   => 15
+                'width'   => 120,
+                'height'  => 600,
+                'time'    => 15
                 )
         );
         $categories[] = array(
@@ -256,9 +256,9 @@ class Banners_Util
             'displayname' => __('Half Page Ad 300x600', $dom),
             'description' => __('Half Page Ad 300x600 IMU', $dom),
             'attributes'  => array(
-                'length' => 300,
-                'width'  => 600,
-                'time'   => 15
+                'width'   => 300,
+                'height'  => 600,
+                'time'    => 15
                 )
         );
 
@@ -275,7 +275,7 @@ class Banners_Util
                 'displayname' => __('Undefined Ad Type', $dom),
                 'description' => __('Used for conversion of old finished banner types', $dom),
                 'attributes'  => array(
-                    'time'   => 15
+                    'time'    => 15
                     )
             );
         }

@@ -8,8 +8,8 @@
     </li>
     {/foreach}
 </ul>
-{assign value=$banner.0.__CATEGORIES__.Main.__ATTRIBUTES__.width var='height'}
-{assign value=$banner.0.__CATEGORIES__.Main.__ATTRIBUTES__.length var='width'}
+{assign value=$banner.0.__CATEGORIES__.Main.__ATTRIBUTES__.height var='height'}
+{assign value=$banner.0.__CATEGORIES__.Main.__ATTRIBUTES__.width var='width'}
 <style type="text/css">
     #protofadeshow{{$blockid}} {
         list-style: none;

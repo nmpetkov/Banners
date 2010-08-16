@@ -184,8 +184,8 @@ class Banners_Installer extends Zikula_Installer
                 'displayname' => $this->__("imported_") . $type,
                 'description' => $this->__("imported_") . $type,
                 'attributes' => array(
-                    'length' => $imagewidth,
-                    'width' => $imageheight,
+                    'width' => $imagewidth,
+                    'height' => $imageheight,
                     'time' => 15
                 )
             );
