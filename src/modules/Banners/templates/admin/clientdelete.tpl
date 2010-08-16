@@ -28,8 +28,8 @@
             {/if}
             <p>{gt text="You are about to delete the client and all its banners!<br />Do you really want to delete this client?"}</p>
             <div class="z-buttons z-formbuttons">
-                {button src="button_ok.gif" set="icons/extrasmall" __alt="Delete Client" __title="Delete Client" __text="Delete Client"}
-                <a href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.gif" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
+                {button class='z-btgreen' src="button_ok.gif" set="icons/extrasmall" __alt="Delete Client" __title="Delete Client" __text="Delete Client"}
+                <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.gif" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
             </div>
         </div>
     </form>

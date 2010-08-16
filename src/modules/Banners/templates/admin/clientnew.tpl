@@ -29,8 +29,8 @@
                 <textarea id="xinfo" name="client[extrainfo]" cols="50" rows="10"></textarea>
             </div>
             <div class="z-buttons z-formbuttons">
-                {button src="button_ok.gif" set="icons/extrasmall" __alt="Add Client" __title="Add Client" __text="Add Client"}
-                <a href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.gif" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
+                {button class='z-btgreen' src="button_ok.gif" set="icons/extrasmall" __alt="Add Client" __title="Add Client" __text="Add Client"}
+                <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.gif" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
             </div>
         </fieldset>
     </form>

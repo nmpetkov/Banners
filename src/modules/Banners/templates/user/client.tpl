@@ -1,8 +1,7 @@
 {pnajaxheader imageviewer=true}
 {insert name="getstatusmsg"}
-<h1>{gt text='Banner Ad Statistics'}</h1>
+<h1>{gt text='Banners Statistics'}</h1>
 <h2>{gt text="Current banners for %s" tag1=$client.name}</h2>
-<h3>{gt text="Summary"}</h3>
 {configgetvar name="sitename" assign=sitename}
 <p>{gt text="You have the following banners on %s" tag1=$sitename}</p>
 <table class="z-datatable">
@@ -41,7 +40,11 @@
                 <a href="{modurl modname="Banners" type="user" func="editurl" bid=$banners[banners].bid}">{img modname=core set=icons/extrasmall src=xedit.gif __alt="edit URL" __title="Edit URL"}</a>
             </td>
         </tr>
+	{sectionelse}
+            <tr class="z-admintableempty"><td colspan="7">{gt text='No Banners Found'}</td></tr>
 	{/section}
     </tbody>
 </table>
-&nbsp;&nbsp;{img src=greenled.gif modname=core set=icons/extrasmall}={gt text="active"} | {img src=redled.gif modname=core set=icons/extrasmall}={gt text="inactive"}
+<div style='margin-left:2em;'>
+    {img src=greenled.gif modname=core set=icons/extrasmall}={gt text="active"} | {img src=redled.gif modname=core set=icons/extrasmall}={gt text="inactive"}
+</div>

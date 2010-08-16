@@ -28,8 +28,8 @@
             </div>
             {modcallhooks hookobject=module hookaction=modifyconfig module=Banners}
             <div class="z-buttons z-formbuttons">
-                {button src="button_ok.gif" set="icons/extrasmall" __alt="Save" __title="Save" __text="Save"}
-                <a href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.gif" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
+                {button class='z-btgreen' src="button_ok.gif" set="icons/extrasmall" __alt="Save" __title="Save" __text="Save"}
+                <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.gif" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
             </div>
         </fieldset>
     </div>
