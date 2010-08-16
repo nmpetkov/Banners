@@ -17,7 +17,7 @@
                         {html_options options=$clients selected=$banner.cid}
                     </select>
                 </div>
-                {if $banner.imptotal > 0}
+                {if (($banner.imptotal > 0) || (($banner.imptotal == 0) and ($banner.limit == 1)))}
                     <div class="z-formrow">
                         <label for="banners_addimp">{gt text="Add more impressions"}</label>
                         <input type="text" id="banners_addimp" name="banner[impadded]" size="12" maxlength="11" />

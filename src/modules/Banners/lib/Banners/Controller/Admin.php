@@ -170,6 +170,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
         if ($limit) {
             $banner['imptotal'] = $banner['impmade'];
         }
+        $banner['limit'] = $limit;
 
         // assign the banner item
         $this->view->assign('banner', $banner);

@@ -46,7 +46,7 @@
     <input type="text" id="bannerblock_ecols" name="ecols" value="{$vars.ecols}" />
 </div>
 <div class="z-formrow">
-    <label for="bannerblock_ecolor">{gt text='Number of eSquare rows'}</label>
+    <label for="bannerblock_ecolor">{gt text='Color of eSquare transition background'}</label>
     <input type="text" id="bannerblock_ecolor" name="ecolor" value="{$vars.ecolor}" />
     <em class='z-formnote'>({gt text='include hash symbol'}}</em>
 </div>
