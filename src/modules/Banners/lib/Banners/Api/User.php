@@ -61,7 +61,7 @@ class Banners_Api_User extends Zikula_Api {
         $wheres = array();
         // allow filtering by client id
         if (isset($args['cid'])) {
-            $wheres[] = 'cid=' . DataUtil::formatForStore((int) $args['cid']);
+            $wheres[] = 'pn_cid=' . DataUtil::formatForStore((int) $args['cid']);
         }
         if ($args['active'] == 1 || $args['active'] == 0) {
             $wheres[] = 'pn_active=' . $args['active'];
