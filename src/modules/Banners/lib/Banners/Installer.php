@@ -200,18 +200,19 @@ class Banners_Installer extends Zikula_Installer
         $banners = DBUtil::selectObjectArray('banners', '', '', -1, -1, 'bid', null, null, $cols);
         $result = true;
         $count = 1;
+        $updatedbanner = array();
         foreach ($banners as $bid => $banner) {
             $catkey = $this->__("imported_") . $banner['type'];
-            $updatedbanner = array();
-            $updatedbanner['bid'] = $bid;
-            $updatedbanner['active'] = 1;
-            $updatedbanner['name'] = $this->__('unnamed_') . $count;
-            $updatedbanner['__CATEGORIES__'] = array('Main' => $cats[$catkey]);
-            $result = $result && DBUtil::updateObject($updatedbanner, 'banners', '', 'bid');
+            $updatedbanner[$bid]['bid'] = $bid;
+            $updatedbanner[$bid]['active'] = 1;
+            $updatedbanner[$bid]['title'] = $this->__('unnamed_') . $count;
+            $updatedbanner[$bid]['__CATEGORIES__'] = array('Main' => $cats[$catkey]);
+            $updatedbanner[$bid]['__META__'] = array(
+                'module' => 'Banners');
             $count++;
         }
 
-        return $result;
+        return DBUtil::updateObjectArray($updatedbanner, 'banners', 'bid');
     }
 
     /**

@@ -88,7 +88,6 @@ class Banners_Api_Admin extends Zikula_Api {
         if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADD)) {
             return LogUtil::registerPermissionError();
         }
-        //echo "<pre>"; print_r($args); echo "</pre>"; die;
 
         if (!$banner = DBUtil::insertObject($args, 'banners', 'bid')) {
             return LogUtil::registerError($this->__('Error! Creation attempt failed.'));
