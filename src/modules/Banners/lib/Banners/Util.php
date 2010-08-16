@@ -292,7 +292,8 @@ class Banners_Util
                     $cat['attributes']);
         }
         // bind registry Entry for Banners
-        $catresults['reg_bind'] = CategoryRegistryUtil::insertEntry ('Banners', 'banners', 'Main', $catresults['IAB_Ad_Units']);
+        //$catresults['reg_bind'] = CategoryRegistryUtil::insertEntry ('Banners', 'banners', 'Main', $catresults['IAB_Ad_Units']);
+        CategoryRegistryUtil::insertEntry ('Banners', 'banners', 'Main', $catresults['IAB_Ad_Units']);
     
         return $catresults;
     }
