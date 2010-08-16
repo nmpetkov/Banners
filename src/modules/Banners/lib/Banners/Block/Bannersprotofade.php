@@ -31,7 +31,7 @@ class Banners_Block_Bannersprotofade extends Zikula_Block
     {
         return array('text_type'       => $this->__('Protofade'),
                      'module'          => 'Banners',
-                     'text_type_long'  => $this->__('Protofade Banner Display'),
+                     'text_type_long'  => $this->__('Protofade Banner Display (multiple images)'),
                      'allow_multiple'  => true,
                      'form_content'    => false,
                      'form_refresh'    => false,

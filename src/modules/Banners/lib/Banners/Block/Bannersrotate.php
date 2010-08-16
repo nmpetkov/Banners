@@ -31,7 +31,7 @@ class Banners_Block_Bannersrotate extends Zikula_Block
         return array(
             'text_type'       => $this->__('Rotating'),
             'module'          => 'Banners',
-            'text_type_long'  => $this->__('Rotating Banner Display'),
+            'text_type_long'  => $this->__('Rotating Banner Display (multiple images)'),
             'allow_multiple'  => true,
             'form_content'    => false,
             'form_refresh'    => false,

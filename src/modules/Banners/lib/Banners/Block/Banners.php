@@ -31,7 +31,7 @@ class Banners_Block_Banners extends Zikula_Block
     {
         return array('text_type'       => $this->__('banners'),
                      'module'          => 'Banners',
-                     'text_type_long'  => $this->__('Custom Banner Display'),
+                     'text_type_long'  => $this->__('Random Banner Display (single image)'),
                      'allow_multiple'  => true,
                      'form_content'    => false,
                      'form_refresh'    => false,

@@ -159,7 +159,7 @@ class Banners_Api_User extends Zikula_Api {
         if (!isset($args['active'])) {
             $args['active'] = 1;
         }
-        $where = 'active=' . $args['active'];
+        $where = 'pn_active=' . $args['active'];
         return DBUtil::selectObjectCount('banners', $where, '1', false, $args['catFilter']);
     }
 
