@@ -1,0 +1,12 @@
+## Banners 3.0.0 Template Plugin
+
+The template plugin is available *globally*. This means you can use it in any theme or module template. The plugin mimics the behavior of the standard **Random Banner Display** block. It requires one parameter: the blocktype ID (the category ID)
+
+example usage:
+~~~
+{bannerdisplay blocktype=10012}
+~~~
+
+## Content Support
+
+The Content module is supported with one contenttype 'plugin'. This also mimics the standard **Random Banner Display** block. You are required to choose an Banner Type.

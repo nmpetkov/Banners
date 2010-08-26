@@ -1,0 +1,27 @@
+## Banners 3.0.0 Administration Options
+
+### Overview {#Overview}
+
+Displays a list of all active and inactive banners and clients. Provide interface for the admin to create, edit and delete banners and clients.
+
+### New Client
+
+Allows admin to create new client.
+
+### New Banner
+
+Allows admin to create new banner. Disabled until a client is available.
+
+### Module Configuration
+
+Item                  | Description
+----------------------|------------
+Banners Active        | If disabled, banners will not display
+Enable Categorization | If disabled, banners will not utilize Categories (which is essentially required)
+... new window        | when selected, clicking on a banner will launch a new window with the contents of the link
+List of IPs...        | List of IP addresses to not include in statistics for impressions and clicks (CSV)
+
+
+### Documentation
+
+This page!

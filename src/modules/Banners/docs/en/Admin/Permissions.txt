@@ -1,0 +1,27 @@
+## Banners 3.0.0 Permission Settings
+
+Banners supports *category-based* permissions and *item-based* permissions.
+
+In order to deny access to unregistered users to a particular banner, you can use a permission setting like so:
+
+`Unregistered | Banners:: | <banner id>:: | No access`
+
+*example:*
+
+`Unregistered | Banners:: | 52:: | No access`
+
+In order to deny access to unregistered users to all events in a certain category, you can use a permission setting like so:
+
+`Unregistered | Categories::Category | <Category ID>:: | No access`
+
+*example:*
+
+`Unregistered | Categories::Category | 93:: | No access`
+
+In order to allow a subgroup to administrate Banners, you can use a permission setting like so:
+
+`BannerAdmins | Banners:: | .* | Admin access`
+
+Be sure to define the group and assign members as appropriate.
+
+*Remember that the **order** in which your permission settings occur (bottom to top) is **crucial**! *

@@ -1,0 +1,15 @@
+## Banners 3.0.0 Client View
+
+The Banners *Client* (or *user*) view will vary depending on whether the currently logged in user has been associated with a Banners Client or not. Users that have not be associated will see a page explaining that they are not a Banners Client. Actual clients will see an overview of all Banners (active and inactive) and their associated statistics along with the option to take some actions.
+
+### Statistics
+
+The statistics available here are the same as those in the Admin Overview.
+
+### Editing Click URL
+
+The Client can edit the *click URL* (destination link) for any banner. This does not change (or reset) the statistics or impression tracking. Clients can edit this at will.
+
+### Emailing Statistics
+
+The Client can email the statistics overview to their User email account on a per banner basis.

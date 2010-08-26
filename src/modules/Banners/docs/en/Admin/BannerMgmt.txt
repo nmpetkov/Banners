@@ -1,0 +1,19 @@
+## Banners 3.0.0 Banner Management
+
+From the Admin Overview, banners can be created, edited, deleted and viewed.
+
+### Create
+
+Click on the *New Banner* link in the Banners Admin Menu. Choose a client from the list. The *Impressions Purchased* will restrict the number of impressions for the banner. When this amount is reached, the banner will automatically become inactive. The Banner *type* defines the size of your banner. The *Image URL* is the path to your image. The *Click URL* is the link to which you want a user to visit when clicking the image. *Hover text* will be displayed as the image title on mouseover.
+
+### Edit
+
+Click on the *Edit Banner* icon (red pen) in the Admin Overview to edit a banner. Banners with 'Unlimited' impressions can be converted to 'limited' by clicking the 'X' in the *Remaining* column. 'Limited' banners can be converted to 'Unlimited' or add additional impressions in the edit banner interface.
+
+### Delete
+
+Click on the *Delete Banner* icon (trash can) in the Admin Overview to delete a banner.
+
+### View
+
+Click on the *view image* icon from the Admin Overview to view the image.

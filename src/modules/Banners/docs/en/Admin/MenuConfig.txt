@@ -1,0 +1,11 @@
+## Banners 3.0.0 Menu Configuration
+
+Link to Banners by entering `{Banners}` in a menu block.
+
+Go to your Block administration and edit/create the Menu block to hold your link to Banners.
+
+The Menu Block editing screen should look *something* like this:
+
+Name    | URL       | Title
+--------|-----------|------
+Banners | {Banners} | My Banners

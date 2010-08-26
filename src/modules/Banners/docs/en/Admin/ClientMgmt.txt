@@ -1,0 +1,15 @@
+## Banners 3.0.0 Client Management
+
+From the Admin Overview, clients can be created, edited and deleted. At least one valid client must be created and available before a banner can be created.
+
+### Create
+
+Click on the *New Client* link in the Banners Admin Menu. The *Client Business Name* and *Client Real Name* Fields are internal to Banners and for Admin reference only. Each Banners client must be associated with one Zikula username. At this time, associating more than one client with the same Zikula username could produce unexpected results and is not supported. The *Extra Information* field will be displayed on mouseover of the client name in the Admin Overview.
+
+### Edit
+
+Click on the *Edit Client* icon (red pen) in the Admin Overview to edit a client.
+
+### Delete
+
+Click on the *Delete Client* icon (trash can) in the Admin Overview to delete a client.

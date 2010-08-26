@@ -1,0 +1,43 @@
+## Banners 3.0.0 Blocks
+
+Banners provides three different blocks for displaying banners on your site. In addition, Banners provides a template plugin and Content type which can also display Banners.
+
+### Random Banner Display
+
+This displays a random single image to the user on each page view. The image is static and will not change during the page view but will (potentially) change upon a reload.
+
+##### Configuration Options
+
+*   The Admin must define a **Banner Type**.
+*   The Admin may *optionally* choose to show the banners **hovertext** as a javascript 'tooltip'. If not, the standard 'title' attribute is used.
+
+### Protofade Banner Display
+
+The Protofade block takes advantage of the [Protofade][] library to display multiple images with a gradient fade between them.
+
+##### Configuration Options
+
+*   The Admin must define a **Banner Type**.
+*   The Admin may *optionally* choose to show the banners **hovertext** as a javascript 'tooltip'. If not, the standard 'title' attribute is used.
+*   The **Transition duration** is the speed at which the banners fade from one to the next. Value is seconds.
+*   The Admin may *optionally* display slideshow controls (next, prev, play, stop).
+*   The Admin may *optionally* autostart the slideshow (recommended).
+*   The Admin may *optionally* use an eSquare transition (default is simple fade)
+    *   If using the eSquare transition, you must set number of **rows**, **columns** and **background color**.
+*   Actual banner *display time* is defined in 'time' attribute for the Banner Type in the Categories module.
+
+### Rotating Banner Display
+
+The Rotating block uses the [Translucent Slideshow script from Dynamic Drive][dynamicdrive] to display multiple images with a 'wipe' transition between them.
+
+##### Configuration Options
+
+*   The Admin must define a **Banner Type**.
+*   The Admin must define a **Transition speed**. This is the speed at which the banners transition from one to the next. This value is NOT in seconds. In fact, a greater number is faster (recommended value is 50).
+*   Actual banner *display time* is defined in 'time' attribute for the Banner Type in the Categories module.
+
+[Protofade]: <http://cssrevolt.com/upload/files/protofade/>
+    "Protofade library"
+
+[dynamicdrive]: <http://www.dynamicdrive.com/>
+    "Dynamic Drive"
