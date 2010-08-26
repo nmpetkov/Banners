@@ -3,11 +3,11 @@
     <div class="z-adminpageicon">{img modname=core src=filenew.gif set=icons/large __alt='Create Banners'}</div>
     <h2>{gt text="Add Banner"}</h2>
     {if $bannersenabled eq 0}
-    <p>
-        <em><strong>{gt text="Important note!"}</strong></em>
-        <strong>{gt text="Banners are currently inactive."}</strong>
-        {gt text="To active banners, please check your configuration."}
-    </p>
+    <div class="z-warningmsg">
+        <em><strong>{gt text="Important!"}</strong></em>
+        <strong>{gt text="Banner display is currently turned off."}</strong>
+        {gt text="To turn on banner display, please check your"} <a href='{modurl modname="Banners" type="admin" func="modifyconfig"}'>{gt text='settings'}</a>
+    </div>
     {/if}
     <form class="z-form" action="{modurl modname="Banners" type="admin" func="create"}" method="post" enctype="application/x-www-form-urlencoded">
         <fieldset>

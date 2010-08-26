@@ -1,7 +1,7 @@
 {include file="admin/menu.tpl"}
 <div class="z-admincontainer">
 <div class="z-adminpageicon">{img modname=core src=configure.gif set=icons/large alt='_MODIFYCONFIG' altml=true}</div>
-<h2>{gt text="Modify Banners Configuration"}</h2>
+<h2>{gt text="Modify Banners Settings"}</h2>
 <form class="z-form" action="{modurl modname="Banners" type="admin" func="updateconfig"}" method="post" enctype="application/x-www-form-urlencoded">
     <div>
         <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
@@ -9,7 +9,7 @@
         <fieldset>
             <legend>{gt text='General settings'}</legend>
             <div class="z-formrow">
-                <label for="banners">{gt text="Banners active"}</label>
+                <label for="banners">{gt text="Display Banners"}</label>
                 <input type="checkbox" id="banners" name="banners" value="1" {if $banners} checked="checked"{/if} />
             </div>
             <div class="z-formrow">

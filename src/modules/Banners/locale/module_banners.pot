@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-17 03:48+0000\n"
+"POT-Creation-Date: 2010-08-26 13:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -215,7 +215,7 @@ msgid "Create Client First"
 msgstr ""
 
 #: lib/Banners/Api/Admin.php:54
-msgid "Module Configuration"
+msgid "Settings"
 msgstr ""
 
 #: lib/Banners/Api/Admin.php:60
@@ -410,17 +410,22 @@ msgstr ""
 
 #: templates/admin/new.tpl:7 templates/admin/clientnew.tpl:7
 #: templates/admin/overview.tpl:7
-msgid "Important note!"
+msgid "Important!"
 msgstr ""
 
 #: templates/admin/new.tpl:8 templates/admin/clientnew.tpl:8
 #: templates/admin/overview.tpl:8
-msgid "Banners are currently inactive."
+msgid "Banner display is currently turned off."
 msgstr ""
 
 #: templates/admin/new.tpl:9 templates/admin/clientnew.tpl:9
 #: templates/admin/overview.tpl:9
-msgid "To active banners, please check your configuration."
+msgid "To turn on banner display, please check your"
+msgstr ""
+
+#: templates/admin/new.tpl:9 templates/admin/clientnew.tpl:9
+#: templates/admin/overview.tpl:9
+msgid "settings"
 msgstr ""
 
 #: templates/admin/new.tpl:16 templates/admin/overview.tpl:28
@@ -696,7 +701,7 @@ msgid "Banners Administration"
 msgstr ""
 
 #: templates/admin/modifyconfig.tpl:4
-msgid "Modify Banners Configuration"
+msgid "Modify Banners Settings"
 msgstr ""
 
 #: templates/admin/modifyconfig.tpl:10
@@ -704,7 +709,7 @@ msgid "General settings"
 msgstr ""
 
 #: templates/admin/modifyconfig.tpl:12
-msgid "Banners active"
+msgid "Display Banners"
 msgstr ""
 
 #: templates/admin/modifyconfig.tpl:16

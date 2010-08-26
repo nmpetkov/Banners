@@ -51,7 +51,7 @@ class Banners_Api_Admin extends Zikula_Api {
         if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN)) {
             $links[] = array(
                 'url' => ModUtil::url('Banners', 'admin', 'modifyconfig'),
-                'text' => $this->__('Module Configuration'),
+                'text' => $this->__('Settings'),
                 'class' => 'z-icon-es-config');
         }
         if (SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN)) {
