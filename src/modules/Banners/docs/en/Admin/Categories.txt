@@ -17,20 +17,3 @@ Deleting a banner type is accessible from either the edit link in the new/edit b
 ### Active Status
 
 Categories can be declared active or inactive within the new/edit category interface. Inactive categories will not be available to any module.
-
-## Image Storage and Location
-
-When creating or editing a banner, the image URL is the location of your image. Banners does not provide for uploading or managing these files. Other file management modules such as *Files* or even *mGallery2* can be used as long as you are able to access a valid source for an <img> link. This source can be local or remote.
-
-##### Examples of valid image URL values
-
-~~~
-/images/logo.gif
-https://www.google.com/adsense/static/en_US/images/skyscraper_img.jpg
-file.php?file=banners/.tbn/12steps.png
-~~~
-
-*Ultimately, you may store your banner images anywhere you like. The imageURL will be used as a src in an img tag.*
-
-[iab]: <http://www.iab.net/iab_products_and_industry_services/1421/1443/1452>
-    "IAB Internation Ad Units"
