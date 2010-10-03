@@ -1,0 +1,25 @@
+This file contains a list of vendor libraries distributed with Banners
+----------------------------------------------------------------------
+
+PHP LIBRARIES
+-------------
+
+none
+
+
+JAVASCRIPT LIBRARIES
+--------------------
+
+ProtoFade 1.2 (18/09/2009)
+    Vendor website: http://cssrevolt.com/upload/files/protofade/
+    Downloaded from: http://www.cssrevolt.com/upload/files/protofade/protofade.1.2.zip
+    License: MIT
+    Location in Banners: modules/Banners/javascript/protofade.1.2.js
+    Patch details: none
+
+Translucent Slideshow script (unversioned)
+    Vendor website: http://www.dynamicdrive.com/dynamicindex14/translucentslide.htm
+    Downloaded from: http://www.dynamicdrive.com/dynamicindex14/translucentslide.htm
+    License: unclear - see http://www.dynamicdrive.com/notice.htm
+    Location in Banners: modules/Banners/templates/plugins/function.banners_rotatejs_init.php
+    Patch details: some variables defined within script

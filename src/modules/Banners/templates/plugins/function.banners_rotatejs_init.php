@@ -156,7 +156,6 @@ function smarty_function_banners_rotatejs_init($params, &$smarty)
 
         //-->
         </script>";
-    //PageUtil::addVar("rawtext", $pagescript);
 
     return $pagescript;
 }
