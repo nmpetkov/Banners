@@ -10,7 +10,7 @@
     </div>
     {/if}
     <h2>{gt text="Active Banners"}</h2>
-    <table class="z-admintable">
+    <table class="z-datatable">
         <thead>
             <tr>
                 <th>{gt text="Banner"}</th>
@@ -55,13 +55,13 @@
                 </td>
             </tr>
 	{sectionelse}
-            <tr class="z-admintableempty"><td colspan="10">{gt text='No Active Banners Found'}</td></tr>
+            <tr class="z-datatableempty"><td colspan="10">{gt text='No Active Banners Found'}</td></tr>
 	{/section}
         </tbody>
     </table>
 
     <h2>{gt text="Inactive Banners"}</h2>
-    <table class="z-admintable">
+    <table class="z-datatable">
         <thead>
             <tr>
                 <th>{gt text="Banner"}</th>
@@ -110,13 +110,13 @@
                 </td>
             </tr>
 	{sectionelse}
-            <tr class="z-admintableempty"><td colspan="10">{gt text='No Inactive Banners Found'}</td></tr>
+            <tr class="z-datatableempty"><td colspan="10">{gt text='No Inactive Banners Found'}</td></tr>
 	{/section}
         </tbody>
     </table>
 
     <h2>{gt text="Clients"}</h2>
-    <table class="z-admintable">
+    <table class="z-datatable">
         <thead>
             <tr>
                 <th>{gt text="Client Name (cid)"}</th>
@@ -141,7 +141,7 @@
                 </td>
             </tr>
 	{sectionelse}
-            <tr class="z-admintableempty"><td colspan="6">{gt text='No Clients Found'}</td></tr>
+            <tr class="z-datatableempty"><td colspan="6">{gt text='No Clients Found'}</td></tr>
 	{/section}
         </tbody>
     </table>

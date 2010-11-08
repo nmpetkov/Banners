@@ -9,7 +9,7 @@
     <input type="hidden" name="bid" value="{$banner.bid|safetext}" />
 	<a href="{$banner.clickurl|safetext}"><img src="{$banner.imageurl|safetext}" alt="" title="{$banner.clickurl|safetext}" /></a>
 	<br /><a href="{$banner.clickurl|safetext}">{$banner.clickurl|safetext}</a>
-	<table class="z-admintable">
+	<table class="z-datatable">
 		<thead>
 		<tr>
 			<th>{gt text="ID"}</th>

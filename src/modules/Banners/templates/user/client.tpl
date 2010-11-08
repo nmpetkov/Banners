@@ -41,7 +41,7 @@
             </td>
         </tr>
 	{sectionelse}
-            <tr class="z-admintableempty"><td colspan="7">{gt text='No Banners Found'}</td></tr>
+            <tr class="z-datatableempty"><td colspan="7">{gt text='No Banners Found'}</td></tr>
 	{/section}
     </tbody>
 </table>
