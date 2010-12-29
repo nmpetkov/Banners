@@ -2,7 +2,7 @@
 {include file="admin/menu.tpl"}
 <div class="z-admincontainer">
     <div class="z-adminpageicon">{img modname=core src=windowlist.gif set=icons/large __alt="Active Banners"}</div>
-    {if $bannersenabled eq 0}
+    {if $modvars.Banners.banners eq 0}
     <div class="z-warningmsg">
         <em><strong>{gt text="Important!"}</strong></em>
         <strong>{gt text="Banner display is currently turned off."}</strong>

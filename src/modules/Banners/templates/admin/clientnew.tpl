@@ -2,7 +2,7 @@
 <div class="z-admincontainer">
     <div class="z-adminpageicon">{img modname=core src=filenew.gif set=icons/large __alt='Create Banners'}</div>
     <h2>{gt text="Add Client"}</h2>
-    {if $bannersenabled eq 0}
+    {if $modvars.Banners.banners eq 0}
     <div class="z-warningmsg">
         <em><strong>{gt text="Important!"}</strong></em>
         <strong>{gt text="Banner display is currently turned off."}</strong>

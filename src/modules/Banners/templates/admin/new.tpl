@@ -2,7 +2,7 @@
 <div class="z-admincontainer">
     <div class="z-adminpageicon">{img modname=core src=filenew.gif set=icons/large __alt='Create Banners'}</div>
     <h2>{gt text="Add Banner"}</h2>
-    {if $bannersenabled eq 0}
+    {if $modvars.Banners.banners eq 0}
     <div class="z-warningmsg">
         <em><strong>{gt text="Important!"}</strong></em>
         <strong>{gt text="Banner display is currently turned off."}</strong>
@@ -26,7 +26,7 @@
                 <label for="impressions">{gt text="Impressions Purchased"}</label>
                 <input type="text" id="impressions" name="banner[imptotal]" size="12" maxlength="11" /> 0 = {gt text="Unlimited"}
             </div>
-            {if $enablecats}
+            {if $modvars.Banners.enablecats}
                 <div class="z-formrow">
                     <label for="banners_type">{gt text='Banner Type'}</label>
                     {nocache}

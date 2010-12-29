@@ -35,7 +35,7 @@
                     <label for="banners_banname">{gt text="Banner Name"}</label>
                     <input type="text" id="banners_name" name="banner[title]" size="50" maxlength="250" value="{$banner.title|safetext}" />
                 </div>
-                {if $enablecats}
+                {if $modvars.Banners.enablecats}
                     <div class="z-formrow">
                         <label for="banners_type">{gt text='Banner Type'}</label>
                         {nocache}

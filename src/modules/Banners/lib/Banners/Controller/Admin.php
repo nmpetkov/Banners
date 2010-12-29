@@ -38,9 +38,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
             return LogUtil::registerPermissionError();
         }
 
-        // Check if Banners variable is active, if not then print a message
-        $this->view->assign('bannersenabled', ModUtil::getVar('Banners', 'banners'));
-
         // get list of current clients and assign to template
         $clients = ModUtil::apiFunc('Banners', 'user', 'getallclients');
         $clientitems = array();
@@ -50,8 +47,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
             }
         }
         $this->view->assign('clients', $clientitems);
-
-        $this->view->assign('enablecats', ModUtil::getVar('Banners', 'enablecats'));
         $this->view->assign('catregistry', CategoryRegistryUtil::getRegisteredModuleCategories('Banners', 'banners'));
 
         // return the output
@@ -69,9 +64,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
             return LogUtil::registerPermissionError();
         }
 
-        // Check if Banners variable is active, if not then print a message
-        $this->view->assign('bannersenabled', ModUtil::getVar('Banners', 'banners'));
-
         // return the output
         return $this->view->fetch('admin/clientnew.tpl');
     }
@@ -87,9 +79,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
         if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN)) {
             return LogUtil::registerPermissionError();
         }
-
-        // Check if Banners variable is active, if not then print a message
-        $this->view->assign('bannersenabled', ModUtil::getVar('Banners', 'banners'));
 
         // get list of banners
         $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('clientinfo' => true));
@@ -175,7 +164,6 @@ class Banners_Controller_Admin extends Zikula_Controller {
         // assign the banner item
         $this->view->assign('banner', $banner);
 
-        $this->view->assign('enablecats', ModUtil::getVar('Banners', 'enablecats'));
         $this->view->assign('catregistry', CategoryRegistryUtil::getRegisteredModuleCategories('Banners', 'banners'));
         $this->view->assign('selectedcatsarray', $selectedcatsarray);
 
@@ -459,10 +447,7 @@ class Banners_Controller_Admin extends Zikula_Controller {
             return LogUtil::registerPermissionError();
         }
 
-        // Number of items to display per page
-        $banners_vars = ModUtil::getVar('Banners');
-        $this->view->assign($banners_vars);
-        $this->view->assign('IPlist', implode(',', $banners_vars['myIP']));
+        $this->view->assign('IPlist', implode(',', $this->getVar('myIP')));
         if (!empty($_SERVER['HTTP_X_FORWARD_FOR'])) {
             $currentip = $_SERVER['HTTP_X_FORWARD_FOR'];
         } else {
@@ -478,37 +463,34 @@ class Banners_Controller_Admin extends Zikula_Controller {
      * This is a standard function to update the configuration parameters of the
      * module given the information passed back by the modification form
      *
-     * @param int $itemsperpage the number messages per page in the admin panel
-     * @return bool true if successful, false otherwise
+     * @return redirect
      */
     public function updateconfig() {
         if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN)) {
             return LogUtil::registerPermissionError();
         }
 
-        $banners         = FormUtil::getPassedValue('banners', null, 'POST');
-        $myIP            = FormUtil::getPassedValue('myIP', null, 'POST');
-        $openinnewwindow = FormUtil::getPassedValue('openinnewwindow', null, 'POST');
-        $enablecats      = FormUtil::getPassedValue('enablecats', true, 'POST');
+        $modvars = array(
+            'banners'         => FormUtil::getPassedValue('banners', 0, 'POST'),
+            'enablecats'      => FormUtil::getPassedValue('enablecats', 0, 'POST'),
+            'openinnewwindow' => FormUtil::getPassedValue('openinnewwindow', 0, 'POST'),
+            'myIP'            => array_map('trim', explode(',', FormUtil::getPassedValue('myIP', null, 'POST'))),
+        );
 
         // Confirm authorisation code.
         if (!SecurityUtil::confirmAuthKey()) {
             return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'overview'));
         }
-        $myIParray = array_map('trim', explode(',', $myIP));
-
 
         // Update module variables.
-        ModUtil::setVar('Banners', 'banners', $banners);
-        ModUtil::setVar('Banners', 'myIP', $myIParray);
-        ModUtil::setVar('Banners', 'openinnewwindow', $openinnewwindow);
-        ModUtil::setVar('Banners', 'enablecats', $enablecats);
-
+        if ($this->setVars($modvars)) {
+            LogUtil::registerStatus($this->__('Configuration updated'));
+        } else {
+            LogUtil::registerError($this->__('Configuration could not be updated'));
+        }
+        
         // Let any other modules know that the modules configuration has been updated
-        $this->callHooks('module', 'updateconfig', 'Banners', array('module' => 'Banners'));
-
-        // the module configuration has been updated successfuly
-        LogUtil::registerStatus($this->__('Configuration Updated'));
+        //$this->callHooks('module', 'updateconfig', 'Banners', array('module' => 'Banners'));
 
         return System::redirect(ModUtil::url('Banners', 'admin', 'overview'));
     }

@@ -39,7 +39,6 @@ class Banners_Installer extends Zikula_Installer
         ModUtil::setVar('Banners', 'banners', true); // active
         ModUtil::setVar('Banners', 'openinnewwindow', false);
         ModUtil::setVar('Banners', 'enablecats', true);
-        ModUtil::setVar('Banners', 'banners', false);
 
         $result = Banners_Util::createCategories();
         if ($result) {
