@@ -195,7 +195,7 @@ class Banners_Controller_User extends Zikula_Controller {
     public function display($args) {
 
         // test on config settings
-        if (ModUtil::getVar('Banners', 'banners') != 1) {
+        if ($this->getVar('banners') != 1) {
             return '&nbsp;';
         }
         $hovertext = !empty($args['hovertext']) ? $args['hovertext'] : '';
@@ -229,7 +229,7 @@ class Banners_Controller_User extends Zikula_Controller {
 
         // check the current host and admin exceptions
         // log the impression if required
-        $myIParray = ModUtil::getVar('banners', 'myIP');
+        $myIParray = $this->getVar('myIP');
         $myhost = System::serverGetVar('REMOTE_ADDR');
         if (!in_array($myhost, $myIParray)) {
             ModUtil::apiFunc('Banners', 'user', 'impmade', array('bid' => $banner['bid']));
@@ -258,7 +258,7 @@ class Banners_Controller_User extends Zikula_Controller {
                 if (empty($hovertext)) {
                     $title = ' title="' . DataUtil::formatForDisplay($banner['clickurl']) . '"';
                 }
-                if (ModUtil::getVar('Banners', 'openinnewwindow')) {
+                if ($this->getVar('openinnewwindow')) {
                     $target = ' target="_blank"';
                 }
                 $bannerstring  = "<a href='$url'" . $title . $target . '>';
@@ -281,7 +281,7 @@ class Banners_Controller_User extends Zikula_Controller {
     public function rotate($args) {
 
         // test on config settings
-        if (ModUtil::getVar('Banners', 'banners') != 1) {
+        if ($this->getVar('banners') != 1) {
             return '&nbsp;';
         }
 
@@ -299,7 +299,7 @@ class Banners_Controller_User extends Zikula_Controller {
 
         // check the current host and admin exceptions
         // log the impression if required
-        $myIParray = ModUtil::getVar('banners', 'myIP');
+        $myIParray = $this->getVar('myIP');
         $myhost = System::serverGetVar('REMOTE_ADDR');
 
         foreach ($banners as $banner) {

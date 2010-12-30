@@ -296,7 +296,7 @@ class Banners_Api_User extends Zikula_Api {
 
         // check the current host and admin exceptions
         // do not register click if exception
-        $myIParray = ModUtil::getVar('banners', 'myIP');
+        $myIParray = $this->getvar('myIP');
         $myhost = System::serverGetVar('REMOTE_ADDR');
         if (in_array($myhost, $myIParray)) {
             return true;
