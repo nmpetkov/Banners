@@ -8,7 +8,7 @@
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
-class Banners_Block_Bannersprotofade extends Zikula_Block
+class Banners_Block_Bannersprotofade extends Zikula_Controller_Block
 {
 
     /**
