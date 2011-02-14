@@ -1,6 +1,6 @@
 {include file="admin/menu.tpl"}
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname=core src=edit.gif set=icons/large alt='Edit Banner' altml=true}</div>
+    <div class="z-adminpageicon">{img modname=core src=edit.png set=icons/large alt='Edit Banner' altml=true}</div>
     <h2>{gt text="Edit Banner"}</h2>
     <div style="text-align:center"><img src="{$banner.imageurl|safetext}" alt="" title="{$banner.clickurl|safetext}" /></div>
     <form class="z-form" action="{modurl modname="Banners" type="admin" func="update"}" method="post" enctype="application/x-www-form-urlencoded">
@@ -71,8 +71,8 @@
                     <input type="text" id="banners_hovertext" name="banner[hovertext]" size="40" maxlength="255" value="{$banner.hovertext|safetext}" />
                 </div>
                  <div class="z-buttons z-formbuttons">
-                    {button class='z-btgreen' src="button_ok.gif" set="icons/extrasmall" __alt="Update Banner" __title="Update Banner" __text="Update Banner"}
-                    <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.gif" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
+                    {button class='z-btgreen' src="button_ok.png" set="icons/extrasmall" __alt="Update Banner" __title="Update Banner" __text="Update Banner"}
+                    <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
                 </div>
             </fieldset>
         </div>

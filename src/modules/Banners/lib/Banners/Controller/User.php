@@ -49,7 +49,7 @@ class Banners_Controller_User extends Zikula_Controller {
         // calculate some additional values
         foreach ($banners as $key => $banner) {
             $banners[$key] = Banners_Util::computestats($banner);
-            $banners[$key]['led'] = $banner['active'] ? 'greenled.gif' : 'redled.gif';
+            $banners[$key]['led'] = $banner['active'] ? 'greenled.png' : 'redled.png';
         }
 
         $this->view->assign('banners', $banners);
