@@ -1,6 +1,6 @@
 {include file="admin/menu.tpl"}
 <div class="z-admincontainer">
-<div class="z-adminpageicon">{img modname=core src=configure.png set=icons/large alt='_MODIFYCONFIG' altml=true}</div>
+<div class="z-adminpageicon">{icon type="config" size="large"}</div>
 <h2>{gt text="Modify Banners Settings"}</h2>
 <form class="z-form" action="{modurl modname="Banners" type="admin" func="updateconfig"}" method="post" enctype="application/x-www-form-urlencoded">
     <div>

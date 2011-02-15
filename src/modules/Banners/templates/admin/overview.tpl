@@ -1,7 +1,7 @@
 {ajaxheader module="Banners" ui=true imageviewer=true}
 {include file="admin/menu.tpl"}
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname=core src=windowlist.png set=icons/large __alt="Active Banners"}</div>
+    <div class="z-adminpageicon">{icon type="view" size="large"}</div>
     {if $modvars.Banners.banners eq 0}
     <div class="z-warningmsg">
         <em><strong>{gt text="Important!"}</strong></em>

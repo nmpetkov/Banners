@@ -1,6 +1,6 @@
 {include file="admin/menu.tpl"}
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname=core src=edit.png set=icons/large alt='Edit Banner' altml=true}</div>
+    <div class="z-adminpageicon">{icon type="edit" size="large"}</div>
     <h2>{gt text="Edit Banner"}</h2>
     <div style="text-align:center"><img src="{$banner.imageurl|safetext}" alt="" title="{$banner.clickurl|safetext}" /></div>
     <form class="z-form" action="{modurl modname="Banners" type="admin" func="update"}" method="post" enctype="application/x-www-form-urlencoded">

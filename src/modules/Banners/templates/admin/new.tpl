@@ -1,6 +1,6 @@
 {include file="admin/menu.tpl"}
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname=core src=filenew.png set=icons/large __alt='Create Banners'}</div>
+    <div class="z-adminpageicon">{icon type="new" size="large"}</div>
     <h2>{gt text="Add Banner"}</h2>
     {if $modvars.Banners.banners eq 0}
     <div class="z-warningmsg">
