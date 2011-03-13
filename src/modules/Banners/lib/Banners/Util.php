@@ -350,4 +350,8 @@ class Banners_Util
         $view->addPluginDir("modules/$modinfo[directory]/templates/plugins");
     }
 
+    public static function getTypes(Zikula_Event $event) {
+        $types = $event->getSubject();
+        $types->add('Banners_ContentType_Banner');
+    }
 } // end class def

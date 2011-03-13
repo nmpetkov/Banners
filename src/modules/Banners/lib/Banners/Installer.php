@@ -47,6 +47,7 @@ class Banners_Installer extends Zikula_Installer
 
         // register plugins with View so plugins can be used systemwide
         EventUtil::registerPersistentModuleHandler('Banners', 'view.init', array('Banners_Util', 'registerPluginDir'));
+        EventUtil::registerPersistentModuleHandler('Banners', 'module.content.getTypes', array('Banners_Util', 'getTypes'));
 
         // Initialisation successful
         LogUtil::registerStatus($this->__('Banners module installed'));
@@ -120,6 +121,9 @@ class Banners_Installer extends Zikula_Installer
 
                 // register plugins with View so plugins can be used systemwide
                 EventUtil::registerPersistentModuleHandler('Banners', 'view.init', array('Banners_Util', 'registerPluginDir'));
+                EventUtil::registerPersistentModuleHandler('Banners', 'module.content.getTypes', array('Banners_Util', 'getTypes'));
+                // upgrade the Content plugin names
+                Content_Installer::updateContentType('Banners');
 
             case '3.0.0':
             // future development
@@ -251,6 +255,14 @@ class Banners_Installer extends Zikula_Installer
             }
         }
         return $result;
+    }
+
+    protected function LegacyContentTypeMap()
+    {
+        $oldToNew = array(
+            'banner' => 'Banner'
+        );
+        return $oldToNew;
     }
 
 }
