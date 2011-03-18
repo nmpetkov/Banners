@@ -259,7 +259,7 @@ class Banners_Installer extends Zikula_Installer
         return $result;
     }
 
-    protected function LegacyContentTypeMap()
+    public function LegacyContentTypeMap()
     {
         $oldToNew = array(
             'banner' => 'Banner'
