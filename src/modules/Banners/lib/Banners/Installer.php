@@ -123,7 +123,9 @@ class Banners_Installer extends Zikula_Installer
                 EventUtil::registerPersistentModuleHandler('Banners', 'view.init', array('Banners_Util', 'registerPluginDir'));
                 EventUtil::registerPersistentModuleHandler('Banners', 'module.content.getTypes', array('Banners_Util', 'getTypes'));
                 // upgrade the Content plugin names
-                Content_Installer::updateContentType('Banners');
+                if (ModUtil::available('Content')) {
+                    Content_Installer::updateContentType('Banners');
+                }
 
             case '3.0.0':
             // future development
