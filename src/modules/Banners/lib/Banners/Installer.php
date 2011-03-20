@@ -78,8 +78,11 @@ class Banners_Installer extends Zikula_Installer
             case '2.0.0': // there was no version 2 afaik
             case '2.1':   // known version
             case '2.1.0':
+            case '2.2':
                 ModUtil::setVar('Banners', 'enablecats', true);
-                DBUtil::changeTable('banners');
+                if (!DBUtil::changeTable('banners')) {
+                    LogUtil::registerError($this->__('Error! Could not upgrade the tables.'));
+                }
                 $oldtypes = $this->_setupOldTypes();
                 $cats = Banners_Util::createCategories($oldtypes); // install module types into Categories mod
                 if ($cats) {
@@ -91,7 +94,9 @@ class Banners_Installer extends Zikula_Installer
                     }
                 }
 
-                DBUtil::changeTable('bannersclient');
+                if (!DBUtil::changeTable('bannersclient')){
+                    LogUtil::registerError($this->__('Error! Could not upgrade the tables.'));
+                }
                 $currentuser = UserUtil::getVar('uid');
                 $tables = DBUtil::getTables();
                 $tableName = $tables['bannersclient'];
