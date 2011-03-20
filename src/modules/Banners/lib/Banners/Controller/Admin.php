@@ -10,7 +10,7 @@
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
-class Banners_Controller_Admin extends Zikula_Controller {
+class Banners_Controller_Admin extends Zikula_AbstractController {
 
     /**
      * the main administration function

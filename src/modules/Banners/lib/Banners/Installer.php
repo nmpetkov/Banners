@@ -9,7 +9,7 @@
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
-class Banners_Installer extends Zikula_Installer
+class Banners_Installer extends Zikula_AbstractInstaller
 {
 
     /**
