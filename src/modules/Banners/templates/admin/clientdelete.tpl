@@ -5,7 +5,7 @@
     <div>{gt text="Delete Client"}: {$client.name|safetext}</div>
     <form class="z-form" action="{modurl modname="Banners" type="admin" func="deleteclient"}" method="post" enctype="application/x-www-form-urlencoded">
         <div>
-            <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
+            <input type="hidden" name="csrftoken" value="{insert name="csrftoken"}" />
             <input type="hidden" name="confirmation" value="1" />
             <input type="hidden" name="cid" value="{$client.cid|safetext}" />
             <p>

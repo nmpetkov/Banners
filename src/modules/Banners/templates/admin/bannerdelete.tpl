@@ -4,7 +4,7 @@
 <h2>{gt text="Delete banner"}</h2>
 <form class="z-form" action="{modurl modname="Banners" type="admin" func="delete"}" method="post" enctype="application/x-www-form-urlencoded">
 <div>
-    <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
+    <input type="hidden" name="csrftoken" value="{insert name="csrftoken"}" />
     <input type="hidden" name="confirmation" value="1" />
     <input type="hidden" name="bid" value="{$banner.bid|safetext}" />
 	<a href="{$banner.clickurl|safetext}"><img src="{$banner.imageurl|safetext}" alt="" title="{$banner.clickurl|safetext}" /></a>

@@ -109,10 +109,7 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
     public function create() {
         $banner = FormUtil::getPassedValue('banner', null, 'POST');
 
-        // Confirm authorisation code.
-        if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'overview'));
-        }
+        $this->checkCsrfToken();
 
         // Create the banner
         $bid = ModUtil::apiFunc('Banners', 'admin', 'create', $banner);
@@ -186,10 +183,8 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
     public function update() {
         $banner = FormUtil::getPassedValue('banner', null, 'POST');
 
-        // Confirm authorisation code.
-        if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'overview'));
-        }
+        $this->checkCsrfToken();
+
         if (ModUtil::apiFunc('Banners', 'admin', 'update', $banner)) {
             LogUtil::registerStatus($this->__('Banner Updated'));
         }
@@ -237,10 +232,7 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
             return $this->view->fetch('admin/bannerdelete.tpl');
         }
 
-        // Confirm authorisation code.
-        if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'overview'));
-        }
+        $this->checkCsrfToken();
 
         // Delete the banner
         // The return value of the function is checked
@@ -262,10 +254,7 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
     public function createclient() {
         $client = FormUtil::getPassedValue('client', null, 'POST');
 
-        // Confirm authorisation code.
-        if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'overview'));
-        }
+        $this->checkCsrfToken();
 
         if (ModUtil::apiFunc('Banners', 'admin', 'createclient', $client)) {
             LogUtil::registerStatus($this->__('Banner Client Created'));
@@ -312,10 +301,7 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
     public function updateclient() {
         $client = FormUtil::getPassedValue('client', null, 'POST');
 
-        // Confirm authorisation code.
-        if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'overview'));
-        }
+        $this->checkCsrfToken();
 
         if (ModUtil::apiFunc('Banners', 'admin', 'updateclient', $client)) {
             LogUtil::registerStatus($this->__('Client Updated'));
@@ -362,10 +348,7 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
             return $this->view->fetch('admin/clientdelete.tpl');
         }
 
-        // Confirm authorisation code.
-        if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'overview'));
-        }
+        $this->checkCsrfToken();
 
         // Delete the banner
         // The return value of the function is checked
@@ -420,10 +403,7 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
             return $this->view->fetch('admin/bannerdelete.tpl');
         }
 
-        // Confirm authorisation code.
-        if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'overview'));
-        }
+        $this->checkCsrfToken();
 
         // Delete the banner
         // The return value of the function is checked
@@ -477,10 +457,7 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
             'myIP'            => array_map('trim', explode(',', FormUtil::getPassedValue('myIP', null, 'POST'))),
         );
 
-        // Confirm authorisation code.
-        if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError(ModUtil::url('Banners', 'admin', 'overview'));
-        }
+        $this->checkCsrfToken();
 
         // Update module variables.
         if ($this->setVars($modvars)) {

@@ -5,7 +5,7 @@
     <form class="z-form" action="{modurl modname="Banners" type="admin" func="updateclient"}" method="post" enctype="application/x-www-form-urlencoded">
         <div>
             <input type="hidden" name="client[cid]" value="{$client.cid|safetext}" />
-            <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
+            <input type="hidden" name="csrftoken" value="{insert name="csrftoken"}" />
             <fieldset>
                 <div class="z-formrow">
                     <label for="name">{gt text="Client Business Name"}</label>

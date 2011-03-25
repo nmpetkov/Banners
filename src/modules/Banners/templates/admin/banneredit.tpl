@@ -9,7 +9,7 @@
                 <legend>{gt text='Edit Banner ID %s' tag1=$banner.bid|safetext}</legend>
                 <input type="hidden" name="banner[bid]" value="{$banner.bid|safetext}" />
                 <input type="hidden" name="banner[imptotal]" value="{$banner.imptotal|safetext}" />
-                <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
+                <input type="hidden" name="csrftoken" value="{insert name="csrftoken"}" />
                 <div class="z-formrow">
                     <label for="banners_cid">{gt text="Client Name"}</label>
                     <select id="banners_cid" name="banner[cid]">

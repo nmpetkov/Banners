@@ -11,7 +11,7 @@
     {/if}
     <form class="z-form" action="{modurl modname="Banners" type="admin" func="createclient"}" method="post" enctype="application/x-www-form-urlencoded">
         <fieldset>
-            <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
+            <input type="hidden" name="csrftoken" value="{insert name="csrftoken"}" />
             <div class="z-formrow">
                 <label for="client">{gt text="Client Business Name"}</label>
                 <input type="text" id="client" name="client[name]" size="30" maxlength="60" />
