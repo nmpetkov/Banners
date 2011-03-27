@@ -84,10 +84,7 @@ class Banners_Api_Admin extends Zikula_AbstractApi {
             return LogUtil::registerArgsError();
         }
 
-        // Security check
-        if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADD)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADD), LogUtil::getErrorMsgPermission());
 
         if (!$banner = DBUtil::insertObject($args, 'banners', 'bid')) {
             return LogUtil::registerError($this->__('Error! Creation attempt failed.'));
@@ -132,10 +129,8 @@ class Banners_Api_Admin extends Zikula_AbstractApi {
         }
 
         $bid = $args['bid'];
-        // Security check
-        if (!SecurityUtil::checkPermission('Banners::', "$bid::", ACCESS_EDIT)) {
-            return LogUtil::registerPermissionError();
-        }
+
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Banners::', "$bid::", ACCESS_EDIT), LogUtil::getErrorMsgPermission());
 
         $args['imptotal'] += $args['impadded'];
 
@@ -170,10 +165,7 @@ class Banners_Api_Admin extends Zikula_AbstractApi {
             return LogUtil::registerError($this->__('No such item found.'));
         }
 
-        // Security check
-        if (!SecurityUtil::checkPermission('Banners::', "$args[bid]::", ACCESS_DELETE)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Banners::', $args['bid'] . '::', ACCESS_DELETE), LogUtil::getErrorMsgPermission());
 
         if (!DBUtil::deleteObjectByID('banners', $args['bid'], 'bid')) {
             return LogUtil::registerError($this->__('Error! Deletion attempt failed.'));
@@ -195,10 +187,7 @@ class Banners_Api_Admin extends Zikula_AbstractApi {
             return LogUtil::registerArgsError();
         }
 
-        // Security check
-        if (!SecurityUtil::checkPermission('Banners::Client', "$args[cid]::", ACCESS_DELETE)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Banners::Client', $args['cid'] . '::', ACCESS_DELETE), LogUtil::getErrorMsgPermission());
 
         if (!DBUtil::deleteObjectByID('banners', $args['cid'], 'cid')) {
             return LogUtil::registerError($this->__('Error! Deletion attempt failed.'));
@@ -228,10 +217,7 @@ class Banners_Api_Admin extends Zikula_AbstractApi {
             return LogUtil::registerArgsError();
         }
 
-        // Security check
-        if (!SecurityUtil::checkPermission('Banners::Client', '::', ACCESS_ADD)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Banners::Client', '::', ACCESS_ADD), LogUtil::getErrorMsgPermission());
 
         // create the item array
         $client = array(
@@ -277,10 +263,7 @@ class Banners_Api_Admin extends Zikula_AbstractApi {
             return LogUtil::registerError($this->__('No such item found.'));
         }
 
-        // Security check
-        if (!SecurityUtil::checkPermission('Banners::Client', "$args[cid]::", ACCESS_EDIT)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Banners::Client', $args['cid'] . '::', ACCESS_EDIT), LogUtil::getErrorMsgPermission());
 
         // create the new item array
         $client = array(
@@ -316,10 +299,7 @@ class Banners_Api_Admin extends Zikula_AbstractApi {
             return LogUtil::registerError($this->__('No such item found.'));
         }
 
-        // Security check
-        if (!SecurityUtil::checkPermission('Banners::Client', "$args[cid]::", ACCESS_DELETE)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Banners::Client', $args['cid'] . '::', ACCESS_DELETE), LogUtil::getErrorMsgPermission());
 
         // delete any banners for this client first
         if (!ModUtil::apiFunc('Banners', 'admin', 'deleteall', array('cid' => $args['cid']))) {

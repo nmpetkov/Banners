@@ -17,10 +17,7 @@ class Banners_Controller_User extends Zikula_AbstractController {
      * @return string HTML output string
      */
     public function main() {
-        // Security check
-        if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ), LogUtil::getErrorMsgPermission());
 
         return $this->client();
     }
@@ -31,10 +28,7 @@ class Banners_Controller_User extends Zikula_AbstractController {
      * @return string HTML output string
      */
     public function client() {
-        // Security check
-        if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ), LogUtil::getErrorMsgPermission());
 
         // validate the user
         $client = ModUtil::apiFunc('Banners', 'user', 'validateclient');
@@ -66,10 +60,7 @@ class Banners_Controller_User extends Zikula_AbstractController {
         $cid = FormUtil::getPassedValue('cid', null, 'GET');
         $bid = FormUtil::getPassedValue('bid', null, 'GET');
 
-        // Security check
-        if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ), LogUtil::getErrorMsgPermission());
 
         $banner = ModUtil::apiFunc('Banners', 'user', 'get', (array(
                     'bid' => $bid,
@@ -126,9 +117,7 @@ class Banners_Controller_User extends Zikula_AbstractController {
         $bid = FormUtil::getPassedValue('bid', null, 'POST');
         $url = FormUtil::getPassedValue('url', null, 'POST');
 
-        if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ)) {
-            return LogUtil::registerPermissionError();
-        }
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ), LogUtil::getErrorMsgPermission());
 
         if (!isset($bid) || !is_numeric($bid)) {
             return LogUtil::registerError($this->__('Error! Could not do what you wanted. Please check your input.'));
