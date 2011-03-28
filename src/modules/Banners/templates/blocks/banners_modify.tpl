@@ -1,7 +1,7 @@
 <div class="z-formrow">
     <label for="bannerblock_type">{gt text='Banner Type'}</label>
     {nocache}
-    <span id="bannerblock_blocktype">{foreach from=$catregistry key=property item=category}
+    <span id="bannerblock_blocktype">{foreach from=$catregistry key='property' item='category'}
         {array_field_isset assign="selectedValue" array=$vars.blocktype field=$property returnValue=1}
         {selector_category
             editLink=false
