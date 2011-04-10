@@ -18,8 +18,7 @@ class Banners_Controller_User extends Zikula_AbstractController {
      */
     public function main() {
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ), LogUtil::getErrorMsgPermission());
-
-        return $this->client();
+		$this->redirect(ModUtil::url('Banners', 'user', 'client'));
     }
 
     /**
