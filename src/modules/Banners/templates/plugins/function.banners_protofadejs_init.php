@@ -43,7 +43,7 @@ function smarty_function_banners_protofadejs_init($params, &$smarty)
         document.observe ('dom:loaded', StartUp);
         //-->
         </script>";
-    PageUtil::addVar("rawtext", $pagescript);
+    PageUtil::addVar("header", $pagescript);
 
     return;
 }
