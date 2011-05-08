@@ -432,9 +432,6 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
             LogUtil::registerError($this->__('Configuration could not be updated'));
         }
         
-        // Let any other modules know that the modules configuration has been updated
-        //$this->callHooks('module', 'updateconfig', 'Banners', array('module' => 'Banners'));
-
         return System::redirect(ModUtil::url('Banners', 'admin', 'overview'));
     }
 

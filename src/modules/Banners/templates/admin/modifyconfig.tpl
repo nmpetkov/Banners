@@ -26,7 +26,6 @@
                 <em class="z-sub z-formnote">Enter comma-seperated value list</em>
                 <em class="z-sub z-formnote">Your current IP address is <span style='background-color:#ffffbb;'>{$currentip}</span></em>
             </div>
-            {* modcallhooks hookobject=module hookaction=modifyconfig module=Banners *}
             <div class="z-buttons z-formbuttons">
                 {button class='z-btgreen' src="button_ok.png" set="icons/extrasmall" __alt="Save" __title="Save" __text="Save"}
                 <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname='core' src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
