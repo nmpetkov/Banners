@@ -41,7 +41,7 @@
                         {nocache}
                         <span><ul id='banners_type' style='list-style:none; margin: 0;'>
                         {foreach from=$catregistry key='property' item='category'}
-                            {array_field_isset assign="selectedValue" array=$selectedcatsarray field=$property returnValue=1}
+                            {array_field assign="selectedValue" array=$selectedcatsarray field=$property returnValue=1}
                             <li>{selector_category
                                     category=$category
                                     name="banner[__CATEGORIES__][$property]"
