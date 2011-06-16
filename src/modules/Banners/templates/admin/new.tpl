@@ -11,7 +11,7 @@
     {/if}
     <form class="z-form" action="{modurl modname="Banners" type="admin" func="create"}" method="post" enctype="application/x-www-form-urlencoded">
         <fieldset>
-            <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
+            <input type="hidden" name="csrftoken" value="{insert name="csrftoken"}" />
             <div class="z-formrow">
                 <label for="clientlist">{gt text="Client Name"}</label>
                 <select id="clientlist" name="banner[cid]">
@@ -31,8 +31,8 @@
                     <label for="banners_type">{gt text='Banner Type'}</label>
                     {nocache}
                     <span><ul id='banners_type' style='list-style:none; margin: 0;'>
-                    {foreach from=$catregistry key=property item=category}
-                        {* array_field_isset assign="selectedValue" array=$banner.__CATEGORIES__ field=$property returnValue=1 *}
+                    {foreach from=$catregistry key='property' item='category'}
+                        {* array_field assign="selectedValue" array=$banner.__CATEGORIES__ field=$property *}
                         <li>{selector_category
                                 category=$category
                                 name="banner[__CATEGORIES__][$property]"
@@ -62,7 +62,7 @@
             </div>
             <div class="z-buttons z-formbuttons">
                {button class='z-btgreen' src="button_ok.png" set="icons/extrasmall" __alt="Add Banner" __title="Add Banner" __text="Add Banner"}
-                <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
+                <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname='core' src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
             </div>
         </fieldset>
     </form>

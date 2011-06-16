@@ -1,8 +1,8 @@
-{pnajaxheader imageviewer=true}
+{ajaxheader imageviewer=true}
 {insert name="getstatusmsg"}
 <h1>{gt text='Banners Statistics'}</h1>
 <h2>{gt text="Current banners for %s" tag1=$client.name}</h2>
-{configgetvar name="sitename" assign=sitename}
+{configgetvar name="sitename" assign='sitename'}
 <p>{gt text="You have the following banners on %s" tag1=$sitename}</p>
 <table class="z-datatable">
     <thead>
@@ -26,7 +26,7 @@
 	{section name="banners" loop=$banners}
         <tr class='{cycle values="z-even,z-odd"}'>
             <td>
-                {img src=$banners[banners].led modname=core set=icons/extrasmall}
+                {img src=$banners[banners].led modname='core' set='icons/extrasmall'}
                 {$banners[banners].title|safetext} (#{$banners[banners].bid|safetext})
             </td>
             <td>{$banners[banners].imptotal|safetext}</td>
@@ -35,9 +35,9 @@
             <td>{$banners[banners].clicks|safetext}</td>
             <td>{$banners[banners].percent|safetext}%</td>
             <td>
-                <a href="{$banners[banners].imageurl|safetext}" rel="imageviewer">{img modname=core set=icons/extrasmall src=demo.png __alt="image" __title='View Image'}</a>
-                <a href="{modurl modname="Banners" type="user" func="emailstats" cid=$client.cid bid=$banners[banners].bid|safetext}">{img modname=core set=icons/extrasmall src=mail_send.png __alt="Email Stats" __title="Email Stats"}</a>
-                <a href="{modurl modname="Banners" type="user" func="editurl" bid=$banners[banners].bid}">{img modname=core set=icons/extrasmall src=xedit.png __alt="edit URL" __title="Edit URL"}</a>
+                <a href="{$banners[banners].imageurl|safetext}" rel="imageviewer">{img modname='core' set='icons/extrasmall' src='demo.png' __alt="image" __title='View Image'}</a>
+                <a href="{modurl modname="Banners" type="user" func="emailstats" cid=$client.cid bid=$banners[banners].bid|safetext}">{img modname='core' set='icons/extrasmall' src='mail_send.png' __alt="Email Stats" __title="Email Stats"}</a>
+                <a href="{modurl modname="Banners" type="user" func="editurl" bid=$banners[banners].bid}">{img modname='core' set='icons/extrasmall' src='xedit.png' __alt="edit URL" __title="Edit URL"}</a>
             </td>
         </tr>
 	{sectionelse}
@@ -46,5 +46,5 @@
     </tbody>
 </table>
 <div style='margin-left:2em;'>
-    {img src=greenled.png modname=core set=icons/extrasmall}={gt text="active"} | {img src=redled.png modname=core set=icons/extrasmall}={gt text="inactive"}
+    {img src='greenled.png' modname='core' set='icons/extrasmall'}={gt text="active"} | {img src='redled.png' modname='core' set='icons/extrasmall'}={gt text="inactive"}
 </div>

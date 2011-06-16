@@ -5,7 +5,7 @@
     <form class="z-form" action="{modurl modname="Banners" type="admin" func="updateclient"}" method="post" enctype="application/x-www-form-urlencoded">
         <div>
             <input type="hidden" name="client[cid]" value="{$client.cid|safetext}" />
-            <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
+            <input type="hidden" name="csrftoken" value="{insert name="csrftoken"}" />
             <fieldset>
                 <div class="z-formrow">
                     <label for="name">{gt text="Client Business Name"}</label>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="z-buttons z-formbuttons">
                     {button class='z-btgreen' src="button_ok.png" set="icons/extrasmall" __alt="Update Client" __title="Update Client" __text="Update Client"}
-                    <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
+                    <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname='core' src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
                 </div>
             </fieldset>
         </div>

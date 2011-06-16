@@ -8,7 +8,7 @@
  * @copyright    Copyright (C) 2010
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
-class Banners_Version extends Zikula_Version
+class Banners_Version extends Zikula_AbstractVersion
 {
 
     public function getMetaData()

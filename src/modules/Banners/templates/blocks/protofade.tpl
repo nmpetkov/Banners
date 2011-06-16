@@ -2,7 +2,7 @@
 <ul id="protofadeshow{$blockid}">
     {foreach from=$banner key='k' item='v' name='loop'}
     <li{if $vars.hovertext} class='banners_protofade_tooltips{$blockid}' title='{$v.hovertext|safehtml} ({$v.clickurl|safehtml})'{/if}>
-        <a href='{modurl modname='Banners' func='click' bid=$v.bid}' title=''>
+        <a href='{modurl modname='Banners' type='user' func='click' bid=$v.bid}' title=''>
             <img src='{$v.imageurl|safetext}' alt='{$v.clickurl|safetext}' />
         </a>
     </li>

@@ -32,15 +32,15 @@
         </thead>
         <tbody>
             {section name="activebanneritems" loop=$activebanneritems}
-            <tr class="{cycle values=z-odd,z-even name=activebanners}">
-                <td>{img src=greenled.png modname=core set=icons/extrasmall __title="Active" __alt="Active"}
+            <tr class="{cycle values='z-odd,z-even' name='activebanners'}">
+                <td>{img src='greenled.png' modname='core' set='icons/extrasmall' __title="Active" __alt="Active"}
                 {$activebanneritems[activebanneritems].title|safetext} (#{$activebanneritems[activebanneritems].bid|safetext})</td>
                 <td>{$activebanneritems[activebanneritems].imptotal|safetext}</td>
                 <td>{$activebanneritems[activebanneritems].impmade|safetext}</td>
                 <td {$activebanneritems[activebanneritems].impleft_fontstyle}>{$activebanneritems[activebanneritems].impleft|safetext}
                     {if $activebanneritems[activebanneritems].imptotal eq 0}
                         <a href="{modurl modname="Banners" type="admin" func="modify" limit=1 bid=$activebanneritems[activebanneritems].bid}">
-                            {img src=remove.gif __title="Convert to limited" __alt="Convert to limited"}
+                            {img src='remove.gif' __title="Convert to limited" __alt="Convert to limited"}
                         </a>
                     {/if}
                 </td>
@@ -49,9 +49,9 @@
                 <td>{$activebanneritems[activebanneritems].name|safetext}</td>
                 <td>{$activebanneritems[activebanneritems].typename|safetext}</td>
                 <td>
-                    <a href="{$activebanneritems[activebanneritems].imageurl|safetext}" rel="imageviewer">{img modname=core set=icons/extrasmall src=demo.png __alt="image" __title='View Image'}</a>
-                    <a href="{modurl modname="Banners" type="admin" func="modify" bid=$activebanneritems[activebanneritems].bid}">{img modname=core set=icons/extrasmall src=xedit.png __alt="edit" __title="Edit Banner"}</a>
-                    <a href="{modurl modname="Banners" type="admin" func="delete" bid=$activebanneritems[activebanneritems].bid}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.png __alt="Delete" __title="Delete Banner"}</a>
+                    <a href="{$activebanneritems[activebanneritems].imageurl|safetext}" rel="imageviewer">{img modname='core' set='icons/extrasmall' src='demo.png' __alt="image" __title='View Image'}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="modify" bid=$activebanneritems[activebanneritems].bid}">{img modname='core' set='icons/extrasmall' src='xedit.png' __alt="edit" __title="Edit Banner"}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="delete" bid=$activebanneritems[activebanneritems].bid}">{img modname='core' set='icons/extrasmall' src='14_layer_deletelayer.png' __alt="Delete" __title="Delete Banner"}</a>
                 </td>
             </tr>
 	{sectionelse}
@@ -85,15 +85,15 @@
         </thead>
         <tbody>
             {section name="finishedbanners" loop=$finishedbanners}
-            <tr class="{cycle values=z-odd,z-even name=finishedbanners}">
-                <td>{img src=redled.png modname=core set=icons/extrasmall __title="Inactive" __alt="Inactive"}
+            <tr class="{cycle values='z-odd,z-even' name='finishedbanners'}">
+                <td>{img src='redled.png' modname='core' set='icons/extrasmall' __title="Inactive" __alt="Inactive"}
                 {$finishedbanners[finishedbanners].title|safetext} (#{$finishedbanners[finishedbanners].bid|safetext})</td>
                 <td>{$finishedbanners[finishedbanners].imptotal|safetext}</td>
                 <td>{$finishedbanners[finishedbanners].impmade|safetext}</td>
                 <td {$finishedbanners[finishedbanners].impleft_fontstyle}>{$finishedbanners[finishedbanners].impleft|safetext}
                     {if $finishedbanners[finishedbanners].imptotal eq 0}
                         <a href="{modurl modname="Banners" type="admin" func="modify" limit=1 bid=$finishedbanners[finishedbanners].bid}">
-                            {img src=remove.gif __title="Convert to limited" __alt="Convert to limited"}
+                            {img src='remove.gif' __title="Convert to limited" __alt="Convert to limited"}
                         </a>
                     {/if}
                 </td>
@@ -104,9 +104,9 @@
                 <td>{$finishedbanners[finishedbanners].name|safetext}</td>
                 <td>{$finishedbanners[finishedbanners].typename|safetext}</td>
                 <td>
-                    <a href="{$finishedbanners[finishedbanners].imageurl|safetext}" rel="imageviewer">{img modname=core set=icons/extrasmall src=demo.png __alt="image" __title='View Image'}</a>
-                    <a href="{modurl modname="Banners" type="admin" func="modify" bid=$finishedbanners[finishedbanners].bid}">{img modname=core set=icons/extrasmall src=xedit.png __alt="edit" __title="Edit Banner"}</a>
-                    <a href="{modurl modname="Banners" type="admin" func="deletefinished" bid=$finishedbanners[finishedbanners].bid|safetext}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.png __alt="Delete" __title="Delete Banner"}</a>
+                    <a href="{$finishedbanners[finishedbanners].imageurl|safetext}" rel="imageviewer">{img modname='core' set='icons/extrasmall' src='demo.png' __alt="image" __title='View Image'}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="modify" bid=$finishedbanners[finishedbanners].bid}">{img modname='core' set='icons/extrasmall' src='xedit.png' __alt="edit" __title="Edit Banner"}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="deletefinished" bid=$finishedbanners[finishedbanners].bid|safetext}">{img modname='core' set='icons/extrasmall' src='14_layer_deletelayer.png' __alt="Delete" __title="Delete Banner"}</a>
                 </td>
             </tr>
 	{sectionelse}
@@ -129,15 +129,15 @@
         </thead>
         <tbody>
             {section name="activeclients" loop=$activeclients}
-            <tr class="{cycle values=z-odd,z-even name=activeclients}">
+            <tr class="{cycle values='z-odd,z-even' name='activeclients'}">
                 <td class="tooltips" id="clientname_{$activeclients[activeclients].cid}" title="{$activeclients[activeclients].extrainfo}">{$activeclients[activeclients].name|safetext} ({$activeclients[activeclients].cid})</td>
                 <td>{$activeclients[activeclients].bannercount|safetext|default:"0"}</td>
                 <td>{$activeclients[activeclients].zuname|safetext} ({$activeclients[activeclients].uid})</td>
                 <td>{$activeclients[activeclients].contact|safetext}</td>
                 <td>{$activeclients[activeclients].email|safetext}</td>
                 <td>
-                    <a href="{modurl modname="Banners" type="admin" func="modifyclient" cid=$activeclients[activeclients].cid}">{img modname=core set=icons/extrasmall src=xedit.png __alt='Edit' __title='Edit'}</a>
-                    <a href="{modurl modname="Banners" type="admin" func="deleteclient" cid=$activeclients[activeclients].cid}">{img modname=core set=icons/extrasmall src=14_layer_deletelayer.png __alt='Delete' __title='Delete'}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="modifyclient" cid=$activeclients[activeclients].cid}">{img modname='core' set='icons/extrasmall' src='xedit.png' __alt='Edit' __title='Edit'}</a>
+                    <a href="{modurl modname="Banners" type="admin" func="deleteclient" cid=$activeclients[activeclients].cid}">{img modname='core' set='icons/extrasmall' src='14_layer_deletelayer.png' __alt='Delete' __title='Delete'}</a>
                 </td>
             </tr>
 	{sectionelse}

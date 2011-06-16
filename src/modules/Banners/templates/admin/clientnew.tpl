@@ -11,7 +11,7 @@
     {/if}
     <form class="z-form" action="{modurl modname="Banners" type="admin" func="createclient"}" method="post" enctype="application/x-www-form-urlencoded">
         <fieldset>
-            <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
+            <input type="hidden" name="csrftoken" value="{insert name="csrftoken"}" />
             <div class="z-formrow">
                 <label for="client">{gt text="Client Business Name"}</label>
                 <input type="text" id="client" name="client[name]" size="30" maxlength="60" />
@@ -30,7 +30,7 @@
             </div>
             <div class="z-buttons z-formbuttons">
                 {button class='z-btgreen' src="button_ok.png" set="icons/extrasmall" __alt="Add Client" __title="Add Client" __text="Add Client"}
-                <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
+                <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname='core' src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
             </div>
         </fieldset>
     </form>

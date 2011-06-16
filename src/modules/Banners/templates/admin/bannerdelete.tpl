@@ -4,7 +4,7 @@
 <h2>{gt text="Delete banner"}</h2>
 <form class="z-form" action="{modurl modname="Banners" type="admin" func="delete"}" method="post" enctype="application/x-www-form-urlencoded">
 <div>
-    <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
+    <input type="hidden" name="csrftoken" value="{insert name="csrftoken"}" />
     <input type="hidden" name="confirmation" value="1" />
     <input type="hidden" name="bid" value="{$banner.bid|safetext}" />
 	<a href="{$banner.clickurl|safetext}"><img src="{$banner.imageurl|safetext}" alt="" title="{$banner.clickurl|safetext}" /></a>
@@ -36,7 +36,7 @@
 	</div>
     <div class="z-buttons z-formbuttons">
         {button class='z-btgreen' src="button_ok.png" set="icons/extrasmall" __alt="Delete Banner" __title="Delete Banner" __text="Delete Banner"}
-        <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
+        <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname='core' src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
     </div>
 </div>
 </form>

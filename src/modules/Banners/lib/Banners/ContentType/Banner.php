@@ -6,7 +6,7 @@
  * @copyright   Copyright (c) 2010, Craig Heydenburg, Sound Web Development
  * @license     http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
-class Banners_ContentType_Banner extends Content_ContentType
+class Banners_ContentType_Banner extends Content_AbstractContentType
 {
 
     protected $hovertext;

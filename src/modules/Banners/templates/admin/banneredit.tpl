@@ -9,7 +9,7 @@
                 <legend>{gt text='Edit Banner ID %s' tag1=$banner.bid|safetext}</legend>
                 <input type="hidden" name="banner[bid]" value="{$banner.bid|safetext}" />
                 <input type="hidden" name="banner[imptotal]" value="{$banner.imptotal|safetext}" />
-                <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Banners"}" />
+                <input type="hidden" name="csrftoken" value="{insert name="csrftoken"}" />
                 <div class="z-formrow">
                     <label for="banners_cid">{gt text="Client Name"}</label>
                     <select id="banners_cid" name="banner[cid]">
@@ -40,8 +40,8 @@
                         <label for="banners_type">{gt text='Banner Type'}</label>
                         {nocache}
                         <span><ul id='banners_type' style='list-style:none; margin: 0;'>
-                        {foreach from=$catregistry key=property item=category}
-                            {array_field_isset assign="selectedValue" array=$selectedcatsarray field=$property returnValue=1}
+                        {foreach from=$catregistry key='property' item='category'}
+                            {array_field assign="selectedValue" array=$selectedcatsarray field=$property}
                             <li>{selector_category
                                     category=$category
                                     name="banner[__CATEGORIES__][$property]"
@@ -72,7 +72,7 @@
                 </div>
                  <div class="z-buttons z-formbuttons">
                     {button class='z-btgreen' src="button_ok.png" set="icons/extrasmall" __alt="Update Banner" __title="Update Banner" __text="Update Banner"}
-                    <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname=core src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
+                    <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname='core' src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
                 </div>
             </fieldset>
         </div>
