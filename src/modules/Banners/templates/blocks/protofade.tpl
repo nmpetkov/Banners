@@ -10,6 +10,7 @@
 </ul>
 {assign value=$banner.0.__CATEGORIES__.Main.__ATTRIBUTES__.height var='height'}
 {assign value=$banner.0.__CATEGORIES__.Main.__ATTRIBUTES__.width var='width'}
+{pageaddvarblock}
 <style type="text/css">
     #protofadeshow{{$blockid}} {
         list-style: none;
@@ -43,6 +44,7 @@
     }
     {{/if}}
 </style>
+{/pageaddvarblock}
 {if $vars.hovertext}
 {ajaxheader ui=true}
 <script type="text/javascript">
