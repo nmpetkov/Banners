@@ -6,28 +6,15 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Zikula 1.2.x\n"
+"Project-Id-Version: Zikula 1.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-26 13:01+0000\n"
+"POT-Creation-Date: 2011-06-21 20:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: pncontenttypesapi/banner.php:22 templates/admin/overview.tpl:16
-#: templates/admin/overview.tpl:67 templates/user/client.tpl:10
-msgid "Banner"
-msgstr ""
-
-#: pncontenttypesapi/banner.php:26
-msgid "Displays banner."
-msgstr ""
-
-#: pncontenttypesapi/banner.php:69
-msgid "Display banner"
-msgstr ""
 
 #: lib/Banners/Util.php:42
 msgid "IAB Ad Units"
@@ -222,25 +209,38 @@ msgstr ""
 msgid "Documentation"
 msgstr ""
 
-#: lib/Banners/Api/Admin.php:93 lib/Banners/Api/Admin.php:244
+#: lib/Banners/Api/Admin.php:90 lib/Banners/Api/Admin.php:230
 msgid "Error! Creation attempt failed."
 msgstr ""
 
-#: lib/Banners/Api/Admin.php:131 lib/Banners/Api/Admin.php:170
-#: lib/Banners/Api/Admin.php:277 lib/Banners/Api/Admin.php:316
-#: lib/Banners/Controller/User.php:173 lib/Banners/Controller/Admin.php:168
-#: lib/Banners/Controller/Admin.php:230 lib/Banners/Controller/Admin.php:310
-#: lib/Banners/Controller/Admin.php:356 lib/Banners/Controller/Admin.php:414
+#: lib/Banners/Api/Admin.php:128 lib/Banners/Api/Admin.php:165
+#: lib/Banners/Api/Admin.php:263 lib/Banners/Api/Admin.php:299
+#: lib/Banners/Controller/User.php:161 lib/Banners/Controller/Admin.php:137
+#: lib/Banners/Controller/Admin.php:196 lib/Banners/Controller/Admin.php:264
+#: lib/Banners/Controller/Admin.php:307 lib/Banners/Controller/Admin.php:359
 msgid "No such item found."
 msgstr ""
 
-#: lib/Banners/Api/Admin.php:147 lib/Banners/Api/Admin.php:294
+#: lib/Banners/Api/Admin.php:142 lib/Banners/Api/Admin.php:277
 msgid "Error! Update attempt failed."
 msgstr ""
 
-#: lib/Banners/Api/Admin.php:179 lib/Banners/Api/Admin.php:204
-#: lib/Banners/Api/Admin.php:326 lib/Banners/Api/Admin.php:331
+#: lib/Banners/Api/Admin.php:171 lib/Banners/Api/Admin.php:193
+#: lib/Banners/Api/Admin.php:306 lib/Banners/Api/Admin.php:311
 msgid "Error! Deletion attempt failed."
+msgstr ""
+
+#: lib/Banners/ContentType/Banner.php:16 templates/admin/overview.tpl:16
+#: templates/admin/overview.tpl:67 templates/user/client.tpl:10
+msgid "Banner"
+msgstr ""
+
+#: lib/Banners/ContentType/Banner.php:20
+msgid "Displays banner."
+msgstr ""
+
+#: lib/Banners/ContentType/Banner.php:58
+msgid "Display banner"
 msgstr ""
 
 #: lib/Banners/Installer.php:26 lib/Banners/Installer.php:29
@@ -248,7 +248,7 @@ msgstr ""
 msgid "Error! Could not create the table [%s]."
 msgstr ""
 
-#: lib/Banners/Installer.php:46 lib/Banners/Installer.php:86
+#: lib/Banners/Installer.php:45 lib/Banners/Installer.php:89
 msgid "IAB Banner Types entered into Categories module."
 msgstr ""
 
@@ -256,115 +256,123 @@ msgstr ""
 msgid "Banners module installed"
 msgstr ""
 
-#: lib/Banners/Installer.php:88
+#: lib/Banners/Installer.php:84 lib/Banners/Installer.php:98
+msgid "Error! Could not upgrade the tables."
+msgstr ""
+
+#: lib/Banners/Installer.php:91
 msgid "Banners updated to new Banner Types"
 msgstr ""
 
-#: lib/Banners/Installer.php:90
+#: lib/Banners/Installer.php:93
 msgid "Error! Could not update Banners to new Banner Types"
 msgstr ""
 
-#: lib/Banners/Installer.php:102
+#: lib/Banners/Installer.php:107
 msgid "Banners admin interface"
 msgstr ""
 
-#: lib/Banners/Installer.php:103
+#: lib/Banners/Installer.php:108
 #, php-format
 msgid ""
 "You must manually reassociate ALL your clients with a Zikula Username in the "
 "<a href=\"%1$s\">%2$s</a>."
 msgstr ""
 
-#: lib/Banners/Installer.php:106
+#: lib/Banners/Installer.php:111
 msgid "Error! Unable to reassociate clients with Current User."
 msgstr ""
 
-#: lib/Banners/Installer.php:110
+#: lib/Banners/Installer.php:115
 msgid "Old finished banners moved to inactive."
 msgstr ""
 
-#: lib/Banners/Installer.php:112
+#: lib/Banners/Installer.php:117
 msgid "Error! Could not move old finished banners to inactive."
 msgstr ""
 
-#: lib/Banners/Installer.php:184 lib/Banners/Installer.php:185
-#: lib/Banners/Installer.php:212
+#: lib/Banners/Installer.php:194 lib/Banners/Installer.php:195
+#: lib/Banners/Installer.php:222
 msgid "imported_"
 msgstr ""
 
-#: lib/Banners/Installer.php:215
+#: lib/Banners/Installer.php:225
 msgid "unnamed_"
 msgstr ""
 
-#: lib/Banners/Installer.php:242
+#: lib/Banners/Installer.php:252
 #, php-format
 msgid "Inactive Banner %s"
 msgstr ""
 
-#: lib/Banners/Installer.php:243 lib/Banners/Installer.php:244
+#: lib/Banners/Installer.php:253 lib/Banners/Installer.php:254
 msgid "undefined"
 msgstr ""
 
-#: lib/Banners/Controller/User.php:80
+#: lib/Banners/Controller/User.php:70
 #, php-format
 msgid "Error! Could not find banner (%s)"
 msgstr ""
 
-#: lib/Banners/Controller/User.php:92
+#: lib/Banners/Controller/User.php:82
 #, php-format
 msgid "Advertising stats for %s"
 msgstr ""
 
-#: lib/Banners/Controller/User.php:95
+#: lib/Banners/Controller/User.php:85
 msgid "Statistics e-mailed"
 msgstr ""
 
-#: lib/Banners/Controller/User.php:97
+#: lib/Banners/Controller/User.php:87
 msgid "Error! Could not email statistics."
 msgstr ""
 
-#: lib/Banners/Controller/User.php:134
+#: lib/Banners/Controller/User.php:122
 msgid "Error! Could not do what you wanted. Please check your input."
 msgstr ""
 
-#: lib/Banners/Controller/User.php:140
+#: lib/Banners/Controller/User.php:128
 msgid "Not a Valid Banners Client"
 msgstr ""
 
-#: lib/Banners/Controller/User.php:145
+#: lib/Banners/Controller/User.php:133
 msgid "Please contact the administrator."
 msgstr ""
 
-#: lib/Banners/Controller/User.php:147
+#: lib/Banners/Controller/User.php:135
 msgid "URL Changed"
 msgstr ""
 
-#: lib/Banners/Controller/Admin.php:134
+#: lib/Banners/Controller/Admin.php:106
 msgid "Banner Created"
 msgstr ""
 
-#: lib/Banners/Controller/Admin.php:206
+#: lib/Banners/Controller/Admin.php:172
 msgid "Banner Updated"
 msgstr ""
 
-#: lib/Banners/Controller/Admin.php:261 lib/Banners/Controller/Admin.php:444
+#: lib/Banners/Controller/Admin.php:221 lib/Banners/Controller/Admin.php:383
 msgid "Banner Deleted"
 msgstr ""
 
-#: lib/Banners/Controller/Admin.php:283
+#: lib/Banners/Controller/Admin.php:240
 msgid "Banner Client Created"
 msgstr ""
 
-#: lib/Banners/Controller/Admin.php:333
+#: lib/Banners/Controller/Admin.php:284
 msgid "Client Updated"
 msgstr ""
 
-#: lib/Banners/Controller/Admin.php:386
+#: lib/Banners/Controller/Admin.php:331
 msgid "Client Deleted"
 msgstr ""
 
-#: lib/Banners/Controller/Admin.php:511
-msgid "Configuration Updated"
+#: lib/Banners/Controller/Admin.php:430
+msgid "Configuration updated"
+msgstr ""
+
+#: lib/Banners/Controller/Admin.php:432
+msgid "Configuration could not be updated"
 msgstr ""
 
 #: lib/Banners/Version.php:17 templates/user/editurl.tpl:1
@@ -398,10 +406,6 @@ msgstr ""
 
 #: lib/Banners/Block/Bannersrotate.php:34
 msgid "Rotating Banner Display (multiple images)"
-msgstr ""
-
-#: templates/admin/new.tpl:3 templates/admin/clientnew.tpl:3
-msgid "Create Banners"
 msgstr ""
 
 #: templates/admin/new.tpl:4 templates/admin/new.tpl:64
@@ -469,7 +473,7 @@ msgstr ""
 #: templates/admin/new.tpl:65 templates/admin/clientnew.tpl:33
 #: templates/admin/banneredit.tpl:75 templates/admin/clientedit.tpl:27
 #: templates/admin/clientdelete.tpl:32 templates/admin/bannerdelete.tpl:39
-#: templates/admin/modifyconfig.tpl:32 templates/user/editurl.tpl:16
+#: templates/admin/modifyconfig.tpl:31 templates/user/editurl.tpl:16
 msgid "Cancel"
 msgstr ""
 
@@ -493,7 +497,7 @@ msgstr ""
 msgid "Extra Information"
 msgstr ""
 
-#: templates/admin/overview.tpl:4 templates/admin/overview.tpl:12
+#: templates/admin/overview.tpl:12
 msgid "Active Banners"
 msgstr ""
 
@@ -724,7 +728,7 @@ msgstr ""
 msgid "List of IPs to not count hits"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:31
+#: templates/admin/modifyconfig.tpl:30
 msgid "Save"
 msgstr ""
 
@@ -828,12 +832,12 @@ msgstr ""
 msgid "inactive"
 msgstr ""
 
-#: templates/contenttype/banner_edit.html:2
+#: templates/contenttype/banner_edit.tpl:2
 #: templates/blocks/rotate_modify.tpl:2
 msgid "Block Type"
 msgstr ""
 
-#: templates/contenttype/banner_edit.html:16
+#: templates/contenttype/banner_edit.tpl:16
 #: templates/blocks/protofade_modify.tpl:18
 #: templates/blocks/banners_modify.tpl:18
 msgid "Show hovertext in JS tooltip"
