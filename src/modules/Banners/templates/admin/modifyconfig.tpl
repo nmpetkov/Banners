@@ -1,7 +1,9 @@
-{include file="admin/menu.tpl"}
-<div class="z-admincontainer">
-<div class="z-adminpageicon">{icon type="config" size="large"}</div>
-<h2>{gt text="Modify Banners Settings"}</h2>
+{adminheader}
+<div class="z-admin-content-pagetitle">
+    {icon type="config" size="small"}
+    <h3>{gt text="Banners settings"}</h3>
+</div>
+
 <form class="z-form" action="{modurl modname="Banners" type="admin" func="updateconfig"}" method="post" enctype="application/x-www-form-urlencoded">
     <div>
         <input type="hidden" name="csrftoken" value="{insert name="csrftoken"}" />
@@ -33,4 +35,4 @@
         </fieldset>
     </div>
 </form>
-</div>
+{adminfooter}
