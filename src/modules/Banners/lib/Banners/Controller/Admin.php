@@ -106,7 +106,7 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
             LogUtil::registerStatus($this->__('Banner Created'));
         }
 
-        return System::redirect(ModUtil::url('Banners', 'admin', 'overview'));
+        $this->redirect(ModUtil::url('Banners', 'admin', 'overview'));
     }
 
     /**
@@ -172,7 +172,7 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
             LogUtil::registerStatus($this->__('Banner Updated'));
         }
 
-        return System::redirect(ModUtil::url('Banners', 'admin', 'overview'));
+        $this->redirect(ModUtil::url('Banners', 'admin', 'overview'));
     }
 
     /**
@@ -223,7 +223,7 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
 
         // This function generated no output, and so now it is complete we redirect
         // the user to an appropriate page for them to carry on their work
-        return System::redirect(ModUtil::url('Banners', 'admin', 'overview'));
+        $this->redirect(ModUtil::url('Banners', 'admin', 'overview'));
     }
 
     /**
@@ -240,7 +240,7 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
             LogUtil::registerStatus($this->__('Banner Client Created'));
         }
 
-        return System::redirect(ModUtil::url('Banners', 'admin', 'overview'));
+        $this->redirect(ModUtil::url('Banners', 'admin', 'overview'));
     }
 
     /**
@@ -284,7 +284,7 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
             LogUtil::registerStatus($this->__('Client Updated'));
         }
 
-        return System::redirect(ModUtil::url('Banners', 'admin', 'overview'));
+        $this->redirect(ModUtil::url('Banners', 'admin', 'overview'));
     }
 
     /**
@@ -333,7 +333,7 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
 
         // This function generated no output, and so now it is complete we redirect
         // the user to an appropriate page for them to carry on their work
-        return System::redirect(ModUtil::url('Banners', 'admin', 'overview'));
+        $this->redirect(ModUtil::url('Banners', 'admin', 'overview'));
     }
 
     /**
@@ -383,7 +383,7 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
             LogUtil::registerStatus($this->__('Banner Deleted'));
         }
 
-        return System::redirect(ModUtil::url('Banners', 'admin', 'overview'));
+        $this->redirect(ModUtil::url('Banners', 'admin', 'overview'));
     }
 
     /**
@@ -432,7 +432,7 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
             LogUtil::registerError($this->__('Configuration could not be updated'));
         }
         
-        return System::redirect(ModUtil::url('Banners', 'admin', 'overview'));
+        $this->redirect(ModUtil::url('Banners', 'admin', 'overview'));
     }
 
 }
