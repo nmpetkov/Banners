@@ -156,8 +156,8 @@ class Banners_Installer extends Zikula_AbstractInstaller
 
         // Delete entries from category registry
         ModUtil::dbInfoLoad('Categories');
-        DBUtil::deleteWhere('categories_registry', "crg_modname='Banners'");
-        DBUtil::deleteWhere('categories_mapobj', "cmo_modname='Banners'");
+        DBUtil::deleteWhere('categories_registry', "modname='Banners'");
+        DBUtil::deleteWhere('categories_mapobj', "modname='Banners'");
 
         // unregister plugins dir
         EventUtil::unregisterPersistentModuleHandler('Banners', 'view.init', array('Banners_Util', 'registerPluginDir'));
