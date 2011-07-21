@@ -59,12 +59,14 @@ class Banners_Api_User extends Zikula_AbstractApi {
                 'level'          => ACCESS_READ));
 
         $wheres = array();
+        $dbtable = DBUtil::getTables();
+        $columns = $dbtable['banners_column'];
         // allow filtering by client id
         if (isset($args['cid'])) {
-            $wheres[] = 'pn_cid=' . DataUtil::formatForStore((int) $args['cid']);
+            $wheres[] = $columns['cid'] . '=' . DataUtil::formatForStore((int) $args['cid']);
         }
         if ($args['active'] == 1 || $args['active'] == 0) {
-            $wheres[] = 'pn_active=' . $args['active'];
+            $wheres[] = $columns['active'] . '=' . $args['active'];
         }
 
         $where = implode(' AND ', $wheres);
@@ -159,7 +161,9 @@ class Banners_Api_User extends Zikula_AbstractApi {
         if (!isset($args['active'])) {
             $args['active'] = 1;
         }
-        $where = 'pn_active=' . $args['active'];
+        $dbtable = DBUtil::getTables();
+        $columns = $dbtable['banners_column'];
+        $where = $columns['active'] . '=' . $args['active'];
         return DBUtil::selectObjectCount('banners', $where, '1', false, $args['catFilter']);
     }
 

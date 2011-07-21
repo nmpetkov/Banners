@@ -172,7 +172,9 @@ class Banners_Installer extends Zikula_AbstractInstaller
      * @return array
      */
     private function _setupOldTypes() {
-        $types = DBUtil::selectFieldArray('banners', 'imageurl', '', 'pn_type', TRUE, 'type');
+        $dbtable = DBUtil::getTables();
+        $columns = $dbtable['banners_column'];
+        $types = DBUtil::selectFieldArray('banners', 'imageurl', '', $columns['type'], TRUE, 'type');
         $catdef = array();
         foreach ($types as $type => $imageurl) {
             if (is_file($imageurl)) {
