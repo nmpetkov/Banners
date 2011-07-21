@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-21 20:11+0000\n"
+"POT-Creation-Date: 2011-07-21 21:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -177,11 +177,11 @@ msgid "Used for conversion of old finished banner types"
 msgstr ""
 
 #: lib/Banners/Util.php:322 lib/Banners/Util.php:324
-#: templates/admin/new.tpl:27
+#: templates/admin/new.tpl:29
 msgid "Unlimited"
 msgstr ""
 
-#: lib/Banners/Api/User.php:93 lib/Banners/Api/User.php:207
+#: lib/Banners/Api/User.php:95 lib/Banners/Api/User.php:211
 msgid "Error! Could not load items."
 msgstr ""
 
@@ -230,8 +230,8 @@ msgstr ""
 msgid "Error! Deletion attempt failed."
 msgstr ""
 
-#: lib/Banners/ContentType/Banner.php:16 templates/admin/overview.tpl:16
-#: templates/admin/overview.tpl:67 templates/user/client.tpl:10
+#: lib/Banners/ContentType/Banner.php:16 templates/admin/overview.tpl:20
+#: templates/admin/overview.tpl:71 templates/user/client.tpl:10
 msgid "Banner"
 msgstr ""
 
@@ -248,7 +248,7 @@ msgstr ""
 msgid "Error! Could not create the table [%s]."
 msgstr ""
 
-#: lib/Banners/Installer.php:45 lib/Banners/Installer.php:89
+#: lib/Banners/Installer.php:45 lib/Banners/Installer.php:128
 msgid "IAB Banner Types entered into Categories module."
 msgstr ""
 
@@ -256,56 +256,56 @@ msgstr ""
 msgid "Banners module installed"
 msgstr ""
 
-#: lib/Banners/Installer.php:84 lib/Banners/Installer.php:98
+#: lib/Banners/Installer.php:123 lib/Banners/Installer.php:137
 msgid "Error! Could not upgrade the tables."
 msgstr ""
 
-#: lib/Banners/Installer.php:91
+#: lib/Banners/Installer.php:130
 msgid "Banners updated to new Banner Types"
 msgstr ""
 
-#: lib/Banners/Installer.php:93
+#: lib/Banners/Installer.php:132
 msgid "Error! Could not update Banners to new Banner Types"
 msgstr ""
 
-#: lib/Banners/Installer.php:107
+#: lib/Banners/Installer.php:146
 msgid "Banners admin interface"
 msgstr ""
 
-#: lib/Banners/Installer.php:108
+#: lib/Banners/Installer.php:147
 #, php-format
 msgid ""
 "You must manually reassociate ALL your clients with a Zikula Username in the "
 "<a href=\"%1$s\">%2$s</a>."
 msgstr ""
 
-#: lib/Banners/Installer.php:111
+#: lib/Banners/Installer.php:150
 msgid "Error! Unable to reassociate clients with Current User."
 msgstr ""
 
-#: lib/Banners/Installer.php:115
+#: lib/Banners/Installer.php:154
 msgid "Old finished banners moved to inactive."
 msgstr ""
 
-#: lib/Banners/Installer.php:117
+#: lib/Banners/Installer.php:156
 msgid "Error! Could not move old finished banners to inactive."
 msgstr ""
 
-#: lib/Banners/Installer.php:194 lib/Banners/Installer.php:195
-#: lib/Banners/Installer.php:222
+#: lib/Banners/Installer.php:235 lib/Banners/Installer.php:236
+#: lib/Banners/Installer.php:263
 msgid "imported_"
 msgstr ""
 
-#: lib/Banners/Installer.php:225
+#: lib/Banners/Installer.php:266
 msgid "unnamed_"
 msgstr ""
 
-#: lib/Banners/Installer.php:252
+#: lib/Banners/Installer.php:293
 #, php-format
 msgid "Inactive Banner %s"
 msgstr ""
 
-#: lib/Banners/Installer.php:253 lib/Banners/Installer.php:254
+#: lib/Banners/Installer.php:294 lib/Banners/Installer.php:295
 msgid "undefined"
 msgstr ""
 
@@ -408,265 +408,283 @@ msgstr ""
 msgid "Rotating Banner Display (multiple images)"
 msgstr ""
 
-#: templates/admin/new.tpl:4 templates/admin/new.tpl:64
-msgid "Add Banner"
+#: templates/admin/new.tpl:4
+msgid "Add banner"
 msgstr ""
 
-#: templates/admin/new.tpl:7 templates/admin/clientnew.tpl:7
-#: templates/admin/overview.tpl:7
+#: templates/admin/new.tpl:9 templates/admin/clientnew.tpl:9
+#: templates/admin/overview.tpl:11
 msgid "Important!"
 msgstr ""
 
-#: templates/admin/new.tpl:8 templates/admin/clientnew.tpl:8
-#: templates/admin/overview.tpl:8
+#: templates/admin/new.tpl:10 templates/admin/clientnew.tpl:10
+#: templates/admin/overview.tpl:12
 msgid "Banner display is currently turned off."
 msgstr ""
 
-#: templates/admin/new.tpl:9 templates/admin/clientnew.tpl:9
-#: templates/admin/overview.tpl:9
+#: templates/admin/new.tpl:11 templates/admin/clientnew.tpl:11
+#: templates/admin/overview.tpl:13
 msgid "To turn on banner display, please check your"
 msgstr ""
 
-#: templates/admin/new.tpl:9 templates/admin/clientnew.tpl:9
-#: templates/admin/overview.tpl:9
+#: templates/admin/new.tpl:11 templates/admin/clientnew.tpl:11
+#: templates/admin/overview.tpl:13
 msgid "settings"
 msgstr ""
 
-#: templates/admin/new.tpl:16 templates/admin/overview.tpl:28
-#: templates/admin/overview.tpl:81 templates/admin/banneredit.tpl:14
-#: templates/admin/bannerdelete.tpl:20 templates/email/stats_body.tpl:4
+#: templates/admin/new.tpl:18 templates/admin/overview.tpl:32
+#: templates/admin/overview.tpl:85 templates/admin/banneredit.tpl:16
+#: templates/admin/bannerdelete.tpl:22 templates/email/stats_body.tpl:4
 msgid "Client Name"
 msgstr ""
 
-#: templates/admin/new.tpl:22 templates/admin/banneredit.tpl:35
+#: templates/admin/new.tpl:24 templates/admin/banneredit.tpl:37
 msgid "Banner Name"
 msgstr ""
 
-#: templates/admin/new.tpl:26 templates/email/stats_body.tpl:9
+#: templates/admin/new.tpl:28 templates/email/stats_body.tpl:9
 msgid "Impressions Purchased"
 msgstr ""
 
-#: templates/admin/new.tpl:31 templates/admin/overview.tpl:29
-#: templates/admin/overview.tpl:82 templates/admin/banneredit.tpl:40
+#: templates/admin/new.tpl:33 templates/admin/overview.tpl:33
+#: templates/admin/overview.tpl:86 templates/admin/banneredit.tpl:42
 #: templates/blocks/protofade_modify.tpl:2
 #: templates/blocks/banners_modify.tpl:2
 msgid "Banner Type"
 msgstr ""
 
-#: templates/admin/new.tpl:48 templates/admin/banneredit.tpl:58
+#: templates/admin/new.tpl:50 templates/admin/banneredit.tpl:60
 msgid "Banner is Active"
 msgstr ""
 
-#: templates/admin/new.tpl:52 templates/admin/banneredit.tpl:62
+#: templates/admin/new.tpl:54 templates/admin/banneredit.tpl:64
 msgid "Image URL"
 msgstr ""
 
-#: templates/admin/new.tpl:56 templates/admin/banneredit.tpl:66
+#: templates/admin/new.tpl:58 templates/admin/banneredit.tpl:68
 #: templates/user/editurl.tpl:9
 msgid "Click URL"
 msgstr ""
 
-#: templates/admin/new.tpl:60 templates/admin/banneredit.tpl:70
+#: templates/admin/new.tpl:62 templates/admin/banneredit.tpl:72
 msgid "Hover text"
 msgstr ""
 
-#: templates/admin/new.tpl:65 templates/admin/clientnew.tpl:33
-#: templates/admin/banneredit.tpl:75 templates/admin/clientedit.tpl:27
-#: templates/admin/clientdelete.tpl:32 templates/admin/bannerdelete.tpl:39
-#: templates/admin/modifyconfig.tpl:31 templates/user/editurl.tpl:16
+#: templates/admin/new.tpl:66
+msgid "Add Banner"
+msgstr ""
+
+#: templates/admin/new.tpl:67 templates/admin/clientnew.tpl:35
+#: templates/admin/banneredit.tpl:77 templates/admin/clientedit.tpl:29
+#: templates/admin/clientdelete.tpl:34 templates/admin/bannerdelete.tpl:41
+#: templates/admin/modifyconfig.tpl:33 templates/user/editurl.tpl:16
 msgid "Cancel"
 msgstr ""
 
-#: templates/admin/clientnew.tpl:4 templates/admin/clientnew.tpl:32
-msgid "Add Client"
+#: templates/admin/clientnew.tpl:4
+msgid "Add client"
 msgstr ""
 
-#: templates/admin/clientnew.tpl:16 templates/admin/clientedit.tpl:11
+#: templates/admin/clientnew.tpl:18 templates/admin/clientedit.tpl:13
 msgid "Client Business Name"
 msgstr ""
 
-#: templates/admin/clientnew.tpl:20 templates/admin/clientedit.tpl:19
+#: templates/admin/clientnew.tpl:22 templates/admin/clientedit.tpl:21
 msgid "Associate Zikula User Name"
 msgstr ""
 
-#: templates/admin/clientnew.tpl:24 templates/admin/clientedit.tpl:15
+#: templates/admin/clientnew.tpl:26 templates/admin/clientedit.tpl:17
 msgid "Client Real Name"
 msgstr ""
 
-#: templates/admin/clientnew.tpl:28 templates/admin/clientedit.tpl:22
+#: templates/admin/clientnew.tpl:30 templates/admin/clientedit.tpl:24
 msgid "Extra Information"
 msgstr ""
 
-#: templates/admin/overview.tpl:12
+#: templates/admin/clientnew.tpl:34
+msgid "Add Client"
+msgstr ""
+
+#: templates/admin/overview.tpl:5
+msgid "Banner overview"
+msgstr ""
+
+#: templates/admin/overview.tpl:16
 msgid "Active Banners"
 msgstr ""
 
-#: templates/admin/overview.tpl:22 templates/admin/overview.tpl:73
+#: templates/admin/overview.tpl:26 templates/admin/overview.tpl:77
 msgid "Name (#ID)"
 msgstr ""
 
-#: templates/admin/overview.tpl:23 templates/admin/overview.tpl:74
-#: templates/admin/banneredit.tpl:24 templates/user/client.tpl:17
+#: templates/admin/overview.tpl:27 templates/admin/overview.tpl:78
+#: templates/admin/banneredit.tpl:26 templates/user/client.tpl:17
 msgid "Purchased"
 msgstr ""
 
-#: templates/admin/overview.tpl:24 templates/admin/overview.tpl:75
+#: templates/admin/overview.tpl:28 templates/admin/overview.tpl:79
 #: templates/user/client.tpl:18
 msgid "Made"
 msgstr ""
 
-#: templates/admin/overview.tpl:25 templates/admin/overview.tpl:76
+#: templates/admin/overview.tpl:29 templates/admin/overview.tpl:80
 #: templates/user/client.tpl:19
 msgid "Remaining"
 msgstr ""
 
-#: templates/admin/overview.tpl:26 templates/admin/overview.tpl:77
+#: templates/admin/overview.tpl:30 templates/admin/overview.tpl:81
 #: templates/user/client.tpl:20
 msgid "Registered"
 msgstr ""
 
-#: templates/admin/overview.tpl:27 templates/admin/overview.tpl:78
+#: templates/admin/overview.tpl:31 templates/admin/overview.tpl:82
 #: templates/user/client.tpl:21
 msgid "% Clicks/Imp"
 msgstr ""
 
-#: templates/admin/overview.tpl:30 templates/admin/overview.tpl:83
-#: templates/admin/overview.tpl:127 templates/user/client.tpl:22
+#: templates/admin/overview.tpl:34 templates/admin/overview.tpl:87
+#: templates/admin/overview.tpl:131 templates/user/client.tpl:22
 msgid "Options"
 msgstr ""
 
-#: templates/admin/overview.tpl:36
+#: templates/admin/overview.tpl:40
 msgid "Active"
 msgstr ""
 
-#: templates/admin/overview.tpl:43 templates/admin/overview.tpl:96
+#: templates/admin/overview.tpl:47 templates/admin/overview.tpl:100
 msgid "Convert to limited"
 msgstr ""
 
-#: templates/admin/overview.tpl:52 templates/admin/overview.tpl:107
+#: templates/admin/overview.tpl:56 templates/admin/overview.tpl:111
 #: templates/user/client.tpl:38
 msgid "image"
 msgstr ""
 
-#: templates/admin/overview.tpl:52 templates/admin/overview.tpl:107
+#: templates/admin/overview.tpl:56 templates/admin/overview.tpl:111
 #: templates/user/client.tpl:38
 msgid "View Image"
 msgstr ""
 
-#: templates/admin/overview.tpl:53 templates/admin/overview.tpl:108
+#: templates/admin/overview.tpl:57 templates/admin/overview.tpl:112
 msgid "edit"
 msgstr ""
 
-#: templates/admin/overview.tpl:53 templates/admin/overview.tpl:108
-#: templates/admin/banneredit.tpl:4
+#: templates/admin/overview.tpl:57 templates/admin/overview.tpl:112
 msgid "Edit Banner"
 msgstr ""
 
-#: templates/admin/overview.tpl:54 templates/admin/overview.tpl:109
-#: templates/admin/overview.tpl:140
+#: templates/admin/overview.tpl:58 templates/admin/overview.tpl:113
+#: templates/admin/overview.tpl:144
 msgid "Delete"
 msgstr ""
 
-#: templates/admin/overview.tpl:54 templates/admin/overview.tpl:109
-#: templates/admin/bannerdelete.tpl:38
+#: templates/admin/overview.tpl:58 templates/admin/overview.tpl:113
+#: templates/admin/bannerdelete.tpl:40
 msgid "Delete Banner"
 msgstr ""
 
-#: templates/admin/overview.tpl:58
+#: templates/admin/overview.tpl:62
 msgid "No Active Banners Found"
 msgstr ""
 
-#: templates/admin/overview.tpl:63
+#: templates/admin/overview.tpl:67
 msgid "Inactive Banners"
 msgstr ""
 
-#: templates/admin/overview.tpl:89
+#: templates/admin/overview.tpl:93
 msgid "Inactive"
 msgstr ""
 
-#: templates/admin/overview.tpl:113
+#: templates/admin/overview.tpl:117
 msgid "No Inactive Banners Found"
 msgstr ""
 
-#: templates/admin/overview.tpl:118
+#: templates/admin/overview.tpl:122
 msgid "Clients"
 msgstr ""
 
-#: templates/admin/overview.tpl:122
+#: templates/admin/overview.tpl:126
 msgid "Client Name (cid)"
 msgstr ""
 
-#: templates/admin/overview.tpl:123
+#: templates/admin/overview.tpl:127
 msgid "Number of Active Banners"
 msgstr ""
 
-#: templates/admin/overview.tpl:124
+#: templates/admin/overview.tpl:128
 msgid "Zikula Username (uid)"
 msgstr ""
 
-#: templates/admin/overview.tpl:125
+#: templates/admin/overview.tpl:129
 msgid "Contact Name"
 msgstr ""
 
-#: templates/admin/overview.tpl:126
+#: templates/admin/overview.tpl:130
 msgid "Contact eMail"
 msgstr ""
 
-#: templates/admin/overview.tpl:139
+#: templates/admin/overview.tpl:143
 msgid "Edit"
 msgstr ""
 
-#: templates/admin/overview.tpl:144
+#: templates/admin/overview.tpl:148
 msgid "No Clients Found"
 msgstr ""
 
-#: templates/admin/banneredit.tpl:9
+#: templates/admin/banneredit.tpl:4
+msgid "Edit banner"
+msgstr ""
+
+#: templates/admin/banneredit.tpl:11
 #, php-format
 msgid "Edit Banner ID %s"
 msgstr ""
 
-#: templates/admin/banneredit.tpl:22
+#: templates/admin/banneredit.tpl:24
 msgid "Add more impressions"
 msgstr ""
 
-#: templates/admin/banneredit.tpl:25 templates/email/stats_body.tpl:10
+#: templates/admin/banneredit.tpl:27 templates/email/stats_body.tpl:10
 msgid "Impressions Made"
 msgstr ""
 
-#: templates/admin/banneredit.tpl:28
+#: templates/admin/banneredit.tpl:30
 msgid "Convert to unlimited"
 msgstr ""
 
-#: templates/admin/banneredit.tpl:74
+#: templates/admin/banneredit.tpl:76
 msgid "Update Banner"
 msgstr ""
 
 #: templates/admin/clientedit.tpl:4
-msgid "Edit Client"
+msgid "Edit client"
 msgstr ""
 
-#: templates/admin/clientedit.tpl:26
+#: templates/admin/clientedit.tpl:28
 msgid "Update Client"
 msgstr ""
 
-#: templates/admin/clientdelete.tpl:4 templates/admin/clientdelete.tpl:5
-#: templates/admin/clientdelete.tpl:31
+#: templates/admin/clientdelete.tpl:4
+msgid "Delete client"
+msgstr ""
+
+#: templates/admin/clientdelete.tpl:7 templates/admin/clientdelete.tpl:33
 msgid "Delete Client"
 msgstr ""
 
-#: templates/admin/clientdelete.tpl:13
+#: templates/admin/clientdelete.tpl:15
 msgid "Warning!!!"
 msgstr ""
 
-#: templates/admin/clientdelete.tpl:13
+#: templates/admin/clientdelete.tpl:15
 msgid "This client has the following active banners running now"
 msgstr ""
 
-#: templates/admin/clientdelete.tpl:16
+#: templates/admin/clientdelete.tpl:18
 msgid "This client doesn't have any banners running now."
 msgstr ""
 
-#: templates/admin/clientdelete.tpl:29
+#: templates/admin/clientdelete.tpl:31
 msgid ""
 "You are about to delete the client and all its banners!<br />Do you really "
 "want to delete this client?"
@@ -676,27 +694,27 @@ msgstr ""
 msgid "Delete banner"
 msgstr ""
 
-#: templates/admin/bannerdelete.tpl:15
+#: templates/admin/bannerdelete.tpl:17
 msgid "ID"
 msgstr ""
 
-#: templates/admin/bannerdelete.tpl:16 templates/user/client.tpl:11
+#: templates/admin/bannerdelete.tpl:18 templates/user/client.tpl:11
 msgid "Impressions"
 msgstr ""
 
-#: templates/admin/bannerdelete.tpl:17
+#: templates/admin/bannerdelete.tpl:19
 msgid "Impressions Left"
 msgstr ""
 
-#: templates/admin/bannerdelete.tpl:18 templates/user/client.tpl:12
+#: templates/admin/bannerdelete.tpl:20 templates/user/client.tpl:12
 msgid "Clicks"
 msgstr ""
 
-#: templates/admin/bannerdelete.tpl:19
+#: templates/admin/bannerdelete.tpl:21
 msgid "% Clicks"
 msgstr ""
 
-#: templates/admin/bannerdelete.tpl:35
+#: templates/admin/bannerdelete.tpl:37
 msgid "Do you really want to delete this banner?"
 msgstr ""
 
@@ -705,30 +723,30 @@ msgid "Banners Administration"
 msgstr ""
 
 #: templates/admin/modifyconfig.tpl:4
-msgid "Modify Banners Settings"
-msgstr ""
-
-#: templates/admin/modifyconfig.tpl:10
-msgid "General settings"
+msgid "Banners settings"
 msgstr ""
 
 #: templates/admin/modifyconfig.tpl:12
+msgid "General settings"
+msgstr ""
+
+#: templates/admin/modifyconfig.tpl:14
 msgid "Display Banners"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:16
+#: templates/admin/modifyconfig.tpl:18
 msgid "Enable Categorization"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:20
+#: templates/admin/modifyconfig.tpl:22
 msgid "Banner clicks launch new window"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:24
+#: templates/admin/modifyconfig.tpl:26
 msgid "List of IPs to not count hits"
 msgstr ""
 
-#: templates/admin/modifyconfig.tpl:30
+#: templates/admin/modifyconfig.tpl:32
 msgid "Save"
 msgstr ""
 
