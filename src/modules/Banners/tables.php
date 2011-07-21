@@ -11,33 +11,28 @@
 /**
  * This function is called internally by the core whenever the module is
  * loaded.  It adds in the information
- *
- * please note the 'pn_' prefix, while undesired, is required because old versions
- * of the module contained it and therefore in order to upgrade, the prefix must
- * remain intact.
  */
 function Banners_tables() {
     // Initialise table array
     $table = array();
 
     // Set the Table Name
-    $table['banners'] = DBUtil::getLimitedTablename('banners');
+    $table['banners'] = 'banners';
 
     // Set the column names.
-
     $table['banners_column'] = array(
-            'bid'       => 'pn_bid',
-            'cid'       => 'pn_cid',
-            'type'      => 'pn_type',                  // becomes obsolete in v3.0.0
-            'title'     => 'pn_title',                 // added in vers. 3.0.0
-            'imptotal'  => 'pn_imptotal',
-            'impmade'   => 'pn_impmade',
-            'clicks'    => 'pn_clicks',
-            'imageurl'  => 'pn_imageurl',
-            'clickurl'  => 'pn_clickurl',
-            'date'      => 'pn_date',
-            'hovertext' => 'pn_hovertext',            // added in vers. 3.0.0
-            'active'    => 'pn_active');              // added in vers. 3.0.0
+            'bid'       => 'bid',
+            'cid'       => 'cid',
+            'type'      => 'type',                  // becomes obsolete in v3.0.0
+            'title'     => 'title',                 // added in vers. 3.0.0
+            'imptotal'  => 'imptotal',
+            'impmade'   => 'impmade',
+            'clicks'    => 'clicks',
+            'imageurl'  => 'imageurl',
+            'clickurl'  => 'clickurl',
+            'date'      => 'ddate',                // not a typo! `date` is a reserved sql word
+            'hovertext' => 'hovertext',            // added in vers. 3.0.0
+            'active'    => 'active');              // added in vers. 3.0.0
 
     $table['banners_column_def'] = array(
             'bid'       => 'I PRIMARY AUTO',
@@ -53,23 +48,23 @@ function Banners_tables() {
             'hovertext' => "C(255) DEFAULT ''",
             'active'    => "I DEFAULT '1'");
     // add standard data fields
-    ObjectUtil::addStandardFieldsToTableDefinition($table['banners_column'], 'pn_');
+    ObjectUtil::addStandardFieldsToTableDefinition($table['banners_column']);
     ObjectUtil::addStandardFieldsToTableDataDefinition($table['banners_column_def']);
 
     $table['banners_db_extra_enable_categorization'] = true;
     $table['banners_primary_key_column'] = 'bid';
     
     // Advertising clients
-    $table['bannersclient'] = DBUtil::getLimitedTablename('bannersclient');
+    $table['bannersclient'] = 'bannersclient';
     $table['bannersclient_column'] = array(
-            'cid'       => 'pn_cid',
-            'name'      => 'pn_name',
-            'contact'   => 'pn_contact',
-            'email'     => 'pn_email',                 // becomes obsolete in v3.0.0
-            'login'     => 'pn_login',                 // becomes obsolete in v3.0.0
-            'passwd'    => 'pn_passwd',                // becomes obsolete in v3.0.0
-            'extrainfo' => 'pn_extrainfo',
-            'uid'       => 'pn_uid');                  // added in vers. 3.0.0
+            'cid'       => 'cid',
+            'name'      => 'name',
+            'contact'   => 'contact',
+            'email'     => 'email',                 // becomes obsolete in v3.0.0
+            'login'     => 'login',                 // becomes obsolete in v3.0.0
+            'passwd'    => 'passwd',                // becomes obsolete in v3.0.0
+            'extrainfo' => 'extrainfo',
+            'uid'       => 'uid');                  // added in vers. 3.0.0
     $table['bannersclient_column_def'] = array(
             'cid'       => 'I AUTOINCREMENT PRIMARY',
             'name'      => 'C(60) NOTNULL',
@@ -80,7 +75,7 @@ function Banners_tables() {
             'extrainfo' => "X2 NOTNULL",
             'uid'       => "I DEFAULT '0'");
     // add standard data fields
-    ObjectUtil::addStandardFieldsToTableDefinition($table['bannersclient_column'], 'pn_');
+    ObjectUtil::addStandardFieldsToTableDefinition($table['bannersclient_column']);
     ObjectUtil::addStandardFieldsToTableDataDefinition($table['bannersclient_column_def']);
 
     // old tables for upgrade/renaming purposes

@@ -79,6 +79,45 @@ class Banners_Installer extends Zikula_AbstractInstaller
             case '2.1':   // known version
             case '2.1.0':
             case '2.2':
+                $prefix = $this->serviceManager['prefix'];
+                $connection = Doctrine_Manager::getInstance()->getConnection('default');
+                $sqlStatements = array();
+                // N.B. statements generated with PHPMyAdmin
+                $sqlStatements[] = 'RENAME TABLE ' . $prefix . '_banners' . " TO `banners`";
+                $sqlStatements[] = "ALTER TABLE `banners` CHANGE `pn_bid` `bid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
+CHANGE `pn_cid` `cid` INT( 11 ) NULL DEFAULT '0',
+CHANGE `pn_type` `type` VARCHAR( 2 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0',
+CHANGE `pn_imptotal` `imptotal` INT( 11 ) NULL DEFAULT '0',
+CHANGE `pn_impmade` `impmade` INT( 11 ) NULL DEFAULT '0',
+CHANGE `pn_clicks` `clicks` INT( 11 ) NULL DEFAULT '0',
+CHANGE `pn_imageurl` `imageurl` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+CHANGE `pn_clickurl` `clickurl` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+CHANGE `pn_date` `ddate` DATETIME NULL DEFAULT NULL ,
+CHANGE `pn_obj_status` `obj_status` VARCHAR( 1 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'A',
+CHANGE `pn_cr_date` `cr_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00',
+CHANGE `pn_cr_uid` `cr_uid` INT( 11 ) NOT NULL DEFAULT '0',
+CHANGE `pn_lu_date` `lu_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00',
+CHANGE `pn_lu_uid` `lu_uid` INT( 11 ) NOT NULL DEFAULT '0'";
+                $sqlStatements[] = 'RENAME TABLE ' . $prefix . '_bannersclient' . " TO `bannersclient`";
+                $sqlStatements[] = "ALTER TABLE `bannersclient` CHANGE `pn_cid` `cid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
+CHANGE `pn_name` `name` VARCHAR( 60 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+CHANGE `pn_contact` `contact` VARCHAR( 60 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+CHANGE `pn_email` `email` VARCHAR( 60 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+CHANGE `pn_login` `login` VARCHAR( 10 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+CHANGE `pn_passwd` `passwd` VARCHAR( 10 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+CHANGE `pn_extrainfo` `extrainfo` LONGBLOB NOT NULL ,
+CHANGE `pn_obj_status` `obj_status` VARCHAR( 1 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'A',
+CHANGE `pn_cr_date` `cr_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00',
+CHANGE `pn_cr_uid` `cr_uid` INT( 11 ) NOT NULL DEFAULT '0',
+CHANGE `pn_lu_date` `lu_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00',
+CHANGE `pn_lu_uid` `lu_uid` INT( 11 ) NOT NULL DEFAULT '0'";
+                foreach ($sqlStatements as $sql) {
+                    $stmt = $connection->prepare($sql);
+                    try {
+                        $stmt->execute();
+                    } catch (Exception $e) {
+                    }   
+                }
                 ModUtil::setVar('Banners', 'enablecats', true);
                 if (!DBUtil::changeTable('banners')) {
                     LogUtil::registerError($this->__('Error! Could not upgrade the tables.'));
