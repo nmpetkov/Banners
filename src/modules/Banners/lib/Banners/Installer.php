@@ -172,6 +172,14 @@ CHANGE `pn_lu_uid` `lu_uid` INT( 11 ) NOT NULL DEFAULT '0'";
                 }
 
             case '3.0.0':
+                $sql = "ALTER TABLE banners_client CHANGE extrainfo extrainfo LONGTEXT NOT NULL";
+                $connection = Doctrine_Manager::getInstance()->getConnection('default');
+                $stmt = $connection->prepare($sql);
+                try {
+                    $stmt->execute();
+                } catch (Exception $e) {
+                }   
+            case '3.0.1':
             // future development
         }
 
