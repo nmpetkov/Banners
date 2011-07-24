@@ -17,7 +17,7 @@ class Banners_Version extends Zikula_AbstractVersion
         $meta['displayname']    = $this->__('Banners');
         $meta['url']            = $this->__(/*!used in URL - nospaces, no special chars, lcase*/'banners');
         $meta['description']    = $this->__('Banners Management');
-        $meta['version']        = '3.0.0';
+        $meta['version']        = '3.0.1';
 
         $meta['securityschema'] = array(
             'Banners::' => 'Banner ID::',

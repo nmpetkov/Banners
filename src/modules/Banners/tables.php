@@ -72,7 +72,7 @@ function Banners_tables() {
             'email'     => 'C(60) NOTNULL',
             'login'     => 'C(10) NOTNULL',
             'passwd'    => 'C(10) NOTNULL',
-            'extrainfo' => "X2 NOTNULL",
+            'extrainfo' => "XL NOTNULL",
             'uid'       => "I DEFAULT '0'");
     // add standard data fields
     ObjectUtil::addStandardFieldsToTableDefinition($table['bannersclient_column']);
