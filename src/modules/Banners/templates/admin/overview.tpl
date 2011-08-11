@@ -31,7 +31,7 @@
             <th>{gt text="% Clicks/Imp"}</th>
             <th>{gt text="Client Name"}</th>
             <th>{gt text="Banner Type"}</th>
-            <th>{gt text="Options"}</th>
+            <th class="z-nowrap z-right">{gt text="Options"}</th>
         </tr>
     </thead>
     <tbody>
@@ -52,7 +52,7 @@
             <td>{$activebanneritems[activebanneritems].percent|safetext}%</td>
             <td>{$activebanneritems[activebanneritems].name|safetext}</td>
             <td>{$activebanneritems[activebanneritems].typename|safetext}</td>
-            <td>
+            <td class="z-nowrap z-right">
                 <a href="{$activebanneritems[activebanneritems].imageurl|safetext}" rel="imageviewer">{img modname='core' set='icons/extrasmall' src='demo.png' __alt="image" __title='View Image'}</a>
                 <a href="{modurl modname="Banners" type="admin" func="modify" bid=$activebanneritems[activebanneritems].bid}">{img modname='core' set='icons/extrasmall' src='xedit.png' __alt="edit" __title="Edit Banner"}</a>
                 <a href="{modurl modname="Banners" type="admin" func="delete" bid=$activebanneritems[activebanneritems].bid}">{img modname='core' set='icons/extrasmall' src='14_layer_deletelayer.png' __alt="Delete" __title="Delete Banner"}</a>
@@ -84,7 +84,7 @@
             <th>{* gt text="Date Ended" *}</th> -->
             <th>{gt text="Client Name"}</th>
             <th>{gt text="Banner Type"}</th>
-            <th>{gt text="Options"}</th>
+            <th class="z-nowrap z-right">{gt text="Options"}</th>
         </tr>
     </thead>
     <tbody>
@@ -107,7 +107,7 @@
             <td>{* $finishedbanners[finishedbanners].dateend|safetext *}</td> -->
             <td>{$finishedbanners[finishedbanners].name|safetext}</td>
             <td>{$finishedbanners[finishedbanners].typename|safetext}</td>
-            <td>
+            <td class="z-nowrap z-right">
                 <a href="{$finishedbanners[finishedbanners].imageurl|safetext}" rel="imageviewer">{img modname='core' set='icons/extrasmall' src='demo.png' __alt="image" __title='View Image'}</a>
                 <a href="{modurl modname="Banners" type="admin" func="modify" bid=$finishedbanners[finishedbanners].bid}">{img modname='core' set='icons/extrasmall' src='xedit.png' __alt="edit" __title="Edit Banner"}</a>
                 <a href="{modurl modname="Banners" type="admin" func="deletefinished" bid=$finishedbanners[finishedbanners].bid|safetext}">{img modname='core' set='icons/extrasmall' src='14_layer_deletelayer.png' __alt="Delete" __title="Delete Banner"}</a>
@@ -128,7 +128,7 @@
             <th>{gt text="Zikula Username (uid)"}</th>
             <th>{gt text="Contact Name"}</th>
             <th>{gt text="Contact eMail"}</th>
-            <th>{gt text="Options"}</th>
+            <th class="z-nowrap z-right">{gt text="Options"}</th>
         </tr>
     </thead>
     <tbody>
@@ -139,7 +139,7 @@
             <td>{$activeclients[activeclients].zuname|safetext} ({$activeclients[activeclients].uid})</td>
             <td>{$activeclients[activeclients].contact|safetext}</td>
             <td>{$activeclients[activeclients].email|safetext}</td>
-            <td>
+            <td class="z-nowrap z-right">
                 <a href="{modurl modname="Banners" type="admin" func="modifyclient" cid=$activeclients[activeclients].cid}">{img modname='core' set='icons/extrasmall' src='xedit.png' __alt='Edit' __title='Edit'}</a>
                 <a href="{modurl modname="Banners" type="admin" func="deleteclient" cid=$activeclients[activeclients].cid}">{img modname='core' set='icons/extrasmall' src='14_layer_deletelayer.png' __alt='Delete' __title='Delete'}</a>
             </td>
