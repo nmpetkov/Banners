@@ -21,8 +21,8 @@
 <div class="z-formrow">
     <label for="bannerblock_duration">{gt text='Transition duration'}</label>
     <input type="text" id="bannerblock_duration" name="duration" value="{$vars.duration}" />
-    <em class='z-formnote'>({gt text='in seconds'})</em>
-    <em class='z-formnote'>{gt text='Note: The display duration is set in the Category Attributes'}</em>
+    <em class='z-formnote z-sub'>({gt text='in seconds'})</em>
+    <em class='z-formnote z-sub'>{gt text='Note: The display duration is set in the Category Attributes'}</em>
 </div>
 <div class="z-formrow">
     <label for="bannerblock_controls">{gt text='Display slideshow controls'}</label>
@@ -31,7 +31,7 @@
 <div class="z-formrow">
     <label for="bannerblock_autostart">{gt text='Autostart slideshow'}</label>
     <input type="checkbox" id="bannerblock_autostart" name="autostart" value="1" {if $vars.autostart} checked="checked"{/if} />
-    <em class='z-formnote'>{gt text='recommended'}</em>
+    <em class='z-formnote z-sub'>{gt text='recommended'}</em>
 </div>
 <div class="z-formrow">
     <label for="bannerblock_esquare">{gt text='Use eSquare transition'}</label>
@@ -48,5 +48,5 @@
 <div class="z-formrow">
     <label for="bannerblock_ecolor">{gt text='Color of eSquare transition background'}</label>
     <input type="text" id="bannerblock_ecolor" name="ecolor" value="{$vars.ecolor}" />
-    <em class='z-formnote'>({gt text='include hash symbol'}}</em>
+    <em class='z-formnote z-sub'>({gt text='include hash symbol'}}</em>
 </div>

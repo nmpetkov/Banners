@@ -20,41 +20,33 @@
                 </select>
             </div>
             {if (($banner.imptotal > 0) || (($banner.imptotal == 0) and ($banner.limit == 1)))}
-                <div class="z-formrow">
-                    <label for="banners_addimp">{gt text="Add more impressions"}</label>
-                    <input type="text" id="banners_addimp" name="banner[impadded]" size="12" maxlength="11" />
-                    {gt text="Purchased"}:{$banner.imptotal|safetext}
-                    {gt text="Impressions Made"}:{$banner.impmade|safetext}
-                </div>
-                <div class="z-formrow">
-                    <label for="banners_unlimit">{gt text="Convert to unlimited"}</label>
-                    <input type="checkbox" id="banners_unlimit" name="banner[unlimit]" value="1" />
-                </div>
+            <div class="z-formrow">
+                <label for="banners_addimp">{gt text="Add more impressions"}</label>
+                <input type="text" id="banners_addimp" name="banner[impadded]" size="12" maxlength="11" />
+                {gt text="Purchased"}:{$banner.imptotal|safetext}
+                {gt text="Impressions Made"}:{$banner.impmade|safetext}
+            </div>
+            <div class="z-formrow">
+                <label for="banners_unlimit">{gt text="Convert to unlimited"}</label>
+                <input type="checkbox" id="banners_unlimit" name="banner[unlimit]" value="1" />
+            </div>
             {else}
-                <input type="hidden" name="banner[impadded]" value="0" />
+            <input type="hidden" name="banner[impadded]" value="0" />
             {/if}
             <div class="z-formrow">
-                <label for="banners_banname">{gt text="Banner Name"}</label>
+                <label for="banners_name">{gt text="Banner Name"}</label>
                 <input type="text" id="banners_name" name="banner[title]" size="50" maxlength="250" value="{$banner.title|safetext}" />
             </div>
             {if $modvars.Banners.enablecats}
-                <div class="z-formrow">
-                    <label for="banners_type">{gt text='Banner Type'}</label>
-                    {nocache}
-                    <span><ul id='banners_type' style='list-style:none; margin: 0;'>
-                    {foreach from=$catregistry key='property' item='category'}
-                        {array_field assign="selectedValue" array=$selectedcatsarray field=$property}
-                        <li>{selector_category
-                                category=$category
-                                name="banner[__CATEGORIES__][$property]"
-                                field="id"
-                                selectedValue=$selectedValue
-                                defaultValue="0"
-                                editLink=1}</li>
-                    {/foreach}
-                    </ul></span>
-                    {/nocache}
-                </div>
+            <div class="z-formrow">
+                <label>{gt text='Banner Type'}</label>
+                {nocache}
+                {foreach from=$catregistry key='property' item='category'}
+                {array_field assign="selectedValue" array=$selectedcatsarray field=$property}
+                <div class="z-formnote">{selector_category category=$category name="banner[__CATEGORIES__][$property]" field="id" selectedValue=$selectedValue defaultValue="0" editLink=1}</div>
+                {/foreach}
+                {/nocache}
+            </div>
             {/if}
             <div class="z-formrow">
                 <label for="banners_active">{gt text="Banner is Active"}</label>
@@ -72,11 +64,11 @@
                 <label for="banners_hovertext">{gt text="Hover text"}</label>
                 <input type="text" id="banners_hovertext" name="banner[hovertext]" size="40" maxlength="255" value="{$banner.hovertext|safetext}" />
             </div>
-             <div class="z-buttons z-formbuttons">
-                {button class='z-btgreen' src="button_ok.png" set="icons/extrasmall" __alt="Update Banner" __title="Update Banner" __text="Update Banner"}
-                <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname='core' src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
-            </div>
         </fieldset>
+        <div class="z-buttons z-formbuttons">
+            {button class='z-btgreen' src="button_ok.png" set="icons/extrasmall" __alt="Update Banner" __title="Update Banner" __text="Update Banner"}
+            <a class='z-btred' href="{modurl modname="Banners" type="admin" func="overview"}" title="{gt text="Cancel"}">{img modname='core' src="button_cancel.png" set="icons/extrasmall" __alt="Cancel" __title="Cancel"} {gt text="Cancel"}</a>
+        </div>
     </div>
 </form>
 {adminfooter}
