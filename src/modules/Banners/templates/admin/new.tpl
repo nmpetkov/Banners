@@ -11,7 +11,7 @@
     {gt text="To turn on banner display, please check your"} <a href='{modurl modname="Banners" type="admin" func="modifyconfig"}'>{gt text='settings'}</a>
 </div>
 {/if}
-<form class="z-form" action="{modurl modname="Banners" type="admin" func="create"}" method="post" enctype="application/x-www-form-urlencoded">
+<form class="z-form" action="{modurl modname="Banners" type="admin" func="create"}" method="post" enctype="multipart/form-data">
     <fieldset>
         <input type="hidden" name="csrftoken" value="{insert name="csrftoken"}" />
         <div class="z-formrow">
@@ -47,6 +47,11 @@
         <div class="z-formrow">
             <label for="imgurl">{gt text="Image URL"}</label>
             <input type="text" id="imgurl" name="banner[imageurl]" size="50" maxlength="250" />
+        </div>
+        <div class="z-formrow">
+            <label for="imgfile">&nbsp;</label>
+            <input type="file" id="imgfile" name="imagefile"/>
+            <em class="z-formnote z-sub">{gt text="Alternativelly you can upload an image here"}</em>
         </div>
         <div class="z-formrow">
             <label for="clickurl">{gt text="Click URL"}</label>

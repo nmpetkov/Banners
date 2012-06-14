@@ -5,7 +5,7 @@
 </div>
 
 <div style="text-align:center"><img src="{$banner.imageurl|safetext}" alt="" title="{$banner.clickurl|safetext}" /></div>
-<form class="z-form" action="{modurl modname="Banners" type="admin" func="update"}" method="post" enctype="application/x-www-form-urlencoded">
+<form class="z-form" action="{modurl modname="Banners" type="admin" func="update"}" method="post" enctype="multipart/form-data">
     <div>
         <fieldset>
             <legend>{gt text='Edit Banner ID %s' tag1=$banner.bid|safetext}</legend>
@@ -55,6 +55,11 @@
             <div class="z-formrow">
                 <label for="banners_imgurl">{gt text="Image URL"}</label>
                 <input type="text" id="banners_imgurl" name="banner[imageurl]" size="40" maxlength="255" value="{$banner.imageurl|safetext}" />
+            </div>
+            <div class="z-formrow">
+                <label for="imgfile">&nbsp;</label>
+                <input type="file" id="imgfile" name="imagefile"/>
+                <em class="z-formnote z-sub">{gt text="Alternativelly you can upload an image here"}</em>
             </div>
             <div class="z-formrow">
                 <label for="banners_clickurl">{gt text="Click URL"}</label>
