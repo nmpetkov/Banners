@@ -1,5 +1,4 @@
-{configgetvar name='sitename' assign='sitename'}
-{gt text='The following are the complete stats for your advertising investment at %s' tag1=$sitename}
+{gt text='The following are the complete stats for your advertising investment at %s' tag1=$modvars.ZConfig.sitename}
 
 {gt text='Client Name'}: {$client.name}
 {gt text='Banner ID'}: {$banner.bid}

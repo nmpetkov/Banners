@@ -28,6 +28,11 @@
                 <em class="z-sub z-formnote">{gt text="Enter comma-seperated value list"}</em>
                 <em class="z-sub z-formnote">{gt text="Your current IP address is <span style='background-color:#ffffbb;'>%s</span>" tag1=$currentip}</em>
             </div>
+            <div class="z-formrow">
+                <label for="storagedir">{gt text='Store uploaded banners to'}</label>
+                <input id="storagedir" type="text" name="storagedir" size="255" value="{$modvars.Banners.storagedir|safetext}" />
+                <div class="z-formnote z-sub">{gt text='All banners will be stored here. Omit the trailing /'}</div>
+            </div>
         </fieldset>
         <div class="z-buttons z-formbuttons">
             {button class='z-btgreen' src="button_ok.png" set="icons/extrasmall" __alt="Save" __title="Save" __text="Save"}
