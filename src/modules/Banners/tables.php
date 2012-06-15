@@ -32,7 +32,8 @@ function Banners_tables() {
             'clickurl'  => 'clickurl',
             'date'      => 'ddate',                // not a typo! `date` is a reserved sql word
             'hovertext' => 'hovertext',            // added in vers. 3.0.0
-            'active'    => 'active');              // added in vers. 3.0.0
+            'active'    => 'active',               // added in vers. 3.0.0
+            'enddate'   => 'enddate');              
 
     $table['banners_column_def'] = array(
             'bid'       => 'I PRIMARY AUTO',
@@ -46,7 +47,8 @@ function Banners_tables() {
             'clickurl'	=> "C(255) DEFAULT ''",
             'date'      => 'T DEFAULT NULL',
             'hovertext' => "C(255) DEFAULT ''",
-            'active'    => "I DEFAULT '1'");
+            'active'    => "I DEFAULT '1'",
+            'enddate'   => "D DEFAULT NULL");
     // add standard data fields
     ObjectUtil::addStandardFieldsToTableDefinition($table['banners_column']);
     ObjectUtil::addStandardFieldsToTableDataDefinition($table['banners_column_def']);
@@ -65,6 +67,7 @@ function Banners_tables() {
             'passwd'    => 'passwd',                // becomes obsolete in v3.0.0
             'extrainfo' => 'extrainfo',
             'uid'       => 'uid');                  // added in vers. 3.0.0
+            
     $table['bannersclient_column_def'] = array(
             'cid'       => 'I AUTOINCREMENT PRIMARY',
             'name'      => 'C(60) NOTNULL',

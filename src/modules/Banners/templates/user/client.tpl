@@ -2,8 +2,7 @@
 {insert name="getstatusmsg"}
 <h2>{gt text='Banners Statistics'}</h2>
 <h3>{gt text="Current banners for %s" tag1=$client.name}</h3>
-{configgetvar name="sitename" assign='sitename'}
-<p>{gt text="You have the following banners on %s" tag1=$sitename}</p>
+<p>{gt text="You have the following banners on %s" tag1=$modvars.ZConfig.sitename}</p>
 <table class="z-datatable">
     <thead>
         <tr>

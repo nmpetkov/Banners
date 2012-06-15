@@ -62,10 +62,18 @@ class Banners_Block_Banners extends Zikula_Controller_AbstractBlock
             return false;
         }
 
+        $banner = ModUtil::func('Banners', 'user', 'display', $vars);
+        
+        // if banner (for some reason) comes empty, disable the block
+        if ($banner == "&nbsp;") {
+            return false;
+        }
+        
         // assign the banner
         $this->view->assign('blockid', $blockinfo['bid']);
-        $this->view->assign('banner', ModUtil::func('Banners', 'user', 'display', $vars));
+        $this->view->assign('banner', $banner);
         $this->view->assign('hovertext', $vars['hovertext']);
+        
 
         // Populate block info and pass to theme
         $blockinfo['content'] = $this->view->fetch('blocks/banners.tpl');
