@@ -39,6 +39,7 @@ class Banners_Installer extends Zikula_AbstractInstaller
         ModUtil::setVar('Banners', 'banners', true); // active
         ModUtil::setVar('Banners', 'openinnewwindow', false);
         ModUtil::setVar('Banners', 'enablecats', true);
+        ModUtil::setVar('Banners', 'storagedir', 'userdata');
 
         $result = Banners_Util::createCategories();
         if ($result) {
@@ -179,6 +180,7 @@ CHANGE `pn_lu_uid` `lu_uid` INT( 11 ) NOT NULL DEFAULT '0'";
                     $stmt->execute();
                 } catch (Exception $e) {
                 }   
+                ModUtil::setVar('Banners', 'storagedir', true);
             case '3.0.1':
             // future development
         }

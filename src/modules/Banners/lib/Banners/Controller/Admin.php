@@ -93,9 +93,23 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
      * @return mixed int banner id if successful
      */
     public function create() {
+        
         $banner = FormUtil::getPassedValue('banner', null, 'POST');
 
         $this->checkCsrfToken();
+        
+        // get storage directory
+        $banners_dir = $this->getVar('storagedir');
+        $uploaded_image = Banners_ImagesUtil::uploadImage('imagefile', $banners_dir, '');
+        
+        if ($uploaded_image) {
+            $banner['imageurl'] = System::getBaseUrl() . $banners_dir . '/' . $uploaded_image;
+        }
+        
+        /*
+        // construct the url provided
+        // $imageuploaded
+        */
 
         // Create the banner
         $bid = ModUtil::apiFunc('Banners', 'admin', 'create', $banner);
@@ -164,9 +178,25 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
      * @return bool
      */
     public function update() {
+    
         $banner = FormUtil::getPassedValue('banner', null, 'POST');
+        $bid = $banner['bid'];
 
         $this->checkCsrfToken();
+        
+        // get storage directory
+        $banners_dir = $this->getVar('storagedir');
+        
+        // get the old banner image
+        $current_banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $bid));
+        $current_imageurl = $current_banner['imageurl'];
+        $current_image = (empty($current_imageurl))?'':substr($current_imageurl, strrpos($current_imageurl, '/')+1);
+        
+        $uploaded_image = Banners_ImagesUtil::uploadImage('imagefile', $banners_dir, $current_image);
+        
+        if ($uploaded_image) {
+            $banner['imageurl'] = System::getBaseUrl() . $banners_dir . '/' . $uploaded_image;
+        }
 
         if (ModUtil::apiFunc('Banners', 'admin', 'update', $banner)) {
             LogUtil::registerStatus($this->__('Banner Updated'));
@@ -213,6 +243,12 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
         }
 
         $this->checkCsrfToken();
+        
+        // delete the image from the filesystem
+        $current_imageurl = $banner['imageurl'];
+        $current_image = (empty($current_imageurl))?'':substr($current_imageurl, strrpos($current_imageurl, '/')+1);
+        
+        Banners_ImagesUtil::deleteImage($current_image);
 
         // Delete the banner
         // The return value of the function is checked
@@ -421,6 +457,7 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
             'enablecats'      => FormUtil::getPassedValue('enablecats', 0, 'POST'),
             'openinnewwindow' => FormUtil::getPassedValue('openinnewwindow', 0, 'POST'),
             'myIP'            => array_map('trim', explode(',', FormUtil::getPassedValue('myIP', null, 'POST'))),
+            'storagedir' => trim(FormUtil::getPassedValue('storagedir', '', 'POST')),
         );
 
         $this->checkCsrfToken();
