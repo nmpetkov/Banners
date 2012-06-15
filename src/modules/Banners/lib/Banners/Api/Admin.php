@@ -325,5 +325,26 @@ class Banners_Api_Admin extends Zikula_AbstractApi {
         $args['active'] = 0;
         return $this->delete($args);
     }
+    
+    /**
+     * disable an expired banners
+     *
+     * @param int $bid banner id
+     * @return bool true on success, false on failure
+     */
+    public function disableExpired() {
+    
+        $values = array('active' => 0);
+        
+        $dbtable = DBUtil::getTables();
+        $columns = $dbtable['banners_column'];
+        $where = "$columns[enddate] < '" . date('Y-m-d') . "' AND $columns[enddate] != '0000-00-00' AND $columns[active] = 1";
+    
+        if (!DBUtil::updateObject($values, 'banners', $where)) {
+            return LogUtil::registerError($this->__('Error! Update attempt failed.'));
+        }
+
+        return true;
+    }
 
 }

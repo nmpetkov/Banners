@@ -1,3 +1,15 @@
+{ajaxheader ui=true}
+
+{* for calendar *}
+{pageaddvar name='javascript' value="modules/$module/javascript/protoplasm/protoplasm.js"}
+
+{pageaddvarblock}
+<script type="text/javascript">
+    // for calendar
+    Protoplasm.use('datepicker').transform('input.datepicker', {'locale': 'el_GR'});
+</script>
+{/pageaddvarblock}
+
 {adminheader}
 <div class="z-admin-content-pagetitle">
     {icon type="new" size="small"}
@@ -60,6 +72,11 @@
         <div class="z-formrow">
             <label for="hovertext">{gt text="Hover text"}</label>
             <input type="text" id="hovertext" name="banner[hovertext]" size="50" maxlength="250" />
+        </div>
+        <div class="z-formrow">
+            <label for="enddate">{gt text='End Date'}</label>
+            <input id="enddate" name="banner[enddate]" type="text" maxlength="255" value="0000-00-00" class="datepicker" style="width: 80px;" />
+            <div class="z-formnote z-sub">{gt text='The expiration date. Set to 0000-00-00 for no expiration. Banners who reach the expiration date will become inactive automatically.'}</div>
         </div>
     </fieldset>
     <div class="z-buttons z-formbuttons">

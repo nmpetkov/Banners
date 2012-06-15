@@ -49,6 +49,9 @@ class Banners_Api_User extends Zikula_AbstractApi {
         if (!SecurityUtil::checkPermission('Banners::', '::', ACCESS_READ)) {
             return $items;
         }
+        
+        // before anything else, disable expired banners
+        ModUtil::apiFunc('Banners', 'admin', 'disableExpired');
 
         // define the permission filter to apply
         $permFilter = array(array(
@@ -115,6 +118,9 @@ class Banners_Api_User extends Zikula_AbstractApi {
         if (!isset($args['clientinfo']) || !is_bool($args['clientinfo'])) {
             $args['clientinfo'] = false;
         }
+        
+        // before anything else, disable expired banners
+        ModUtil::apiFunc('Banners', 'admin', 'disableExpired');
 
         // define the permission filter to apply
         $permFilter = array(array(
@@ -161,6 +167,10 @@ class Banners_Api_User extends Zikula_AbstractApi {
         if (!isset($args['active'])) {
             $args['active'] = 1;
         }
+
+        // before anything else, disable expired banners
+        ModUtil::apiFunc('Banners', 'admin', 'disableExpired');
+        
         $dbtable = DBUtil::getTables();
         $columns = $dbtable['banners_column'];
         $where = $columns['active'] . '=' . $args['active'];
