@@ -181,8 +181,6 @@ CHANGE `pn_lu_uid` `lu_uid` INT( 11 ) NOT NULL DEFAULT '0'";
                 } catch (Exception $e) {
                 }  
                 
-
-            case '3.0.1':
                 // add the enddate column
                 $sql = "ALTER TABLE `banners` ADD `enddate` DATE NOT NULL AFTER `active`";
                 $connection = Doctrine_Manager::getInstance()->getConnection('default');
@@ -193,6 +191,8 @@ CHANGE `pn_lu_uid` `lu_uid` INT( 11 ) NOT NULL DEFAULT '0'";
                 
                 // create the storagedir variable
                 ModUtil::setVar('Banners', 'storagedir', true);
+            case '3.0.1':
+            // future development
         }
 
         // Update successful
