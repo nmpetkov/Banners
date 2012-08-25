@@ -1,14 +1,5 @@
 {ajaxheader ui=true}
-
-{* for calendar *}
-{pageaddvar name='javascript' value="modules/$module/javascript/protoplasm/protoplasm.js"}
-
-{pageaddvarblock}
-<script type="text/javascript">
-    // for calendar
-    Protoplasm.use('datepicker').transform('input.datepicker', {'locale': 'el_GR'});
-</script>
-{/pageaddvarblock}
+{assign value='vader' var='jquerytheme'}
 
 {adminheader}
 <div class="z-admin-content-pagetitle">
@@ -75,7 +66,17 @@
         </div>
         <div class="z-formrow">
             <label for="enddate">{gt text='End Date'}</label>
-            <input id="enddate" name="banner[enddate]" type="text" maxlength="255" value="0000-00-00" class="datepicker" style="width: 80px;" />
+           {nocache}
+				{jquery_datepicker 
+                    defaultdate=$banner.enddate 
+                    displayelement='banners_enddate' 
+                    object='banner' 
+                    valuestorageelement='enddate' 
+                    maxdate=$banner.enddate.enddate 
+                    theme=$jquerytheme 
+                    autoSize='true'
+                    onselectcallback='updateFields(this,dateText);'}
+{/nocache}	
             <div class="z-formnote z-sub">{gt text='The expiration date. Set to 0000-00-00 for no expiration. Banners who reach the expiration date will become inactive automatically.'}</div>
         </div>
     </fieldset>

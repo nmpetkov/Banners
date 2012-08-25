@@ -35,6 +35,7 @@
         </tr>
     </thead>
     <tbody>
+	{nocache}
         {section name="activebanneritems" loop=$activebanneritems}
         <tr class="{cycle values='z-odd,z-even' name='activebanners'}">
             <td>{img src='greenled.png' modname='core' set='icons/extrasmall' __title="Active" __alt="Active"}
@@ -61,6 +62,7 @@
 {sectionelse}
         <tr class="z-datatableempty"><td colspan="10">{gt text='No Active Banners Found'}</td></tr>
 {/section}
+{/nocache}
     </tbody>
 </table>
 
@@ -88,6 +90,7 @@
         </tr>
     </thead>
     <tbody>
+	{nocache}
         {section name="finishedbanners" loop=$finishedbanners}
         <tr class="{cycle values='z-odd,z-even' name='finishedbanners'}">
             <td>{img src='redled.png' modname='core' set='icons/extrasmall' __title="Inactive" __alt="Inactive"}
@@ -113,9 +116,10 @@
                 <a href="{modurl modname="Banners" type="admin" func="deletefinished" bid=$finishedbanners[finishedbanners].bid|safetext}">{img modname='core' set='icons/extrasmall' src='14_layer_deletelayer.png' __alt="Delete" __title="Delete Banner"}</a>
             </td>
         </tr>
-{sectionelse}
-        <tr class="z-datatableempty"><td colspan="10">{gt text='No Inactive Banners Found'}</td></tr>
-{/section}
+		{sectionelse}
+			<tr class="z-datatableempty"><td colspan="10">{gt text='No Inactive Banners Found'}</td></tr>
+		{/section}
+	{/nocache}
     </tbody>
 </table>
 
@@ -132,6 +136,7 @@
         </tr>
     </thead>
     <tbody>
+	{nocache}
         {section name="activeclients" loop=$activeclients}
         <tr class="{cycle values='z-odd,z-even' name='activeclients'}">
             <td class="tooltips" id="clientname_{$activeclients[activeclients].cid}" title="{$activeclients[activeclients].extrainfo}">{$activeclients[activeclients].name|safetext} ({$activeclients[activeclients].cid})</td>
@@ -147,6 +152,7 @@
 {sectionelse}
         <tr class="z-datatableempty"><td colspan="6">{gt text='No Clients Found'}</td></tr>
 {/section}
+{/nocache}
     </tbody>
 </table>
 {adminfooter}
