@@ -67,14 +67,14 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Banners::', '::', ACCESS_ADMIN), LogUtil::getErrorMsgPermission());
 
         // get list of banners
-        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('clientinfo' => true));
+        $banners = ModUtil::apiFunc('Banners', 'user', 'getall', array('active' => true));
         foreach ($banners as $key => $banner) {
             $banners[$key] = Banners_Util::computestats($banner);
         }
         $this->view->assign('activebanneritems', $banners);
 
         // get list of finished banners
-        $finishedbanners = ModUtil::apiFunc('Banners', 'user', 'getallfinished', array('clientinfo' => true));
+        $finishedbanners = ModUtil::apiFunc('Banners', 'user', 'getallfinished', array('active' => true));
         foreach ($finishedbanners as $key => $banner) {
             $finishedbanners[$key] = Banners_Util::computestats($banner);
         }
