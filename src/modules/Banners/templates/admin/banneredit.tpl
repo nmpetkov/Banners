@@ -1,3 +1,14 @@
+{ajaxheader ui=true}
+
+{* for calendar *}
+{pageaddvar name='javascript' value="modules/$module/javascript/protoplasm/protoplasm.js"}
+
+{pageaddvarblock}
+<script type="text/javascript">
+    // for calendar
+    Protoplasm.use('datepicker').transform('input.datepicker', {'locale': 'el_GR'});
+</script>
+{/pageaddvarblock}
 {adminheader}
 <div class="z-admin-content-pagetitle">
     {icon type="edit" size="small"}
@@ -5,7 +16,7 @@
 </div>
 
 <div style="text-align:center"><img src="{$banner.imageurl|safetext}" alt="" title="{$banner.clickurl|safetext}" /></div>
-<form class="z-form" action="{modurl modname="Banners" type="admin" func="update"}" method="post" enctype="application/x-www-form-urlencoded">
+<form class="z-form" action="{modurl modname="Banners" type="admin" func="update"}" method="post" enctype="multipart/form-data">
     <div>
         <fieldset>
             <legend>{gt text='Edit Banner ID %s' tag1=$banner.bid|safetext}</legend>
@@ -57,12 +68,22 @@
                 <input type="text" id="banners_imgurl" name="banner[imageurl]" size="40" maxlength="255" value="{$banner.imageurl|safetext}" />
             </div>
             <div class="z-formrow">
+                <label for="imgfile">&nbsp;</label>
+                <input type="file" id="imgfile" name="imagefile"/>
+                <em class="z-formnote z-sub">{gt text="Alternativelly you can upload an image here"}</em>
+            </div>
+            <div class="z-formrow">
                 <label for="banners_clickurl">{gt text="Click URL"}</label>
                 <input type="text" id="banners_clickurl" name="banner[clickurl]" size="40" maxlength="255" value="{$banner.clickurl|safetext}" />
             </div>
             <div class="z-formrow">
                 <label for="banners_hovertext">{gt text="Hover text"}</label>
                 <input type="text" id="banners_hovertext" name="banner[hovertext]" size="40" maxlength="255" value="{$banner.hovertext|safetext}" />
+            </div>
+            <div class="z-formrow">
+                <label for="banners_enddate">{gt text='End Date'}</label>
+                <input id="banners_enddate" name="banner[enddate]" type="text" maxlength="255" value="{$banner.enddate|safetext}" class="datepicker" style="width: 80px;" />
+                <div class="z-formnote z-sub">{gt text='The expiration date. Leave empty for no expiration. Banners who reach the expiration date will become inactive automatically.'}</div>
             </div>
         </fieldset>
         <div class="z-buttons z-formbuttons">
