@@ -75,12 +75,11 @@
             <div class="z-formrow">
                 <label for="banners_enddate">{gt text='End Date'}</label>
                 {nocache}
-				{jquery_datepicker 
+		{jquery_datepicker 
                     defaultdate=$banner.enddate 
                     displayelement='banners_enddate' 
                     object='banner' 
-                    valuestorageelement='enddate' 
-                    maxdate=$banner.enddate.enddate 
+                    valuestorageelement='enddate'
                     theme=$jquerytheme 
                     autoSize='true'
                     onselectcallback='updateFields(this,dateText);'}
