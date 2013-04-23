@@ -45,6 +45,7 @@ class Banners_Controller_User extends Zikula_AbstractController {
             $banners[$key]['led'] = $banner['active'] ? 'greenled.png' : 'redled.png';
         }
 
+        $this->view->setCaching(false);
         $this->view->assign('banners', $banners);
         $this->view->assign('client', $client);
         return $this->view->fetch('user/client.tpl');
@@ -72,6 +73,7 @@ class Banners_Controller_User extends Zikula_AbstractController {
 
         $banner = Banners_Util::computestats($banner);
 
+        $this->view->setCaching(false);
         $this->view->assign('banner', $banner);
         $this->view->assign('client', $client);
         $this->view->assign('date', date("F jS Y, h:iA."));
@@ -101,6 +103,7 @@ class Banners_Controller_User extends Zikula_AbstractController {
             $banner = ModUtil::apiFunc('Banners', 'user', 'get', array('bid' => $bid));
         }
 
+        $this->view->setCaching(false);
         $this->view->assign('banner', $banner);
         $this->view->assign('client', $client);
         return $this->view->fetch('user/editurl.tpl');
