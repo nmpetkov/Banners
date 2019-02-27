@@ -156,7 +156,14 @@ class Banners_Controller_Admin extends Zikula_AbstractController {
         $banner['limit'] = $limit;
 
         // assign the banner item
-        $this->view->assign('banner', $banner);
+        // N.Petkov =>
+        if (empty($banner['enddate']) || $banner['enddate'] == '0000-00-00') {
+            $banner['enddate'] = new DateTime(null);
+        } else {
+            $banner['enddate'] = new DateTime($banner['enddate']);
+        }
+        // N.Petkov <=
+       $this->view->assign('banner', $banner);
 
         $this->view->assign('catregistry', CategoryRegistryUtil::getRegisteredModuleCategories('Banners', 'banners'));
         $this->view->assign('selectedcatsarray', $selectedcatsarray);

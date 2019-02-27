@@ -1,5 +1,5 @@
 {ajaxheader ui=true}
-{assign value='vader' var='jquerytheme'}
+{assign value='base' var='jquerytheme'}
 
 {adminheader}
 <div class="z-admin-content-pagetitle">

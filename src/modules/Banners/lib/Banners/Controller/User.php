@@ -168,8 +168,8 @@ class Banners_Controller_User extends Zikula_AbstractController {
         if (ModUtil::apiFunc('Banners', 'user', 'click', array('bid' => $bid))) {
             if (strpos($banner['clickurl'], 'index.php') === 0) {
                 // do nothing, local system URL
-            } elseif (substr($banner['clickurl'], 0, 7) != 'http://') {
-                $banner['clickurl'] = 'http://' . $banner['clickurl'];
+            } elseif (substr($banner['clickurl'], 0, 7) != 'http://' && substr($banner['clickurl'], 0, 8) != 'https://') {
+                $banner['clickurl'] = 'https://' . $banner['clickurl'];
             }
             return System::redirect($banner['clickurl'], array('HTTP/1.1 301 Moved Permanently'));
         }
@@ -253,7 +253,7 @@ class Banners_Controller_User extends Zikula_AbstractController {
                     $target = ' target="_blank"';
                 }
                 $bannerstring  = "<a href='$url'" . $title . $target . '>';
-                $bannerstring .= '<img src="' . DataUtil::formatForDisplay($banner['imageurl']) . '" alt="' . DataUtil::formatForDisplay($banner['clickurl']) . '" />';
+                $bannerstring .= '<img src="' . DataUtil::formatForDisplay($banner['imageurl']) . '" class="img-responsive" alt="' . DataUtil::formatForDisplay($banner['clickurl']) . '" />';
                 $bannerstring .= '</a>';
             } else {
                 $bannerstring .= '<img src="' . DataUtil::formatForDisplay($banner['imageurl']) . '" />';
